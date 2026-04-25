@@ -646,171 +646,73 @@
     }).join('');
   }
 
+  const SHEET_ID = "1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG";
+
   async function loadAnimations() {
     try {
-      const res = await fetch('./animations.json?cb=' + Date.now());
-      const payload = await res.json();
-      // Format : {date: "25/04", items: [...]}
-      const anims = Array.isArray(payload) ? payload : (payload.items || []);
-      const dateLabel = Array.isArray(payload) ? '' : (payload.date || '');
+      const nowParis = new Date(new Date().toLocaleString('en-US', {timeZone: 'Europe/Paris'}));
+      const dd = String(nowParis.getDate()).padStart(2, '0');
+      const mm = String(nowParis.getMonth() + 1).padStart(2, '0');
+      const sheetName = dd + mm;
+      const dateLabel = dd + '/' + mm;
+
+      const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID
+        + '/gviz/tq?tqx=out:csv&sheet=' + sheetName + '&cb=' + Date.now();
+      const res = await fetch(url);
+      const csv = await res.text();
+
+      if (!csv || csv.includes('google.visualization') || csv.length < 20) {
+        throw new Error('Feuille introuvable');
+      }
+
+      // Parser CSV simple
+      function parseCSVRow(row) {
+        const fields = []; let cur = '', inQ = false;
+        for (const ch of row) {
+          if (ch === '"') { inQ = !inQ; }
+          else if (ch === ',' && !inQ) { fields.push(cur.trim()); cur = ''; }
+          else { cur += ch; }
+        }
+        fields.push(cur.trim());
+        return fields;
+      }
+
+      const rows = csv.split('\n').map(parseCSVRow);
+
+      // Trouver la ligne header (contient "Heure")
+      let dataStart = 0;
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i][0] && rows[i][0].toLowerCase().includes('heure')) {
+          dataStart = i + 1; break;
+        }
+      }
+
+      const anims = [];
+      for (let i = dataStart; i < rows.length; i++) {
+        const r = rows[i];
+        if (!r[0] || !r[0].includes(':') || r[0].length > 6) continue;
+        if (!r[2]) continue;
+        anims.push({ heure: r[0], emoji: r[1]||'', fr: r[2], en: r[3]||'', es: r[4]||'', lieu: r[5]||'' });
+      }
+
       window._animData = anims;
+      window._animDateLabel = dateLabel;
+
+      const dateEl = document.getElementById('anim-date');
+      if (dateEl) dateEl.textContent = anims.length ? 'Animations du ' + dateLabel : '';
 
       renderAnimations(anims, dateLabel);
+
     } catch(e) {
-      console.error('Animations error:', e);
+      window._animData = []; window._animDateLabel = '';
+      const dateEl = document.getElementById('anim-date');
+      if (dateEl) dateEl.textContent = '';
+      renderAnimations([], '');
+      console.warn('Animations:', e.message);
     }
   }
 
-  // ── Overlay nuit ─────────────────────────────────────────────────────────
-  function checkNight() {
-    const h = new Date().getHours();
-    const isNight = h >= 22 || h < 6;
-    const overlay = document.getElementById('night-overlay');
-    overlay.style.display = isNight ? 'flex' : 'none';
-    if (isNight) {
-      const now = new Date();
-      const tomorrow = new Date(now);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      tomorrow.setHours(6, 0, 0, 0);
-      const diff = Math.round((tomorrow - now) / 60000);
-      const hL = Math.floor(diff / 60), mL = diff % 60;
-      document.getElementById('night-next').textContent =
-        `Dans ${hL}h${mL.toString().padStart(2,'0')} · In ${hL}h${mL.toString().padStart(2,'0')} · En ${hL}h${mL.toString().padStart(2,'0')}`;
-    }
-  }
-  setInterval(checkNight, 30000);
 
-  // Date dans le header animations
-  function updateAnimDate(dateLabel) {
-    const el = document.getElementById('anim-date');
-    if (!el) return;
-    const now = new Date(new Date().toLocaleString('en-US', {timeZone: 'Europe/Paris'}));
-    const days = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-    const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-    const dateLongue = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-    el.textContent = dateLongue;
-  }
-  updateAnimDate();
-
-  // ── Rendu météo — 3 langues simultanées ──────────────────────────────────
-  function renderMeteo(d) {
-    if (!d) return;
-
-    const picto   = emoji(d.meteo_picto);
-    const temp    = d.temp_air || '—';
-    const tempEau = d.temp_eau || 'NC';
-    const vent    = d.vent_kmh || '—';
-    const ventDeg = d.vent_deg || '0';
-    const ventCard = d.vent_cardinal || '';
-    const uvVal   = d.uv || '—';
-    const uvShort = d.uv_label || '';
-    const uvColor = {'Faible':'#4caf50','Modéré':'#ffeb3b','Élevé':'#ff9800','Très élevé':'#f44336','Extrême':'#9c27b0'}[uvShort] || 'var(--gold)';
-    const lever   = d.lever || '—';
-    const coucher = d.coucher || '—';
-    const coef    = d.maree_coef || '—';
-    const marees  = d.marees || [];
-    const houle   = d.houle_m || '';
-    const label   = d.meteo_label || '';
-    const drap    = d.drapeau || 'nc';
-    const drapColor  = {vert:'#4caf50',jaune:'#e6c619',rouge:'#f44336',nc:'var(--muted)','':'var(--muted)'}[drap];
-    const drapBg    = {vert:'76,175,80',jaune:'230,198,25',rouge:'244,67,54',nc:'255,255,255','':'255,255,255'}[drap];
-    const drapEmoji  = {vert:'🟢',jaune:'🟡',rouge:'🔴',nc:'⚫','':'⚫'}[drap];
-    const drapFR  = {vert:'Baignade autorisée',jaune:'Baignade surveillée',rouge:'Baignade interdite',nc:d.surv_label||'Non surveillée','':''}[drap];
-    const drapEN  = {vert:'Swimming allowed',jaune:'Supervised swimming',rouge:'Swimming forbidden',nc:'Unsupervised','':''}[drap];
-    const drapES  = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
-
-    const lbl = (fr, en='', es='') => `
-      <div class="mlbl">${fr}${en?`<span class="mlbl-sub"> · ${en}${es?' · '+es:''}</span>`:''}
-      </div>`;
-
-    document.getElementById('meteo-body').innerHTML = `
-
-      <!-- ① TEMPÉRATURES — BLOC PRINCIPAL, le plus grand -->
-      <div class="mrow2" style="flex:2 1 0">
-        <div class="mcell mcell-hero">
-          <div style="font-size:clamp(2.16rem, 4.48vh, 3.51rem);line-height:1">${picto}</div>
-          <div class="val-hero">${temp}°<span style="font-size:0.45em">C</span></div>
-          ${lbl('Air','Air','Aire')}
-          ${label?`<div class="badge-label">${label}</div>`:''}
-        </div>
-        <div class="mcell mcell-hero">
-          <div style="font-size:clamp(2.16rem, 4.48vh, 3.51rem);line-height:1">🌡️</div>
-          <div class="val-hero ${tempEau==='NC'?'val-hero-nc':''}">${tempEau==='NC'?'NC':tempEau+'°'}</div>
-          ${lbl('Eau','Water','Agua')}
-          ${tempEau==='NC'?`<div class="badge-label" style="opacity:0.5">Hors saison</div>`:''}
-        </div>
-      </div>
-
-      <!-- ② DRAPEAU — important, bien visible -->
-      <div class="drap-bloc" style="background:rgba(${drapBg},0.1);border-color:rgba(${drapBg},0.3)">
-        <div style="font-size:clamp(1.89rem, 3.92vh, 2.97rem);line-height:1">${drapEmoji}</div>
-        <div style="flex:1;min-width:0">
-          <div style="font-size:clamp(1.05rem, 1.96vh, 1.35rem);font-weight:600;color:${drapColor};line-height:1.2">${drapFR}</div>
-          <div style="font-size:clamp(0.78rem, 1.4vh, 0.97rem);color:${drapColor};opacity:0.6;margin-top:0.15rem">${drapEN} · ${drapES}</div>
-        </div>
-        <div style="font-size:clamp(0.59rem, 1.05vh, 0.76rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
-      </div>
-
-      <!-- ③ UV + LEVER/COUCHER — même niveau -->
-      <div class="mrow" style="flex:1.4 1 0">
-        <div class="mcell">
-          <div style="font-size:clamp(1.35rem, 2.52vh, 1.89rem)">🌞</div>
-          <div class="val-md" style="color:${uvColor}">${uvVal}</div>
-          ${lbl('UV')}
-          <div style="font-size:clamp(0.78rem, 1.4vh, 0.97rem);font-weight:700;color:${uvColor};margin-top:0.1rem">${uvShort}</div>
-        </div>
-        <div class="mrow2" style="gap:0.35vh">
-          <div class="mcell">
-            <div style="font-size:clamp(1.22rem, 2.1vh, 1.62rem)">🌅</div>
-            <div class="val-md">${lever}</div>
-            ${lbl('Lever','Sunrise')}
-          </div>
-          <div class="mcell">
-            <div style="font-size:clamp(1.22rem, 2.1vh, 1.62rem)">🌇</div>
-            <div class="val-md">${coucher}</div>
-            ${lbl('Coucher','Sunset')}
-          </div>
-        </div>
-      </div>
-
-      <!-- ④ MARÉES — bien lisible -->
-      <div class="maree-section" style="flex:1.6 1 0">
-        <div class="sec-label">Marées · Tides · Mareas &nbsp;<span style="color:var(--muted);font-weight:300">coef. ${coef}</span></div>
-        <div class="maree-grid" style="flex:1 1 0">
-          ${marees.map(m => `
-            <div class="maree-item ${m.type==='Haute'?'haute':''}">
-              <div>
-                <span style="font-size:0.75em;opacity:0.7">${m.type==='Haute'?'▲':'▼'}</span>
-                <span class="mtype">${m.type==='Haute'?'Haute · High':'Basse · Low'}</span>
-              </div>
-              <span class="mheure">${m.heure}</span>
-            </div>`).join('')}
-        </div>
-      </div>
-
-      <!-- ⑤ VENT + HOULE — secondaire, compact -->
-      <div class="mrow" style="flex:1 1 0">
-        <div class="mcell" style="flex-direction:row;gap:0.5rem;justify-content:center">
-          <span style="font-size:clamp(1.49rem, 2.8vh, 2.16rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1;flex-shrink:0">↑</span>
-          <div>
-            <div class="val-md">${vent}<span style="font-size:0.6em"> km/h</span></div>
-            ${lbl('Vent · Wind','',ventCard)}
-          </div>
-        </div>
-        ${houle?`
-        <div class="mcell">
-          <div style="font-size:clamp(1.22rem, 2.1vh, 1.62rem)">🌊</div>
-          <div class="val-md">${houle} <span style="font-size:0.6em">m</span></div>
-          ${lbl('Houle · Swell')}
-          <div style="font-size:clamp(0.7rem, 1.26vh, 0.88rem);color:var(--muted)">${d.houle_periode}s</div>
-        </div>`:`<div class="mcell" style="opacity:0.2"><div style="font-size:2rem">🌊</div><div class="lbl">—</div></div>`}
-      </div>
-
-    `;
-  }
-
-
-  // ── Chargement données ───────────────────────────────────────────────────
   async function loadMeteo() {
     try {
       const res = await fetch('./data.json?cb=' + Date.now());
