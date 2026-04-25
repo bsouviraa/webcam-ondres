@@ -5,8 +5,7 @@
     "fr": "Cours de surf débutants",
     "en": "Beginner surf lessons",
     "es": "Clases de surf principiantes",
-    "lieu": "Plage principale",
-    "en_cours": false
+    "lieu": "Plage principale"
   },
   {
     "heure": "11:30",
@@ -14,8 +13,7 @@
     "fr": "Yoga sur la plage",
     "en": "Beach yoga session",
     "es": "Yoga en la playa",
-    "lieu": "Dune sud",
-    "en_cours": false
+    "lieu": "Dune sud"
   },
   {
     "heure": "14:00",
@@ -23,8 +21,7 @@
     "fr": "Tournoi de beach tennis",
     "en": "Beach tennis tournament",
     "es": "Torneo de tenis playa",
-    "lieu": "Terrain multisports",
-    "en_cours": true
+    "lieu": "Terrain multisports"
   },
   {
     "heure": "17:00",
@@ -32,8 +29,7 @@
     "fr": "Balade vélo forêt landaise",
     "en": "Landes forest bike ride",
     "es": "Paseo en bici por el bosque",
-    "lieu": "Entrée du resort",
-    "en_cours": false
+    "lieu": "Entrée du resort"
   },
   {
     "heure": "21:00",
@@ -41,7 +37,6 @@
     "fr": "Soirée barbecue & musique live",
     "en": "BBQ evening & live music",
     "es": "Noche de barbacoa & música",
-    "lieu": "Espace détente central",
-    "en_cours": false
+    "lieu": "Espace détente central"
   }
 ]
