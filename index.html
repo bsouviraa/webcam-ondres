@@ -47,7 +47,8 @@
       display: flex;
       flex-direction: column;
       border-left: 1px solid var(--border);
-      overflow-y: auto;
+      overflow: hidden; /* plus de scroll */
+      height: 100vh;
     }
 
     /* Webcam — prend tout le reste */
@@ -80,7 +81,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.9rem 1rem;
+      padding: 1.2vh 1rem;
       border-bottom: 1px solid var(--border);
       flex-shrink: 0;
       background: var(--card);
@@ -88,15 +89,16 @@
     .meteo-logo img {
       width: 100%;
       height: auto;
+      max-height: 8vh;
       display: block;
       object-fit: contain;
     }
 
     /* ── MÉTÉO HEADER ── */
     .meteo-head {
-      padding: 0.7rem 1rem;
+      padding: 0.7vh 1rem;
       border-bottom: 1px solid var(--border);
-      font-size: 0.64rem;
+      font-size: clamp(0.48rem, 0.85vh, 0.64rem);
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--gold);
@@ -106,11 +108,13 @@
 
     /* ── MÉTÉO BODY ── */
     .meteo-body {
-      padding: 0.85rem 0.85rem 1rem;
+      flex: 1 1 0;
+      min-height: 0;
+      padding: 0.5vh 0.7rem 0.5vh;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
-      overflow-y: auto;
+      gap: 0.4vh;
+      overflow: hidden;
     }
 
     /* Section label */
@@ -126,84 +130,105 @@
     /* Bloc double : temp air + eau côte à côte */
     .mrow2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
 
-    /* Cellule générique */
+    /* Cellule générique — tout en vh pour tenir dans l'écran */
     .mcell {
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.85rem 0.6rem 0.75rem;
+      border-radius: 8px;
+      padding: 0.6vh 0.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 0.2vh;
       text-align: center;
+      flex: 1 1 0;
+      min-height: 0;
     }
-    .mcell .icon  { font-size: 1.5rem; line-height: 1; }
+    .mcell .icon  { font-size: clamp(0.9rem, 1.8vh, 1.5rem); line-height: 1; }
     .mcell .val   {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: clamp(1.2rem, 2.8vh, 2.2rem);
       font-weight: 300;
       color: var(--white);
       line-height: 1;
     }
     .mcell .val-sm {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: clamp(0.9rem, 2vh, 1.5rem);
       font-weight: 300;
       color: var(--white);
       line-height: 1;
     }
     .mcell .val-xs {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
+      font-size: clamp(0.85rem, 1.6vh, 1.2rem);
       font-weight: 300;
       color: var(--gold);
       line-height: 1;
     }
     .mcell .lbl {
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
+      font-size: clamp(0.48rem, 0.9vh, 0.6rem);
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--muted);
+      line-height: 1;
     }
-    .mcell .sub { font-size: 0.75rem; color: var(--gold); }
-    .mcell .sub-colored { font-size: 0.72rem; font-weight: 500; }
+    .mcell .sub { font-size: clamp(0.55rem, 1vh, 0.75rem); color: var(--gold); }
+    .mcell .sub-colored { font-size: clamp(0.55rem, 1vh, 0.72rem); font-weight: 500; }
 
     /* Drapeau */
     .drapeau-bar {
       border-radius: 8px;
-      padding: 0.6rem 1rem;
+      padding: 0.6vh 0.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border: 1px solid var(--border);
+      flex-shrink: 0;
     }
-    .drapeau-bar .dlbl { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-    .drapeau-bar .dval { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; }
-    .drapeau-bar .dflag { font-size: 1.2rem; }
+    .drapeau-bar .dlbl { font-size: clamp(0.48rem, 0.9vh, 0.6rem); letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+    .drapeau-bar .dval { font-size: clamp(0.6rem, 1vh, 0.78rem); font-weight: 500; letter-spacing: 0.03em; line-height: 1.35; }
+    .drapeau-bar .dflag { font-size: clamp(0.9rem, 1.6vh, 1.2rem); }
 
-    /* Grille 2 colonnes */
-    .mrow { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+    /* Grilles */
+    .mrow  { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4vh; flex: 1 1 0; min-height: 0; }
+    .mrow2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4vh; flex: 1 1 0; min-height: 0; }
 
-    /* Divider */
-    .div { height: 1px; background: var(--border); margin: 0.1rem 0; }
+    /* Section label */
+    .msection {
+      font-size: clamp(0.48rem, 0.85vh, 0.6rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.1vh 0;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      line-height: 1.2;
+    }
 
     /* Marées */
-    .maree-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+    .maree-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4vh; flex: 1 1 0; min-height: 0; }
     .maree-item {
       background: rgba(255,255,255,0.03);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.5rem 0.65rem;
+      border-radius: 7px;
+      padding: 0.5vh 0.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      min-height: 0;
     }
-    .maree-item .mtype { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+    .maree-item .mtype {
+      font-size: clamp(0.48rem, 0.85vh, 0.6rem);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      line-height: 1.25;
+    }
     .maree-item .mheure {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: clamp(0.85rem, 1.8vh, 1.1rem);
       font-weight: 400;
       color: var(--white);
     }
@@ -265,12 +290,12 @@
 
     /* Petit footer en bas de la météo */
     .meteo-footer {
-      margin-top: auto;
-      padding: 0.6rem 0.85rem;
-      font-size: 0.6rem;
+      padding: 0.5vh 0.85rem;
+      font-size: clamp(0.44rem, 0.75vh, 0.6rem);
       color: var(--muted);
       border-top: 1px solid var(--border);
       text-align: center;
+      flex-shrink: 0;
     }
     .meteo-footer a { color: var(--gold); text-decoration: none; }
 
