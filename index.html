@@ -449,20 +449,16 @@
       color: var(--white);
       line-height: 1.2;
     }
-    .anim-en {
+    /* EN + ES sur une seule ligne */
+    .anim-trad {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.58rem, 0.95vh, 0.72rem);
+      font-size: clamp(0.55rem, 0.9vh, 0.68rem);
       font-weight: 400;
-      color: rgba(242,237,230,0.58);
       line-height: 1.25;
     }
-    .anim-es {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.55rem, 0.88vh, 0.66rem);
-      font-weight: 400;
-      color: rgba(242,237,230,0.42);
-      line-height: 1.25;
-    }
+    .anim-en { color: rgba(242,237,230,0.62); }
+    .anim-sep { color: var(--border); margin: 0 0.2em; }
+    .anim-es { color: rgba(242,237,230,0.4); }
     .anim-lieu {
       font-family: 'Outfit', sans-serif;
       font-size: clamp(0.48rem, 0.8vh, 0.6rem);
@@ -578,6 +574,9 @@
     const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
     const el = document.getElementById('anim-date');
     if (el) el.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    // Le titre reste toujours fixe
+    const titleEl = document.getElementById('anim-title');
+    if (titleEl) titleEl.textContent = 'Programme · Schedule · Programa';
   }
 
   // ═══════════════════════════════════════════════════════
@@ -737,7 +736,7 @@
       </div>`;
 
       if (items.length === 0) {
-        html += `<div class="anim-section-empty">—</div>`;
+        html += `<div class="anim-section-empty">— — —</div>`;
       } else {
         items.forEach(a => {
           const i = anims.indexOf(a);
@@ -818,17 +817,16 @@
       window._animData      = anims;
       window._animDateLabel = dateLabel;
 
-      const titleEl = document.getElementById('anim-title');
-      if (titleEl) titleEl.textContent = anims.length
+      // Mettre la date dans anim-date uniquement (le titre reste fixe)
+      const dateEl2 = document.getElementById('anim-date');
+      if (dateEl2) dateEl2.textContent = dateLabel
         ? 'Animations du ' + dateLabel
-        : 'Programme · Schedule · Programa';
+        : '';
 
       renderAnimations(anims, dateLabel);
 
     } catch(e) {
       window._animData=[]; window._animDateLabel='';
-      const titleEl = document.getElementById('anim-title');
-      if (titleEl) titleEl.textContent = 'Programme · Schedule · Programa';
       renderAnimations([], '');
       console.warn('Animations:', e.message);
     }
