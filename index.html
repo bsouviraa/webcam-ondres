@@ -804,16 +804,28 @@
       const now = parisnow();
       const dd  = String(now.getDate()).padStart(2,'0');
       const mm  = String(now.getMonth()+1).padStart(2,'0');
-      const sheetName = dd + mm;
+      const sheetName = dd + mm;   // ex: "2604"
       const dateLabel = dd + '/' + mm;
 
-      const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID
+      // 1. Vérifier que la feuille existe via htmlview
+      const htmlRes = await fetch(
+        'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG/htmlview?cb=' + Date.now()
+      );
+      const htmlTxt = await htmlRes.text();
+      const namesMatch = htmlTxt.match(/\{name:\s*"([^"]+)"/g) || [];
+      const availableSheets = namesMatch.map(m => m.match(/"([^"]+)"/)[1]);
+
+      if (!availableSheets.includes(sheetName)) {
+        throw new Error('Feuille ' + sheetName + ' introuvable. Disponibles: ' + availableSheets.join(', '));
+      }
+
+      // 2. Charger le CSV de la feuille du jour
+      const url = 'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG'
         + '/gviz/tq?tqx=out:csv&sheet=' + sheetName + '&cb=' + Date.now();
       const res = await fetch(url);
       const csv = await res.text();
 
-      if (!csv || csv.includes('google.visualization') || csv.length < 20)
-        throw new Error('Sheet error');
+      if (!csv || csv.length < 20) throw new Error('CSV vide');
 
       function parseRow(row) {
         const f=[]; let cur='', inQ=false;
@@ -827,17 +839,16 @@
 
       const rows = csv.split('\n').map(parseRow);
 
-      // Trouver la ligne header
-      let start = 0;
-      for (let i=0;i<rows.length;i++) {
-        if (rows[i][0] && rows[i][0].toLowerCase().includes('heure')) { start=i+1; break; }
+      // Trouver la ligne header (contient "Heure")
+      let dataStart = 0;
+      for (let i=0; i<rows.length; i++) {
+        if (rows[i][0] && rows[i][0].toLowerCase().includes('heure')) {
+          dataStart = i+1; break;
+        }
       }
 
-      // Si aucune ligne header trouvée → feuille par défaut (exemples)
-      if (start === 0) throw new Error('Feuille introuvable pour ' + sheetName);
-
       const anims = [];
-      for (let i=start; i<rows.length; i++) {
+      for (let i=dataStart; i<rows.length; i++) {
         const r = rows[i];
         if (!r[0] || !r[0].includes(':') || r[0].length>6 || !r[2]) continue;
         anims.push({ heure:r[0], emoji:r[1]||'', fr:r[2], en:r[3]||'', es:r[4]||'', lieu:r[5]||'' });
