@@ -135,9 +135,9 @@
     /* Cellule hero (temp) */
     .mcell-hero { flex: 1 1 0; }
     .val-hero {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(2.8rem, 6vh, 4.5rem);
-      font-weight: 300;
+      font-weight: 200;
       color: var(--white);
       line-height: 1;
     }
@@ -145,7 +145,8 @@
 
     /* Valeur medium */
     .val-md {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
       font-size: clamp(1.49rem, 3.08vh, 2.29rem);
       font-weight: 300;
       color: var(--white);
@@ -215,21 +216,21 @@
     }
     .mcell .icon  { font-size: clamp(1.22rem, 2.52vh, 2.03rem); line-height: 1; }
     .mcell .val   {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(1.62rem, 3.92vh, 2.97rem);
       font-weight: 300;
       color: var(--white);
       line-height: 1;
     }
     .mcell .val-sm {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(1.22rem, 2.8vh, 2.03rem);
       font-weight: 300;
       color: var(--white);
       line-height: 1;
     }
     .mcell .val-xs {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(1.15rem, 2.24vh, 1.62rem);
       font-weight: 300;
       color: var(--gold);
@@ -295,7 +296,7 @@
       line-height: 1.25;
     }
     .maree-item .mheure {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(1.15rem, 2.52vh, 1.49rem);
       font-weight: 400;
       color: var(--white);
@@ -332,7 +333,7 @@
       text-align: center;
     }
     .night-overlay .night-msg {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       letter-spacing: 0.03em;
       line-height: 1.35;
@@ -426,10 +427,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 0.6vh;
       background: rgba(255,255,255,0.04);
       border-right: 1px solid var(--border);
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(1.3rem, 2.8vh, 2.2rem);
       font-weight: 300;
       color: var(--white);
@@ -466,29 +468,29 @@
       gap: 0;
     }
     .anim-fr {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
       font-size: clamp(1rem, 2vh, 1.5rem);
       color: var(--white);
       font-weight: 500;
       line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .anim-en {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
       font-size: clamp(0.65rem, 1.1vh, 0.85rem);
       color: rgba(242,237,230,0.45);
       line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .anim-es {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
       font-size: clamp(0.6rem, 1vh, 0.78rem);
       color: rgba(242,237,230,0.3);
       line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .anim-lieu {
       font-size: clamp(0.6rem, 1vh, 0.75rem);
