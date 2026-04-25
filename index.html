@@ -655,7 +655,7 @@
     const drapES  = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
     const lbl = (fr,en='',es='') => `<div class="mlbl">${fr}${en?`<span class="mlbl-sub"> · ${en}${es?' · '+es:''}</span>`:''}\n      </div>`;
     document.getElementById('meteo-body').innerHTML = `
-      <div class="mrow2" style="flex:0.9 1 0">
+      <div class="mrow2" style="flex:0.7 1 0">
         <div class="mcell mcell-hero">
           <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">${picto}</div>
           <div class="val-hero">${temp}°<span style="font-size:0.45em">C</span></div>
@@ -697,7 +697,7 @@
           </div>
         </div>
       </div>
-      <div class="maree-section" style="flex:1.2 1 0">
+      <div class="maree-section" style="flex:1.0 1 0">
         <div class="sec-label">Marées · Tides · Mareas &nbsp;<span style="color:var(--muted);font-weight:300">coef. ${coef}</span></div>
         <div class="maree-grid" style="flex:1 1 0">
           ${marees.map(m=>`
