@@ -751,12 +751,8 @@
                 <div class="anim-emoji">${a.emoji}</div>
                 <div class="anim-texts">
                   <div class="anim-fr">${a.fr}</div>
-                  ${a.en ? `<div class="anim-en">${a.en}</div>` : ''}
-                  ${a.es ? `<div class="anim-es">${a.es}</div>` : ''}
-                  ${a.lieu ? `<div class="anim-lieu">
-                    📍 ${a.lieu}
-                    ${a.lieu_en||a.lieu_es ? `<span class="anim-lieu-trad"> · ${a.lieu_en||''}${a.lieu_es?' · '+a.lieu_es:''}</span>` : ''}
-                  </div>` : ''}
+                  ${(a.en||a.es) ? `<div class="anim-trad"><span class="anim-en">${a.en||''}</span>${a.en&&a.es?' <span class="anim-sep">·</span> ':''}<span class="anim-es">${a.es||''}</span></div>` : ''}
+                  ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}${a.lieu_en?` <span class="anim-lieu-trad">· ${a.lieu_en}${a.lieu_es?' · '+a.lieu_es:''}</span>`:''}</div>` : ''}
                 </div>
               </div>
             </div>`;
