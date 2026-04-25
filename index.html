@@ -582,7 +582,9 @@
   </div>
 
   <script>
-  // ── Pictos météo ─────────────────────────────────────────────────────────
+  // ═══════════════════════════════════════════════════════
+  //  PICTOS MÉTÉO
+  // ═══════════════════════════════════════════════════════
   const PICTOS = {
     'sun':'☀️','cloud-sun':'⛅','cloud':'☁️','rain':'🌧️',
     'showers':'🌧️','bolt':'⛈️','snow':'❄️','smog':'🌫️',
@@ -594,136 +596,192 @@
     return '🌤️';
   }
 
-  // ── Rendu animations depuis animations.json ─────────────────────────────
+  // ═══════════════════════════════════════════════════════
+  //  HEURE PARIS
+  // ═══════════════════════════════════════════════════════
+  function parisnow() {
+    return new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Paris'}));
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  OVERLAY NUIT (22h → 6h)
+  // ═══════════════════════════════════════════════════════
+  function checkNight() {
+    const now = parisnow();
+    const h   = now.getHours();
+    const isNight = h >= 22 || h < 6;
+    const overlay = document.getElementById('night-overlay');
+    if (!overlay) return;
+    overlay.style.display = isNight ? 'flex' : 'none';
+    if (isNight) {
+      const tomorrow = new Date(now);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(6, 0, 0, 0);
+      const diff = Math.round((tomorrow - now) / 60000);
+      const hL = Math.floor(diff / 60), mL = diff % 60;
+      const txt = `Dans ${hL}h${String(mL).padStart(2,'0')} · In ${hL}h${String(mL).padStart(2,'0')} · En ${hL}h${String(mL).padStart(2,'0')}`;
+      const el = document.getElementById('night-next');
+      if (el) el.textContent = txt;
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  DATE DANS HEADER ANIMATIONS
+  // ═══════════════════════════════════════════════════════
+  function updateAnimDate() {
+    const now = parisnow();
+    const days   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+    const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    const el = document.getElementById('anim-date');
+    if (el) el.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  RENDU MÉTÉO
+  // ═══════════════════════════════════════════════════════
+  function renderMeteo(d) {
+    if (!d) return;
+    const picto   = emoji(d.meteo_picto);
+    const temp    = d.temp_air || '—';
+    const tempEau = d.temp_eau || 'NC';
+    const vent    = d.vent_kmh || '—';
+    const ventDeg = d.vent_deg || '0';
+    const ventCard= d.vent_cardinal || '';
+    const uvVal   = d.uv || '—';
+    const uvShort = d.uv_label || '';
+    const uvColor = {'Faible':'#4caf50','Modere':'#ffeb3b','Eleve':'#ff9800','Tres eleve':'#f44336','Extreme':'#9c27b0'}[uvShort] || 'var(--gold)';
+    const lever   = d.lever || '—';
+    const coucher = d.coucher || '—';
+    const coef    = d.maree_coef || '—';
+    const marees  = d.marees || [];
+    const houle   = d.houle_m || '';
+    const label   = d.meteo_label || '';
+    const drap    = d.drapeau || 'nc';
+    const drapColor = {vert:'#4caf50',jaune:'#e6c619',rouge:'#f44336',nc:'var(--muted)','':'var(--muted)'}[drap];
+    const drapBg    = {vert:'76,175,80',jaune:'230,198,25',rouge:'244,67,54',nc:'255,255,255','':'255,255,255'}[drap];
+    const drapEmoji = {vert:'🟢',jaune:'🟡',rouge:'🔴',nc:'⚫','':'⚫'}[drap];
+    const drapFR  = {vert:'Baignade autorisée',jaune:'Baignade surveillée',rouge:'Baignade interdite',nc:d.surv_label||'Non surveillée','':''}[drap];
+    const drapEN  = {vert:'Swimming allowed',jaune:'Supervised swimming',rouge:'Swimming forbidden',nc:'Unsupervised','':''}[drap];
+    const drapES  = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
+    const lbl = (fr,en='',es='') => `<div class="mlbl">${fr}${en?`<span class="mlbl-sub"> · ${en}${es?' · '+es:''}</span>`:''}\n      </div>`;
+    document.getElementById('meteo-body').innerHTML = `
+      <div class="mrow2" style="flex:2 1 0">
+        <div class="mcell mcell-hero">
+          <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">${picto}</div>
+          <div class="val-hero">${temp}°<span style="font-size:0.45em">C</span></div>
+          ${lbl('Air','Air','Aire')}
+          ${label?`<div class="badge-label">${label}</div>`:''}
+        </div>
+        <div class="mcell mcell-hero">
+          <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">🌡️</div>
+          <div class="val-hero ${tempEau==='NC'?'val-hero-nc':{}}">${tempEau==='NC'?'NC':tempEau+'°'}</div>
+          ${lbl('Eau','Water','Agua')}
+          ${tempEau==='NC'?`<div class="badge-label" style="opacity:0.5">Hors saison</div>`:''}
+        </div>
+      </div>
+      <div class="drap-bloc" style="background:rgba(${drapBg},0.1);border-color:rgba(${drapBg},0.3)">
+        <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">${drapEmoji}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:clamp(0.78rem,1.4vh,1rem);font-weight:600;color:${drapColor};line-height:1.2">${drapFR}</div>
+          <div style="font-size:clamp(0.58rem,1vh,0.72rem);color:${drapColor};opacity:0.6;margin-top:0.15rem">${drapEN} · ${drapES}</div>
+        </div>
+        <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
+      </div>
+      <div class="mrow" style="flex:1.4 1 0">
+        <div class="mcell">
+          <div style="font-size:clamp(1rem,1.8vh,1.4rem)">🌞</div>
+          <div class="val-md" style="color:${uvColor}">${uvVal}</div>
+          ${lbl('UV')}
+          <div style="font-size:clamp(0.58rem,1vh,0.72rem);font-weight:700;color:${uvColor};margin-top:0.1rem">${uvShort}</div>
+        </div>
+        <div class="mrow2" style="gap:0.35vh">
+          <div class="mcell">
+            <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌅</div>
+            <div class="val-md">${lever}</div>
+            ${lbl('Lever','Sunrise')}
+          </div>
+          <div class="mcell">
+            <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇</div>
+            <div class="val-md">${coucher}</div>
+            ${lbl('Coucher','Sunset')}
+          </div>
+        </div>
+      </div>
+      <div class="maree-section" style="flex:1.6 1 0">
+        <div class="sec-label">Marées · Tides · Mareas &nbsp;<span style="color:var(--muted);font-weight:300">coef. ${coef}</span></div>
+        <div class="maree-grid" style="flex:1 1 0">
+          ${marees.map(m=>`
+            <div class="maree-item ${m.type==='Haute'?'haute':''}">
+              <div><span style="font-size:0.75em;opacity:0.7">${m.type==='Haute'?'▲':'▼'}</span>
+              <span class="mtype">${m.type==='Haute'?'Haute · High':'Basse · Low'}</span></div>
+              <span class="mheure">${m.heure}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="mrow" style="flex:1 1 0">
+        <div class="mcell" style="flex-direction:row;gap:0.5rem;justify-content:center">
+          <span style="font-size:clamp(1.1rem,2vh,1.6rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1;flex-shrink:0">↑</span>
+          <div>
+            <div class="val-md">${vent}<span style="font-size:0.6em"> km/h</span></div>
+            ${lbl('Vent · Wind','',ventCard)}
+          </div>
+        </div>
+        ${houle?`
+        <div class="mcell">
+          <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌊</div>
+          <div class="val-md">${houle} <span style="font-size:0.6em">m</span></div>
+          ${lbl('Houle · Swell')}
+          <div style="font-size:clamp(0.52rem,0.9vh,0.65rem);color:var(--muted)">${d.houle_periode}s</div>
+        </div>`:`<div class="mcell" style="opacity:0.15"><div style="font-size:2rem">🌊</div></div>`}
+      </div>
+    `;
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  RENDU ANIMATIONS
+  // ═══════════════════════════════════════════════════════
   function renderAnimations(anims, dateLabel) {
     const body = document.getElementById('anim-body');
+    if (!body) return;
     if (!anims || anims.length === 0) {
-      const msg = dateLabel === ''
-        ? `<div style="text-align:center;padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;align-items:center">
-            <div style="font-size:2rem">🕐</div>
-            <div style="font-size:clamp(0.75rem,1.3vh,1rem);color:var(--white);font-weight:500">En attente d'information</div>
-            <div style="font-size:clamp(0.6rem,1vh,0.75rem);color:var(--muted)">Awaiting information · En espera de información</div>
-           </div>`
-        : `<div style="text-align:center;padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;align-items:center">
-            <div style="font-size:2rem">🕐</div>
-            <div style="font-size:clamp(0.75rem,1.3vh,1rem);color:var(--white);font-weight:500">En attente d'information</div>
-            <div style="font-size:clamp(0.6rem,1vh,0.75rem);color:var(--muted)">Awaiting information · En espera de información</div>
-           </div>`;
-      body.innerHTML = msg;
+      body.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0.75rem;padding:1.5rem;text-align:center">
+        <div style="font-size:2rem;opacity:0.4">🕐</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:clamp(0.8rem,1.4vh,1.05rem);color:var(--white);font-weight:500">En attente d'information</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:clamp(0.6rem,1vh,0.75rem);color:var(--muted)">Awaiting information · En espera de información</div>
+      </div>`;
       return;
     }
-
-    // Heure actuelle à Paris
-    const nowParis = new Date(new Date().toLocaleString('en-US', {timeZone: 'Europe/Paris'}));
-    const nowMin = nowParis.getHours() * 60 + nowParis.getMinutes();
-
-    // Trouver l'animation "en cours" = la dernière dont l'heure est passée
+    const now    = parisnow();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
     let enCoursIdx = -1;
     anims.forEach((a, i) => {
-      const [h, m] = a.heure.split(':').map(Number);
-      const animMin = h * 60 + m;
-      if (animMin <= nowMin) enCoursIdx = i;
+      const [h,m] = a.heure.split(':').map(Number);
+      if (h * 60 + m <= nowMin) enCoursIdx = i;
     });
-
     body.innerHTML = anims.map((a, i) => {
       const enCours = (i === enCoursIdx);
       return `
-        <div class="anim-item ${enCours ? 'anim-item-now' : ''}">
+        <div class="anim-item ${enCours?'anim-item-now':''}">
           <div class="anim-time">
-            ${a.heure}
-            ${enCours ? '<div class="anim-now-badge">En cours · Now · Ahora</div>' : ''}
+            <div class="anim-time-val">${a.heure}</div>
+            ${enCours?'<div class="anim-now-badge">Now</div>':''}
           </div>
           <div class="anim-content">
             <div class="anim-emoji">${a.emoji}</div>
             <div class="anim-texts">
               <div class="anim-fr">${a.fr}</div>
-              ${a.en ? `<div class="anim-en">${a.en}</div>` : ''}
-              ${a.es ? `<div class="anim-es">${a.es}</div>` : ''}
-              ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}</div>` : ''}
+              ${a.en?`<div class="anim-en">${a.en}</div>`:''}
+              ${a.es?`<div class="anim-es">${a.es}</div>`:''}
+              ${a.lieu?`<div class="anim-lieu">📍 ${a.lieu}</div>`:''}
             </div>
           </div>
         </div>`;
     }).join('');
   }
 
-  const SHEET_ID = "1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG";
-
-  async function loadAnimations() {
-    try {
-      const nowParis = new Date(new Date().toLocaleString('en-US', {timeZone: 'Europe/Paris'}));
-      const dd = String(nowParis.getDate()).padStart(2, '0');
-      const mm = String(nowParis.getMonth() + 1).padStart(2, '0');
-      const sheetName = dd + mm;
-      const dateLabel = dd + '/' + mm;
-
-      const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID
-        + '/gviz/tq?tqx=out:csv&sheet=' + sheetName + '&cb=' + Date.now();
-      const res = await fetch(url);
-      const csv = await res.text();
-
-      if (!csv || csv.includes('google.visualization') || csv.length < 20) {
-        throw new Error('Feuille introuvable');
-      }
-      // Google renvoie la 1ère feuille si le nom n'existe pas → détecter les exemples
-      // Si la seule "donnée" est la ligne exemple (contient "EXEMPLE"), c'est la feuille par défaut
-      const linesCheck = csv.split('\n');
-      const hasRealData = linesCheck.some(l => {
-        const f = l.split(',')[0].replace(/"/g,'').trim();
-        return /^\d{2}:\d{2}$/.test(f);
-      });
-      const isExample = !hasRealData || linesCheck.every(l =>
-        !l.includes(':') || l.toLowerCase().includes('exemple') || l.includes('👉')
-      );
-      if (!hasRealData) throw new Error('Pas de données pour ' + sheetName);
-
-      // Parser CSV simple
-      function parseCSVRow(row) {
-        const fields = []; let cur = '', inQ = false;
-        for (const ch of row) {
-          if (ch === '"') { inQ = !inQ; }
-          else if (ch === ',' && !inQ) { fields.push(cur.trim()); cur = ''; }
-          else { cur += ch; }
-        }
-        fields.push(cur.trim());
-        return fields;
-      }
-
-      const rows = csv.split('\n').map(parseCSVRow);
-
-      // Trouver la ligne header (contient "Heure")
-      let dataStart = 0;
-      for (let i = 0; i < rows.length; i++) {
-        if (rows[i][0] && rows[i][0].toLowerCase().includes('heure')) {
-          dataStart = i + 1; break;
-        }
-      }
-
-      const anims = [];
-      for (let i = dataStart; i < rows.length; i++) {
-        const r = rows[i];
-        if (!r[0] || !r[0].includes(':') || r[0].length > 6) continue;
-        if (!r[2]) continue;
-        anims.push({ heure: r[0], emoji: r[1]||'', fr: r[2], en: r[3]||'', es: r[4]||'', lieu: r[5]||'' });
-      }
-
-      window._animData = anims;
-      window._animDateLabel = dateLabel;
-
-      const dateEl = document.getElementById('anim-date');
-      if (dateEl) dateEl.textContent = anims.length ? 'Animations du ' + dateLabel : '';
-
-      renderAnimations(anims, dateLabel);
-
-    } catch(e) {
-      window._animData = []; window._animDateLabel = '';
-      const dateEl = document.getElementById('anim-date');
-      if (dateEl) dateEl.textContent = '';
-      renderAnimations([], '');
-      console.warn('Animations:', e.message);
-    }
-  }
-
-
+  // ═══════════════════════════════════════════════════════
+  //  CHARGEMENT MÉTÉO (data.json)
+  // ═══════════════════════════════════════════════════════
   async function loadMeteo() {
     try {
       const res = await fetch('./data.json?cb=' + Date.now());
@@ -732,19 +790,95 @@
     } catch(e) {
       document.getElementById('meteo-body').innerHTML =
         '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:0.8rem">Données indisponibles</div>';
-      console.error('Meteo error:', e);
+      console.error('Meteo:', e);
     }
   }
 
+  // ═══════════════════════════════════════════════════════
+  //  CHARGEMENT ANIMATIONS (Google Sheets direct)
+  // ═══════════════════════════════════════════════════════
+  const SHEET_ID = '1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG';
+
+  async function loadAnimations() {
+    try {
+      const now = parisnow();
+      const dd  = String(now.getDate()).padStart(2,'0');
+      const mm  = String(now.getMonth()+1).padStart(2,'0');
+      const sheetName = dd + mm;
+      const dateLabel = dd + '/' + mm;
+
+      const url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID
+        + '/gviz/tq?tqx=out:csv&sheet=' + sheetName + '&cb=' + Date.now();
+      const res = await fetch(url);
+      const csv = await res.text();
+
+      if (!csv || csv.includes('google.visualization') || csv.length < 20)
+        throw new Error('Sheet error');
+
+      function parseRow(row) {
+        const f=[]; let cur='', inQ=false;
+        for (const ch of row) {
+          if (ch==='"') { inQ=!inQ; }
+          else if (ch===',' && !inQ) { f.push(cur.trim()); cur=''; }
+          else { cur+=ch; }
+        }
+        f.push(cur.trim()); return f;
+      }
+
+      const rows = csv.split('\n').map(parseRow);
+
+      // Trouver la ligne header
+      let start = 0;
+      for (let i=0;i<rows.length;i++) {
+        if (rows[i][0] && rows[i][0].toLowerCase().includes('heure')) { start=i+1; break; }
+      }
+
+      // Si aucune ligne header trouvée → feuille par défaut (exemples)
+      if (start === 0) throw new Error('Feuille introuvable pour ' + sheetName);
+
+      const anims = [];
+      for (let i=start; i<rows.length; i++) {
+        const r = rows[i];
+        if (!r[0] || !r[0].includes(':') || r[0].length>6 || !r[2]) continue;
+        anims.push({ heure:r[0], emoji:r[1]||'', fr:r[2], en:r[3]||'', es:r[4]||'', lieu:r[5]||'' });
+      }
+
+      window._animData      = anims;
+      window._animDateLabel = dateLabel;
+
+      const titleEl = document.getElementById('anim-title');
+      if (titleEl) titleEl.textContent = anims.length
+        ? 'Animations du ' + dateLabel
+        : 'Programme · Schedule · Programa';
+
+      renderAnimations(anims, dateLabel);
+
+    } catch(e) {
+      window._animData=[]; window._animDateLabel='';
+      const titleEl = document.getElementById('anim-title');
+      if (titleEl) titleEl.textContent = 'Programme · Schedule · Programa';
+      renderAnimations([], '');
+      console.warn('Animations:', e.message);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════════════════
   checkNight();
+  updateAnimDate();
   loadMeteo();
   loadAnimations();
-  setInterval(loadMeteo, 10 * 60 * 1000);
-  setInterval(loadAnimations, 5 * 60 * 1000);
-  // Re-render chaque minute pour mettre à jour "en cours" en temps réel
-  setInterval(() => { if (window._animData) renderAnimations(window._animData, window._animDateLabel); }, 60 * 1000);
 
-  // Reload complet toutes les 5 minutes (synchro webcam Viewsurf)
+  setInterval(checkNight,        30 * 1000);        // overlay nuit toutes les 30s
+  setInterval(updateAnimDate,    60 * 1000);         // date header toutes les 1min
+  setInterval(loadMeteo,         10 * 60 * 1000);    // météo toutes les 10min
+  setInterval(loadAnimations,     5 * 60 * 1000);    // animations toutes les 5min
+  setInterval(() => {                               // re-render "en cours" toutes les 1min
+    if (window._animData) renderAnimations(window._animData, window._animDateLabel);
+  }, 60 * 1000);
+
+  // Reload complet toutes les 5 minutes
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
