@@ -280,13 +280,21 @@
     }
 
     /* ── LABELS TRILINGUES ── */
-    .tri-fr { color: var(--white); }
-    .tri-en { color: rgba(242,237,230,0.55); font-size: 0.9em; }
-    .tri-es { color: rgba(242,237,230,0.4); font-size: 0.85em; }
-    .tri-sep { color: var(--border); font-size: 0.8em; }
-    .msection .tri-fr { color: var(--gold); }
-    .msection .tri-en { color: rgba(191,153,88,0.6); }
-    .msection .tri-es { color: rgba(191,153,88,0.45); }
+    /* Valeur principale : grande, blanche */
+    .tri-val { color: var(--white); font-size: 1em; }
+    /* Traductions empilées sous la valeur */
+    .tri-langs {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      line-height: 1.15;
+    }
+    .tri-langs .t-fr { color: rgba(242,237,230,0.55); font-size: 0.72em; }
+    .tri-langs .t-en { color: rgba(242,237,230,0.38); font-size: 0.65em; }
+    .tri-langs .t-es { color: rgba(242,237,230,0.28); font-size: 0.62em; }
+    /* Section label : juste FR, petit */
+    .msection { color: var(--gold); }
 
     /* Petit footer en bas de la météo */
     .meteo-footer {
@@ -338,7 +346,7 @@
       <div class="meteo-logo">
         <img src="https://www.green-resort.com/wp-content/uploads/2026/04/Logo-Green-Resort-5-etoiles-FOND-BLANC.jpeg" alt="Green Resort" />
       </div>
-      <div class="meteo-head">Météo &amp; conditions · Weather · Tiempo</div>
+      <div class="meteo-head">Météo · Weather · Tiempo</div>
       <div class="meteo-body" id="meteo-body">
         <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem">Chargement…</div>
       </div>
@@ -403,103 +411,120 @@
     const houle   = d.houle_m ? d.houle_m + ' m' : '';
     const label   = d.meteo_label || '';
     const drap    = d.drapeau || 'nc';
-    const drapColor = {vert:'#4caf50',jaune:'#ffeb3b',rouge:'#f44336',nc:'var(--muted)','':'var(--muted)'}[drap];
-    const drapEmoji = {vert:'🟢',jaune:'🟡',rouge:'🔴',nc:'⚫','':'⚫'}[drap];
-    const drapFR = {vert:'Baignade autorisée',jaune:'Baignade surveillée',rouge:'Baignade interdite',nc:d.surv_label||'Non surveillée','':''}[drap];
-    const drapEN = {vert:'Swimming allowed',jaune:'Supervised swimming',rouge:'Swimming forbidden',nc:'Unsupervised','':''}[drap];
-    const drapES = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
+    const drapColor  = {vert:'#4caf50',jaune:'#e6c619',rouge:'#f44336',nc:'var(--muted)','':'var(--muted)'}[drap];
+    const drapEmoji  = {vert:'🟢',jaune:'🟡',rouge:'🔴',nc:'⚫','':'⚫'}[drap];
+    const drapFR  = {vert:'Baignade autorisée',jaune:'Baignade surveillée',rouge:'Baignade interdite',nc:d.surv_label||'Non surveillée','':''}[drap];
+    const drapEN  = {vert:'Swimming allowed',jaune:'Supervised swimming',rouge:'Swimming forbidden',nc:'Unsupervised','':''}[drap];
+    const drapES  = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
 
-    // Helper : label trilingue compact
-    const tri = (fr, en, es) =>
-      `<span class="tri-fr">${fr}</span><span class="tri-sep"> · </span><span class="tri-en">${en}</span><span class="tri-sep"> · </span><span class="tri-es">${es}</span>`;
+    // Helper : label section (FR seulement, clean)
+    const sec = (fr) => `<div class="msection">${fr}</div>`;
 
-    // Helper : marée type trilingue
-    const marea = (type) => type === 'Haute'
-      ? tri('Haute','High','Alta')
-      : tri('Basse','Low','Baja');
+    // Helper : petites traductions empilées sous une valeur
+    const trad = (en, es) => `<div class="tri-langs"><span class="t-en">${en}</span><span class="t-es">${es}</span></div>`;
+
+    // Helper marée type
+    const mtype = (t) => t === 'Haute'
+      ? `<span style="color:var(--gold)">▲</span> Haute`
+      : `<span style="color:var(--muted)">▼</span> Basse`;
 
     document.getElementById('meteo-body').innerHTML = `
 
-      <!-- TEMPÉRATURES -->
-      <div class="msection">${tri('Températures','Temperatures','Temperaturas')}</div>
+      ${sec('Températures')}
       <div class="mrow2">
+
+        <!-- Temp Air -->
         <div class="mcell">
           <div class="icon">${picto}</div>
-          <div class="val">${temp}°<span style="font-size:1rem">C</span></div>
-          <div class="lbl">${tri('Air','Air','Aire')}</div>
+          <div class="val">${temp}°C</div>
+          <div class="lbl">Air</div>
           ${label ? `<div class="sub">${label}</div>` : ''}
         </div>
+
+        <!-- Temp Eau -->
         <div class="mcell">
           <div class="icon">🌡️</div>
-          <div class="${tempEau === 'NC' ? 'val-xs' : 'val'}">${tempEau === 'NC' ? 'NC' : tempEau + '°'}</div>
-          <div class="lbl">${tri('Eau','Water','Agua')}</div>
-          ${tempEau === 'NC' ? `<div class="sub" style="font-size:0.58rem;color:var(--muted)">${tri('hors saison','off season','fuera temporada')}</div>` : ''}
+          <div class="${tempEau==='NC'?'val-xs':'val'}">${tempEau==='NC'?'NC':tempEau+'°C'}</div>
+          <div class="lbl">Eau · Water · Agua</div>
+          ${tempEau==='NC'?`<div class="sub" style="font-size:0.58rem;color:var(--muted);line-height:1.2">Hors saison<br>Off season</div>`:''}
         </div>
+
       </div>
 
       <!-- DRAPEAU -->
-      <div class="drapeau-bar" style="background:rgba(${drap==='vert'?'76,175,80':drap==='jaune'?'255,235,59':drap==='rouge'?'244,67,54':'255,255,255'},0.08)">
-        <span class="dlbl">${tri('Drapeau','Flag','Bandera')}</span>
-        <span class="dval" style="color:${drapColor};font-size:0.75rem;line-height:1.4">${drapFR}<br><span style="opacity:0.7">${drapEN}</span><br><span style="opacity:0.55">${drapES}</span></span>
-        <span class="dflag">${drapEmoji}</span>
+      <div class="drapeau-bar" style="background:rgba(${drap==='vert'?'76,175,80':drap==='jaune'?'255,235,59':drap==='rouge'?'244,67,54':'255,255,255'},0.07)">
+        <div style="display:flex;flex-direction:column;gap:0.15rem">
+          <span style="font-size:clamp(0.48rem,0.8vh,0.6rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Drapeau · Flag · Bandera</span>
+          <span style="font-size:clamp(0.72rem,1.2vh,0.88rem);font-weight:500;color:${drapColor}">${drapFR}</span>
+          <span style="font-size:clamp(0.58rem,0.95vh,0.7rem);color:${drapColor};opacity:0.65">${drapEN} · ${drapES}</span>
+        </div>
+        <span style="font-size:clamp(1rem,2vh,1.4rem)">${drapEmoji}</span>
       </div>
 
-      <!-- VENT -->
-      <div class="msection">${tri('Vent','Wind','Viento')}</div>
-      <div class="mcell">
-        <div style="display:flex;align-items:center;gap:0.75rem;justify-content:center">
-          <span style="font-size:1.8rem;transform:rotate(${ventDeg}deg);display:inline-block;line-height:1">↑</span>
-          <div>
-            <div class="val" style="font-size:2rem;text-align:left">${vent}<span style="font-size:1rem"> km/h</span></div>
-            <div class="lbl" style="text-align:left">${ventCard}</div>
-          </div>
+      ${sec('Vent · Wind · Viento')}
+      <div class="mcell" style="flex-direction:row;justify-content:center;gap:1rem">
+        <span style="font-size:clamp(1.4rem,2.5vh,2rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1">↑</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start">
+          <span class="val" style="font-size:clamp(1.4rem,2.8vh,2.2rem)">${vent} <span style="font-size:0.5em">km/h</span></span>
+          <span class="lbl">${ventCard}</span>
         </div>
       </div>
 
-      <!-- SOLEIL + UV -->
-      <div class="msection">${tri('Soleil','Sun','Sol')}</div>
+      ${sec('Soleil · Sun · Sol')}
       <div class="mrow">
+
+        <!-- UV -->
         <div class="mcell">
           <div class="icon">🌞</div>
-          <div class="val" style="font-size:1.9rem">${uvVal}</div>
-          <div class="lbl">${tri('Indice UV','UV Index','Índice UV')}</div>
-          <div class="sub-colored" style="color:${uvColor};font-size:0.7rem">${uvShort}</div>
+          <div class="val" style="color:${uvColor}">${uvVal}</div>
+          <div class="lbl">UV</div>
+          <div style="font-size:clamp(0.55rem,0.95vh,0.7rem);font-weight:600;color:${uvColor}">${uvShort}</div>
         </div>
-        <div class="mrow2" style="gap:0.4rem">
+
+        <!-- Lever / Coucher -->
+        <div class="mrow2" style="gap:0.4vh">
           <div class="mcell">
-            <div class="icon" style="font-size:1.2rem">🌅</div>
+            <div class="icon" style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌅</div>
             <div class="val-sm">${lever}</div>
-            <div class="lbl">${tri('Lever','Sunrise','Amanecer')}</div>
+            <div class="lbl">Lever</div>
+            ${trad('Sunrise','Amanecer')}
           </div>
           <div class="mcell">
-            <div class="icon" style="font-size:1.2rem">🌇</div>
+            <div class="icon" style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇</div>
             <div class="val-sm">${coucher}</div>
-            <div class="lbl">${tri('Coucher','Sunset','Atardecer')}</div>
+            <div class="lbl">Coucher</div>
+            ${trad('Sunset','Atardecer')}
           </div>
         </div>
+
       </div>
 
-      <!-- HOULE -->
-      ${houle ? `<div class="msection">${tri('🌊 Houle','🌊 Swell','🌊 Oleaje')}</div>
-      <div class="mcell">
-        <div style="display:flex;gap:1.5rem;align-items:center;justify-content:center">
-          <div class="icon" style="font-size:2rem;line-height:1">🌊</div>
-          <div><div class="val" style="font-size:2rem">${houle}</div><div class="lbl">${tri('Hauteur','Height','Altura')}</div></div>
-          <div><div class="val-sm">${d.houle_periode}s</div><div class="lbl">${tri('Période','Period','Período')}</div></div>
+      ${houle ? `
+      ${sec('🌊 Houle · Swell · Oleaje')}
+      <div class="mcell" style="flex-direction:row;justify-content:center;gap:1.5rem">
+        <div style="text-align:center">
+          <div class="val" style="font-size:clamp(1.4rem,2.8vh,2.2rem)">${houle}</div>
+          <div class="lbl">Hauteur · Height</div>
+        </div>
+        <div style="width:1px;background:var(--border);align-self:stretch"></div>
+        <div style="text-align:center">
+          <div class="val-sm">${d.houle_periode}s</div>
+          <div class="lbl">Période · Period</div>
         </div>
       </div>` : ''}
 
-      <!-- MARÉES -->
-      <div class="msection">${tri('Marées','Tides','Mareas')} <span style="color:var(--muted);font-size:0.95em">${tri('coef.','coef.','coef.')} ${coef}</span></div>
+      ${sec('Marées · Tides · Mareas &nbsp;<span style="color:var(--muted);font-weight:300">coef. '+coef+'</span>')}
       <div class="maree-grid">
         ${marees.map(m => `
           <div class="maree-item ${m.type==='Haute'?'haute':''}">
-            <span class="mtype" style="line-height:1.3">${marea(m.type)}</span>
+            <span class="mtype">${mtype(m.type)}</span>
             <span class="mheure">${m.heure}</span>
           </div>`).join('')}
       </div>
+
     `;
   }
+
 
   // ── Chargement données ───────────────────────────────────────────────────
   async function loadMeteo() {
