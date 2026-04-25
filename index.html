@@ -564,7 +564,7 @@
     <!-- ANIMATIONS — colonne droite -->
     <div class="col-anim">
       <div class="anim-header">
-        <div class="anim-header-title">Programme · Schedule · Programa</div>
+        <div class="anim-header-title" id="anim-title">Programme · Schedule · Programa</div>
         <div class="anim-header-date" id="anim-date"></div>
       </div>
       <div class="anim-body" id="anim-body">
@@ -588,10 +588,21 @@
   }
 
   // ── Rendu animations depuis animations.json ─────────────────────────────
-  function renderAnimations(anims) {
+  function renderAnimations(anims, dateLabel) {
     const body = document.getElementById('anim-body');
     if (!anims || anims.length === 0) {
-      body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem">Aucune animation programmée aujourd'hui</div>';
+      const msg = dateLabel === ''
+        ? `<div style="text-align:center;padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;align-items:center">
+            <div style="font-size:2rem">🕐</div>
+            <div style="font-size:clamp(0.75rem,1.3vh,1rem);color:var(--white);font-weight:500">En attente d'information</div>
+            <div style="font-size:clamp(0.6rem,1vh,0.75rem);color:var(--muted)">Awaiting information · En espera de información</div>
+           </div>`
+        : `<div style="text-align:center;padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;align-items:center">
+            <div style="font-size:2rem">🕐</div>
+            <div style="font-size:clamp(0.75rem,1.3vh,1rem);color:var(--white);font-weight:500">En attente d'information</div>
+            <div style="font-size:clamp(0.6rem,1vh,0.75rem);color:var(--muted)">Awaiting information · En espera de información</div>
+           </div>`;
+      body.innerHTML = msg;
       return;
     }
 
@@ -631,8 +642,23 @@
   async function loadAnimations() {
     try {
       const res = await fetch('./animations.json?cb=' + Date.now());
-      window._animData = await res.json();
-      renderAnimations(window._animData);
+      const payload = await res.json();
+      // Format : {date: "25/04", items: [...]}
+      const anims = Array.isArray(payload) ? payload : (payload.items || []);
+      const dateLabel = Array.isArray(payload) ? '' : (payload.date || '');
+      window._animData = anims;
+
+      // Titre avec date
+      const titleEl = document.getElementById('anim-title');
+      if (titleEl) {
+        if (dateLabel) {
+          titleEl.innerHTML = `Animations du ${dateLabel} · Schedule · Programa`;
+        } else {
+          titleEl.innerHTML = 'Programme · Schedule · Programa';
+        }
+      }
+
+      renderAnimations(anims, dateLabel);
     } catch(e) {
       console.error('Animations error:', e);
     }
@@ -805,7 +831,7 @@
   setInterval(loadMeteo, 10 * 60 * 1000);
   setInterval(loadAnimations, 5 * 60 * 1000);
   // Re-render chaque minute pour mettre à jour "en cours" en temps réel
-  setInterval(() => { if (window._animData) renderAnimations(window._animData); }, 60 * 1000);
+  setInterval(() => { if (window._animData) renderAnimations(window._animData, window._animDateLabel); }, 60 * 1000);
 
   // Reload complet toutes les 5 minutes (synchro webcam Viewsurf)
   setTimeout(() => location.reload(), 5 * 60 * 1000);
