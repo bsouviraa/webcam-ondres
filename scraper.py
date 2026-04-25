@@ -170,28 +170,33 @@ try:
     # ── 3. Traduction via API Claude ──────────────────────────────────────────
     anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if animations and anthropic_key:
-        # Construire liste de tous les textes à traduire (activité + lieu)
-        texts = []
-        for a in animations:
-            texts.append(a["fr"])
-            if a["lieu"]:
-                texts.append(a["lieu"])
-
-        translations = translate_batch(texts, anthropic_key)
-        t_idx = 0
-        for a in animations:
-            if t_idx < len(translations):
-                a["en"] = translations[t_idx].get("en", "")
-                a["es"] = translations[t_idx].get("es", "")
-                t_idx += 1
+        try:
+            texts = []
+            for a in animations:
+                texts.append(a["fr"])
+                if a["lieu"]:
+                    texts.append(a["lieu"])
+            translations = translate_batch(texts, anthropic_key)
+            t_idx = 0
+            for a in animations:
+                if t_idx < len(translations):
+                    a["en"] = translations[t_idx].get("en", "")
+                    a["es"] = translations[t_idx].get("es", "")
+                    t_idx += 1
+                if a["lieu"] and t_idx < len(translations):
+                    a["lieu_en"] = translations[t_idx].get("en", "")
+                    a["lieu_es"] = translations[t_idx].get("es", "")
+                    t_idx += 1
+        except Exception as te:
+            import sys; print(f"Traduction error: {te}", file=sys.stderr)
             if a["lieu"] and t_idx < len(translations):
                 a["lieu_en"] = translations[t_idx].get("en", "")
                 a["lieu_es"] = translations[t_idx].get("es", "")
                 t_idx += 1
 
 except Exception as e:
-    anim_date = ""
     import sys; print(f"Animations error: {e}", file=sys.stderr)
+    # anim_date conserve sa valeur si elle avait été assignée
 
 print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date},
                  ensure_ascii=False, indent=2))
