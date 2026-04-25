@@ -6,155 +6,215 @@
   <title>Plage d'Ondres — Green Resort</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:     #1f2024;
+      --bg:     #1a1c20;
+      --card:   #23262b;
+      --border: rgba(191,153,88,0.18);
       --gold:   #bf9958;
-      --white:  #ffffff;
-      --muted:  #8a8a8a;
-      --card:   #2c2f34;
-      --radius: 12px;
+      --gold2:  #d4b06a;
+      --white:  #f2ede6;
+      --muted:  #7a7a7a;
+      --radius: 14px;
     }
+    html, body { min-height: 100vh; background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--white); }
 
-    html, body {
-      min-height: 100%;
-      background: var(--bg);
-      font-family: 'DM Sans', sans-serif;
-      color: var(--white);
-    }
-
-    /* ── LOGO ── */
-    .top-bar {
+    /* HEADER */
+    header {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      padding: 1rem 1.5rem 0;
+      padding: 1.2rem 2rem 0.8rem;
+      border-bottom: 1px solid var(--border);
     }
-    .top-bar img {
-      height: 48px;
-      width: auto;
-      filter: brightness(1.1);
-    }
+    header img { height: 44px; width: auto; }
 
-    /* ── LAYOUT ── */
-    main {
+    /* LAYOUT PRINCIPAL */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1.25rem;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 1rem 1.5rem 3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      padding: 1.25rem 1.5rem 2rem;
+    }
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
     }
 
-    /* ── WEBCAM ── */
-    .webcam-card {
+    /* CARTE GÉNÉRIQUE */
+    .card {
       background: var(--card);
       border-radius: var(--radius);
+      border: 1px solid var(--border);
       overflow: hidden;
-      border: 1px solid rgba(191,153,88,0.2);
     }
 
-    .card-label {
-      padding: 0.7rem 1.1rem;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border-bottom: 1px solid rgba(191,153,88,0.15);
+    .card-header {
+      padding: 0.65rem 1.1rem;
+      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 8px;
+      font-size: 0.67rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
     }
     .live-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: #e74c3c;
-      animation: pulse 1.8s ease-in-out infinite;
       flex-shrink: 0;
+      animation: blink 1.8s ease-in-out infinite;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.3; }
-    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
 
-    .webcam-wrapper {
+    /* WEBCAM */
+    .webcam-ratio {
       position: relative;
       width: 100%;
       aspect-ratio: 16/9;
       background: #000;
     }
-    .webcam-wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
+    .webcam-ratio iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none; display: block;
     }
 
-    /* ── WIDGET MÉTÉO (en dessous, pleine largeur) ── */
-    .meteo-card {
-      background: var(--card);
-      border-radius: var(--radius);
-      border: 1px solid rgba(191,153,88,0.2);
-      overflow: hidden;
+    /* MÉTÉO WIDGET CUSTOM */
+    .meteo-body {
+      padding: 1.1rem 1rem 1.25rem;
       display: flex;
       flex-direction: column;
+      gap: 0.85rem;
     }
 
-    .meteo-inner {
+    /* Ligne principale : icône + temp + vent */
+    .meteo-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .meteo-cell {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 0.7rem;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: 0.5rem 0 1rem;
+      gap: 4px;
+      text-align: center;
+    }
+    .meteo-cell .val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1;
+    }
+    .meteo-cell .lbl {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .meteo-cell .icon {
+      font-size: 1.5rem;
+      margin-bottom: 2px;
+    }
+    .meteo-cell .sub {
+      font-size: 0.72rem;
+      color: var(--gold);
     }
 
-    .meteo-inner iframe {
-      border: none;
-      display: block;
-      max-width: 100%;
+    /* Soleil */
+    .sun-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
     }
 
-    /* ── FOOTER ── */
+    /* Marées */
+    .maree-section {}
+    .maree-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .maree-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.45rem;
+    }
+    .maree-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.55rem 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .maree-item .type {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+    .maree-item .heure {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--white);
+    }
+    .maree-item.haute { border-color: rgba(191,153,88,0.3); }
+
+    /* Separator */
+    .divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* FOOTER */
     footer {
       text-align: center;
-      padding: 1rem 1.5rem 2rem;
-      font-size: 0.72rem;
+      padding: 0.8rem 1.5rem 1.5rem;
+      font-size: 0.68rem;
       color: var(--muted);
       letter-spacing: 0.04em;
     }
-    footer a {
-      color: var(--gold);
-      text-decoration: none;
-    }
-
-    @media (max-width: 600px) {
-      .top-bar img { height: 36px; }
-    }
+    footer a { color: var(--gold); text-decoration: none; }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">
+  <header>
     <img
-      src="https://sp-ao.shortpixel.ai/client/q_glossy,ret_img,w_523,h_82/https://www.green-resort.com/wp-content/uploads/2024/02/logo-green-resort-labels.png"
+      src="https://www.green-resort.com/wp-content/uploads/2024/02/logo-green-resort-labels.png"
       alt="Green Resort"
     />
-  </div>
+  </header>
 
-  <main>
+  <div class="layout">
 
     <!-- WEBCAM -->
-    <div class="webcam-card">
-      <div class="card-label">
+    <div class="card">
+      <div class="card-header">
         <span class="live-dot"></span>
-        Webcam — Plage d'Ondres-Océan
+        Webcam &mdash; Plage d'Ondres-Océan
       </div>
-      <div class="webcam-wrapper">
+      <div class="webcam-ratio">
         <iframe
           src="https://pv.viewsurf.com/722/Ondres-Ocean"
           scrolling="no"
@@ -164,29 +224,162 @@
       </div>
     </div>
 
-    <!-- MÉTÉO -->
-    <div class="meteo-card">
-      <div class="card-label">Météo & conditions de plage</div>
-      <div class="meteo-inner">
-        <iframe
-          title="Widget Plages des Landes"
-          src="https://www.plages-landes.info/widget-plages-des-landes/?plgs=524&cprimary=bf9958&csecondary=1f2024&picto="
-          width="340"
-          height="580"
-          scrolling="no">
-        </iframe>
+    <!-- MÉTÉO CUSTOM -->
+    <div class="card" id="meteo-card">
+      <div class="card-header">Météo &amp; conditions</div>
+      <div class="meteo-body" id="meteo-body">
+        <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem;">Chargement…</div>
       </div>
     </div>
 
-  </main>
+  </div>
 
   <footer>
     Webcam <a href="https://www.viewsurf.com" target="_blank" rel="noopener">Viewsurf</a>
     &nbsp;·&nbsp;
-    Météo <a href="https://www.plages-landes.info/ondres/" target="_blank" rel="noopener">Plages des Landes</a>
+    Données <a href="https://www.plages-landes.info/ondres/" target="_blank" rel="noopener">Plages des Landes</a>
     &nbsp;·&nbsp;
     <a href="https://www.green-resort.com" target="_blank" rel="noopener">Green Resort</a>
   </footer>
 
+  <script>
+  // Icônes météo (map picto -> emoji)
+  const PICTOS = {
+    'sun':              '☀️',
+    'cloud-sun':        '⛅',
+    'cloud':            '☁️',
+    'cloud-rain':       '🌧️',
+    'cloud-showers-heavy': '🌧️',
+    'cloud-bolt':       '⛈️',
+    'snowflake':        '❄️',
+    'smog':             '🌫️',
+    'wind':             '💨',
+    'moon':             '🌙',
+    'cloud-moon':       '🌛',
+  };
+
+  function pictoEmoji(code) {
+    if (!code) return '🌤️';
+    for (const [k, v] of Object.entries(PICTOS)) {
+      if (code.includes(k)) return v;
+    }
+    return '🌤️';
+  }
+
+  async function loadMeteo() {
+    try {
+      const res = await fetch(
+        'https://meiliprod111.apsulis.fr/indexes/pdl-fr/search',
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer a1608a72d5e5343758e2636b1a48bc94c96cb40d57327c03fe54bcdb4a4c4490',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ q: 'Ondres', limit: 5 })
+        }
+      );
+      const data = await res.json();
+      const commune = data.hits.find(h => h.type === 'commune' && h.title === 'Ondres');
+      const plage   = data.hits.find(h => h.type === 'plages');
+
+      if (!commune) throw new Error('Commune not found');
+
+      const temp    = commune.meteo_temp_air || '—';
+      const picto   = pictoEmoji(commune.meteo_picto);
+      const tempEau = plage?.temp_eau || 'NC';
+
+      // Scraper les données marée/vent depuis la page Ondres
+      const pageRes = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://www.plages-landes.info/ondres/'));
+      const pageHtml = await pageRes.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(pageHtml, 'text/html');
+
+      // Vent
+      let vent = '—';
+      const ventMatch = pageHtml.match(/(\d+)<\/span>\s*km\/h/);
+      if (ventMatch) vent = ventMatch[1];
+
+      // Lever/coucher
+      let lever = '—', coucher = '—';
+      const soleilMatch = pageHtml.match(/(\d{2}:\d{2})<\/span>[\s\S]{0,200}?Lever/);
+      const coucherMatch = pageHtml.match(/(\d{2}:\d{2})<\/span>[\s\S]{0,200}?Coucher/);
+      if (soleilMatch) lever = soleilMatch[1];
+      if (coucherMatch) coucher = coucherMatch[1];
+
+      // Marées
+      const mareesRaw = [...pageHtml.matchAll(/(Haute|Basse)<\/span>\s*<span[^>]*>(\d{2}h\d{2})<\/span>/g)];
+      const marees = mareesRaw.slice(0, 4).map(m => ({ type: m[1], heure: m[2] }));
+
+      // Coef
+      const coefMatch = pageHtml.match(/COEF\.?&nbsp;\s*<span[^>]*>([\d\s/]+)<\/span>/);
+      const coef = coefMatch ? coefMatch[1].trim() : '—';
+
+      // Météo texte
+      const meteoTxt = pageHtml.match(/>(Couvert|Ensoleillé|Nuageux|Pluie|Ciel dégagé|Partiellement nuageux|Brouillard|Orage|Bruine)</) ;
+      const meteoLabel = meteoTxt ? meteoTxt[1] : '';
+
+      // Construire le HTML
+      document.getElementById('meteo-body').innerHTML = `
+        <div class="meteo-main">
+          <div class="meteo-cell">
+            <div class="icon">${picto}</div>
+            <div class="val">${temp}°</div>
+            <div class="lbl">Température air</div>
+            ${meteoLabel ? '<div class="sub">' + meteoLabel + '</div>' : ''}
+          </div>
+          <div class="meteo-cell">
+            <div class="icon">💨</div>
+            <div class="val">${vent}</div>
+            <div class="lbl">Vent km/h</div>
+          </div>
+        </div>
+
+        <div class="sun-row">
+          <div class="meteo-cell">
+            <div class="icon">🌅</div>
+            <div class="val" style="font-size:1.3rem">${lever}</div>
+            <div class="lbl">Lever</div>
+          </div>
+          <div class="meteo-cell">
+            <div class="icon">🌇</div>
+            <div class="val" style="font-size:1.3rem">${coucher}</div>
+            <div class="lbl">Coucher</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="maree-section">
+          <div class="maree-title">Marées &nbsp;<span style="color:var(--muted);font-size:0.95em">coef. ${coef}</span></div>
+          <div class="maree-grid">
+            ${marees.map(m => `
+              <div class="maree-item ${m.type === 'Haute' ? 'haute' : ''}">
+                <span class="type">${m.type}</span>
+                <span class="heure">${m.heure}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        ${tempEau !== 'NC' ? `
+        <div class="divider"></div>
+        <div class="meteo-cell" style="flex-direction:row;justify-content:space-between;padding:0.7rem 1rem">
+          <span class="lbl">Température eau</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold)">${tempEau}°</span>
+        </div>
+        ` : ''}
+      `;
+    } catch(e) {
+      document.getElementById('meteo-body').innerHTML =
+        '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:0.78rem">Données temporairement indisponibles</div>';
+      console.error(e);
+    }
+  }
+
+  loadMeteo();
+  // Rafraîchir toutes les 10 minutes
+  setInterval(loadMeteo, 10 * 60 * 1000);
+  </script>
 </body>
 </html>
