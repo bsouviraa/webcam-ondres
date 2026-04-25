@@ -1,0 +1,36 @@
+{
+  "updated": "2026-04-25T21:02",
+  "temp_air": "15",
+  "meteo_picto": "cloud-sun",
+  "meteo_label": "Couvert",
+  "temp_eau": "NC",
+  "vent_kmh": "7",
+  "vent_deg": "259",
+  "vent_cardinal": "O",
+  "uv": "5.5",
+  "uv_label": "Modéré",
+  "lever": "07:06",
+  "coucher": "21:00",
+  "houle_m": "0.6",
+  "houle_periode": "7.2",
+  "marees": [
+    {
+      "type": "Haute",
+      "heure": "00h06"
+    },
+    {
+      "type": "Basse",
+      "heure": "06h26"
+    },
+    {
+      "type": "Haute",
+      "heure": "13h05"
+    },
+    {
+      "type": "Basse",
+      "heure": "18h50"
+    }
+  ],
+  "maree_coef": "",
+  "drapeau": "vert"
+}
