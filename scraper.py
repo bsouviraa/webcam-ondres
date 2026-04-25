@@ -121,13 +121,12 @@ try:
         heure = row[0].strip()
         if len(heure) > 6: continue
         anim = {
-            "heure":    heure,
-            "emoji":    row[1].strip() if len(row) > 1 else "",
-            "fr":       row[2].strip() if len(row) > 2 else "",
-            "en":       row[3].strip() if len(row) > 3 else "",
-            "es":       row[4].strip() if len(row) > 4 else "",
-            "lieu":     row[5].strip() if len(row) > 5 else "",
-            "en_cours": row[6].strip().lower() == "oui" if len(row) > 6 else False,
+            "heure": heure,
+            "emoji": row[1].strip() if len(row) > 1 else "",
+            "fr":    row[2].strip() if len(row) > 2 else "",
+            "en":    row[3].strip() if len(row) > 3 else "",
+            "es":    row[4].strip() if len(row) > 4 else "",
+            "lieu":  row[5].strip() if len(row) > 5 else "",
         }
         if anim["fr"]:
             animations.append(anim)
