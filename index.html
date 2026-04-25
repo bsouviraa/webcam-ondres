@@ -375,24 +375,30 @@
       height: 100vh;
       overflow: hidden;
     }
+    /* Header animations — identique à .meteo-head */
     .anim-header {
       padding: 0.7vh 1rem;
       border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    .anim-header-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.55rem, 0.9vh, 0.7rem);
+      font-size: clamp(0.65rem, 1.19vh, 0.86rem);
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 500;
+      flex-shrink: 0;
+    }
+    .anim-header-title {
+      font-size: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      color: inherit;
+      font-weight: inherit;
     }
     .anim-header-date {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.7rem, 1.1vh, 0.85rem);
+      font-size: clamp(0.58rem, 0.95vh, 0.72rem);
       color: var(--muted);
-      margin-top: 0.2rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+      margin-top: 0.15rem;
     }
     .anim-body {
       flex: 1 1 0;
@@ -411,26 +417,28 @@
       flex-shrink: 0;
       gap: 0.35vh;
     }
+    /* Titre section — identique à .meteo-head */
     .anim-section-title {
+      padding: 0.7vh 0;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
       display: flex;
       align-items: baseline;
-      gap: 0.4rem;
-      padding: 0.35vh 0 0.3vh;
-      border-bottom: 1px solid var(--border);
+      gap: 0.5rem;
     }
     .anim-sec-fr {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.72rem, 1.2vh, 0.9rem);
-      font-weight: 700;
-      color: var(--gold);
+      font-size: clamp(0.65rem, 1.19vh, 0.86rem);
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      color: var(--gold);
+      font-weight: 500;
     }
     .anim-sec-trad {
-      font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.55rem, 0.88vh, 0.68rem);
+      font-size: clamp(0.5rem, 0.88vh, 0.66rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--muted);
-      opacity: 0.6;
+      opacity: 0.5;
     }
     .anim-section-empty {
       font-family: 'Outfit', sans-serif;
