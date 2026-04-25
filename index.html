@@ -767,19 +767,20 @@
 
     // Rubriques par tranche horaire
     const sections = [
-      { key: 'matin',    labelFR: 'Matin',       labelEN: 'Morning',   labelES: 'Mañana',   from: 0,  to: 12 },
-      { key: 'apm',      labelFR: 'Après-midi',   labelEN: 'Afternoon', labelES: 'Tarde',    from: 12, to: 18 },
-      { key: 'soiree',   labelFR: 'Soirée',       labelEN: 'Evening',   labelES: 'Noche',    from: 18, to: 24 },
+      { key: 'matin',  labelFR: 'Matin',      labelEN: 'Morning',   labelES: 'Mañana', from: 0,  to: 12 },
+      { key: 'apm',    labelFR: 'Après-midi', labelEN: 'Afternoon', labelES: 'Tarde',  from: 12, to: 19 },
+      { key: 'soiree', labelFR: 'Soirée',     labelEN: 'Evening',   labelES: 'Noche',  from: 19, to: 24 },
     ];
 
     let html = '';
+    const totalItems = anims.length;
     sections.forEach(sec => {
-      const items = anims.filter((a, i) => {
+      const items = anims.filter(a => {
         const h = parseInt(a.heure.split(':')[0]);
         return h >= sec.from && h < sec.to;
       });
 
-      // Titre de section (toujours affiché)
+      html += `<div class="anim-section" style="flex:${items.length > 0 ? items.length : 0.4} 1 0">`;
       html += `<div class="anim-section-title">
         <span class="anim-sec-fr">${sec.labelFR}</span>
         <span class="anim-sec-trad">${sec.labelEN} · ${sec.labelES}</span>
@@ -812,6 +813,7 @@
             </div>`;
         });
       }
+      html += `</div>`; // fermer .anim-section
     });
 
     body.innerHTML = html;
