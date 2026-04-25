@@ -746,6 +746,7 @@
   function renderAnimations(anims, dateLabel) {
     const body = document.getElementById('anim-body');
     if (!body) return;
+
     if (!anims || anims.length === 0) {
       body.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0.75rem;padding:1.5rem;text-align:center">
         <div style="font-size:2rem;opacity:0.4">🕐</div>
@@ -754,6 +755,8 @@
       </div>`;
       return;
     }
+
+    // Heure Paris pour "en cours"
     const now    = parisnow();
     const nowMin = now.getHours() * 60 + now.getMinutes();
     let enCoursIdx = -1;
@@ -761,30 +764,60 @@
       const [h,m] = a.heure.split(':').map(Number);
       if (h * 60 + m <= nowMin) enCoursIdx = i;
     });
-    body.innerHTML = anims.map((a, i) => {
-      const enCours = (i === enCoursIdx);
-      return `
-        <div class="anim-item ${enCours?'anim-item-now':''}">
-          <div class="anim-time">
-            <div class="anim-time-val">${a.heure}</div>
-            ${enCours?'<div class="anim-now-badge">Now</div>':''}
-          </div>
-          <div class="anim-content">
-            <div class="anim-emoji">${a.emoji}</div>
-            <div class="anim-texts">
-              <div class="anim-fr">${a.fr}</div>
-              ${a.en?`<div class="anim-en">${a.en}</div>`:''}
-              ${a.es?`<div class="anim-es">${a.es}</div>`:''}
-              ${a.lieu?`<div class="anim-lieu">📍 ${a.lieu}</div>`:''}
-            </div>
-          </div>
-        </div>`;
-    }).join('');
+
+    // Rubriques par tranche horaire
+    const sections = [
+      { key: 'matin',    labelFR: 'Matin',       labelEN: 'Morning',   labelES: 'Mañana',   from: 0,  to: 12 },
+      { key: 'apm',      labelFR: 'Après-midi',   labelEN: 'Afternoon', labelES: 'Tarde',    from: 12, to: 18 },
+      { key: 'soiree',   labelFR: 'Soirée',       labelEN: 'Evening',   labelES: 'Noche',    from: 18, to: 24 },
+    ];
+
+    let html = '';
+    sections.forEach(sec => {
+      const items = anims.filter((a, i) => {
+        const h = parseInt(a.heure.split(':')[0]);
+        return h >= sec.from && h < sec.to;
+      });
+
+      // Titre de section (toujours affiché)
+      html += `<div class="anim-section-title">
+        <span class="anim-sec-fr">${sec.labelFR}</span>
+        <span class="anim-sec-trad">${sec.labelEN} · ${sec.labelES}</span>
+      </div>`;
+
+      if (items.length === 0) {
+        html += `<div class="anim-section-empty">—</div>`;
+      } else {
+        items.forEach(a => {
+          const i = anims.indexOf(a);
+          const enCours = (i === enCoursIdx);
+          html += `
+            <div class="anim-item ${enCours ? 'anim-item-now' : ''}">
+              <div class="anim-time">
+                <div class="anim-time-val">${a.heure}</div>
+                ${enCours ? '<div class="anim-now-badge">Now</div>' : ''}
+              </div>
+              <div class="anim-content">
+                <div class="anim-emoji">${a.emoji}</div>
+                <div class="anim-texts">
+                  <div class="anim-fr">${a.fr}</div>
+                  ${a.en ? `<div class="anim-en">${a.en}</div>` : ''}
+                  ${a.es ? `<div class="anim-es">${a.es}</div>` : ''}
+                  ${a.lieu ? `<div class="anim-lieu">
+                    📍 ${a.lieu}
+                    ${a.lieu_en||a.lieu_es ? `<span class="anim-lieu-trad"> · ${a.lieu_en||''}${a.lieu_es?' · '+a.lieu_es:''}</span>` : ''}
+                  </div>` : ''}
+                </div>
+              </div>
+            </div>`;
+        });
+      }
+    });
+
+    body.innerHTML = html;
   }
 
-  // ═══════════════════════════════════════════════════════
-  //  CHARGEMENT MÉTÉO (data.json)
-  // ═══════════════════════════════════════════════════════
+
   async function loadMeteo() {
     try {
       const res = await fetch('./data.json?cb=' + Date.now());
@@ -802,40 +835,6 @@
   // ═══════════════════════════════════════════════════════
   const SHEET_ID = '1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG';
 
-  // ── Cache traductions (évite de re-traduire à chaque refresh) ────────────
-  const _translCache = {};
-
-  async function translateBatch(texts) {
-    // Clé de cache = hash simple des textes
-    const cacheKey = texts.join('||');
-    if (_translCache[cacheKey]) return _translCache[cacheKey];
-
-    const prompt = `Tu es un traducteur. Traduis ces textes courts du français vers l'anglais ET l'espagnol.
-Réponds UNIQUEMENT en JSON valide, format :
-[{"en":"...","es":"..."}, {"en":"...","es":"..."}]
-Un objet par texte dans l'ordre. Pas d'explication, juste le JSON.
-
-Textes à traduire :
-${texts.map((t,i) => `${i+1}. ${t}`).join('\n')}`;
-
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    const data = await res.json();
-    const raw = data.content?.[0]?.text || '[]';
-    // Nettoyer le JSON (enlever les backticks si présents)
-    const clean = raw.replace(/```json|```/g, '').trim();
-    const translations = JSON.parse(clean);
-    _translCache[cacheKey] = translations;
-    return translations;
-  }
-
   async function loadAnimations() {
     try {
       const now = parisnow();
@@ -844,88 +843,26 @@ ${texts.map((t,i) => `${i+1}. ${t}`).join('\n')}`;
       const sheetName = dd + mm;
       const dateLabel = dd + '/' + mm;
 
-      // 1. Vérifier que la feuille existe
+      // Vérifier que la feuille existe dans le Sheet
       const htmlRes = await fetch(
         'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG/htmlview?cb=' + Date.now()
       );
       const htmlTxt = await htmlRes.text();
       const namesMatch = htmlTxt.match(/\{name:\s*"([^"]+)"/g) || [];
-      const availableSheets = namesMatch.map(m => m.match(/"([^"]+)"/)[1]);
+      const available = namesMatch.map(m => m.match(/"([^"]+)"/)[1]);
 
-      if (!availableSheets.includes(sheetName)) {
+      if (!available.includes(sheetName)) {
         throw new Error('Feuille ' + sheetName + ' introuvable');
       }
 
-      // 2. Charger le CSV
-      const url = 'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG'
-        + '/gviz/tq?tqx=out:csv&sheet=' + sheetName + '&cb=' + Date.now();
-      const res = await fetch(url);
-      const csv = await res.text();
-      if (!csv || csv.length < 20) throw new Error('CSV vide');
+      // Charger animations.json (généré par GitHub Actions avec traductions)
+      const res = await fetch('./animations.json?cb=' + Date.now());
+      const payload = await res.json();
+      const anims = Array.isArray(payload) ? payload : (payload.items || []);
+      const storedDate = Array.isArray(payload) ? '' : (payload.date || '');
 
-      function parseRow(row) {
-        const f=[]; let cur='', inQ=false;
-        for (const ch of row) {
-          if (ch==='"') { inQ=!inQ; }
-          else if (ch===',' && !inQ) { f.push(cur.trim()); cur=''; }
-          else { cur+=ch; }
-        }
-        f.push(cur.trim()); return f;
-      }
-
-      const rows = csv.split('\n').map(parseRow);
-
-      // 3. Trouver header
-      let dataStart = 0;
-      for (let i=0; i<rows.length; i++) {
-        if (rows[i][0] && rows[i][0].toLowerCase().includes('heure')) {
-          dataStart = i+1; break;
-        }
-      }
-
-      // 4. Parser les animations (FR seulement suffit)
-      const anims = [];
-      for (let i=dataStart; i<rows.length; i++) {
-        const r = rows[i];
-        if (!r[0] || !r[0].includes(':') || r[0].length>6 || !r[2]) continue;
-        anims.push({
-          heure:   r[0],
-          emoji:   r[1] || '',
-          fr:      r[2],
-          lieu:    r[3] || '',
-          en:      '',
-          es:      '',
-          lieu_en: '',
-          lieu_es: '',
-        });
-      }
-
-      // 5. Traduction auto pour les champs EN/ES manquants
-      const toTranslate = anims.filter(a => !a.en || !a.es);
-      if (toTranslate.length > 0) {
-        // Traduire FR + lieu en une seule requête
-        const texts = toTranslate.flatMap(a => [a.fr, a.lieu].filter(Boolean));
-        try {
-          const translations = await translateBatch(texts);
-          let tIdx = 0;
-          toTranslate.forEach(a => {
-            if (tIdx < translations.length) {
-              if (!a.en) a.en = translations[tIdx]?.en || '';
-              if (!a.es) a.es = translations[tIdx]?.es || '';
-              tIdx++;
-            }
-            // Traduire le lieu aussi si présent
-            if (a.lieu && tIdx < translations.length) {
-              a.lieu_en = translations[tIdx]?.en || a.lieu;
-              a.lieu_es = translations[tIdx]?.es || a.lieu;
-              tIdx++;
-            }
-          });
-        } catch(translErr) {
-          console.warn('Traduction échouée, affichage FR seul:', translErr);
-        }
-      }
-
+      // Si animations.json est pour une autre date, utiliser quand même
+      // (sera mis à jour par le workflow toutes les heures)
       window._animData      = anims;
       window._animDateLabel = dateLabel;
 
