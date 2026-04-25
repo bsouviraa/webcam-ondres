@@ -799,15 +799,49 @@
   // ═══════════════════════════════════════════════════════
   const SHEET_ID = '1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG';
 
+  // ── Cache traductions (évite de re-traduire à chaque refresh) ────────────
+  const _translCache = {};
+
+  async function translateBatch(texts) {
+    // Clé de cache = hash simple des textes
+    const cacheKey = texts.join('||');
+    if (_translCache[cacheKey]) return _translCache[cacheKey];
+
+    const prompt = `Tu es un traducteur. Traduis ces textes courts du français vers l'anglais ET l'espagnol.
+Réponds UNIQUEMENT en JSON valide, format :
+[{"en":"...","es":"..."}, {"en":"...","es":"..."}]
+Un objet par texte dans l'ordre. Pas d'explication, juste le JSON.
+
+Textes à traduire :
+${texts.map((t,i) => `${i+1}. ${t}`).join('\n')}`;
+
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const raw = data.content?.[0]?.text || '[]';
+    // Nettoyer le JSON (enlever les backticks si présents)
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const translations = JSON.parse(clean);
+    _translCache[cacheKey] = translations;
+    return translations;
+  }
+
   async function loadAnimations() {
     try {
       const now = parisnow();
       const dd  = String(now.getDate()).padStart(2,'0');
       const mm  = String(now.getMonth()+1).padStart(2,'0');
-      const sheetName = dd + mm;   // ex: "2604"
+      const sheetName = dd + mm;
       const dateLabel = dd + '/' + mm;
 
-      // 1. Vérifier que la feuille existe via htmlview
+      // 1. Vérifier que la feuille existe
       const htmlRes = await fetch(
         'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG/htmlview?cb=' + Date.now()
       );
@@ -816,15 +850,14 @@
       const availableSheets = namesMatch.map(m => m.match(/"([^"]+)"/)[1]);
 
       if (!availableSheets.includes(sheetName)) {
-        throw new Error('Feuille ' + sheetName + ' introuvable. Disponibles: ' + availableSheets.join(', '));
+        throw new Error('Feuille ' + sheetName + ' introuvable');
       }
 
-      // 2. Charger le CSV de la feuille du jour
+      // 2. Charger le CSV
       const url = 'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG'
         + '/gviz/tq?tqx=out:csv&sheet=' + sheetName + '&cb=' + Date.now();
       const res = await fetch(url);
       const csv = await res.text();
-
       if (!csv || csv.length < 20) throw new Error('CSV vide');
 
       function parseRow(row) {
@@ -839,7 +872,7 @@
 
       const rows = csv.split('\n').map(parseRow);
 
-      // Trouver la ligne header (contient "Heure")
+      // 3. Trouver header
       let dataStart = 0;
       for (let i=0; i<rows.length; i++) {
         if (rows[i][0] && rows[i][0].toLowerCase().includes('heure')) {
@@ -847,11 +880,45 @@
         }
       }
 
+      // 4. Parser les animations (FR seulement suffit)
       const anims = [];
       for (let i=dataStart; i<rows.length; i++) {
         const r = rows[i];
         if (!r[0] || !r[0].includes(':') || r[0].length>6 || !r[2]) continue;
-        anims.push({ heure:r[0], emoji:r[1]||'', fr:r[2], en:r[3]||'', es:r[4]||'', lieu:r[5]||'' });
+        anims.push({
+          heure: r[0],
+          emoji: r[1] || '',
+          fr:    r[2],
+          en:    r[3] || '',   // optionnel, sera traduit si vide
+          es:    r[4] || '',   // optionnel, sera traduit si vide
+          lieu:  r[5] || '',
+        });
+      }
+
+      // 5. Traduction auto pour les champs EN/ES manquants
+      const toTranslate = anims.filter(a => !a.en || !a.es);
+      if (toTranslate.length > 0) {
+        // Traduire FR + lieu en une seule requête
+        const texts = toTranslate.flatMap(a => [a.fr, a.lieu].filter(Boolean));
+        try {
+          const translations = await translateBatch(texts);
+          let tIdx = 0;
+          toTranslate.forEach(a => {
+            if (tIdx < translations.length) {
+              if (!a.en) a.en = translations[tIdx]?.en || '';
+              if (!a.es) a.es = translations[tIdx]?.es || '';
+              tIdx++;
+            }
+            // Traduire le lieu aussi si présent
+            if (a.lieu && tIdx < translations.length) {
+              a.lieu_en = translations[tIdx]?.en || a.lieu;
+              a.lieu_es = translations[tIdx]?.es || a.lieu;
+              tIdx++;
+            }
+          });
+        } catch(translErr) {
+          console.warn('Traduction échouée, affichage FR seul:', translErr);
+        }
       }
 
       window._animData      = anims;
