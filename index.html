@@ -1240,10 +1240,18 @@
     });
 
     // Rubriques par tranche horaire
+    // Détecter heure d'été ou d'hiver pour Paris
+    // En été (UTC+2) : après-midi finit à 18h59 → soirée from 19
+    // En hiver (UTC+1) : après-midi finit à 17h59 → soirée from 18
+    const parisOffset = -new Date().toLocaleString('en-US', {timeZone:'Europe/Paris', timeZoneName:'shortOffset'})
+      .match(/GMT([+-]\d+)/)?.[1] * -1 || 1; // 1 = hiver, 2 = été
+    const isDST = parisOffset === 2;
+    const soireeFrom = isDST ? 19 : 18;
+
     const sections = [
-      { key: 'matin',  labelFR: 'Matin',      labelEN: 'Morning',   labelES: 'Mañana', from: 0,  to: 12 },
-      { key: 'apm',    labelFR: 'Après-midi', labelEN: 'Afternoon', labelES: 'Tarde',  from: 12, to: 19 },
-      { key: 'soiree', labelFR: 'Soirée',     labelEN: 'Evening',   labelES: 'Noche',  from: 19, to: 24 },
+      { key: 'matin',  labelFR: 'Matin',      labelEN: 'Morning',   labelES: 'Mañana', from: 0,         to: 12        },
+      { key: 'apm',    labelFR: 'Après-midi', labelEN: 'Afternoon', labelES: 'Tarde',  from: 12,        to: soireeFrom },
+      { key: 'soiree', labelFR: 'Soirée',     labelEN: 'Evening',   labelES: 'Noche',  from: soireeFrom, to: 24        },
     ];
 
     let html = '';
