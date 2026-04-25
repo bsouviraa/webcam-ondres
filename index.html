@@ -294,34 +294,24 @@
 
   async function loadMeteo() {
     try {
-      // 1. API Meilisearch → temp + picto + temp eau
-      const msRes = await fetch('https://meiliprod111.apsulis.fr/indexes/pdl-fr/search', {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer a1608a72d5e5343758e2636b1a48bc94c96cb40d57327c03fe54bcdb4a4c4490',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ q: 'Ondres', limit: 5 })
-      });
-      const msData = await msRes.json();
-      const commune = msData.hits.find(h => h.type === 'commune' && h.title === 'Ondres');
-      const plage   = msData.hits.find(h => h.type === 'plages');
+      const res = await fetch('./data.json?cb=' + Date.now());
+      const d = await res.json();
 
-      const temp    = commune?.meteo_temp_air || '—';
-      const picto   = emoji(commune?.meteo_picto);
-      const tempEau = plage?.temp_eau || 'NC';
-
-      // 2. Page Ondres → vent, lever, coucher, marées, coef, label météo
-      const pageRes = await fetch('https://corsproxy.io/?' + encodeURIComponent('https://www.plages-landes.info/ondres/'));
-      const html = await pageRes.text();
-
-      const vent = (html.match(/(\d+)<\/span>\s*km\/h/) || [])[1] || '—';
-      const lever   = (html.match(/(\d{2}:\d{2})<\/span>[\s\S]{0,250}?Lever/) || [])[1] || '—';
-      const coucher = (html.match(/(\d{2}:\d{2})<\/span>[\s\S]{0,250}?Coucher/) || [])[1] || '—';
-      const coef  = (html.match(/COEF\.?&nbsp;\s*<span[^>]*>([\d\s/]+)<\/span>/) || [])[1]?.trim() || '—';
-      const label = (html.match(/>(Couvert|Ensoleillé|Nuageux|Pluie|Ciel dégagé|Partiellement nuageux|Brouillard|Orage|Bruine)</) || [])[1] || '';
-      const marees = [...html.matchAll(/(Haute|Basse)<\/span>\s*<span[^>]*>(\d{2}h\d{2})<\/span>/g)]
-        .slice(0,4).map(m => ({ type: m[1], heure: m[2] }));
+      const picto  = emoji(d.meteo_picto);
+      const temp   = d.temp_air || '—';
+      const vent   = d.vent_kmh || '—';
+      const ventDeg = d.vent_deg || '0';
+      const ventCard = d.vent_cardinal || '';
+      const uvVal  = d.uv || '—';
+      const uvLabel = (d.uv_label ? 'Risque ' + d.uv_label : '');
+      const uvColor = {'Risque Faible':'#4caf50','Risque Modéré':'#ffeb3b','Risque Élevé':'#ff9800','Risque Très élevé':'#f44336','Risque Extrême':'#9c27b0'}[uvLabel] || 'var(--gold)';
+      const lever   = d.lever || '—';
+      const coucher = d.coucher || '—';
+      const coef    = d.maree_coef || '—';
+      const marees  = d.marees || [];
+      const tempEau = d.temp_eau || 'NC';
+      const houle   = d.houle_m ? d.houle_m + ' m' : '';
+      const label   = d.meteo_label || '';
 
       document.getElementById('meteo-body').innerHTML = `
         <div class="mcell">
@@ -334,7 +324,7 @@
         <div class="mcell">
           <div class="icon" style="font-size:1.4rem;transform:rotate(${ventDeg}deg);display:inline-block">↑</div>
           <div class="val">${vent}<span style="font-size:1.2rem"> km/h</span></div>
-          <div class="lbl">Vent &mdash; ${degreesToCardinal(ventDeg)}</div>
+          <div class="lbl">Vent — ${ventCard}</div>
         </div>
 
         <div class="mcell">
@@ -356,6 +346,12 @@
             <div class="lbl">Coucher</div>
           </div>
         </div>
+
+        ${houle ? `<div class="mcell">
+          <div class="icon">🌊</div>
+          <div class="val" style="font-size:1.8rem">${houle}</div>
+          <div class="lbl">Houle</div>
+        </div>` : ''}
 
         <div class="div"></div>
 
@@ -380,14 +376,13 @@
     } catch(e) {
       document.getElementById('meteo-body').innerHTML =
         '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:0.8rem">Données indisponibles</div>';
-      console.error(e);
+      console.error('Meteo error:', e);
     }
   }
 
   function degreesToCardinal(deg) {
-    const d = parseInt(deg);
     const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
-    return dirs[Math.round(d / 22.5) % 16];
+    return dirs[Math.round(parseInt(deg) / 22.5) % 16];
   }
 
   loadMeteo();
