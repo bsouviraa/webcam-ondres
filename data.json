@@ -1,14 +1,14 @@
 {
-  "updated": "2026-04-25T21:12",
+  "updated": "2026-04-25T21:42",
   "temp_air": "15",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "7",
-  "vent_deg": "259",
+  "vent_kmh": "9",
+  "vent_deg": "263",
   "vent_cardinal": "O",
   "uv": "5.5",
-  "uv_label": "Modéré",
+  "uv_label": "Modere",
   "lever": "07:06",
   "coucher": "21:00",
   "houle_m": "0.6",
@@ -33,5 +33,5 @@
   ],
   "maree_coef": "",
   "drapeau": "nc",
-  "surv_label": "Baignade non surveillée"
+  "surv_label": "Baignade non surveillee"
 }
