@@ -1,45 +1,4 @@
 {
-  "date": "25/04",
-  "items": [
-    {
-      "heure": "10:00",
-      "emoji": "🏄",
-      "fr": "Cours de surf samedi",
-      "en": "Beginner surf lessons",
-      "es": "Clases de surf principiantes",
-      "lieu": "Plage principale"
-    },
-    {
-      "heure": "11:30",
-      "emoji": "🧘",
-      "fr": "Yoga sur la plage",
-      "en": "Beach yoga session",
-      "es": "Yoga en la playa",
-      "lieu": "Dune sud"
-    },
-    {
-      "heure": "14:00",
-      "emoji": "🏓",
-      "fr": "Tournoi de beach tennis",
-      "en": "Beach tennis tournament",
-      "es": "Torneo de tenis playa",
-      "lieu": "Terrain multisports"
-    },
-    {
-      "heure": "17:00",
-      "emoji": "🚴",
-      "fr": "Balade vélo forêt landaise",
-      "en": "Landes forest bike ride",
-      "es": "Paseo en bici por el bosque",
-      "lieu": "Entrée du resort"
-    },
-    {
-      "heure": "21:00",
-      "emoji": "🔥",
-      "fr": "Soirée barbecue & musique live",
-      "en": "BBQ evening & live music",
-      "es": "Noche de barbacoa & música",
-      "lieu": "Espace détente central"
-    }
-  ]
+  "date": "",
+  "items": []
 }
