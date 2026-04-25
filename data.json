@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-25T21:02",
+  "updated": "2026-04-25T21:12",
   "temp_air": "15",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
@@ -32,5 +32,6 @@
     }
   ],
   "maree_coef": "",
-  "drapeau": "vert"
+  "drapeau": "nc",
+  "surv_label": "Baignade non surveillée"
 }
