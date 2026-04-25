@@ -255,6 +255,14 @@
       border-top: 1px solid var(--border);
       padding: 0.4vh 0;
     }
+    .transport-wip {
+      font-size: 0.85em;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-weight: 400;
+      opacity: 0.7;
+    }
     .transport-sec-label {
       font-size: clamp(0.52rem, 0.88vh, 0.65rem);
       letter-spacing: 0.13em;
@@ -716,10 +724,10 @@
       </div>
 
       <div class="transport-section">
-        <div class="transport-sec-label">Prochains 🚌 · 🚆</div>
+        <div class="transport-sec-label">Prochains 🚌 · 🚆 &nbsp;<span class="transport-wip">🚧 En cours de développement</span></div>
         <div class="transport-row">
           <span class="transport-icon">🚌</span>
-          <span class="transport-name">Ligne 6</span>
+          <span class="transport-name">→ Plage</span>
           <div class="transport-times">
             <span class="transport-time">08:14</span>
             <span class="transport-time">09:32</span>
@@ -727,12 +735,30 @@
           </div>
         </div>
         <div class="transport-row">
+          <span class="transport-icon">🚌</span>
+          <span class="transport-name">→ Bayonne</span>
+          <div class="transport-times">
+            <span class="transport-time">08:45</span>
+            <span class="transport-time">10:15</span>
+            <span class="transport-time">12:30</span>
+          </div>
+        </div>
+        <div class="transport-row">
           <span class="transport-icon">🚆</span>
-          <span class="transport-name">TER Bayonne</span>
+          <span class="transport-name">→ Bayonne</span>
           <div class="transport-times">
             <span class="transport-time">09:47</span>
             <span class="transport-time">12:15</span>
             <span class="transport-time">14:22</span>
+          </div>
+        </div>
+        <div class="transport-row">
+          <span class="transport-icon">🚆</span>
+          <span class="transport-name">→ Dax</span>
+          <div class="transport-times">
+            <span class="transport-time">10:05</span>
+            <span class="transport-time">13:18</span>
+            <span class="transport-time">15:40</span>
           </div>
         </div>
       </div>
