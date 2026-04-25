@@ -251,17 +251,20 @@
 
     /* Section transports */
     .transport-section {
-      flex-shrink: 0;
+      flex: 0 0 auto;
       border-top: 1px solid var(--border);
-      padding: 0.5vh 0 0.3vh;
+      padding: 0.6vh 0 0.5vh;
+      margin-top: auto;
     }
     .transport-wip {
-      font-size: 0.85em;
-      color: var(--muted);
-      letter-spacing: 0.02em;
+      display: block;
+      font-size: clamp(0.55rem, 0.9vh, 0.68rem);
+      color: var(--gold);
+      letter-spacing: 0.04em;
       text-transform: none;
-      font-weight: 400;
-      opacity: 0.7;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 0.1rem;
     }
     .transport-sec-label {
       font-family: 'DM Sans', sans-serif;
@@ -282,29 +285,20 @@
       font-size: clamp(0.55rem, 0.92vh, 0.7rem);
     }
     .transport-row:last-child { border-bottom: none; }
-    .transport-icon { font-size: clamp(0.7rem, 1.15vh, 0.88rem); flex-shrink: 0; }
-    .transport-name { color: var(--muted); flex-shrink: 0; min-width: 3.5rem; }
+    .transport-icon { font-size: clamp(0.8rem, 1.3vh, 1rem); flex-shrink: 0; }
+    .transport-name { color: var(--white); font-weight: 500; flex-shrink: 0; min-width: 4rem; }
     .transport-times { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .transport-time {
       background: rgba(255,255,255,0.06);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 0.1rem 0.35rem;
-      color: var(--white);
-      font-weight: 500;
-      font-size: clamp(0.52rem, 0.88vh, 0.66rem);
+      padding: 0.1rem 0.4rem;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: clamp(0.58rem, 1vh, 0.75rem);
     }
 
-    /* Footer météo */
-    .meteo-footer {
-      padding: 0.5vh 0.85rem;
-      font-size: clamp(0.44rem, 0.75vh, 0.6rem);
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      text-align: center;
-      flex-shrink: 0;
-    }
-    .meteo-footer a { color: var(--gold); text-decoration: none; }
+
 
     /* ── COLONNE WEBCAM (centre) ── */
     .col-webcam {
@@ -529,11 +523,7 @@
       <div class="meteo-body" id="meteo-body">
         <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem">Chargement…</div>
       </div>
-      <div class="meteo-footer">
-        <a href="https://www.plages-landes.info/ondres/" target="_blank" rel="noopener">Plages des Landes</a>
-        &nbsp;·&nbsp;
-        <a href="https://www.viewsurf.com" target="_blank" rel="noopener">Viewsurf</a>
-      </div>
+
     </div>
 
     <!-- WEBCAM — centre -->
@@ -726,7 +716,7 @@
       </div>
 
       <div class="transport-section">
-        <div class="transport-sec-label">Prochains 🚌 · 🚆 &nbsp;<span class="transport-wip">🚧 En cours de développement</span></div>
+        <div class="transport-sec-label">Prochains 🚌 · 🚆</div><span class="transport-wip">🚧 En cours de développement</span>
         <div class="transport-row">
           <span class="transport-icon">🚌</span>
           <span class="transport-name">→ Plage</span>
