@@ -63,8 +63,24 @@ marees = [{"type": m.group(1), "heure": m.group(2)} for m in marees_raw[:4]]
 coef = (re.search(r'COEF\.?&nbsp;\s*<span[^>]*>([\d\s/]+)</span>', html) or ['',''])[1]
 if hasattr(coef, 'group'): coef = coef.group(1).strip()
 
-drapeau = (re.search(r'drapeau_(vert|jaune|rouge)', html) or ['',''])[1]
-if hasattr(drapeau, 'group'): drapeau = drapeau.group(1)
+# Drapeau depuis Meilisearch (fiable, mis à jour par les nageurs sauveteurs)
+if plage.get('drapeau_vert'):
+    drapeau = 'vert'
+elif plage.get('drapeau_jaune'):
+    drapeau = 'jaune'
+elif plage.get('drapeau_rouge'):
+    drapeau = 'rouge'
+elif plage.get('etat_surveillance') == False:
+    drapeau = 'nc'  # hors saison / non surveillé
+else:
+    drapeau = ''
+# Label surveillance
+surv_label = 'Baignade non surveillée'
+surv_h = plage.get('surveillance_h', {})
+if isinstance(surv_h, dict) and surv_h.get('deb') and surv_h.get('fin'):
+    surv_label = f"Surveillée {surv_h['deb']} — {surv_h['fin']}"
+elif plage.get('etat_surveillance'):
+    surv_label = 'Baignade surveillée' 
 
 # WMO code → label
 WMO = {0:'Ciel dégagé',1:'Peu nuageux',2:'Partiellement nuageux',3:'Couvert',
@@ -99,6 +115,7 @@ data = {
     "marees": marees,
     "maree_coef": coef.strip() if isinstance(coef, str) else '—',
     "drapeau": drapeau,
+    "surv_label": surv_label,
 }
 
 print(json.dumps(data, ensure_ascii=False, indent=2))
