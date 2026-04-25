@@ -66,12 +66,21 @@
       min-width: 0;
       position: relative;
       background: #000;
+      overflow: hidden;
     }
     .col-webcam iframe {
       position: absolute;
-      inset: 0;
-      width: 100%;
+      /* Centrer et couvrir tout l'espace — la webcam Viewsurf est en 16/9
+         On la rend plus grande que le container et on centre */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* Largeur min = 100%, hauteur min = 100vh-header
+         Pour couvrir, on choisit le plus grand des deux selon l'aspect ratio */
+      width: 177.78vh; /* 16/9 * 100vh */
       height: 100%;
+      min-width: 100%;
+      min-height: 56.25vw; /* 9/16 * 100vw */
       border: none;
       display: block;
     }
@@ -228,7 +237,7 @@
 
   <header>
     <img
-      src="https://www.green-resort.com/wp-content/uploads/2026/04/Logo-Green-Resort-5-etoiles-FOND-BLANC.jpeg"
+      src="https://www.green-resort.com/wp-content/uploads/2024/02/logo-green-resort-labels.png"
       alt="Green Resort"
     />
   </header>
