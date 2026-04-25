@@ -106,17 +106,37 @@ meteo = {
     "surv_label":    surv_label,
 }
 
-# 5. Google Sheets animations
+# 5. Google Sheets animations — feuille du jour (format DDMM)
 animations = []
+sheet_date_label = ""
 try:
+    # Nom de la feuille = date du jour en fuseau Paris (DDMM)
+    from datetime import timezone, timedelta
+    paris_now = datetime.now(timezone(timedelta(hours=2)))  # CET/CEST approx
+    sheet_name = paris_now.strftime("%d%m")  # ex: "2504"
+    sheet_date_label = paris_now.strftime("%d/%m")  # ex: "25/04"
+
     sheet_url = (
         f"https://docs.google.com/spreadsheets/d/{SHEET_ID}"
-        "/gviz/tq?tqx=out:csv&sheet=Programme%20du%20jour"
+        f"/gviz/tq?tqx=out:csv&sheet={sheet_name}"
     )
     sheet_data = fetch(sheet_url)
+
+    # Si la feuille n'existe pas, Google renvoie une erreur JS, pas du CSV
+    if "google.visualization.Query.setResponse" in sheet_data or len(sheet_data) < 20:
+        raise ValueError("Feuille introuvable")
+
     reader = csv.reader(io.StringIO(sheet_data))
     rows = list(reader)
-    for row in rows[4:]:
+
+    # Chercher la ligne d'en-tête (Heure en col 0)
+    data_start = 0
+    for idx, row in enumerate(rows):
+        if row and row[0].strip().lower() == "heure":
+            data_start = idx + 1
+            break
+
+    for row in rows[data_start:]:
         if not row or not row[0].strip() or ":" not in row[0]: continue
         heure = row[0].strip()
         if len(heure) > 6: continue
@@ -131,6 +151,6 @@ try:
         if anim["fr"]:
             animations.append(anim)
 except Exception:
-    pass
+    sheet_date_label = ""  # Signale "pas de feuille pour aujourd'hui"
 
-print(json.dumps({"meteo": meteo, "animations": animations}, ensure_ascii=False, indent=2))
+print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": sheet_date_label}, ensure_ascii=False, indent=2))
