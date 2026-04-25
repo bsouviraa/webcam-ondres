@@ -655,16 +655,6 @@
       const dateLabel = Array.isArray(payload) ? '' : (payload.date || '');
       window._animData = anims;
 
-      // Titre avec date
-      const titleEl = document.getElementById('anim-title');
-      if (titleEl) {
-        if (dateLabel) {
-          titleEl.innerHTML = `Animations du ${dateLabel} · Schedule · Programa`;
-        } else {
-          titleEl.innerHTML = 'Programme · Schedule · Programa';
-        }
-      }
-
       renderAnimations(anims, dateLabel);
     } catch(e) {
       console.error('Animations error:', e);
@@ -691,13 +681,14 @@
   setInterval(checkNight, 30000);
 
   // Date dans le header animations
-  function updateAnimDate() {
+  function updateAnimDate(dateLabel) {
     const el = document.getElementById('anim-date');
     if (!el) return;
-    const now = new Date();
+    const now = new Date(new Date().toLocaleString('en-US', {timeZone: 'Europe/Paris'}));
     const days = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
     const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-    el.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    const dateLongue = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    el.textContent = dateLongue;
   }
   updateAnimDate();
 
