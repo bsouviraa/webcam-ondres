@@ -106,111 +106,108 @@
 
     /* ── MÉTÉO BODY ── */
     .meteo-body {
-      padding: 1rem 0.85rem 1.25rem;
+      padding: 0.85rem 0.85rem 1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0.65rem;
+      overflow-y: auto;
     }
+
+    /* Section label */
+    .msection {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.2rem 0 0.1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Bloc double : temp air + eau côte à côte */
+    .mrow2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
 
     /* Cellule générique */
     .mcell {
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 0.9rem 0.75rem;
+      padding: 0.85rem 0.6rem 0.75rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
+      gap: 4px;
       text-align: center;
     }
-    .mcell .icon  { font-size: 1.8rem; line-height: 1; }
+    .mcell .icon  { font-size: 1.5rem; line-height: 1; }
     .mcell .val   {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 300;
       color: var(--white);
       line-height: 1;
     }
     .mcell .val-sm {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       font-weight: 300;
       color: var(--white);
       line-height: 1;
     }
-    .mcell .lbl   {
-      font-size: 0.65rem;
+    .mcell .val-xs {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .mcell .lbl {
+      font-size: 0.6rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
     }
-    .mcell .sub   { font-size: 0.8rem; color: var(--gold); }
+    .mcell .sub { font-size: 0.75rem; color: var(--gold); }
+    .mcell .sub-colored { font-size: 0.72rem; font-weight: 500; }
+
+    /* Drapeau */
+    .drapeau-bar {
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border);
+    }
+    .drapeau-bar .dlbl { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .drapeau-bar .dval { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; }
+    .drapeau-bar .dflag { font-size: 1.2rem; }
 
     /* Grille 2 colonnes */
-    .mrow {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.55rem;
-    }
+    .mrow { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
 
     /* Divider */
-    .div { height: 1px; background: var(--border); }
+    .div { height: 1px; background: var(--border); margin: 0.1rem 0; }
 
     /* Marées */
-    .maree-title {
-      font-size: 0.64rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.45rem;
-    }
-    .maree-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.4rem;
-    }
+    .maree-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
     .maree-item {
       background: rgba(255,255,255,0.03);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 0.55rem 0.65rem;
+      padding: 0.5rem 0.65rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .maree-item .mtype {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--muted);
-    }
+    .maree-item .mtype { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
     .maree-item .mheure {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 400;
       color: var(--white);
     }
-    .maree-item.haute { border-color: rgba(191,153,88,0.35); }
-
-    /* Ligne eau */
-    .eau-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-    }
-    .eau-row .lbl { font-size: 0.65rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); }
-    .eau-row .val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: var(--gold);
-    }
+    .maree-item.haute { border-color: rgba(191,153,88,0.3); }
 
     /* Live dot dans header webcam */
     .live-dot {
@@ -313,68 +310,93 @@
       const coef    = d.maree_coef || '—';
       const marees  = d.marees || [];
       const tempEau = d.temp_eau || 'NC';
+      const drapeauColors = { vert: '#4caf50', jaune: '#ffeb3b', rouge: '#f44336' };
+      const drapeauLabels = { vert: 'Baignade autorisée', jaune: 'Baignade surveillée', rouge: 'Baignade interdite', '': 'Non surveillé' };
+      const drapeauEmojis = { vert: '🟢', jaune: '🟡', rouge: '🔴', '': '⚪' };
+      const drap = d.drapeau || '';
+      const flagHtml = `<div class="drapeau-bar" style="background:rgba(${drap==='vert'?'76,175,80':drap==='jaune'?'255,235,59':drap==='rouge'?'244,67,54':'255,255,255'},0.08)">
+        <span class="dlbl">Drapeau</span>
+        <span class="dval" style="color:${drapeauColors[drap]||'var(--muted)'}">${drapeauLabels[drap]||'Non surveillé'}</span>
+        <span class="dflag">${drapeauEmojis[drap]||'⚪'}</span>
+      </div>`;
       const houle   = d.houle_m ? d.houle_m + ' m' : '';
       const label   = d.meteo_label || '';
 
       document.getElementById('meteo-body').innerHTML = `
-        <div class="mcell">
-          <div class="icon">${picto}</div>
-          <div class="val">${temp}°<span style="font-size:1.2rem">C</span></div>
-          <div class="lbl">Température air</div>
-          ${label ? '<div class="sub">' + label + '</div>' : ''}
+
+        <!-- TEMPÉRATURES : air + eau -->
+        <div class="msection">Températures</div>
+        <div class="mrow2">
+          <div class="mcell">
+            <div class="icon">${picto}</div>
+            <div class="val">${temp}°<span style="font-size:1rem">C</span></div>
+            <div class="lbl">Air</div>
+            ${label ? '<div class="sub">' + label + '</div>' : ''}
+          </div>
+          <div class="mcell">
+            <div class="icon">🌊</div>
+            <div class="val${tempEau === 'NC' ? '-xs' : ''}">${tempEau === 'NC' ? 'NC' : tempEau + '°'}</div>
+            <div class="lbl">Eau</div>
+            ${tempEau === 'NC' ? '<div class="sub" style="font-size:0.62rem;color:var(--muted)">hors saison</div>' : ''}
+          </div>
         </div>
 
+        <!-- DRAPEAU -->
+        ${flagHtml}
+
+        <!-- VENT -->
+        <div class="msection">Vent</div>
         <div class="mcell">
-          <div class="icon" style="font-size:1.4rem;transform:rotate(${ventDeg}deg);display:inline-block">↑</div>
-          <div class="val">${vent}<span style="font-size:1.2rem"> km/h</span></div>
-          <div class="lbl">Vent — ${ventCard}</div>
+          <div style="display:flex;align-items:center;gap:0.75rem;justify-content:center">
+            <span style="font-size:1.8rem;transform:rotate(${ventDeg}deg);display:inline-block;line-height:1">↑</span>
+            <div>
+              <div class="val" style="font-size:2rem;text-align:left">${vent}<span style="font-size:1rem"> km/h</span></div>
+              <div class="lbl" style="text-align:left">${ventCard}</div>
+            </div>
+          </div>
         </div>
 
-        <div class="mcell">
-          <div class="icon">🌞</div>
-          <div class="val" style="font-size:2rem">${uvVal}</div>
-          <div class="lbl">Indice UV</div>
-          <div class="sub" style="font-size:0.72rem;color:${uvColor}">${uvLabel}</div>
-        </div>
-
+        <!-- UV + SOLEIL -->
+        <div class="msection">Soleil</div>
         <div class="mrow">
           <div class="mcell">
-            <div class="icon" style="font-size:1.3rem">🌅</div>
-            <div class="val-sm">${lever}</div>
-            <div class="lbl">Lever</div>
+            <div class="icon">🌞</div>
+            <div class="val" style="font-size:1.9rem">${uvVal}</div>
+            <div class="lbl">Indice UV</div>
+            <div class="sub-colored" style="color:${uvColor}">${uvLabel.replace('Risque ','')}</div>
           </div>
-          <div class="mcell">
-            <div class="icon" style="font-size:1.3rem">🌇</div>
-            <div class="val-sm">${coucher}</div>
-            <div class="lbl">Coucher</div>
-          </div>
-        </div>
-
-        ${houle ? `<div class="mcell">
-          <div class="icon">🌊</div>
-          <div class="val" style="font-size:1.8rem">${houle}</div>
-          <div class="lbl">Houle</div>
-        </div>` : ''}
-
-        <div class="div"></div>
-
-        <div>
-          <div class="maree-title">Marées &nbsp;<span style="color:var(--muted)">coef. ${coef}</span></div>
-          <div class="maree-grid">
-            ${marees.map(m => `
-              <div class="maree-item ${m.type==='Haute'?'haute':''}">
-                <span class="mtype">${m.type}</span>
-                <span class="mheure">${m.heure}</span>
-              </div>`).join('')}
+          <div class="mrow2" style="gap:0.4rem">
+            <div class="mcell">
+              <div class="icon" style="font-size:1.2rem">🌅</div>
+              <div class="val-sm">${lever}</div>
+              <div class="lbl">Lever</div>
+            </div>
+            <div class="mcell">
+              <div class="icon" style="font-size:1.2rem">🌇</div>
+              <div class="val-sm">${coucher}</div>
+              <div class="lbl">Coucher</div>
+            </div>
           </div>
         </div>
 
-        ${tempEau !== 'NC' ? `
-        <div class="div"></div>
-        <div class="eau-row">
-          <span class="lbl">🌊 Temp. eau</span>
-          <span class="val">${tempEau}°</span>
+        <!-- HOULE -->
+        ${houle ? `<div class="msection">Houle</div>
+        <div class="mcell">
+          <div style="display:flex;gap:1.5rem;align-items:center;justify-content:center">
+            <div><div class="val" style="font-size:2rem">${houle}</div><div class="lbl">Hauteur</div></div>
+            <div><div class="val-sm">${d.houle_periode}s</div><div class="lbl">Période</div></div>
+          </div>
         </div>` : ''}
+
+        <!-- MARÉES -->
+        <div class="msection">Marées <span style="color:var(--muted);font-size:0.95em">coef. ${coef}</span></div>
+        <div class="maree-grid">
+          ${marees.map(m => `
+            <div class="maree-item ${m.type==='Haute'?'haute':''}">
+              <span class="mtype">${m.type}</span>
+              <span class="mheure">${m.heure}</span>
+            </div>`).join('')}
+        </div>
       `;
     } catch(e) {
       document.getElementById('meteo-body').innerHTML =
