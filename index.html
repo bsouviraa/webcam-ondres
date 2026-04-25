@@ -489,21 +489,21 @@
     /* EN + ES sur une seule ligne */
     .anim-trad {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.48rem, 0.78vh, 0.6rem);
+      font-size: clamp(0.55rem, 0.9vh, 0.68rem);
       font-weight: 400;
       line-height: 1.2;
     }
-    .anim-en { color: rgba(242,237,230,0.6); }
+    .anim-en { color: rgba(242,237,230,0.62); }
     .anim-sep { color: var(--border); margin: 0 0.15em; }
-    .anim-es { color: rgba(242,237,230,0.38); }
+    .anim-es { color: rgba(242,237,230,0.42); }
     .anim-lieu {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.44rem, 0.72vh, 0.55rem);
-      color: var(--gold);
-      opacity: 0.7;
-      margin-top: 0.08rem;
+      font-size: clamp(0.55rem, 0.9vh, 0.68rem);
+      font-weight: 400;
+      color: rgba(242,237,230,0.5);
+      margin-top: 0;
+      line-height: 1.2;
     }
-    .anim-lieu-trad { display: block; font-size: 0.82em; opacity: 0.5; }
   </style>
 </head>
 <body>
@@ -811,7 +811,7 @@
                 <div class="anim-texts">
                   <div class="anim-fr">${a.fr}</div>
                   ${(a.en||a.es) ? `<div class="anim-trad"><span class="anim-en">${a.en||''}</span>${a.en&&a.es?' <span class="anim-sep">·</span> ':''}<span class="anim-es">${a.es||''}</span></div>` : ''}
-                  ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}${a.lieu_en?` <span class="anim-lieu-trad">· ${a.lieu_en}${a.lieu_es?' · '+a.lieu_es:''}</span>`:''}</div>` : ''}
+                  ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}</div>` : ''}
                 </div>
               </div>
             </div>`;
