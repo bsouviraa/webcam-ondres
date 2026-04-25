@@ -46,7 +46,7 @@
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
       overflow: hidden; /* plus de scroll */
       height: 100vh;
     }
@@ -364,6 +364,142 @@
     /* Section label : juste FR, petit */
     .msection { color: var(--gold); }
 
+    /* ── COLONNE ANIMATIONS ── */
+    .col-anim {
+      width: 300px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+      height: 100vh;
+      overflow: hidden;
+      background: var(--card);
+    }
+    .anim-header {
+      padding: 1.2vh 1rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      background: var(--card);
+    }
+    .anim-header-title {
+      font-size: clamp(0.48rem, 0.85vh, 0.62rem);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .anim-header-date {
+      font-size: clamp(0.6rem, 1vh, 0.75rem);
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    .anim-body {
+      flex: 1 1 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0.5vh 0.7rem;
+      gap: 0.4vh;
+      overflow: hidden;
+    }
+
+    /* Item animation */
+    .anim-item {
+      flex: 1 1 0;
+      min-height: 0;
+      display: flex;
+      gap: 0.6rem;
+      align-items: stretch;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      transition: border-color 0.3s;
+    }
+    .anim-item-now {
+      border-color: rgba(191,153,88,0.45);
+      background: rgba(191,153,88,0.07);
+    }
+    .anim-time {
+      flex-shrink: 0;
+      width: 3.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.04);
+      border-right: 1px solid var(--border);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.9rem, 1.8vh, 1.4rem);
+      font-weight: 300;
+      color: var(--white);
+      gap: 0.25rem;
+    }
+    .anim-now-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.38rem, 0.65vh, 0.5rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(191,153,88,0.15);
+      border-radius: 4px;
+      padding: 0.1rem 0.3rem;
+    }
+    .anim-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4vh 0.5rem 0.4vh 0;
+      min-width: 0;
+    }
+    .anim-emoji {
+      font-size: clamp(1.1rem, 2.2vh, 1.8rem);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .anim-texts {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .anim-fr {
+      font-size: clamp(0.68rem, 1.25vh, 0.92rem);
+      color: var(--white);
+      font-weight: 500;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .anim-en {
+      font-size: clamp(0.55rem, 0.95vh, 0.7rem);
+      color: rgba(242,237,230,0.45);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .anim-es {
+      font-size: clamp(0.5rem, 0.85vh, 0.63rem);
+      color: rgba(242,237,230,0.3);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .anim-lieu {
+      font-size: clamp(0.48rem, 0.8vh, 0.6rem);
+      color: var(--gold);
+      opacity: 0.7;
+      margin-top: 0.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* Petit footer en bas de la météo */
     .meteo-footer {
       padding: 0.5vh 0.85rem;
@@ -458,6 +594,17 @@
     }
   }
   setInterval(checkNight, 30000);
+
+  // Date dans le header animations
+  function updateAnimDate() {
+    const el = document.getElementById('anim-date');
+    if (!el) return;
+    const now = new Date();
+    const days = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+    const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    el.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  }
+  updateAnimDate();
 
   // ── Rendu météo — 3 langues simultanées ──────────────────────────────────
   function renderMeteo(d) {
