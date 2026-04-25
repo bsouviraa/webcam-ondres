@@ -310,9 +310,9 @@
       const coef    = d.maree_coef || '—';
       const marees  = d.marees || [];
       const tempEau = d.temp_eau || 'NC';
-      const drapeauColors = { vert: '#4caf50', jaune: '#ffeb3b', rouge: '#f44336' };
-      const drapeauLabels = { vert: 'Baignade autorisée', jaune: 'Baignade surveillée', rouge: 'Baignade interdite', '': 'Non surveillé' };
-      const drapeauEmojis = { vert: '🟢', jaune: '🟡', rouge: '🔴', '': '⚪' };
+      const drapeauColors = { vert: '#4caf50', jaune: '#ffeb3b', rouge: '#f44336', nc: 'var(--muted)', '': 'var(--muted)' };
+      const drapeauLabels = { vert: 'Baignade autorisée', jaune: 'Baignade surveillée', rouge: 'Baignade interdite', nc: d.surv_label || 'Non surveillé', '': 'Non surveillé' };
+      const drapeauEmojis = { vert: '🟢', jaune: '🟡', rouge: '🔴', nc: '⚫', '': '⚫' };
       const drap = d.drapeau || '';
       const flagHtml = `<div class="drapeau-bar" style="background:rgba(${drap==='vert'?'76,175,80':drap==='jaune'?'255,235,59':drap==='rouge'?'244,67,54':'255,255,255'},0.08)">
         <span class="dlbl">Drapeau</span>
