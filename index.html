@@ -524,28 +524,7 @@
 
   <div class="stage">
 
-    <!-- WEBCAM — occupe tout l'espace restant -->
-    <div class="col-webcam">
-      <iframe
-        src="https://pv.viewsurf.com/722/Ondres-Ocean"
-        scrolling="no"
-        allowfullscreen="allowfullscreen"
-        title="Webcam Plage d'Ondres">
-      </iframe>
-      <!-- Overlay nuit (affiché entre 22h et 6h) -->
-      <div class="night-overlay" id="night-overlay" style="display:none">
-        <div class="night-icon">🌙</div>
-        <div class="night-msgs">
-          <div class="night-msg lang-fr" id="night-fr">La webcam est mise à jour entre 6h et 22h.<br>Prochaine image demain matin.</div>
-          <div class="night-msg lang-en" id="night-en">The webcam is updated between 6am and 10pm.<br>Next image tomorrow morning.</div>
-          <div class="night-msg lang-es" id="night-es">La cámara web se actualiza entre las 6h y las 22h.<br>Próxima imagen mañana por la mañana.</div>
-        </div>
-        <div class="night-next" id="night-next"></div>
-      </div>
-
-    </div>
-
-    <!-- MÉTÉO — colonne droite -->
+    <!-- MÉTÉO — colonne gauche -->
     <div class="col-meteo">
       <div class="meteo-logo">
         <img src="https://www.green-resort.com/wp-content/uploads/2026/04/Logo-Green-Resort-5-etoiles-FOND-BLANC.jpeg" alt="Green Resort" />
@@ -558,6 +537,103 @@
         <a href="https://www.plages-landes.info/ondres/" target="_blank" rel="noopener">Plages des Landes</a>
         &nbsp;·&nbsp;
         <a href="https://www.viewsurf.com" target="_blank" rel="noopener">Viewsurf</a>
+      </div>
+    </div>
+
+    <!-- WEBCAM — centre -->
+    <div class="col-webcam">
+      <iframe
+        src="https://pv.viewsurf.com/722/Ondres-Ocean"
+        scrolling="no"
+        allowfullscreen="allowfullscreen"
+        title="Webcam Plage d'Ondres">
+      </iframe>
+      <div class="night-overlay" id="night-overlay" style="display:none">
+        <div class="night-icon">🌙</div>
+        <div class="night-msgs">
+          <div class="night-msg lang-fr">La webcam est mise à jour entre 6h et 22h.<br>Prochaine image demain matin.</div>
+          <div class="night-msg lang-en">The webcam is updated between 6am and 10pm.<br>Next image tomorrow morning.</div>
+          <div class="night-msg lang-es">La cámara web se actualiza entre las 6h y las 22h.<br>Próxima imagen mañana por la mañana.</div>
+        </div>
+        <div class="night-next" id="night-next"></div>
+      </div>
+    </div>
+
+    <!-- ANIMATIONS — colonne droite -->
+    <div class="col-anim">
+      <div class="anim-header">
+        <div class="anim-header-title">Programme · Schedule · Programa</div>
+        <div class="anim-header-date" id="anim-date"></div>
+      </div>
+      <div class="anim-body">
+
+        <div class="anim-item">
+          <div class="anim-time">10:00</div>
+          <div class="anim-content">
+            <div class="anim-emoji">🏄</div>
+            <div class="anim-texts">
+              <div class="anim-fr">Cours de surf débutants</div>
+              <div class="anim-en">Beginner surf lessons</div>
+              <div class="anim-es">Clases de surf principiantes</div>
+              <div class="anim-lieu">📍 Plage principale</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-item">
+          <div class="anim-time">11:30</div>
+          <div class="anim-content">
+            <div class="anim-emoji">🧘</div>
+            <div class="anim-texts">
+              <div class="anim-fr">Yoga sur la plage</div>
+              <div class="anim-en">Beach yoga session</div>
+              <div class="anim-es">Yoga en la playa</div>
+              <div class="anim-lieu">📍 Dune sud</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-item anim-item-now">
+          <div class="anim-time">14:00
+            <div class="anim-now-badge">En cours</div>
+          </div>
+          <div class="anim-content">
+            <div class="anim-emoji">🏓</div>
+            <div class="anim-texts">
+              <div class="anim-fr">Tournoi de beach tennis</div>
+              <div class="anim-en">Beach tennis tournament</div>
+              <div class="anim-es">Torneo de tenis playa</div>
+              <div class="anim-lieu">📍 Terrain multisports</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-item">
+          <div class="anim-time">17:00</div>
+          <div class="anim-content">
+            <div class="anim-emoji">🚴</div>
+            <div class="anim-texts">
+              <div class="anim-fr">Balade vélo forêt landaise</div>
+              <div class="anim-en">Landes forest bike ride</div>
+              <div class="anim-es">Paseo en bici por el bosque</div>
+              <div class="anim-lieu">📍 Entrée du resort</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="anim-item">
+          <div class="anim-time">21:00</div>
+          <div class="anim-content">
+            <div class="anim-emoji">🔥</div>
+            <div class="anim-texts">
+              <div class="anim-fr">Soirée barbecue & musique live</div>
+              <div class="anim-en">BBQ evening & live music</div>
+              <div class="anim-es">Noche de barbacoa & música en vivo</div>
+              <div class="anim-lieu">📍 Espace détente central</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
