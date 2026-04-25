@@ -83,10 +83,10 @@
     .meteo-body {
       flex: 1 1 0;
       min-height: 0;
-      padding: 0.4vh 0.65rem 0.4vh;
+      padding: 0.3vh 0.65rem 0.3vh;
       display: flex;
       flex-direction: column;
-      gap: 0.3vh;
+      gap: 0.25vh;
       overflow: hidden;
     }
 
@@ -94,7 +94,7 @@
     .mcell-hero { flex: 1 1 0; }
     .val-hero {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.2rem, 2.3vh, 1.9rem);
+      font-size: clamp(1rem, 1.9vh, 1.5rem);
       font-weight: 200;
       color: var(--white);
       line-height: 1;
@@ -102,7 +102,7 @@
     .val-hero-nc { color: var(--muted); }
     .val-md {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(0.8rem, 1.45vh, 1.1rem);
+      font-size: clamp(0.72rem, 1.25vh, 0.95rem);
       font-weight: 300;
       color: var(--white);
       line-height: 1;
@@ -127,7 +127,7 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: clamp(0.5rem, 1.2vh, 0.9rem) 0.85rem;
+      padding: 0.5vh 0.85rem;
       border-radius: 10px;
       border: 1px solid var(--border);
       flex-shrink: 0;
@@ -264,23 +264,25 @@
       opacity: 0.7;
     }
     .transport-sec-label {
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(0.65rem, 1.19vh, 0.86rem);
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 500;
-      margin-bottom: 0.3vh;
+      margin-bottom: 0.25vh;
+      display: block;
     }
     .transport-row {
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.2vh 0;
+      padding: 0.15vh 0;
       border-bottom: 1px solid rgba(255,255,255,0.04);
-      font-size: clamp(0.52rem, 0.88vh, 0.66rem);
+      font-size: clamp(0.55rem, 0.92vh, 0.7rem);
     }
     .transport-row:last-child { border-bottom: none; }
-    .transport-icon { font-size: clamp(0.75rem, 1.3vh, 1rem); flex-shrink: 0; }
+    .transport-icon { font-size: clamp(0.7rem, 1.15vh, 0.88rem); flex-shrink: 0; }
     .transport-name { color: var(--muted); flex-shrink: 0; min-width: 3.5rem; }
     .transport-times { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .transport-time {
@@ -290,7 +292,7 @@
       padding: 0.1rem 0.35rem;
       color: var(--white);
       font-weight: 500;
-      font-size: clamp(0.48rem, 0.8vh, 0.6rem);
+      font-size: clamp(0.52rem, 0.88vh, 0.66rem);
     }
 
     /* Footer météo */
@@ -675,7 +677,7 @@
         </div>
         <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
       </div>
-      <div class="mrow" style="flex:0.8 1 0">
+      <div class="mrow" style="flex:0.65 1 0">
         <div class="mcell">
           <div style="font-size:clamp(1rem,1.8vh,1.4rem)">🌞</div>
           <div class="val-md" style="color:${uvColor}">${uvVal}</div>
@@ -706,7 +708,7 @@
             </div>`).join('')}
         </div>
       </div>
-      <div class="mrow" style="flex:0.7 1 0">
+      <div class="mrow" style="flex:0.55 1 0">
         <div class="mcell" style="flex-direction:row;gap:0.5rem;justify-content:center">
           <span style="font-size:clamp(1.1rem,2vh,1.6rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1;flex-shrink:0">↑</span>
           <div>
