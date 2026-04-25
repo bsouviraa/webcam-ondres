@@ -254,33 +254,14 @@
       color: var(--gold);
     }
 
-    /* ── SÉLECTEUR LANGUE ── */
-    .lang-bar {
-      position: absolute;
-      bottom: 0.85rem;
-      right: 0.85rem;
-      display: flex;
-      gap: 0.4rem;
-      z-index: 20;
-    }
-    .lang-btn {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.25rem 0.55rem;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.15s;
-      text-transform: uppercase;
-    }
-    .lang-btn:hover, .lang-btn.active {
-      background: rgba(191,153,88,0.18);
-      border-color: var(--gold);
-      color: var(--gold);
-    }
+    /* ── LABELS TRILINGUES ── */
+    .tri-fr { color: var(--white); }
+    .tri-en { color: rgba(242,237,230,0.55); font-size: 0.9em; }
+    .tri-es { color: rgba(242,237,230,0.4); font-size: 0.85em; }
+    .tri-sep { color: var(--border); font-size: 0.8em; }
+    .msection .tri-fr { color: var(--gold); }
+    .msection .tri-en { color: rgba(191,153,88,0.6); }
+    .msection .tri-es { color: rgba(191,153,88,0.45); }
 
     /* Petit footer en bas de la météo */
     .meteo-footer {
@@ -324,12 +305,7 @@
         </div>
         <div class="night-next" id="night-next"></div>
       </div>
-      <!-- Sélecteur de langue -->
-      <div class="lang-bar">
-        <button class="lang-btn active" onclick="setLang('fr')">FR</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('es')">ES</button>
-      </div>
+
     </div>
 
     <!-- MÉTÉO — colonne droite -->
@@ -337,7 +313,7 @@
       <div class="meteo-logo">
         <img src="https://www.green-resort.com/wp-content/uploads/2026/04/Logo-Green-Resort-5-etoiles-FOND-BLANC.jpeg" alt="Green Resort" />
       </div>
-      <div class="meteo-head" id="meteo-head-txt">Météo &amp; conditions</div>
+      <div class="meteo-head">Météo &amp; conditions · Weather · Tiempo</div>
       <div class="meteo-body" id="meteo-body">
         <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem">Chargement…</div>
       </div>
@@ -351,47 +327,11 @@
   </div>
 
   <script>
-  // ── Traductions ──────────────────────────────────────────────────────────
-  const T = {"fr": {"meteo_title": "Météo &amp; conditions", "temp": "Températures", "air": "Air", "eau": "Eau", "hors_saison": "hors saison", "drapeau": "Drapeau", "non_surv": "Non surveillée", "surv": "Surveillée", "vent": "Vent", "soleil": "Soleil", "uv": "Indice UV", "lever": "Lever", "coucher": "Coucher", "houle": "🌊 Houle", "hauteur": "Hauteur", "periode": "Période", "marees": "Marées", "haute": "Haute", "basse": "Basse", "coef": "coef.", "updated": "Mis à jour"}, "en": {"meteo_title": "Weather &amp; conditions", "temp": "Temperatures", "air": "Air", "eau": "Water", "hors_saison": "off season", "drapeau": "Flag", "non_surv": "Unsupervised", "surv": "Supervised", "vent": "Wind", "soleil": "Sun", "uv": "UV Index", "lever": "Sunrise", "coucher": "Sunset", "houle": "🌊 Swell", "hauteur": "Height", "periode": "Period", "marees": "Tides", "haute": "High", "basse": "Low", "coef": "coef.", "updated": "Updated"}, "es": {"meteo_title": "Tiempo &amp; condiciones", "temp": "Temperaturas", "air": "Aire", "eau": "Agua", "hors_saison": "fuera de temporada", "drapeau": "Bandera", "non_surv": "No vigilada", "surv": "Vigilada", "vent": "Viento", "soleil": "Sol", "uv": "Índice UV", "lever": "Amanecer", "coucher": "Atardecer", "houle": "🌊 Oleaje", "hauteur": "Altura", "periode": "Período", "marees": "Mareas", "haute": "Alta", "basse": "Baja", "coef": "coef.", "updated": "Actualizado"}};
-  const DRAP_LABELS = {"fr": {"vert": "Baignade autorisée", "jaune": "Baignade surveillée", "rouge": "Baignade interdite", "nc": "", "": ""}, "en": {"vert": "Swimming allowed", "jaune": "Supervised swimming", "rouge": "Swimming forbidden", "nc": "", "": ""}, "es": {"vert": "Baño permitido", "jaune": "Baño vigilado", "rouge": "Baño prohibido", "nc": "", "": ""}};
-  let currentLang = localStorage.getItem('lang') || 'fr';
-
-  function setLang(lang) {
-    currentLang = lang;
-    localStorage.setItem('lang', lang);
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
-    document.getElementById('meteo-head-txt').innerHTML = T[lang].meteo_title;
-    renderMeteo(window._meteoData);
-  }
-
-  // ── Overlay nuit ─────────────────────────────────────────────────────────
-  function checkNight() {
-    const now = new Date();
-    const h = now.getHours();
-    const isNight = h >= 22 || h < 6;
-    const overlay = document.getElementById('night-overlay');
-    overlay.style.display = isNight ? 'flex' : 'none';
-    if (isNight) {
-      const tomorrow = new Date(now);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      tomorrow.setHours(6, 0, 0, 0);
-      const diff = Math.round((tomorrow - now) / 60000);
-      const hLeft = Math.floor(diff / 60), mLeft = diff % 60;
-      const nextMsgs = {
-        fr: `Dans ${hLeft}h${mLeft.toString().padStart(2,'0')}`,
-        en: `In ${hLeft}h${mLeft.toString().padStart(2,'0')}`,
-        es: `En ${hLeft}h${mLeft.toString().padStart(2,'0')}`,
-      };
-      document.getElementById('night-next').textContent = nextMsgs[currentLang] || nextMsgs.fr;
-    }
-  }
-  setInterval(checkNight, 30000);
-
   // ── Pictos météo ─────────────────────────────────────────────────────────
   const PICTOS = {
-    'sun': '☀️', 'cloud-sun': '⛅', 'cloud': '☁️', 'rain': '🌧️',
-    'showers': '🌧️', 'bolt': '⛈️', 'snow': '❄️', 'smog': '🌫️',
-    'wind': '💨', 'moon': '🌙', 'cloud-moon': '🌛',
+    'sun':'☀️','cloud-sun':'⛅','cloud':'☁️','rain':'🌧️',
+    'showers':'🌧️','bolt':'⛈️','snow':'❄️','smog':'🌫️',
+    'wind':'💨','moon':'🌙','cloud-moon':'🌛',
   };
   function emoji(code) {
     if (!code) return '🌤️';
@@ -399,60 +339,88 @@
     return '🌤️';
   }
 
-  // ── Rendu météo ──────────────────────────────────────────────────────────
+  // ── Overlay nuit ─────────────────────────────────────────────────────────
+  function checkNight() {
+    const h = new Date().getHours();
+    const isNight = h >= 22 || h < 6;
+    const overlay = document.getElementById('night-overlay');
+    overlay.style.display = isNight ? 'flex' : 'none';
+    if (isNight) {
+      const now = new Date();
+      const tomorrow = new Date(now);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(6, 0, 0, 0);
+      const diff = Math.round((tomorrow - now) / 60000);
+      const hL = Math.floor(diff / 60), mL = diff % 60;
+      document.getElementById('night-next').textContent =
+        `Dans ${hL}h${mL.toString().padStart(2,'0')} · In ${hL}h${mL.toString().padStart(2,'0')} · En ${hL}h${mL.toString().padStart(2,'0')}`;
+    }
+  }
+  setInterval(checkNight, 30000);
+
+  // ── Rendu météo — 3 langues simultanées ──────────────────────────────────
   function renderMeteo(d) {
     if (!d) return;
-    const lang = currentLang;
-    const t = T[lang];
 
-    const picto    = emoji(d.meteo_picto);
-    const temp     = d.temp_air || '—';
-    const tempEau  = d.temp_eau || 'NC';
-    const vent     = d.vent_kmh || '—';
-    const ventDeg  = d.vent_deg || '0';
+    const picto   = emoji(d.meteo_picto);
+    const temp    = d.temp_air || '—';
+    const tempEau = d.temp_eau || 'NC';
+    const vent    = d.vent_kmh || '—';
+    const ventDeg = d.vent_deg || '0';
     const ventCard = d.vent_cardinal || '';
-    const uvVal    = d.uv || '—';
-    const uvLabel  = d.uv_label ? 'Risque ' + d.uv_label : '';
-    const uvColor  = {'Risque Faible':'#4caf50','Risque Modéré':'#ffeb3b','Risque Élevé':'#ff9800','Risque Très élevé':'#f44336','Risque Extrême':'#9c27b0'}[uvLabel] || 'var(--gold)';
-    const uvShort  = d.uv_label || '';
-    const lever    = d.lever || '—';
-    const coucher  = d.coucher || '—';
-    const coef     = d.maree_coef || '—';
-    const marees   = d.marees || [];
-    const houle    = d.houle_m ? d.houle_m + ' m' : '';
-    const label    = d.meteo_label || '';
-    const drap     = d.drapeau || 'nc';
-    const drapColor = { vert: '#4caf50', jaune: '#ffeb3b', rouge: '#f44336', nc: 'var(--muted)', '': 'var(--muted)' }[drap];
-    const drapEmoji = { vert: '🟢', jaune: '🟡', rouge: '🔴', nc: '⚫', '': '⚫' }[drap];
-    const drapLabel = (DRAP_LABELS[lang][drap] || '') || (d.surv_label || t.non_surv);
+    const uvVal   = d.uv || '—';
+    const uvShort = d.uv_label || '';
+    const uvColor = {'Faible':'#4caf50','Modéré':'#ffeb3b','Élevé':'#ff9800','Très élevé':'#f44336','Extrême':'#9c27b0'}[uvShort] || 'var(--gold)';
+    const lever   = d.lever || '—';
+    const coucher = d.coucher || '—';
+    const coef    = d.maree_coef || '—';
+    const marees  = d.marees || [];
+    const houle   = d.houle_m ? d.houle_m + ' m' : '';
+    const label   = d.meteo_label || '';
+    const drap    = d.drapeau || 'nc';
+    const drapColor = {vert:'#4caf50',jaune:'#ffeb3b',rouge:'#f44336',nc:'var(--muted)','':'var(--muted)'}[drap];
+    const drapEmoji = {vert:'🟢',jaune:'🟡',rouge:'🔴',nc:'⚫','':'⚫'}[drap];
+    const drapFR = {vert:'Baignade autorisée',jaune:'Baignade surveillée',rouge:'Baignade interdite',nc:d.surv_label||'Non surveillée','':''}[drap];
+    const drapEN = {vert:'Swimming allowed',jaune:'Supervised swimming',rouge:'Swimming forbidden',nc:'Unsupervised','':''}[drap];
+    const drapES = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
+
+    // Helper : label trilingue compact
+    const tri = (fr, en, es) =>
+      `<span class="tri-fr">${fr}</span><span class="tri-sep"> · </span><span class="tri-en">${en}</span><span class="tri-sep"> · </span><span class="tri-es">${es}</span>`;
+
+    // Helper : marée type trilingue
+    const marea = (type) => type === 'Haute'
+      ? tri('Haute','High','Alta')
+      : tri('Basse','Low','Baja');
 
     document.getElementById('meteo-body').innerHTML = `
+
       <!-- TEMPÉRATURES -->
-      <div class="msection">${t.temp}</div>
+      <div class="msection">${tri('Températures','Temperatures','Temperaturas')}</div>
       <div class="mrow2">
         <div class="mcell">
           <div class="icon">${picto}</div>
           <div class="val">${temp}°<span style="font-size:1rem">C</span></div>
-          <div class="lbl">${t.air}</div>
-          ${label ? '<div class="sub">' + label + '</div>' : ''}
+          <div class="lbl">${tri('Air','Air','Aire')}</div>
+          ${label ? `<div class="sub">${label}</div>` : ''}
         </div>
         <div class="mcell">
-          <div class="icon">🌊</div>
+          <div class="icon">🌡️</div>
           <div class="${tempEau === 'NC' ? 'val-xs' : 'val'}">${tempEau === 'NC' ? 'NC' : tempEau + '°'}</div>
-          <div class="lbl">${t.eau}</div>
-          ${tempEau === 'NC' ? `<div class="sub" style="font-size:0.6rem;color:var(--muted)">${t.hors_saison}</div>` : ''}
+          <div class="lbl">${tri('Eau','Water','Agua')}</div>
+          ${tempEau === 'NC' ? `<div class="sub" style="font-size:0.58rem;color:var(--muted)">${tri('hors saison','off season','fuera temporada')}</div>` : ''}
         </div>
       </div>
 
       <!-- DRAPEAU -->
       <div class="drapeau-bar" style="background:rgba(${drap==='vert'?'76,175,80':drap==='jaune'?'255,235,59':drap==='rouge'?'244,67,54':'255,255,255'},0.08)">
-        <span class="dlbl">${t.drapeau}</span>
-        <span class="dval" style="color:${drapColor}">${drapLabel}</span>
+        <span class="dlbl">${tri('Drapeau','Flag','Bandera')}</span>
+        <span class="dval" style="color:${drapColor};font-size:0.75rem;line-height:1.4">${drapFR}<br><span style="opacity:0.7">${drapEN}</span><br><span style="opacity:0.55">${drapES}</span></span>
         <span class="dflag">${drapEmoji}</span>
       </div>
 
       <!-- VENT -->
-      <div class="msection">${t.vent}</div>
+      <div class="msection">${tri('Vent','Wind','Viento')}</div>
       <div class="mcell">
         <div style="display:flex;align-items:center;gap:0.75rem;justify-content:center">
           <span style="font-size:1.8rem;transform:rotate(${ventDeg}deg);display:inline-block;line-height:1">↑</span>
@@ -464,44 +432,44 @@
       </div>
 
       <!-- SOLEIL + UV -->
-      <div class="msection">${t.soleil}</div>
+      <div class="msection">${tri('Soleil','Sun','Sol')}</div>
       <div class="mrow">
         <div class="mcell">
           <div class="icon">🌞</div>
           <div class="val" style="font-size:1.9rem">${uvVal}</div>
-          <div class="lbl">${t.uv}</div>
-          <div class="sub-colored" style="color:${uvColor}">${uvShort}</div>
+          <div class="lbl">${tri('Indice UV','UV Index','Índice UV')}</div>
+          <div class="sub-colored" style="color:${uvColor};font-size:0.7rem">${uvShort}</div>
         </div>
         <div class="mrow2" style="gap:0.4rem">
           <div class="mcell">
             <div class="icon" style="font-size:1.2rem">🌅</div>
             <div class="val-sm">${lever}</div>
-            <div class="lbl">${t.lever}</div>
+            <div class="lbl">${tri('Lever','Sunrise','Amanecer')}</div>
           </div>
           <div class="mcell">
             <div class="icon" style="font-size:1.2rem">🌇</div>
             <div class="val-sm">${coucher}</div>
-            <div class="lbl">${t.coucher}</div>
+            <div class="lbl">${tri('Coucher','Sunset','Atardecer')}</div>
           </div>
         </div>
       </div>
 
       <!-- HOULE -->
-      ${houle ? `<div class="msection">${t.houle}</div>
+      ${houle ? `<div class="msection">${tri('🌊 Houle','🌊 Swell','🌊 Oleaje')}</div>
       <div class="mcell">
         <div style="display:flex;gap:1.5rem;align-items:center;justify-content:center">
           <div class="icon" style="font-size:2rem;line-height:1">🌊</div>
-          <div><div class="val" style="font-size:2rem">${houle}</div><div class="lbl">${t.hauteur}</div></div>
-          <div><div class="val-sm">${d.houle_periode}s</div><div class="lbl">${t.periode}</div></div>
+          <div><div class="val" style="font-size:2rem">${houle}</div><div class="lbl">${tri('Hauteur','Height','Altura')}</div></div>
+          <div><div class="val-sm">${d.houle_periode}s</div><div class="lbl">${tri('Période','Period','Período')}</div></div>
         </div>
       </div>` : ''}
 
       <!-- MARÉES -->
-      <div class="msection">${t.marees} <span style="color:var(--muted);font-size:0.95em">${t.coef} ${coef}</span></div>
+      <div class="msection">${tri('Marées','Tides','Mareas')} <span style="color:var(--muted);font-size:0.95em">${tri('coef.','coef.','coef.')} ${coef}</span></div>
       <div class="maree-grid">
         ${marees.map(m => `
-          <div class="maree-item ${m.type==='Haute'||m.type==='High'||m.type==='Alta'?'haute':''}">
-            <span class="mtype">${m.type==='Haute'?t.haute:m.type==='Basse'?t.basse:m.type}</span>
+          <div class="maree-item ${m.type==='Haute'?'haute':''}">
+            <span class="mtype" style="line-height:1.3">${marea(m.type)}</span>
             <span class="mheure">${m.heure}</span>
           </div>`).join('')}
       </div>
@@ -521,11 +489,6 @@
     }
   }
 
-  // ── Init ─────────────────────────────────────────────────────────────────
-  document.querySelectorAll('.lang-btn').forEach(b =>
-    b.classList.toggle('active', b.textContent === currentLang.toUpperCase())
-  );
-  document.getElementById('meteo-head-txt').innerHTML = T[currentLang].meteo_title;
   checkNight();
   loadMeteo();
   setInterval(loadMeteo, 10 * 60 * 1000);
