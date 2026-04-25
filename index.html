@@ -886,12 +886,14 @@ ${texts.map((t,i) => `${i+1}. ${t}`).join('\n')}`;
         const r = rows[i];
         if (!r[0] || !r[0].includes(':') || r[0].length>6 || !r[2]) continue;
         anims.push({
-          heure: r[0],
-          emoji: r[1] || '',
-          fr:    r[2],
-          en:    r[3] || '',   // optionnel, sera traduit si vide
-          es:    r[4] || '',   // optionnel, sera traduit si vide
-          lieu:  r[5] || '',
+          heure:   r[0],
+          emoji:   r[1] || '',
+          fr:      r[2],
+          lieu:    r[3] || '',
+          en:      '',
+          es:      '',
+          lieu_en: '',
+          lieu_es: '',
         });
       }
 
