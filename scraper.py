@@ -150,23 +150,20 @@ try:
     reader = csv.reader(io.StringIO(sheet_data))
     rows = list(reader)
 
-    data_start = 0
-    for i, row in enumerate(rows):
-        if row and row[0].strip().lower() == "heure":
-            data_start = i + 1; break
-
-    if data_start == 0:
-        raise ValueError("Header introuvable")
-
-    for row in rows[data_start:]:
-        if not row or not row[0].strip() or ":" not in row[0] or len(row[0]) > 6: continue
+    # Parser robuste : chercher toutes les lignes avec format HH:MM
+    for row in rows:
+        if not row or not row[0].strip(): continue
+        heure = row[0].strip()
+        # Valider le format HH:MM
+        import re as _re
+        if not _re.match(r'^\d{1,2}:\d{2}$', heure): continue
         if not (len(row) > 2 and row[2].strip()): continue
         animations.append({
-            "heure": row[0].strip(),
-            "emoji": row[1].strip() if len(row) > 1 else "",
-            "fr":    row[2].strip(),
-            "lieu":  row[3].strip() if len(row) > 3 else "",
-            "en":    "", "es": "",
+            "heure":   heure,
+            "emoji":   row[1].strip() if len(row) > 1 else "",
+            "fr":      row[2].strip(),
+            "lieu":    row[3].strip() if len(row) > 3 else "",
+            "en":      "", "es": "",
             "lieu_en": "", "lieu_es": "",
         })
 
