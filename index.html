@@ -310,25 +310,29 @@
       height: 100vh;
       overflow: hidden;
     }
-    /* Header identique à .meteo-head */
     .anim-header {
-      padding: 0.7vh 1rem;
+      padding: 0.6vh 1rem 0.5vh;
       border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    /* Date : grosse et visible */
+    .anim-header-date {
+      display: block;
+      font-size: clamp(0.72rem, 1.2vh, 0.9rem);
+      color: var(--white);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: capitalize;
+    }
+    /* Titre : identique à .meteo-head */
+    .anim-header-title {
+      display: block;
       font-size: clamp(0.65rem, 1.19vh, 0.86rem);
       letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--gold);
       font-weight: 500;
-      flex-shrink: 0;
-    }
-    .anim-header-title { display: block; font-size: inherit; }
-    .anim-header-date {
-      display: block;
-      font-size: clamp(0.58rem, 0.95vh, 0.72rem);
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      text-transform: none;
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
     }
     .anim-body {
       flex: 1 1 0;
@@ -370,11 +374,12 @@
       opacity: 0.5;
     }
     .anim-section-empty {
-      font-size: clamp(0.52rem, 0.85vh, 0.64rem);
+      font-size: clamp(0.58rem, 0.95vh, 0.72rem);
       color: var(--muted);
-      opacity: 0.3;
-      padding: 0.25vh 0.2rem;
-      font-style: italic;
+      opacity: 0.55;
+      padding: 0.3vh 0.4rem;
+      letter-spacing: 0.1em;
+      text-align: center;
     }
     /* Carte animation — hauteur fixe */
     .anim-item {
@@ -446,17 +451,17 @@
     }
     .anim-en {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.55rem, 0.9vh, 0.68rem);
-      font-weight: 300;
-      color: rgba(242,237,230,0.38);
-      line-height: 1.2;
+      font-size: clamp(0.58rem, 0.95vh, 0.72rem);
+      font-weight: 400;
+      color: rgba(242,237,230,0.58);
+      line-height: 1.25;
     }
     .anim-es {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.5rem, 0.82vh, 0.62rem);
-      font-weight: 300;
-      color: rgba(242,237,230,0.24);
-      line-height: 1.2;
+      font-size: clamp(0.55rem, 0.88vh, 0.66rem);
+      font-weight: 400;
+      color: rgba(242,237,230,0.42);
+      line-height: 1.25;
     }
     .anim-lieu {
       font-family: 'Outfit', sans-serif;
@@ -510,8 +515,8 @@
     <!-- ANIMATIONS — colonne droite -->
     <div class="col-anim">
       <div class="anim-header">
-        <div class="anim-header-title" id="anim-title">Programme · Schedule · Programa</div>
         <div class="anim-header-date" id="anim-date"></div>
+        <div class="anim-header-title" id="anim-title">Programme · Schedule · Programa</div>
       </div>
       <div class="anim-body" id="anim-body">
         <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem">Chargement…</div>
