@@ -6,20 +6,20 @@
       "emoji": "🧘",
       "fr": "Yoga en forêt",
       "lieu": "Plateforme yoga",
-      "en": "",
-      "es": "",
-      "lieu_en": "",
-      "lieu_es": ""
+      "en": "Forest yoga",
+      "es": "Yoga en el bosque",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "19:00",
       "emoji": "🧘",
       "fr": "Pilates en forêt",
       "lieu": "Plateforme yoga",
-      "en": "",
-      "es": "",
-      "lieu_en": "",
-      "lieu_es": ""
+      "en": "Forest pilates",
+      "es": "Pilates en el bosque",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "updated": "2026-04-25T22:25",
+  "updated": "2026-04-25T22:36",
   "temp_air": "15",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
   "vent_kmh": "11",
-  "vent_deg": "257",
+  "vent_deg": "246",
   "vent_cardinal": "OSO",
   "uv": "6.7",
   "uv_label": "Eleve",
