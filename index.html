@@ -588,20 +588,32 @@
   }
 
   // ── Rendu animations depuis animations.json ─────────────────────────────
-  async function loadAnimations() {
-    try {
-      const res = await fetch('./animations.json?cb=' + Date.now());
-      const anims = await res.json();
-      const body = document.getElementById('anim-body');
-      if (!anims || anims.length === 0) {
-        body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem">Aucune animation programmée aujourd'hui</div>';
-        return;
-      }
-      body.innerHTML = anims.map(a => `
-        <div class="anim-item ${a.en_cours ? 'anim-item-now' : ''}">
+  function renderAnimations(anims) {
+    const body = document.getElementById('anim-body');
+    if (!anims || anims.length === 0) {
+      body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem">Aucune animation programmée aujourd'hui</div>';
+      return;
+    }
+
+    // Heure actuelle à Paris
+    const nowParis = new Date(new Date().toLocaleString('en-US', {timeZone: 'Europe/Paris'}));
+    const nowMin = nowParis.getHours() * 60 + nowParis.getMinutes();
+
+    // Trouver l'animation "en cours" = la dernière dont l'heure est passée
+    let enCoursIdx = -1;
+    anims.forEach((a, i) => {
+      const [h, m] = a.heure.split(':').map(Number);
+      const animMin = h * 60 + m;
+      if (animMin <= nowMin) enCoursIdx = i;
+    });
+
+    body.innerHTML = anims.map((a, i) => {
+      const enCours = (i === enCoursIdx);
+      return `
+        <div class="anim-item ${enCours ? 'anim-item-now' : ''}">
           <div class="anim-time">
             ${a.heure}
-            ${a.en_cours ? '<div class="anim-now-badge">En cours</div>' : ''}
+            ${enCours ? '<div class="anim-now-badge">En cours · Now · Ahora</div>' : ''}
           </div>
           <div class="anim-content">
             <div class="anim-emoji">${a.emoji}</div>
@@ -612,7 +624,15 @@
               ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}</div>` : ''}
             </div>
           </div>
-        </div>`).join('');
+        </div>`;
+    }).join('');
+  }
+
+  async function loadAnimations() {
+    try {
+      const res = await fetch('./animations.json?cb=' + Date.now());
+      window._animData = await res.json();
+      renderAnimations(window._animData);
     } catch(e) {
       console.error('Animations error:', e);
     }
@@ -784,6 +804,8 @@
   loadAnimations();
   setInterval(loadMeteo, 10 * 60 * 1000);
   setInterval(loadAnimations, 5 * 60 * 1000);
+  // Re-render chaque minute pour mettre à jour "en cours" en temps réel
+  setInterval(() => { if (window._animData) renderAnimations(window._animData); }, 60 * 1000);
 
   // Reload complet toutes les 5 minutes (synchro webcam Viewsurf)
   setTimeout(() => location.reload(), 5 * 60 * 1000);
