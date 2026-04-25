@@ -645,7 +645,7 @@
     const drapES  = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
     const lbl = (fr,en='',es='') => `<div class="mlbl">${fr}${en?`<span class="mlbl-sub"> · ${en}${es?' · '+es:''}</span>`:''}\n      </div>`;
     document.getElementById('meteo-body').innerHTML = `
-      <div class="mrow2" style="flex:0.7 1 0">
+      <div class="mrow2" style="flex:0.56 1 0">
         <div class="mcell mcell-hero">
           <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">${picto}</div>
           <div class="val-hero">${temp}°<span style="font-size:0.45em">C</span></div>
@@ -667,7 +667,7 @@
         </div>
         <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
       </div>
-      <div class="mrow" style="flex:0.65 1 0">
+      <div class="mrow" style="flex:0.52 1 0">
         <div class="mcell">
           <div style="font-size:clamp(1rem,1.8vh,1.4rem)">🌞</div>
           <div class="val-md" style="color:${uvColor}">${uvVal}</div>
@@ -698,7 +698,7 @@
             </div>`).join('')}
         </div>
       </div>
-      <div class="mrow" style="flex:0.55 1 0">
+      <div class="mrow" style="flex:0.44 1 0">
         <div class="mcell" style="flex-direction:row;gap:0.5rem;justify-content:center">
           <span style="font-size:clamp(1.1rem,2vh,1.6rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1;flex-shrink:0">↑</span>
           <div>
