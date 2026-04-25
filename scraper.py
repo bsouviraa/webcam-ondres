@@ -24,11 +24,13 @@ def translate_batch(texts, anthropic_key):
     if not texts or not anthropic_key:
         return [{"en":"","es":""} for _ in texts]
     numbered = "\n".join(f"{i+1}. {t}" for i, t in enumerate(texts))
-    prompt = f"""Traduis ces textes courts du français vers l'anglais et l'espagnol.
-Réponds UNIQUEMENT avec un tableau JSON valide, un objet par texte dans l'ordre.
-Format strict : [{"en":"...","es":"..."}]
-Textes :
-{numbered}"""
+    prompt = (
+        "Traduis ces textes courts du français vers l'anglais et l'espagnol.\n"
+        "Réponds UNIQUEMENT avec un tableau JSON valide, un objet par texte dans l'ordre.\n"
+        'Format strict : [{"en":"...","es":"..."}]\n'
+        "Textes :\n"
+        + numbered
+    )
     payload = json.dumps({
         "model": "claude-haiku-4-5-20251001",
         "max_tokens": 1000,
@@ -177,16 +179,16 @@ try:
                 if a["lieu"]:
                     texts.append(a["lieu"])
             translations = translate_batch(texts, anthropic_key)
-            t_idx = 0
+            tidx = 0
             for a in animations:
-                if t_idx < len(translations):
-                    a["en"] = translations[t_idx].get("en", "")
-                    a["es"] = translations[t_idx].get("es", "")
-                    t_idx += 1
-                if a["lieu"] and t_idx < len(translations):
-                    a["lieu_en"] = translations[t_idx].get("en", "")
-                    a["lieu_es"] = translations[t_idx].get("es", "")
-                    t_idx += 1
+                if tidx < len(translations):
+                    a["en"] = translations[tidx].get("en", "")
+                    a["es"] = translations[tidx].get("es", "")
+                    tidx += 1
+                if a["lieu"] and tidx < len(translations):
+                    a["lieu_en"] = translations[tidx].get("en", "")
+                    a["lieu_es"] = translations[tidx].get("es", "")
+                    tidx += 1
         except Exception as te:
             import sys; print(f"Traduction error: {te}", file=sys.stderr)
             if a["lieu"] and t_idx < len(translations):
