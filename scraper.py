@@ -191,10 +191,10 @@ try:
                     tidx += 1
         except Exception as te:
             import sys; print(f"Traduction error: {te}", file=sys.stderr)
-            if a["lieu"] and t_idx < len(translations):
-                a["lieu_en"] = translations[t_idx].get("en", "")
-                a["lieu_es"] = translations[t_idx].get("es", "")
-                t_idx += 1
+            if a["lieu"] and tidx < len(translations):
+                a["lieu_en"] = translations[tidx].get("en", "")
+                a["lieu_es"] = translations[tidx].get("es", "")
+                tidx += 1
 
 except Exception as e:
     import sys; print(f"Animations error: {e}", file=sys.stderr)
