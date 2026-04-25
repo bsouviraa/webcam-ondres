@@ -1,5 +1,5 @@
-import urllib.request, re, json, csv, io
-from datetime import datetime
+import urllib.request, re, json, csv, io, os
+from datetime import datetime, timezone, timedelta
 
 SHEET_ID = "1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG"
 
@@ -19,7 +19,38 @@ def uv_label(val):
     if v < 11: return "Tres eleve"
     return "Extreme"
 
-# 1. Meilisearch
+def translate_batch(texts, anthropic_key):
+    """Traduit une liste de textes FR → EN + ES via l'API Claude."""
+    if not texts or not anthropic_key:
+        return [{"en":"","es":""} for _ in texts]
+    numbered = "\n".join(f"{i+1}. {t}" for i, t in enumerate(texts))
+    prompt = f"""Traduis ces textes courts du français vers l'anglais et l'espagnol.
+Réponds UNIQUEMENT avec un tableau JSON valide, un objet par texte dans l'ordre.
+Format strict : [{"en":"...","es":"..."}]
+Textes :
+{numbered}"""
+    payload = json.dumps({
+        "model": "claude-haiku-4-5-20251001",
+        "max_tokens": 1000,
+        "messages": [{"role": "user", "content": prompt}]
+    }).encode()
+    req = urllib.request.Request(
+        "https://api.anthropic.com/v1/messages",
+        data=payload,
+        headers={
+            "Content-Type": "application/json",
+            "x-api-key": anthropic_key,
+            "anthropic-version": "2023-06-01"
+        },
+        method="POST"
+    )
+    resp = urllib.request.urlopen(req, timeout=20)
+    data = json.loads(resp.read())
+    raw = data["content"][0]["text"].strip()
+    raw = raw.replace("```json","").replace("```","").strip()
+    return json.loads(raw)
+
+# ── 1. Météo ──────────────────────────────────────────────────────────────────
 ms = json.loads(urllib.request.urlopen(
     urllib.request.Request(
         "https://meiliprod111.apsulis.fr/indexes/pdl-fr/search",
@@ -35,7 +66,6 @@ ms = json.loads(urllib.request.urlopen(
 commune = next((h for h in ms["hits"] if h["type"] == "commune" and h["title"] == "Ondres"), {})
 plage   = next((h for h in ms["hits"] if h["type"] == "plages"), {})
 
-# 2. Open-Meteo
 om = json.loads(fetch(
     "https://api.open-meteo.com/v1/forecast"
     "?latitude=43.5714&longitude=-1.4697"
@@ -44,25 +74,21 @@ om = json.loads(fetch(
     "&timezone=Europe%2FParis&forecast_days=1"
 ))
 
-# 3. Marine (avec fallback)
 try:
     marine = json.loads(fetch(
         "https://marine-api.open-meteo.com/v1/marine"
         "?latitude=43.5714&longitude=-1.4697"
-        "&current=wave_height,wave_period"
-        "&timezone=Europe%2FParis"
+        "&current=wave_height,wave_period&timezone=Europe%2FParis"
     ))
     houle_m = str(round(marine["current"]["wave_height"], 2)) if marine["current"]["wave_height"] else ""
     houle_p = str(round(marine["current"]["wave_period"], 1)) if marine["current"]["wave_period"] else ""
 except Exception:
-    houle_m = ""
-    houle_p = ""
+    houle_m = ""; houle_p = ""
 
-# 4. Plages-landes (marees, drapeau)
-html = fetch("https://www.plages-landes.info/ondres/")
-marees_raw = list(re.finditer(r"(Haute|Basse)</span>\s*<span[^>]*>(\d{2}h\d{2})</span>", html))
+html_page = fetch("https://www.plages-landes.info/ondres/")
+marees_raw = list(re.finditer(r"(Haute|Basse)</span>\s*<span[^>]*>(\d{2}h\d{2})</span>", html_page))
 marees = [{"type": m.group(1), "heure": m.group(2)} for m in marees_raw[:4]]
-coef_m = re.search(r"COEF\.?&nbsp;\s*<span[^>]*>([\d\s/]+)</span>", html)
+coef_m = re.search(r"COEF\.?&nbsp;\s*<span[^>]*>([\d\s/]+)</span>", html_page)
 coef = coef_m.group(1).strip() if coef_m else ""
 
 if plage.get("drapeau_vert"):    drapeau = "vert"
@@ -76,13 +102,10 @@ if isinstance(surv_h, dict) and surv_h.get("deb") and surv_h.get("fin"):
     surv_label = f"Surveillee {surv_h['deb']} - {surv_h['fin']}"
 
 WMO = {0:"Ciel degage",1:"Peu nuageux",2:"Partiellement nuageux",3:"Couvert",
-       45:"Brouillard",51:"Bruine legere",53:"Bruine moderee",61:"Pluie legere",
-       63:"Pluie moderee",65:"Pluie forte",80:"Averses",95:"Orage"}
+       45:"Brouillard",51:"Bruine legere",61:"Pluie legere",63:"Pluie moderee",80:"Averses",95:"Orage"}
 
-cur = om["current"]
-daily = om["daily"]
-uv_val = cur["uv_index"]
-uv_max = daily["uv_index_max"][0]
+cur = om["current"]; daily = om["daily"]
+uv_val = cur["uv_index"]; uv_max = daily["uv_index_max"][0]
 uv_display = uv_max if uv_val == 0 else uv_val
 
 meteo = {
@@ -106,51 +129,72 @@ meteo = {
     "surv_label":    surv_label,
 }
 
-# 5. Google Sheets animations — feuille du jour (format DDMM)
+# ── 2. Animations depuis Google Sheets ───────────────────────────────────────
 animations = []
-sheet_date_label = ""
+anim_date = ""
+
 try:
-    # Nom de la feuille = date du jour en fuseau Paris (DDMM)
-    from datetime import timezone, timedelta
-    paris_now = datetime.now(timezone(timedelta(hours=2)))  # CET/CEST approx
-    sheet_name = paris_now.strftime("%d%m")  # ex: "2504"
-    sheet_date_label = paris_now.strftime("%d/%m")  # ex: "25/04"
+    paris_now = datetime.now(timezone(timedelta(hours=2)))
+    sheet_name = paris_now.strftime("%d%m")
+    anim_date  = paris_now.strftime("%d/%m")
 
-    sheet_url = (
-        f"https://docs.google.com/spreadsheets/d/{SHEET_ID}"
-        f"/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-    )
+    # Vérifier que la feuille existe
+    html_sheets = fetch(f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/htmlview")
+    available = re.findall(r'{name:\s*"([^"]+)"', html_sheets)
+    if sheet_name not in available:
+        raise ValueError(f"Feuille {sheet_name} introuvable")
+
+    sheet_url = (f"https://docs.google.com/spreadsheets/d/{SHEET_ID}"
+                 f"/gviz/tq?tqx=out:csv&sheet={sheet_name}")
     sheet_data = fetch(sheet_url)
-
-    # Si la feuille n'existe pas, Google renvoie une erreur JS, pas du CSV
-    if "google.visualization.Query.setResponse" in sheet_data or len(sheet_data) < 20:
-        raise ValueError("Feuille introuvable")
-
     reader = csv.reader(io.StringIO(sheet_data))
     rows = list(reader)
 
-    # Chercher la ligne d'en-tête (Heure en col 0)
     data_start = 0
-    for idx, row in enumerate(rows):
+    for i, row in enumerate(rows):
         if row and row[0].strip().lower() == "heure":
-            data_start = idx + 1
-            break
+            data_start = i + 1; break
+
+    if data_start == 0:
+        raise ValueError("Header introuvable")
 
     for row in rows[data_start:]:
-        if not row or not row[0].strip() or ":" not in row[0]: continue
-        heure = row[0].strip()
-        if len(heure) > 6: continue
-        anim = {
-            "heure": heure,
+        if not row or not row[0].strip() or ":" not in row[0] or len(row[0]) > 6: continue
+        if not (len(row) > 2 and row[2].strip()): continue
+        animations.append({
+            "heure": row[0].strip(),
             "emoji": row[1].strip() if len(row) > 1 else "",
-            "fr":    row[2].strip() if len(row) > 2 else "",
-            "en":    row[3].strip() if len(row) > 3 else "",
-            "es":    row[4].strip() if len(row) > 4 else "",
-            "lieu":  row[5].strip() if len(row) > 5 else "",
-        }
-        if anim["fr"]:
-            animations.append(anim)
-except Exception:
-    sheet_date_label = ""  # Signale "pas de feuille pour aujourd'hui"
+            "fr":    row[2].strip(),
+            "lieu":  row[3].strip() if len(row) > 3 else "",
+            "en":    "", "es": "",
+            "lieu_en": "", "lieu_es": "",
+        })
 
-print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": sheet_date_label}, ensure_ascii=False, indent=2))
+    # ── 3. Traduction via API Claude ──────────────────────────────────────────
+    anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if animations and anthropic_key:
+        # Construire liste de tous les textes à traduire (activité + lieu)
+        texts = []
+        for a in animations:
+            texts.append(a["fr"])
+            if a["lieu"]:
+                texts.append(a["lieu"])
+
+        translations = translate_batch(texts, anthropic_key)
+        t_idx = 0
+        for a in animations:
+            if t_idx < len(translations):
+                a["en"] = translations[t_idx].get("en", "")
+                a["es"] = translations[t_idx].get("es", "")
+                t_idx += 1
+            if a["lieu"] and t_idx < len(translations):
+                a["lieu_en"] = translations[t_idx].get("en", "")
+                a["lieu_es"] = translations[t_idx].get("es", "")
+                t_idx += 1
+
+except Exception as e:
+    anim_date = ""
+    import sys; print(f"Animations error: {e}", file=sys.stderr)
+
+print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date},
+                 ensure_ascii=False, indent=2))
