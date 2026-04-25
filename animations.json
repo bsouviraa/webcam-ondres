@@ -1,4 +1,25 @@
 {
   "date": "",
-  "items": []
+  "items": [
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt",
+      "lieu": "Plateforme yoga",
+      "en": "",
+      "es": "",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "19:00",
+      "emoji": "🧘",
+      "fr": "Pilates en forêt",
+      "lieu": "Plateforme yoga",
+      "en": "",
+      "es": "",
+      "lieu_en": "",
+      "lieu_es": ""
+    }
+  ]
 }
