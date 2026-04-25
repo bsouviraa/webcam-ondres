@@ -567,75 +567,8 @@
         <div class="anim-header-title">Programme · Schedule · Programa</div>
         <div class="anim-header-date" id="anim-date"></div>
       </div>
-      <div class="anim-body">
-
-        <div class="anim-item">
-          <div class="anim-time">10:00</div>
-          <div class="anim-content">
-            <div class="anim-emoji">🏄</div>
-            <div class="anim-texts">
-              <div class="anim-fr">Cours de surf débutants</div>
-              <div class="anim-en">Beginner surf lessons</div>
-              <div class="anim-es">Clases de surf principiantes</div>
-              <div class="anim-lieu">📍 Plage principale</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="anim-item">
-          <div class="anim-time">11:30</div>
-          <div class="anim-content">
-            <div class="anim-emoji">🧘</div>
-            <div class="anim-texts">
-              <div class="anim-fr">Yoga sur la plage</div>
-              <div class="anim-en">Beach yoga session</div>
-              <div class="anim-es">Yoga en la playa</div>
-              <div class="anim-lieu">📍 Dune sud</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="anim-item anim-item-now">
-          <div class="anim-time">14:00
-            <div class="anim-now-badge">En cours</div>
-          </div>
-          <div class="anim-content">
-            <div class="anim-emoji">🏓</div>
-            <div class="anim-texts">
-              <div class="anim-fr">Tournoi de beach tennis</div>
-              <div class="anim-en">Beach tennis tournament</div>
-              <div class="anim-es">Torneo de tenis playa</div>
-              <div class="anim-lieu">📍 Terrain multisports</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="anim-item">
-          <div class="anim-time">17:00</div>
-          <div class="anim-content">
-            <div class="anim-emoji">🚴</div>
-            <div class="anim-texts">
-              <div class="anim-fr">Balade vélo forêt landaise</div>
-              <div class="anim-en">Landes forest bike ride</div>
-              <div class="anim-es">Paseo en bici por el bosque</div>
-              <div class="anim-lieu">📍 Entrée du resort</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="anim-item">
-          <div class="anim-time">21:00</div>
-          <div class="anim-content">
-            <div class="anim-emoji">🔥</div>
-            <div class="anim-texts">
-              <div class="anim-fr">Soirée barbecue & musique live</div>
-              <div class="anim-en">BBQ evening & live music</div>
-              <div class="anim-es">Noche de barbacoa & música en vivo</div>
-              <div class="anim-lieu">📍 Espace détente central</div>
-            </div>
-          </div>
-        </div>
-
+      <div class="anim-body" id="anim-body">
+        <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem">Chargement…</div>
       </div>
     </div>
 
@@ -652,6 +585,37 @@
     if (!code) return '🌤️';
     for (const [k,v] of Object.entries(PICTOS)) { if (code.includes(k)) return v; }
     return '🌤️';
+  }
+
+  // ── Rendu animations depuis animations.json ─────────────────────────────
+  async function loadAnimations() {
+    try {
+      const res = await fetch('./animations.json?cb=' + Date.now());
+      const anims = await res.json();
+      const body = document.getElementById('anim-body');
+      if (!anims || anims.length === 0) {
+        body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem">Aucune animation programmée aujourd'hui</div>';
+        return;
+      }
+      body.innerHTML = anims.map(a => `
+        <div class="anim-item ${a.en_cours ? 'anim-item-now' : ''}">
+          <div class="anim-time">
+            ${a.heure}
+            ${a.en_cours ? '<div class="anim-now-badge">En cours</div>' : ''}
+          </div>
+          <div class="anim-content">
+            <div class="anim-emoji">${a.emoji}</div>
+            <div class="anim-texts">
+              <div class="anim-fr">${a.fr}</div>
+              ${a.en ? `<div class="anim-en">${a.en}</div>` : ''}
+              ${a.es ? `<div class="anim-es">${a.es}</div>` : ''}
+              ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}</div>` : ''}
+            </div>
+          </div>
+        </div>`).join('');
+    } catch(e) {
+      console.error('Animations error:', e);
+    }
   }
 
   // ── Overlay nuit ─────────────────────────────────────────────────────────
@@ -817,7 +781,9 @@
 
   checkNight();
   loadMeteo();
+  loadAnimations();
   setInterval(loadMeteo, 10 * 60 * 1000);
+  setInterval(loadAnimations, 5 * 60 * 1000);
 
   // Reload complet toutes les 5 minutes (synchro webcam Viewsurf)
   setTimeout(() => location.reload(), 5 * 60 * 1000);
