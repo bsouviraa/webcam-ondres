@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plage d'Ondres — Live</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ocean: #1ea7ce; --sand: #f5f0e8; --white: #ffffff; --dark: #0d1f2d; --muted: #6b8a9a; --radius: 16px; }
+    html, body { height: 100%; background: var(--sand); font-family: 'DM Sans', sans-serif; color: var(--dark); overflow-x: hidden; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2rem; background: var(--white); border-bottom: 1px solid #e2ddd4; }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--dark); letter-spacing: -0.02em; }
+    .logo span { color: var(--ocean); }
+    .live-badge { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #e74c3c; animation: pulse 1.8s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+    main { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem 3rem; display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; align-items: start; }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+    .webcam-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 12px rgba(13,31,45,0.08); }
+    .webcam-label { padding: 0.9rem 1.25rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid #f0ece4; display: flex; align-items: center; gap: 8px; }
+    .webcam-label::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e74c3c; animation: pulse 1.8s ease-in-out infinite; }
+    .webcam-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; background: var(--dark); }
+    .webcam-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: block; }
+    .meteo-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 12px rgba(13,31,45,0.08); }
+    .meteo-label { padding: 0.9rem 1.25rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid #f0ece4; }
+    .meteo-card iframe { display: block; width: 100%; border: none; }
+    footer { text-align: center; padding: 1.5rem; font-size: 0.75rem; color: var(--muted); }
+    footer a { color: var(--ocean); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Ondres<span>.</span>live</div>
+    <div class="live-badge"><span class="live-dot"></span>En direct</div>
+  </header>
+  <main>
+    <div class="webcam-card">
+      <div class="webcam-label">Webcam — Plage d'Ondres-Océan</div>
+      <div class="webcam-wrapper">
+        <iframe src="https://pv.viewsurf.com/722/Ondres-Ocean" scrolling="no" allowfullscreen="allowfullscreen" title="Webcam Plage d'Ondres"></iframe>
+      </div>
+    </div>
+    <div class="meteo-card">
+      <div class="meteo-label">Météo & plage</div>
+      <iframe title="Widget Plages des Landes" src="https://www.plages-landes.info/widget-plages-des-landes/?plgs=524&cprimary=1ea7ce&csecondary=ffffff&picto=" width="300" height="600" style="border:none;"></iframe>
+    </div>
+  </main>
+  <footer>
+    Webcam <a href="https://www.viewsurf.com" target="_blank" rel="noopener">Viewsurf</a> &nbsp;·&nbsp; Météo <a href="https://www.plages-landes.info/ondres/" target="_blank" rel="noopener">Plages des Landes</a>
+  </footer>
+</body>
+</html>
