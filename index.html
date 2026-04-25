@@ -423,20 +423,27 @@
     }
     .anim-time {
       flex-shrink: 0;
-      width: 3.8rem;
+      width: 2.8rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding-top: 0.6vh;
-      background: rgba(255,255,255,0.04);
+      padding-top: 0.7vh;
+      gap: 0.3rem;
+      background: transparent;
       border-right: 1px solid var(--border);
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.3rem, 2.8vh, 2.2rem);
-      font-weight: 300;
-      color: var(--white);
-      gap: 0.25rem;
     }
+    .anim-time-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(0.7rem, 1.3vh, 1rem);
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+    }
+    .anim-item-now .anim-time-val { color: var(--gold); }
     .anim-now-badge {
       font-family: 'DM Sans', sans-serif;
       font-size: clamp(0.51rem, 0.91vh, 0.68rem);
