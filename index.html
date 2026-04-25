@@ -332,9 +332,16 @@
         </div>
 
         <div class="mcell">
-          <div class="icon">💨</div>
+          <div class="icon" style="font-size:1.4rem;transform:rotate(${ventDeg}deg);display:inline-block">↑</div>
           <div class="val">${vent}<span style="font-size:1.2rem"> km/h</span></div>
-          <div class="lbl">Vent</div>
+          <div class="lbl">Vent &mdash; ${degreesToCardinal(ventDeg)}</div>
+        </div>
+
+        <div class="mcell">
+          <div class="icon">🌞</div>
+          <div class="val" style="font-size:2rem">${uvVal}</div>
+          <div class="lbl">Indice UV</div>
+          <div class="sub" style="font-size:0.72rem;color:${uvColor}">${uvLabel}</div>
         </div>
 
         <div class="mrow">
@@ -375,6 +382,12 @@
         '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:0.8rem">Données indisponibles</div>';
       console.error(e);
     }
+  }
+
+  function degreesToCardinal(deg) {
+    const d = parseInt(deg);
+    const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+    return dirs[Math.round(d / 22.5) % 16];
   }
 
   loadMeteo();
