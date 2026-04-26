@@ -1,18 +1,18 @@
 {
-  "updated": "2026-04-26T13:24",
+  "updated": "2026-04-26T13:30",
   "temp_air": "15",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
-  "vent_kmh": "12",
-  "vent_deg": "334",
+  "vent_kmh": "13",
+  "vent_deg": "337",
   "vent_cardinal": "NNO",
-  "uv": "5.7",
+  "uv": "5.3",
   "uv_label": "Modere",
   "lever": "07:05",
   "coucher": "21:01",
   "houle_m": "0.46",
-  "houle_periode": "6.6",
+  "houle_periode": "6.5",
   "marees": [
     {
       "type": "Haute",
