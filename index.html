@@ -300,12 +300,14 @@
         </div>
         <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
       </div>
-      <div class="mrow" style="flex:0.52 0 0">
+      <div class="mrow" style="flex:0.40 0 0">
         <div class="mcell">
-          <div style="font-size:clamp(1rem,1.8vh,1.4rem)">🌞</div>
-          <div class="val-md" style="color:${uvColor}">${uvVal}</div>
-          ${lbl('UV')}
-          <div style="font-size:clamp(0.58rem,1vh,0.72rem);font-weight:700;color:${uvColor};margin-top:0.1rem">${uvShort}</div>
+          <div style="display:flex;align-items:baseline;gap:0.2rem;justify-content:center">
+            <span style="font-size:clamp(1rem,1.8vh,1.4rem);line-height:1">🌞</span>
+            <span style="font-size:clamp(1rem,1.8vh,1.4rem);font-weight:400;color:var(--white)">UV</span>
+          </div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:${uvColor};line-height:1">${uvVal}</div>
+          <div style="font-family:'DM Sans',sans-serif;font-size:7.7px;font-weight:400;color:${uvColor};margin-top:0.15rem">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
         </div>
         <div class="mrow2" style="gap:0.35vh">
           <div class="mcell">
