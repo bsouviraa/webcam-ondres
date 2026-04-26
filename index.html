@@ -87,6 +87,70 @@
     .transport-times{ display:flex; gap:0.35rem; flex-wrap:wrap; }
     .transport-time { background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:4px; padding:0.1rem 0.4rem; color:var(--gold); font-weight:600; font-size:clamp(0.58rem,1vh,0.75rem); }
 
+    /* ── OVERLAY PROCHAINE ACTIVITÉ ── */
+    .next-anim-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 33.33%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      pointer-events: none;
+      padding: 0 2rem;
+    }
+    .next-anim-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      text-align: center;
+      /* Lisible sur tout fond : blanc + ombre noire épaisse */
+      color: #ffffff;
+      text-shadow:
+        0 0 8px rgba(0,0,0,0.9),
+        0 0 20px rgba(0,0,0,0.8),
+        0 2px 4px rgba(0,0,0,0.9),
+        -1px -1px 0 rgba(0,0,0,0.8),
+         1px -1px 0 rgba(0,0,0,0.8),
+        -1px  1px 0 rgba(0,0,0,0.8),
+         1px  1px 0 rgba(0,0,0,0.8);
+    }
+    .next-anim-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.65rem, 1.1vh, 0.85rem);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    .next-anim-time {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.4rem, 2.8vh, 2.2rem);
+      font-weight: 200;
+      line-height: 1;
+      letter-spacing: 0.05em;
+    }
+    .next-anim-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1rem, 2vh, 1.6rem);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .next-anim-lieu {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(0.65rem, 1.1vh, 0.85rem);
+      font-weight: 400;
+      opacity: 0.8;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { opacity: 0.7; }
+      50%       { opacity: 1;   }
+    }
+
     /* ── COL WEBCAM ── */
     .col-webcam { flex:1 1 0; min-width:0; position:relative; overflow:hidden; background:#000; }
     .col-webcam iframe { position:absolute; top:50%; left:50%; width:177.78vh; height:100vh; transform:translate(-50%,-50%); border:none; pointer-events:none; }
@@ -601,12 +665,60 @@
         : '';
 
       renderAnimations(anims, dateLabel);
+      checkNextAnim();
 
     } catch(e) {
       window._animData=[]; window._animDateLabel='';
       renderAnimations([], '');
       console.warn('Animations:', e.message);
     }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  PROCHAINE ACTIVITÉ — overlay webcam (tiers supérieur)
+  // ═══════════════════════════════════════════════════════
+  function checkNextAnim() {
+    const overlay = document.getElementById('next-anim-overlay');
+    const card    = document.getElementById('next-anim-card');
+    if (!overlay || !card) return;
+
+    const anims = window._animData;
+    if (!anims || !anims.length) { overlay.style.display = 'none'; return; }
+
+    const now    = parisnow();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+
+    // Trouver la prochaine activité
+    let next = null;
+    for (const a of anims) {
+      const [h, m] = a.heure.split(':').map(Number);
+      const aMin = h * 60 + m;
+      const diffMin = aMin - nowMin;
+      // Afficher si dans moins de 60 min et pas encore passée de plus de 5 min
+      if (diffMin > -5 && diffMin <= 60) {
+        next = { ...a, aMin, diffMin };
+        break;
+      }
+    }
+
+    if (!next) { overlay.style.display = 'none'; return; }
+
+    // Construire le contenu
+    const diffMin  = Math.round(next.diffMin);
+    const badge    = diffMin > 0
+      ? 'Dans ' + diffMin + ' min'
+      : 'En cours';
+    const emoji    = next.emoji || '';
+    const titre    = next.fr || '';
+    const lieu     = next.lieu ? '📍 ' + next.lieu : '';
+
+    card.innerHTML =
+      '<div class="next-anim-badge">⏰ ' + badge + '</div>' +
+      '<div class="next-anim-time">' + next.heure + '</div>' +
+      '<div class="next-anim-title">' + emoji + ' ' + titre + '</div>' +
+      (lieu ? '<div class="next-anim-lieu">' + lieu + '</div>' : '');
+
+    overlay.style.display = 'flex';
   }
 
   // ═══════════════════════════════════════════════════════
@@ -617,12 +729,16 @@
   loadMeteo();
   loadAnimations();
 
-  setInterval(checkNight,        30 * 1000);        // overlay nuit toutes les 30s
-  setInterval(updateAnimDate,    60 * 1000);         // date header toutes les 1min
-  setInterval(loadMeteo,         10 * 60 * 1000);    // météo toutes les 10min
-  setInterval(loadAnimations,     5 * 60 * 1000);    // animations toutes les 5min
-  setInterval(() => {                               // re-render "en cours" toutes les 1min
-    if (window._animData) renderAnimations(window._animData, window._animDateLabel);
+  setInterval(checkNight,        30 * 1000);
+  setInterval(checkNextAnim,     30 * 1000);        // overlay prochaine activité
+  setInterval(updateAnimDate,    60 * 1000);
+  setInterval(loadMeteo,         10 * 60 * 1000);
+  setInterval(loadAnimations,     5 * 60 * 1000);
+  setInterval(() => {
+    if (window._animData) {
+      renderAnimations(window._animData, window._animDateLabel);
+      checkNextAnim();
+    }
   }, 60 * 1000);
 
   // Reload complet toutes les 5 minutes
