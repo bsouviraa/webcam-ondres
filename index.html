@@ -859,12 +859,27 @@
   // ═══════════════════════════════════════════════════════
   checkNight();
   updateAnimDate();
+  // Mettre à jour l'heure de màj immédiatement
+  (function() {
+    const el = document.getElementById('version-badge');
+    if (el) {
+      const n = parisnow();
+      el.textContent = 'màj ' + String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
+    }
+  })();
   loadMeteo();
   loadAnimations();
 
   setInterval(checkNight,        30 * 1000);
-  setInterval(checkNextAnim,     30 * 1000);        // overlay prochaine activité
+  setInterval(checkNextAnim,     30 * 1000);
   setInterval(updateAnimDate,    60 * 1000);
+  setInterval(() => {
+    const el = document.getElementById('version-badge');
+    if (el) {
+      const n = parisnow();
+      el.textContent = 'màj ' + String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
+    }
+  }, 60 * 1000);
   setInterval(loadMeteo,         10 * 60 * 1000);
   setInterval(loadAnimations,     5 * 60 * 1000);
   setInterval(() => {
@@ -878,6 +893,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 15:29</div>
+  <div class="version-badge" id="version-badge">màj 15:29</div>
 </body>
 </html>
