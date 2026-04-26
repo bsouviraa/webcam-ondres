@@ -390,21 +390,36 @@
         </div>
         ${buildTideSVG(marees)}
       </div>
-      <div class="mrow" style="flex:0 0 95px">
-        <div class="mcell" style="flex-direction:row;gap:0.5rem;justify-content:center">
-          <span style="font-size:clamp(1.1rem,2vh,1.6rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1;flex-shrink:0">↑</span>
-          <div>
-            <div class="val-md">${vent}<span style="font-size:0.6em"> km/h</span></div>
-            ${lbl('Vent · Wind','',ventCard)}
+      <div class="mrow" style="flex:0 0 95px;grid-template-columns:1fr 1fr 1fr">
+        <div class="mcell">
+          <div style="font-size:10px;color:var(--gold);font-weight:500;letter-spacing:0.08em;text-transform:uppercase">Coef</div>
+          <div style="display:flex;gap:0.6rem;align-items:baseline;margin-top:0.15rem">
+            <div>
+              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em">AM</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_am||'—'}</div>
+            </div>
+            <div style="color:var(--border);font-size:14px;font-weight:200">·</div>
+            <div>
+              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em">PM</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_pm||'—'}</div>
+            </div>
           </div>
         </div>
-        ${houle?`
         <div class="mcell">
-          <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌊</div>
-          <div class="val-md">${houle} <span style="font-size:0.6em">m</span></div>
-          ${lbl('Houle · Swell')}
-          <div style="font-size:clamp(0.52rem,0.9vh,0.65rem);color:var(--muted)">${d.houle_periode}s</div>
-        </div>`:`<div class="mcell" style="opacity:0.15"><div style="font-size:2rem">🌊</div></div>`}
+          <span style="font-size:clamp(1.1rem,2vh,1.6rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1">${ventDeg !== null ? '↑' : '—'}</span>
+          <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${vent}<span style="font-size:0.55em"> km/h</span></div>
+          <div style="font-size:10px;color:var(--white)">Vent</div>
+          <div style="font-size:7.7px;color:var(--muted)">${ventCard} · Wind</div>
+        </div>
+        ${houle
+          ? `<div class="mcell">
+              <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌊</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${houle}<span style="font-size:0.55em"> m</span></div>
+              <div style="font-size:10px;color:var(--white)">Houle</div>
+              <div style="font-size:7.7px;color:var(--muted)">${d.houle_periode}s · Swell</div>
+            </div>`
+          : `<div class="mcell" style="opacity:0.15"><div style="font-size:2rem">🌊</div></div>`
+        }
       </div>
 
       <div class="transport-section">
