@@ -203,6 +203,22 @@
     for (const [k,v] of Object.entries(PICTOS)) { if (code.includes(k)) return v; }
     return '🌤️';
   }
+  // Picto depuis le label WMO (plus cohérent que le picto Meilisearch)
+  function labelToPicto(label) {
+    if (!label) return null;
+    const l = label.toLowerCase();
+    if (l.includes('degage') || l.includes('dégagé')) return '☀️';
+    if (l.includes('nuageux') || l.includes('couvert')) return '☁️';
+    if (l.includes('peu nuag')) return '🌤️';
+    if (l.includes('partiell')) return '⛅';
+    if (l.includes('orage')) return '⛈️';
+    if (l.includes('pluie forte') || l.includes('averses')) return '🌧️';
+    if (l.includes('pluie')) return '🌦️';
+    if (l.includes('bruine')) return '🌦️';
+    if (l.includes('neige')) return '❄️';
+    if (l.includes('brouillard')) return '🌫️';
+    return null;
+  }
 
   // ═══════════════════════════════════════════════════════
   //  HEURE PARIS
@@ -252,7 +268,7 @@
   // ═══════════════════════════════════════════════════════
   function renderMeteo(d) {
     if (!d) return;
-    const picto   = emoji(d.meteo_picto);
+    const picto   = labelToPicto(d.meteo_label) || emoji(d.meteo_picto);
     const temp    = d.temp_air || '—';
     const tempEau = d.temp_eau || 'NC';
     const vent    = d.vent_kmh || '—';
@@ -307,18 +323,21 @@
             <span style="font-size:clamp(1rem,1.8vh,1.4rem);font-weight:400;color:var(--white)">UV</span>
           </div>
           <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:${uvColor};line-height:1">${uvVal}</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:7.7px;font-weight:400;color:${uvColor};margin-top:0.15rem">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
+          <div style="font-size:10px;color:${uvColor};margin-top:0.1rem">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
+          <div style="font-size:7.7px;font-weight:400;color:${uvColor};opacity:0.6">${{'Faible':'Low','Modere':'Moderate','Eleve':'High','Tres eleve':'Very high','Extreme':'Extreme'}[uvShort]||''} · ${{'Faible':'Bajo','Modere':'Moderado','Eleve':'Alto','Tres eleve':'Muy alto','Extreme':'Extremo'}[uvShort]||''}</div>
         </div>
         <div class="mrow2" style="gap:0.35vh">
           <div class="mcell">
             <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌅</div>
-            <div class="val-md">${lever}</div>
-            ${lbl('Lever','Sunrise')}
+            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${lever}</div>
+            <div style="font-size:10px;color:var(--white)">Lever</div>
+            <div style="font-size:7.7px;font-weight:400;color:var(--muted)">Sunrise · Amanecer</div>
           </div>
           <div class="mcell">
             <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇</div>
-            <div class="val-md">${coucher}</div>
-            ${lbl('Coucher','Sunset')}
+            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${coucher}</div>
+            <div style="font-size:10px;color:var(--white)">Coucher</div>
+            <div style="font-size:7.7px;font-weight:400;color:var(--muted)">Sunset · Atardecer</div>
           </div>
         </div>
       </div>
