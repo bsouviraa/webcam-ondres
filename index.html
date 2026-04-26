@@ -292,22 +292,31 @@
     const drapES  = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
     const lbl = (fr,en='',es='') => `<div class="mlbl">${fr}${en?`<span class="mlbl-sub"> · ${en}${es?' · '+es:''}</span>`:''}\n      </div>`;
     document.getElementById('meteo-body').innerHTML = `
-      <div class="mrow2" style="flex:0.40 0 0">
-        <div class="mcell mcell-hero">
-          <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">${picto}</div>
-          <div class="val-hero">${temp}°<span style="font-size:0.45em">C</span></div>
-          <div style="font-size:10px;color:var(--white);letter-spacing:0.02em;margin-top:0.1rem">Air</div>
-          ${label?`<div style="font-size:10px;color:var(--gold);line-height:1.3">${label}<br><span style="opacity:0.55;font-size:9px">Overcast · Nublado</span></div>`:''}
+      <div style="flex:0.40 0 0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:100%;align-content:space-evenly">
+
+          <!-- Ligne 1 : icône + valeur -->
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.15rem">
+            <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">${picto}</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${temp}°<span style="font-size:0.45em">C</span></div>
+          </div>
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.15rem">
+            <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">🌡️</div>
+            ${tempEau==='NC'
+              ? `<div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--muted);line-height:1">NC <span style="font-size:0.6em;opacity:0.7">hors saison</span></div>`
+              : `<div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${tempEau}°</div>`}
+          </div>
+
+          <!-- Ligne 2 : labels + trads -->
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0.15rem">
+            <div style="font-size:10px;color:var(--white)">Air</div>
+            ${label?`<div style="font-size:10px;color:var(--gold);line-height:1.3">${label}</div><div style="font-size:7.7px;color:var(--gold);opacity:0.55">Overcast · Nublado</div>`:''}
+          </div>
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0.15rem">
+            <div style="font-size:10px;color:var(--white)">Eau</div>
+            <div style="font-size:7.7px;color:var(--muted)">Water · Agua</div>
+          </div>
+
         </div>
-        <div class="mcell mcell-hero">
-          <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">🌡️</div>
-          ${tempEau==='NC'
-            ? `<div class="val-hero val-hero-nc" style="font-size:clamp(0.9rem,1.6vh,1.2rem)">NC <span style="font-size:0.7em;opacity:0.7">hors saison</span></div>`
-            : `<div class="val-hero">${tempEau}°</div>`}
-          <div style="font-size:10px;color:var(--white);letter-spacing:0.02em;margin-top:0.1rem">Eau</div>
-          <div style="font-size:10px;color:var(--muted)">Water · Agua</div>
-        </div>
-      </div>
       <div class="drap-bloc" style="background:rgba(${drapBg},0.1);border-color:rgba(${drapBg},0.3)">
         <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">${drapEmoji}</div>
         <div style="flex:1;min-width:0">
