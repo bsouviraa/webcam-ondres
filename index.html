@@ -144,8 +144,6 @@
 <body>
 
   <div class="stage">
-
-    <!-- MÉTÉO — colonne gauche -->
     <div class="col-meteo">
       <div class="meteo-logo">
         <img src="https://www.green-resort.com/wp-content/uploads/2026/04/Logo-Green-Resort-5-etoiles-FOND-BLANC.jpeg" alt="Green Resort" />
@@ -156,8 +154,6 @@
       </div>
 
     </div>
-
-    <!-- WEBCAM — centre -->
     <div class="col-webcam">
       <iframe
         src="https://pv.viewsurf.com/722/Ondres-Ocean"
@@ -175,8 +171,6 @@
         <div class="night-next" id="night-next"></div>
       </div>
     </div>
-
-    <!-- ANIMATIONS — colonne droite -->
     <div class="col-anim">
       <div class="anim-header">
         <div class="anim-header-date" id="anim-date"></div>
@@ -328,7 +322,6 @@
     document.getElementById('meteo-body').innerHTML = `
       <div style="flex:0.40 0 0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:100%;align-content:space-evenly">
 
-          <!-- Ligne 1 : icône + valeur -->
           <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.15rem">
             <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">${picto}</div>
             <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${temp}°<span style="font-size:0.45em">C</span></div>
@@ -340,7 +333,6 @@
               : `<div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${tempEau}°</div>`}
           </div>
 
-          <!-- Ligne 2 : labels + trads -->
           <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0.15rem">
             <div style="font-size:10px;color:var(--white)">Air</div>
             ${label?`<div style="font-size:10px;color:var(--gold);line-height:1.3">${label}</div><div style="font-size:7.7px;color:var(--gold);opacity:0.55">Overcast · Nublado</div>`:''}
@@ -360,18 +352,15 @@
         <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
       </div>
       <div style="flex:0.40 0 0;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto;width:100%;height:100%;align-content:space-evenly">
-          <!-- Ligne 1 : icônes -->
           <div style="text-align:center">
             <span style="font-size:clamp(1rem,1.8vh,1.4rem);line-height:1">🌞</span>
             <span style="font-size:clamp(1rem,1.8vh,1.4rem);font-weight:400;color:var(--white);vertical-align:middle"> UV</span>
           </div>
           <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">↗🌅</span></div>
           <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇↘</span></div>
-          <!-- Ligne 2 : valeurs -->
           <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:${uvColor};line-height:1">${uvVal}</div>
           <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${lever}</div>
           <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${coucher}</div>
-          <!-- Ligne 3 : labels + trads -->
           <div style="text-align:center">
             <div style="font-size:10px;color:${uvColor}">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
             <div style="font-size:7.7px;color:${uvColor};opacity:0.6">${{'Faible':'Low · Bajo','Modere':'Moderate · Moderado','Eleve':'High · Alto','Tres eleve':'Very high · Muy alto','Extreme':'Extreme · Extremo'}[uvShort]||''}</div>
