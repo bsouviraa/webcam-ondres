@@ -1,18 +1,18 @@
 {
-  "updated": "2026-04-26T11:18",
+  "updated": "2026-04-26T11:59",
   "temp_air": "15",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
   "vent_kmh": "8",
-  "vent_deg": "315",
+  "vent_deg": "313",
   "vent_cardinal": "NO",
-  "uv": "6.0",
+  "uv": "6.2",
   "uv_label": "Eleve",
   "lever": "07:05",
   "coucher": "21:01",
   "houle_m": "0.48",
-  "houle_periode": "6.9",
+  "houle_periode": "6.8",
   "marees": [
     {
       "type": "Haute",
@@ -32,6 +32,8 @@
     }
   ],
   "maree_coef": "",
+  "maree_coef_am": "",
+  "maree_coef_pm": "",
   "drapeau": "nc",
   "surv_label": "Baignade non surveillee",
   "transports": {
@@ -41,9 +43,9 @@
       "18:17"
     ],
     "dax": [
-      "13:33",
       "16:36",
-      "17:37"
+      "17:37",
+      "18:28"
     ]
   }
 }
