@@ -1,14 +1,14 @@
 {
-  "updated": "2026-04-26T18:06",
+  "updated": "2026-04-26T20:04",
   "temp_air": "15",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
-  "vent_kmh": "12",
-  "vent_deg": "2",
+  "vent_kmh": "11",
+  "vent_deg": "8",
   "vent_cardinal": "N",
-  "uv": "1.0",
-  "uv_label": "Faible",
+  "uv": "6.4",
+  "uv_label": "Eleve",
   "lever": "07:05",
   "coucher": "21:01",
   "houle_m": "0.42",
@@ -38,14 +38,14 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "20:56",
-      "21:27",
-      "06:15"
+      "06:15",
+      "07:06",
+      "07:35"
     ],
     "dax": [
-      "20:51",
       "06:05",
-      "07:22"
+      "07:22",
+      "08:14"
     ]
   }
 }
