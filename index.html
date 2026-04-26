@@ -98,25 +98,20 @@
       justify-content: center;
       z-index: 5;
       pointer-events: none;
-      gap: 0.5vh;
-      padding: 0 1.5vw;
+      gap: 0.6vh;
+      box-sizing: border-box;
     }
     .next-anim-shadow {
       color: #fff;
       text-shadow:
-        0 0 12px rgba(0,0,0,0.98),
-        0 0 30px rgba(0,0,0,0.9),
-        0 2px 6px rgba(0,0,0,0.98),
-        -1px -1px 0 rgba(0,0,0,0.95),
-         1px -1px 0 rgba(0,0,0,0.95),
-        -1px  1px 0 rgba(0,0,0,0.95),
-         1px  1px 0 rgba(0,0,0,0.95);
+        0 0 12px rgba(0,0,0,0.98), 0 0 30px rgba(0,0,0,0.9),
+        -1px -1px 0 rgba(0,0,0,0.95), 1px -1px 0 rgba(0,0,0,0.95),
+        -1px  1px 0 rgba(0,0,0,0.95), 1px  1px 0 rgba(0,0,0,0.95);
     }
-    /* Bandeau "Ne manquez pas" avec lignes de part et d'autre */
     .next-anim-banner-row {
       display: flex;
       align-items: center;
-      width: 90%;
+      width: 80%;
       gap: 0.8rem;
     }
     .next-anim-banner-line {
@@ -127,91 +122,88 @@
     }
     .next-anim-banner {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(0.8rem, 1.4vh, 1.1rem);
+      font-size: clamp(0.75rem, 1.3vh, 1rem);
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       white-space: nowrap;
       animation: pulse-badge 2s ease-in-out infinite;
     }
-    /* Ligne horizontale pleine largeur */
     .next-anim-line {
-      width: 90%;
       height: 1px;
       background: rgba(255,255,255,0.45);
       box-shadow: 0 0 6px rgba(0,0,0,0.8);
       flex-shrink: 0;
     }
-    /* Conteneur côte à côte */
+    /* Row = 80% de l'écran, 10% de marge de chaque côté */
     .next-anim-row {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
       justify-content: center;
+      width: 80%;
       gap: 0;
-      width: 90%;
     }
-    /* Carte par activité */
+    /* Chaque item occupe 100%/N de la row */
     .next-anim-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 0.3vh 2.5vw;
-      gap: 0.15vh;
+      padding: 0.4vh 0;
+      /* La largeur est définie inline en JS selon N */
     }
     .next-anim-badge {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(0.62rem, 1.05vh, 0.82rem);
+      font-size: clamp(0.62rem, 1vh, 0.8rem);
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,230,100,0.95);
-      margin-bottom: 0.1vh;
+      color: rgba(255,230,80,0.95);
     }
     .next-anim-time {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.8rem, 3.5vh, 2.8rem);
+      font-size: clamp(1.6rem, 3.2vh, 2.6rem);
       font-weight: 200;
       line-height: 1;
       letter-spacing: 0.05em;
       color: #ffffff;
+      margin-top: 0.2vh;
     }
     .next-anim-title {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(1.1rem, 2.2vh, 1.8rem);
+      font-size: clamp(1rem, 2vh, 1.6rem);
       font-weight: 700;
       line-height: 1.2;
       color: #ffffff;
-      margin-top: 0.2vh;
+      margin-top: 0.35vh;
     }
     .next-anim-trad {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.7rem, 1.15vh, 0.9rem);
+      font-size: clamp(0.65rem, 1.05vh, 0.82rem);
       font-weight: 300;
       font-style: italic;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.65);
       line-height: 1.3;
-      margin-top: 0.1vh;
+      margin-top: 0.15vh;
     }
     .next-anim-lieu {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.65rem, 1.05vh, 0.82rem);
+      font-size: clamp(0.6rem, 0.95vh, 0.75rem);
       font-weight: 400;
-      color: rgba(255,220,100,0.85);
-      margin-top: 0.15vh;
+      color: rgba(255,215,80,0.85);
+      margin-top: 0.2vh;
     }
-    /* Séparateur vertical */
     .next-anim-sep {
       width: 1px;
       align-self: stretch;
-      background: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.35);
       box-shadow: 0 0 5px rgba(0,0,0,0.7);
-      margin: 0.3vh 0;
+      margin: 0.2vh 0;
       flex-shrink: 0;
     }
     @keyframes pulse-badge {
-      0%, 100% { opacity: 0.7; }
+      0%, 100% { opacity: 0.65; }
       50%       { opacity: 1;   }
     }
 
@@ -765,6 +757,10 @@
     }
     if (!coming.length) { overlay.style.display = 'none'; return; }
 
+    // Largeur de chaque item = 100% / N (dans la row qui fait déjà 80% de l'écran)
+    var N        = coming.length;
+    var itemPct  = Math.floor(100 / N) + '%';
+
     var rowHtml = '';
     for (var j = 0; j < coming.length; j++) {
       var it    = coming[j];
@@ -779,24 +775,26 @@
 
       if (j > 0) rowHtml += '<div class="next-anim-sep next-anim-shadow"></div>';
       rowHtml +=
-        '<div class="next-anim-item next-anim-shadow">' +
-          '<div class="next-anim-badge">' + badge + '</div>' +
-          '<div class="next-anim-time">'  + it.a.heure + '</div>' +
-          '<div class="next-anim-title">' + emoji + ' ' + fr + '</div>' +
+        '<div class="next-anim-item next-anim-shadow" style="width:' + itemPct + ';flex-shrink:0">' +
+          '<div class="next-anim-badge">'  + badge + '</div>' +
+          '<div class="next-anim-time">'   + it.a.heure + '</div>' +
+          '<div class="next-anim-title">'  + emoji + '&nbsp;' + fr + '</div>' +
           (trad ? '<div class="next-anim-trad">' + trad + '</div>' : '') +
-          (lieu ? '<div class="next-anim-lieu">' + lieu + '</div>' : '') +
+          (lieu ? '<div class="next-anim-lieu">'  + lieu + '</div>' : '') +
         '</div>';
     }
 
+    // Ligne pleine largeur = 80% comme la row
+    var lineW = 'style="width:80%"';
     card.innerHTML =
       '<div class="next-anim-banner-row next-anim-shadow">' +
         '<div class="next-anim-banner-line"></div>' +
         '<div class="next-anim-banner">&#10024; Ne manquez pas &middot; Don&#39;t miss it &middot; No se lo pierdan &#10024;</div>' +
         '<div class="next-anim-banner-line"></div>' +
       '</div>' +
-      '<div class="next-anim-line"></div>' +
+      '<div class="next-anim-line" ' + lineW + '></div>' +
       '<div class="next-anim-row">' + rowHtml + '</div>' +
-      '<div class="next-anim-line"></div>';
+      '<div class="next-anim-line" ' + lineW + '></div>';
 
     overlay.style.display = 'flex';
   }
