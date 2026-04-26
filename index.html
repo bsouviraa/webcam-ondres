@@ -681,54 +681,62 @@
   //  PROCHAINE ACTIVITÉ — overlay webcam (tiers supérieur)
   // ═══════════════════════════════════════════════════════
   function checkNextAnim() {
-    const overlay = document.getElementById('next-anim-overlay');
-    const card    = document.getElementById('next-anim-card');
+    var overlay = document.getElementById('next-anim-overlay');
+    var card    = document.getElementById('next-anim-card');
     if (!overlay || !card) return;
 
-    const anims = window._animData;
+    var anims = window._animData;
     if (!anims || !anims.length) { overlay.style.display = 'none'; return; }
 
-    const now    = parisnow();
-    const nowMin = now.getHours() * 60 + now.getMinutes();
+    var now    = parisnow();
+    var nowMin = now.getHours() * 60 + now.getMinutes();
 
-    // Collecter TOUTES les activités dans la fenêtre -5min / +60min
+    // Toutes les activités dans -5min / +60min
     var coming = [];
     for (var i = 0; i < anims.length; i++) {
       var a = anims[i];
       var parts = a.heure.split(':').map(Number);
-      var aMin = parts[0] * 60 + parts[1];
-      var diffMin = aMin - nowMin;
-      if (diffMin > -5 && diffMin <= 60) {
-        coming.push({ a: a, aMin: aMin, diffMin: diffMin });
-      }
+      var aMin  = parts[0] * 60 + parts[1];
+      var diff  = aMin - nowMin;
+      if (diff > -5 && diff <= 60) coming.push({ a: a, diff: diff });
     }
-
     if (!coming.length) { overlay.style.display = 'none'; return; }
 
-    // Construire une carte par activité
-    var html = '';
+    // ── Bandeau + ligne + activités côte à côte + ligne basse ────────────────
+    var rowHtml = '';
     for (var j = 0; j < coming.length; j++) {
-      var item    = coming[j];
-      var diff    = Math.round(item.diffMin);
-      var badge   = diff > 0 ? '⏰ Dans ' + diff + ' min' : '▶ En cours';
-      var emoji   = item.a.emoji || '';
-      var titre   = item.a.fr || '';
-      var lieu    = item.a.lieu ? '📍 ' + item.a.lieu : '';
-      // Séparateur entre activités
-      if (j > 0) {
-        html += '<div style="width:60%;height:1px;background:rgba(255,255,255,0.25);margin:0.4rem 0"></div>';
-      }
-      html +=
-        '<div class="next-anim-badge">' + badge + '</div>' +
-        '<div class="next-anim-time">' + item.a.heure + '</div>' +
-        '<div class="next-anim-title">' + emoji + ' ' + titre + '</div>' +
-        (lieu ? '<div class="next-anim-lieu">' + lieu + '</div>' : '');
+      var it    = coming[j];
+      var d     = Math.round(it.diff);
+      var badge = d > 0 ? '&#9200; Dans ' + d + ' min' : '&#9654; En cours';
+      var emoji = it.a.emoji || '';
+      var fr    = it.a.fr    || '';
+      var en    = it.a.en    || '';
+      var es    = it.a.es    || '';
+      var lieu  = it.a.lieu  ? '&#128205; ' + it.a.lieu : '';
+      var trad  = [en, es].filter(Boolean).join(' &middot; ');
+
+      if (j > 0) rowHtml += '<div class="next-anim-sep next-anim-shadow"></div>';
+
+      rowHtml +=
+        '<div class="next-anim-item next-anim-shadow">' +
+          '<div class="next-anim-badge">' + badge + '</div>' +
+          '<div class="next-anim-time">'  + it.a.heure + '</div>' +
+          '<div class="next-anim-title">' + emoji + ' ' + fr + '</div>' +
+          (trad ? '<div class="next-anim-trad">' + trad + '</div>' : '') +
+          (lieu ? '<div class="next-anim-lieu">' + lieu + '</div>' : '') +
+        '</div>';
     }
 
-    card.innerHTML = html;
+    card.innerHTML =
+      '<div class="next-anim-banner next-anim-shadow">&#10024; Ne manquez pas &nbsp;&middot;&nbsp; Don&#39;t miss it &nbsp;&middot;&nbsp; No se lo pierdan</div>' +
+      '<div class="next-anim-line"></div>' +
+      '<div class="next-anim-row">' + rowHtml + '</div>' +
+      '<div class="next-anim-line" style="margin-top:0.4rem"></div>';
+
     overlay.style.display = 'flex';
   }
 
+  
   // ═══════════════════════════════════════════════════════
   //  INIT
   // ═══════════════════════════════════════════════════════
