@@ -94,7 +94,7 @@
       height: 33.33%;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       justify-content: center;
       z-index: 5;
       pointer-events: none;
@@ -107,14 +107,14 @@
         -1px -1px 0 rgba(0,0,0,0.95),  1px -1px 0 rgba(0,0,0,0.95),
         -1px  1px 0 rgba(0,0,0,0.95),   1px  1px 0 rgba(0,0,0,0.95);
     }
-    /* Bandeau — pleine largeur */
+    /* Bandeau pleine largeur */
     .next-anim-banner-row {
       display: flex;
       align-items: center;
       width: 100%;
-      gap: 0.8rem;
+      gap: 0.6rem;
       box-sizing: border-box;
-      padding: 0 1.5rem;
+      padding: 0 2%;
     }
     .next-anim-banner-line {
       flex: 1;
@@ -124,7 +124,7 @@
     }
     .next-anim-banner {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(0.9rem, 1.6vh, 1.3rem);
+      font-size: clamp(0.85rem, 1.5vh, 1.2rem);
       font-weight: 700;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -139,7 +139,7 @@
       box-shadow: 0 0 6px rgba(0,0,0,0.8);
       flex-shrink: 0;
     }
-    /* Row = 100% en largeur, items proportionnels */
+    /* Row : 10% marge de chaque côté via padding, items remplissent le reste */
     .next-anim-row {
       display: flex;
       flex-direction: row;
@@ -147,18 +147,20 @@
       justify-content: center;
       width: 100%;
       flex: 1;
-      padding: 0.8vh 0;
+      padding: 0.6vh 10% 0.6vh;
       box-sizing: border-box;
+      gap: 0;
     }
-    /* Chaque item : 5 rangées verticales */
+    /* Item : grid vertical 10/30/30/15/15 — PAS de padding horizontal */
     .next-anim-item {
       display: grid;
       grid-template-rows: 10% 30% 30% 15% 15%;
       align-items: center;
       justify-items: center;
       text-align: center;
-      padding: 0.3vh 1.5vw;
       box-sizing: border-box;
+      min-width: 0;
+      overflow: hidden;
     }
     .next-anim-badge {
       font-family: 'DM Sans', sans-serif;
@@ -168,44 +170,55 @@
       text-transform: uppercase;
       color: rgba(255,225,70,0.95);
       align-self: end;
-      padding-bottom: 0.3vh;
+      white-space: nowrap;
     }
     .next-anim-time {
       font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1.6rem, 3vh, 2.4rem);
+      font-size: clamp(1.8rem, 3.2vh, 2.6rem);
       font-weight: 200;
       line-height: 1;
       letter-spacing: 0.05em;
       color: #ffffff;
       align-self: center;
-      padding: 0.2vh 0;
+      white-space: nowrap;
     }
     .next-anim-title {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(1rem, 2vh, 1.6rem);
+      font-size: clamp(0.95rem, 1.9vh, 1.5rem);
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.15;
       color: #ffffff;
       align-self: center;
-      padding-top: 0.4vh;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
     }
     .next-anim-trad {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.62rem, 1vh, 0.8rem);
+      font-size: clamp(0.6rem, 1vh, 0.78rem);
       font-weight: 300;
       font-style: italic;
-      color: rgba(255,255,255,0.62);
-      line-height: 1.3;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.2;
       align-self: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
     }
     .next-anim-lieu {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(0.58rem, 0.95vh, 0.76rem);
+      font-size: clamp(0.58rem, 0.95vh, 0.75rem);
       font-weight: 400;
       color: rgba(255,210,70,0.85);
       align-self: start;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
     }
-    /* Séparateur vertical */
+    /* Séparateur vertical entre items */
     .next-anim-sep {
       width: 1px;
       align-self: stretch;
@@ -768,8 +781,9 @@
     }
     if (!coming.length) { overlay.style.display = 'none'; return; }
 
-    var N = coming.length;
-    // Chaque item prend 100%/N de la row (pleine largeur)
+    var N     = coming.length;
+    // Les 80% centraux sont gérés par le padding de .next-anim-row
+    // Chaque item prend 100%/N de ces 80%
     var itemW = Math.floor(100 / N) + '%';
 
     var rowHtml = '';
