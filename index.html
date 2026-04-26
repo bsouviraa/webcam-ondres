@@ -85,6 +85,21 @@
     .transport-icon { font-size:clamp(0.8rem,1.3vh,1rem); flex-shrink:0; }
     .transport-name { color:var(--white); font-weight:500; flex-shrink:0; min-width:4rem; }
     .transport-times{ display:flex; gap:0.35rem; flex-wrap:wrap; }
+    .transport-disclaimer {
+      font-size: clamp(0.44rem, 0.72vh, 0.56rem);
+      color: var(--muted);
+      opacity: 0.6;
+      padding: 0.3vh 0 0.1vh;
+      border-top: 1px solid var(--border);
+      margin-top: 0.2vh;
+      line-height: 1.3;
+    }
+    .transport-disclaimer-trad {
+      font-style: italic;
+      opacity: 0.7;
+      display: block;
+      font-size: 0.9em;
+    }
     .transport-time { background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:4px; padding:0.1rem 0.4rem; color:var(--gold); font-weight:600; font-size:clamp(0.58rem,1vh,0.75rem); }
 
     /* ── OVERLAY PROCHAINE ACTIVITÉ ── */
@@ -603,6 +618,10 @@
             : '';
           return row(t.bayonne, '→ Bayonne') + row(t.dax, '→ Dax');
         })()}
+        <div class="transport-disclaimer">
+          ⚠️ Horaires en cours de déploiement, ne pas tenir compte
+          <span class="transport-disclaimer-trad">· Schedules being deployed, please disregard · Horarios en despliegue, no tener en cuenta</span>
+        </div>
       </div>
 
     `;
