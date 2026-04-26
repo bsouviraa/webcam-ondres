@@ -2,7 +2,7 @@
   "date": "26/04",
   "items": [
     {
-      "heure": "15:15",
+      "heure": "15:25",
       "emoji": "🚴",
       "fr": "footing avec benji",
       "lieu": "ffdgvfv",
@@ -16,17 +16,17 @@
       "emoji": "🍳",
       "fr": "sortie machin",
       "lieu": "trhhf",
-      "en": "thing outing",
+      "en": "outing thing",
       "es": "salida cosa",
       "lieu_en": "trhhf",
       "lieu_es": "trhhf"
     },
     {
-      "heure": "16:45",
+      "heure": "15:45",
       "emoji": "🛶",
       "fr": "aquaponey",
       "lieu": "fdvbdbfd",
-      "en": "aqua pony",
+      "en": "aquapony",
       "es": "aquaponey",
       "lieu_en": "fdvbdbfd",
       "lieu_es": "fdvbdbfd"
@@ -39,7 +39,7 @@
       "en": "yoga in the forest",
       "es": "yoga en el bosque",
       "lieu_en": "yoga platform",
-      "lieu_es": "plataforma de yoga"
+      "lieu_es": "plataforma yoga"
     },
     {
       "heure": "19:00",
@@ -49,7 +49,7 @@
       "en": "pilates in the forest",
       "es": "pilates en el bosque",
       "lieu_en": "yoga platform",
-      "lieu_es": "plataforma de yoga"
+      "lieu_es": "plataforma yoga"
     }
   ]
 }
