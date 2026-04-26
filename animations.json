@@ -6,7 +6,7 @@
       "emoji": "🧘",
       "fr": "Yoga en forêt",
       "lieu": "Plateforme yoga",
-      "en": "Yoga in the forest",
+      "en": "Forest yoga",
       "es": "Yoga en el bosque",
       "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
@@ -16,10 +16,20 @@
       "emoji": "🧘",
       "fr": "Pilates en forêt",
       "lieu": "Plateforme yoga",
-      "en": "Pilates in the forest",
+      "en": "Forest pilates",
       "es": "Pilates en el bosque",
       "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "17:00",
+      "emoji": "🍳",
+      "fr": "sortie machin",
+      "lieu": "trhhf",
+      "en": "Thing outing",
+      "es": "Salida de cosas",
+      "lieu_en": "trhhf",
+      "lieu_es": "trhhf"
     }
   ]
 }
