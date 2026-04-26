@@ -176,6 +176,9 @@ try:
             "lieu_en": "", "lieu_es": "",
         })
 
+    # Trier par heure (au cas où le Sheet ne serait pas dans l'ordre)
+    animations.sort(key=lambda a: a["heure"])
+
     # ── 3. Traduction via API Claude ──────────────────────────────────────────
     anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
     if animations and anthropic_key:
