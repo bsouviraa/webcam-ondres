@@ -451,30 +451,6 @@
         </div>
         ${buildTideSVG(marees)}
       </div>
-      <div class="transport-section">
-        <div class="transport-sec-label">Prochains 🚆</div>
-        <div class="transport-row">
-          <span class="transport-icon">🚌</span>
-          <span class="transport-name">→ Plage</span>
-          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
-        </div>
-        <div class="transport-row">
-          <span class="transport-icon">🚌</span>
-          <span class="transport-name">→ Bayonne</span>
-          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
-        </div>
-        ${(()=>{
-          const t = d.transports || {};
-          const row = (times, label) => times && times.length
-            ? `<div class="transport-row">
-                <span class="transport-icon">🚆</span>
-                <span class="transport-name">${label}</span>
-                <div class="transport-times">${times.map(h=>`<span class="transport-time">${h}</span>`).join('')}</div>
-               </div>`
-            : '';
-          return row(t.bayonne, '→ Bayonne') + row(t.dax, '→ Dax');
-        })()}
-      </div>
       <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;width:100%;gap:0">
 
         <!-- Ligne 1 : icônes / labels -->
@@ -753,3 +729,28 @@
 
 </body>
 </html>
+
+      <div class="transport-section">
+        <div class="transport-sec-label">Prochains 🚆</div>
+        <div class="transport-row">
+          <span class="transport-icon">🚌</span>
+          <span class="transport-name">→ Plage</span>
+          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
+        </div>
+        <div class="transport-row">
+          <span class="transport-icon">🚌</span>
+          <span class="transport-name">→ Bayonne</span>
+          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
+        </div>
+        ${(()=>{
+          const t = d.transports || {};
+          const row = (times, label) => times && times.length
+            ? `<div class="transport-row">
+                <span class="transport-icon">🚆</span>
+                <span class="transport-name">${label}</span>
+                <div class="transport-times">${times.map(h=>`<span class="transport-time">${h}</span>`).join('')}</div>
+               </div>`
+            : '';
+          return row(t.bayonne, '→ Bayonne') + row(t.dax, '→ Dax');
+        })()}
+      </div>
