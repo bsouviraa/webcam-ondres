@@ -144,6 +144,8 @@
 <body>
 
   <div class="stage">
+
+    <!-- MÉTÉO — colonne gauche -->
     <div class="col-meteo">
       <div class="meteo-logo">
         <img src="https://www.green-resort.com/wp-content/uploads/2026/04/Logo-Green-Resort-5-etoiles-FOND-BLANC.jpeg" alt="Green Resort" />
@@ -154,6 +156,8 @@
       </div>
 
     </div>
+
+    <!-- WEBCAM — centre -->
     <div class="col-webcam">
       <iframe
         src="https://pv.viewsurf.com/722/Ondres-Ocean"
@@ -171,6 +175,8 @@
         <div class="night-next" id="night-next"></div>
       </div>
     </div>
+
+    <!-- ANIMATIONS — colonne droite -->
     <div class="col-anim">
       <div class="anim-header">
         <div class="anim-header-date" id="anim-date"></div>
@@ -261,37 +267,30 @@
   //  RENDU MÉTÉO
   // ═══════════════════════════════════════════════════════
   function buildTideSVG(marees) {
-    const W = 268, H = 72, n = marees.length;
+    var W = 268, H = 72, n = marees.length;
     if (!n) return '';
-    const pts = marees.map(function(m, i) {
-      return {
-        x: Math.round(W * (i + 0.5) / n),
-        y: m.type === 'Haute' ? 10 : H - 20,
-        m: m
-      };
+    var pts = marees.map(function(m, i) {
+      return { x: Math.round(W*(i+0.5)/n), y: m.type==='Haute' ? 10 : H-20, m: m };
     });
     var path = 'M ' + pts[0].x + ' ' + pts[0].y;
-    for (var i = 0; i < pts.length - 1; i++) {
+    for (var i = 0; i < pts.length-1; i++) {
       var cx = (pts[i].x + pts[i+1].x) / 2;
       path += ' C ' + cx + ' ' + pts[i].y + ' ' + cx + ' ' + pts[i+1].y + ' ' + pts[i+1].x + ' ' + pts[i+1].y;
     }
     var dots = pts.map(function(p) {
-      var fill = p.m.type === 'Haute' ? '#4fc3f7' : 'rgba(242,237,230,0.35)';
-      return '<circle cx="' + p.x + '" cy="' + p.y + '" r="3.5" fill="' + fill + '"/>';
+      return '<circle cx="' + p.x + '" cy="' + p.y + '" r="3.5" fill="' + (p.m.type==='Haute'?'#4fc3f7':'rgba(242,237,230,0.35)') + '"/>';
     }).join('');
-    var isHaute = function(t) { return t === 'Haute'; };
     var labels = pts.map(function(p) {
-      var labelY  = isHaute(p.m.type) ? p.y - 7  : p.y + 13;
-      var heureY  = isHaute(p.m.type) ? p.y - 17 : p.y + 24;
-      var fill    = isHaute(p.m.type) ? '#4fc3f7' : 'rgba(242,237,230,0.45)';
-      var label   = isHaute(p.m.type) ? 'Haute'   : 'Basse';
-      return '<text x="' + p.x + '" y="' + labelY + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="' + fill + '">' + label + '</text>'
-           + '<text x="' + p.x + '" y="' + heureY + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="300" fill="rgba(242,237,230,0.9)">' + p.m.heure + '</text>';
+      var ly = p.m.type==='Haute' ? p.y-7 : p.y+13;
+      var hy = p.m.type==='Haute' ? p.y-17 : p.y+24;
+      var fill = p.m.type==='Haute' ? '#4fc3f7' : 'rgba(242,237,230,0.45)';
+      var lbl = p.m.type==='Haute' ? 'Haute' : 'Basse';
+      return '<text x="' + p.x + '" y="' + ly + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="' + fill + '">' + lbl + '</text>'
+           + '<text x="' + p.x + '" y="' + hy + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="300" fill="rgba(242,237,230,0.9)">' + p.m.heure + '</text>';
     }).join('');
     return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" style="overflow:visible;margin-top:0.3vh;display:block">'
-         + '<path d="' + path + '" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.45" stroke-linejoin="round"/>'
-         + dots + labels
-         + '</svg>';
+         + '<path d="' + path + '" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.45"/>'
+         + dots + labels + '</svg>';
   }
 
   function renderMeteo(d) {
@@ -322,6 +321,7 @@
     document.getElementById('meteo-body').innerHTML = `
       <div style="flex:0.40 0 0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:100%;align-content:space-evenly">
 
+          <!-- Ligne 1 : icône + valeur -->
           <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.15rem">
             <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">${picto}</div>
             <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${temp}°<span style="font-size:0.45em">C</span></div>
@@ -333,6 +333,7 @@
               : `<div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${tempEau}°</div>`}
           </div>
 
+          <!-- Ligne 2 : labels + trads -->
           <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0.15rem">
             <div style="font-size:10px;color:var(--white)">Air</div>
             ${label?`<div style="font-size:10px;color:var(--gold);line-height:1.3">${label}</div><div style="font-size:7.7px;color:var(--gold);opacity:0.55">Overcast · Nublado</div>`:''}
@@ -352,15 +353,18 @@
         <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
       </div>
       <div style="flex:0.40 0 0;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto;width:100%;height:100%;align-content:space-evenly">
+          <!-- Ligne 1 : icônes -->
           <div style="text-align:center">
             <span style="font-size:clamp(1rem,1.8vh,1.4rem);line-height:1">🌞</span>
             <span style="font-size:clamp(1rem,1.8vh,1.4rem);font-weight:400;color:var(--white);vertical-align:middle"> UV</span>
           </div>
           <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">↗🌅</span></div>
           <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇↘</span></div>
+          <!-- Ligne 2 : valeurs -->
           <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:${uvColor};line-height:1">${uvVal}</div>
           <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${lever}</div>
           <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${coucher}</div>
+          <!-- Ligne 3 : labels + trads -->
           <div style="text-align:center">
             <div style="font-size:10px;color:${uvColor}">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
             <div style="font-size:7.7px;color:${uvColor};opacity:0.6">${{'Faible':'Low · Bajo','Modere':'Moderate · Moderado','Eleve':'High · Alto','Tres eleve':'Very high · Muy alto','Extreme':'Extreme · Extremo'}[uvShort]||''}</div>
@@ -378,10 +382,214 @@
       <div class="maree-section" style="flex:1.0 0 0">
         <div class="sec-label" style="display:flex;justify-content:space-between;align-items:baseline">
           <span>Marées · Tides · Mareas</span>
-          <span style="font-weight:300;font-size:0.9em;color:var(--muted)">
-            coef. AM <span style="color:var(--gold)">${d.maree_coef_am||coef}</span>
+          <span style="font-weight:300;font-size:0.9em">
+            AM <span style="color:var(--gold)">${d.maree_coef_am||'—'}</span>
             / PM <span style="color:var(--gold)">${d.maree_coef_pm||'—'}</span>
           </span>
         </div>
         ${buildTideSVG(marees)}
       </div>
+      <div class="mrow" style="flex:0.44 0 0">
+        <div class="mcell" style="flex-direction:row;gap:0.5rem;justify-content:center">
+          <span style="font-size:clamp(1.1rem,2vh,1.6rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1;flex-shrink:0">↑</span>
+          <div>
+            <div class="val-md">${vent}<span style="font-size:0.6em"> km/h</span></div>
+            ${lbl('Vent · Wind','',ventCard)}
+          </div>
+        </div>
+        ${houle?`
+        <div class="mcell">
+          <div style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌊</div>
+          <div class="val-md">${houle} <span style="font-size:0.6em">m</span></div>
+          ${lbl('Houle · Swell')}
+          <div style="font-size:clamp(0.52rem,0.9vh,0.65rem);color:var(--muted)">${d.houle_periode}s</div>
+        </div>`:`<div class="mcell" style="opacity:0.15"><div style="font-size:2rem">🌊</div></div>`}
+      </div>
+
+      <div class="transport-section">
+        <div class="transport-sec-label">Prochains 🚆</div>
+        ${(()=>{
+          const t = d.transports || {};
+          const row = (times, label) => times && times.length
+            ? `<div class="transport-row">
+                <span class="transport-icon">🚆</span>
+                <span class="transport-name">${label}</span>
+                <div class="transport-times">${times.map(h=>`<span class="transport-time">${h}</span>`).join('')}</div>
+               </div>`
+            : '';
+          return row(t.bayonne, '→ Bayonne') + row(t.dax, '→ Dax');
+        })()}
+      </div>
+    `;
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  RENDU ANIMATIONS
+  // ═══════════════════════════════════════════════════════
+  function renderAnimations(anims, dateLabel) {
+    const body = document.getElementById('anim-body');
+    if (!body) return;
+
+    if (!anims || anims.length === 0) {
+      body.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0.75rem;padding:1.5rem;text-align:center">
+        <div style="font-size:2rem;opacity:0.4">🕐</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:clamp(0.8rem,1.4vh,1.05rem);color:var(--white);font-weight:500">En attente d'information</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:clamp(0.6rem,1vh,0.75rem);color:var(--muted)">Awaiting information · En espera de información</div>
+      </div>`;
+      return;
+    }
+
+    // Heure Paris pour "en cours"
+    const now    = parisnow();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    let enCoursIdx = -1;
+    anims.forEach((a, i) => {
+      const [h,m] = a.heure.split(':').map(Number);
+      if (h * 60 + m <= nowMin) enCoursIdx = i;
+    });
+
+    // Rubriques par tranche horaire
+    // Détecter heure d'été ou d'hiver pour Paris
+    // En été (UTC+2) : après-midi finit à 18h59 → soirée from 19
+    // En hiver (UTC+1) : après-midi finit à 17h59 → soirée from 18
+    const parisOffset = -new Date().toLocaleString('en-US', {timeZone:'Europe/Paris', timeZoneName:'shortOffset'})
+      .match(/GMT([+-]\d+)/)?.[1] * -1 || 1; // 1 = hiver, 2 = été
+    const isDST = parisOffset === 2;
+    const soireeFrom = isDST ? 19 : 18;
+
+    const sections = [
+      { key: 'matin',  labelFR: 'Matin',      labelEN: 'Morning',   labelES: 'Mañana', from: 0,         to: 12        },
+      { key: 'apm',    labelFR: 'Après-midi', labelEN: 'Afternoon', labelES: 'Tarde',  from: 12,        to: soireeFrom },
+      { key: 'soiree', labelFR: 'Soirée',     labelEN: 'Evening',   labelES: 'Noche',  from: soireeFrom, to: 24        },
+    ];
+
+    let html = '';
+    const totalItems = anims.length;
+    sections.forEach(sec => {
+      const items = anims.filter(a => {
+        const h = parseInt(a.heure.split(':')[0]);
+        return h >= sec.from && h < sec.to;
+      });
+
+      // Section toujours flex-shrink 0 : hauteur naturelle des cartes
+      html += `<div class="anim-section">`;
+      html += `<div class="anim-section-title">
+        <span class="anim-sec-fr">${sec.labelFR}</span>
+        <span class="anim-sec-trad">${sec.labelEN} · ${sec.labelES}</span>
+      </div>`;
+
+      if (items.length === 0) {
+        html += `<div class="anim-section-empty">— — —</div>`;
+      } else {
+        items.forEach(a => {
+          const i = anims.indexOf(a);
+          const enCours = (i === enCoursIdx);
+          html += `
+            <div class="anim-item ${enCours ? 'anim-item-now' : ''}">
+              <div class="anim-time">
+                <div class="anim-time-val">${a.heure}</div>
+                ${enCours ? '<div class="anim-now-badge">Now</div>' : ''}
+              </div>
+              <div class="anim-content">
+                <div class="anim-emoji">${a.emoji}</div>
+                <div class="anim-texts">
+                  <div class="anim-fr">${a.fr}</div>
+                  ${(a.en||a.es) ? `<div class="anim-trad"><span class="anim-en">${a.en||''}</span>${a.en&&a.es?' <span class="anim-sep">·</span> ':''}<span class="anim-es">${a.es||''}</span></div>` : ''}
+                  ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}</div>` : ''}
+                </div>
+              </div>
+            </div>`;
+        });
+      }
+      html += `</div>`; // fermer .anim-section
+    });
+
+    body.innerHTML = html;
+  }
+
+
+  async function loadMeteo() {
+    try {
+      const res = await fetch('./data.json?cb=' + Date.now());
+      window._meteoData = await res.json();
+      renderMeteo(window._meteoData);
+    } catch(e) {
+      document.getElementById('meteo-body').innerHTML =
+        '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:0.8rem">Données indisponibles</div>';
+      console.error('Meteo:', e);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  CHARGEMENT ANIMATIONS (Google Sheets direct)
+  // ═══════════════════════════════════════════════════════
+  const SHEET_ID = '1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG';
+
+  async function loadAnimations() {
+    try {
+      const now = parisnow();
+      const dd  = String(now.getDate()).padStart(2,'0');
+      const mm  = String(now.getMonth()+1).padStart(2,'0');
+      const sheetName = dd + mm;
+      const dateLabel = dd + '/' + mm;
+
+      // Vérifier que la feuille existe dans le Sheet
+      const htmlRes = await fetch(
+        'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG/htmlview?cb=' + Date.now()
+      );
+      const htmlTxt = await htmlRes.text();
+      const namesMatch = htmlTxt.match(/\{name:\s*"([^"]+)"/g) || [];
+      const available = namesMatch.map(m => m.match(/"([^"]+)"/)[1]);
+
+      if (!available.includes(sheetName)) {
+        throw new Error('Feuille ' + sheetName + ' introuvable');
+      }
+
+      // Charger animations.json (généré par GitHub Actions avec traductions)
+      const res = await fetch('./animations.json?cb=' + Date.now());
+      const payload = await res.json();
+      const anims = Array.isArray(payload) ? payload : (payload.items || []);
+      const storedDate = Array.isArray(payload) ? '' : (payload.date || '');
+
+      // Si animations.json est pour une autre date, utiliser quand même
+      // (sera mis à jour par le workflow toutes les heures)
+      window._animData      = anims;
+      window._animDateLabel = dateLabel;
+
+      // Mettre la date dans anim-date uniquement (le titre reste fixe)
+      const dateEl2 = document.getElementById('anim-date');
+      if (dateEl2) dateEl2.textContent = dateLabel
+        ? 'Animations du ' + dateLabel
+        : '';
+
+      renderAnimations(anims, dateLabel);
+
+    } catch(e) {
+      window._animData=[]; window._animDateLabel='';
+      renderAnimations([], '');
+      console.warn('Animations:', e.message);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════════════════
+  checkNight();
+  updateAnimDate();
+  loadMeteo();
+  loadAnimations();
+
+  setInterval(checkNight,        30 * 1000);        // overlay nuit toutes les 30s
+  setInterval(updateAnimDate,    60 * 1000);         // date header toutes les 1min
+  setInterval(loadMeteo,         10 * 60 * 1000);    // météo toutes les 10min
+  setInterval(loadAnimations,     5 * 60 * 1000);    // animations toutes les 5min
+  setInterval(() => {                               // re-render "en cours" toutes les 1min
+    if (window._animData) renderAnimations(window._animData, window._animDateLabel);
+  }, 60 * 1000);
+
+  // Reload complet toutes les 5 minutes
+  setTimeout(() => location.reload(), 5 * 60 * 1000);
+  </script>
+
+</body>
+</html>
