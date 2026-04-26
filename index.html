@@ -822,7 +822,7 @@
     for (var j = 0; j < coming.length; j++) {
       var it    = coming[j];
       var d     = Math.round(it.diff);
-      var badge = d > 0 ? '&#9200; Dans ' + d + ' min' : '&#9654; En cours';
+      var badge = d > 0 ? '&#9200; Dans ' + d + ' min' : '&#9654; Vient de commencer';
       var emoji = it.a.emoji || '';
       var fr    = it.a.fr    || '';
       var en    = it.a.en    || '';
@@ -893,6 +893,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 15:45</div>
+  <div class="version-badge">màj 15:46</div>
 </body>
 </html>
