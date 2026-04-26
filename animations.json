@@ -2,34 +2,34 @@
   "date": "26/04",
   "items": [
     {
+      "heure": "15:30",
+      "emoji": "🍳",
+      "fr": "sortie machin",
+      "lieu": "trhhf",
+      "en": "machine exit",
+      "es": "salida máquina",
+      "lieu_en": "trhhf",
+      "lieu_es": "trhhf"
+    },
+    {
       "heure": "18:00",
       "emoji": "🧘",
       "fr": "Yoga en forêt",
       "lieu": "Plateforme yoga",
-      "en": "Forest yoga",
-      "es": "Yoga en el bosque",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
+      "en": "yoga in the forest",
+      "es": "yoga en el bosque",
+      "lieu_en": "yoga platform",
+      "lieu_es": "plataforma yoga"
     },
     {
       "heure": "19:00",
       "emoji": "🧘",
       "fr": "Pilates en forêt",
       "lieu": "Plateforme yoga",
-      "en": "Forest pilates",
-      "es": "Pilates en el bosque",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "15:30",
-      "emoji": "🍳",
-      "fr": "sortie machin",
-      "lieu": "trhhf",
-      "en": "Thing outing",
-      "es": "Salida de cosa",
-      "lieu_en": "trhhf",
-      "lieu_es": "trhhf"
+      "en": "pilates in the forest",
+      "es": "pilates en el bosque",
+      "lieu_en": "yoga platform",
+      "lieu_es": "plataforma yoga"
     }
   ]
 }
