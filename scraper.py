@@ -87,16 +87,33 @@ try:
 except Exception:
     houle_m = ""; houle_p = ""
 
-html_page = fetch("https://www.plages-landes.info/ondres/")
-marees_raw = list(re.finditer(r"(Haute|Basse)</span>\s*<span[^>]*>(\d{2}h\d{2})</span>", html_page))
-marees = [{"type": m.group(1), "heure": m.group(2)} for m in marees_raw[:4]]
-coef_m = re.search(r"COEF\.?&nbsp;[\s\S]{0,30}?([\d]+\s*/\s*[\d]+)", html_page, re.I)
-coef_raw = coef_m.group(1).strip() if coef_m else ""
-# Extraire AM et PM séparément
-coef_parts = re.findall(r"\d+", coef_raw)
-coef_am = coef_parts[0] if len(coef_parts) > 0 else ""
-coef_pm = coef_parts[1] if len(coef_parts) > 1 else ""
-coef = coef_raw
+# Charger les coefs précédents comme fallback
+coef = ""; coef_am = ""; coef_pm = ""; marees = []
+try:
+    import os, json as _json
+    if os.path.exists("data.json"):
+        _prev = _json.load(open("data.json"))
+        coef    = _prev.get("maree_coef", "")
+        coef_am = _prev.get("maree_coef_am", "")
+        coef_pm = _prev.get("maree_coef_pm", "")
+        marees  = _prev.get("marees", [])
+except Exception:
+    pass
+
+try:
+    html_page = fetch("https://www.plages-landes.info/ondres/")
+    marees_raw = list(re.finditer(r"(Haute|Basse)</span>\s*<span[^>]*>(\d{2}h\d{2})</span>", html_page))
+    if marees_raw:
+        marees = [{"type": m.group(1), "heure": m.group(2)} for m in marees_raw[:4]]
+    coef_m = re.search(r"COEF\.?&nbsp;[\s\S]{0,30}?([\d]+\s*/\s*[\d]+)", html_page, re.I)
+    if coef_m:
+        coef_raw = coef_m.group(1).strip()
+        coef_parts = re.findall(r"\d+", coef_raw)
+        coef_am = coef_parts[0] if len(coef_parts) > 0 else coef_am
+        coef_pm = coef_parts[1] if len(coef_parts) > 1 else coef_pm
+        coef = coef_raw
+except Exception as _e:
+    import sys; print(f"Plages-landes error (coefs conservés): {_e}", file=sys.stderr)
 
 if plage.get("drapeau_vert"):    drapeau = "vert"
 elif plage.get("drapeau_jaune"): drapeau = "jaune"
