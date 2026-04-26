@@ -689,36 +689,41 @@
     const now    = parisnow();
     const nowMin = now.getHours() * 60 + now.getMinutes();
 
-    // Trouver la prochaine activité
-    let next = null;
-    for (const a of anims) {
-      const [h, m] = a.heure.split(':').map(Number);
-      const aMin = h * 60 + m;
-      const diffMin = aMin - nowMin;
-      // Afficher si dans moins de 60 min et pas encore passée de plus de 5 min
+    // Collecter TOUTES les activités dans la fenêtre -5min / +60min
+    var coming = [];
+    for (var i = 0; i < anims.length; i++) {
+      var a = anims[i];
+      var parts = a.heure.split(':').map(Number);
+      var aMin = parts[0] * 60 + parts[1];
+      var diffMin = aMin - nowMin;
       if (diffMin > -5 && diffMin <= 60) {
-        next = { ...a, aMin, diffMin };
-        break;
+        coming.push({ a: a, aMin: aMin, diffMin: diffMin });
       }
     }
 
-    if (!next) { overlay.style.display = 'none'; return; }
+    if (!coming.length) { overlay.style.display = 'none'; return; }
 
-    // Construire le contenu
-    const diffMin  = Math.round(next.diffMin);
-    const badge    = diffMin > 0
-      ? 'Dans ' + diffMin + ' min'
-      : 'En cours';
-    const emoji    = next.emoji || '';
-    const titre    = next.fr || '';
-    const lieu     = next.lieu ? '📍 ' + next.lieu : '';
+    // Construire une carte par activité
+    var html = '';
+    for (var j = 0; j < coming.length; j++) {
+      var item    = coming[j];
+      var diff    = Math.round(item.diffMin);
+      var badge   = diff > 0 ? '⏰ Dans ' + diff + ' min' : '▶ En cours';
+      var emoji   = item.a.emoji || '';
+      var titre   = item.a.fr || '';
+      var lieu    = item.a.lieu ? '📍 ' + item.a.lieu : '';
+      // Séparateur entre activités
+      if (j > 0) {
+        html += '<div style="width:60%;height:1px;background:rgba(255,255,255,0.25);margin:0.4rem 0"></div>';
+      }
+      html +=
+        '<div class="next-anim-badge">' + badge + '</div>' +
+        '<div class="next-anim-time">' + item.a.heure + '</div>' +
+        '<div class="next-anim-title">' + emoji + ' ' + titre + '</div>' +
+        (lieu ? '<div class="next-anim-lieu">' + lieu + '</div>' : '');
+    }
 
-    card.innerHTML =
-      '<div class="next-anim-badge">⏰ ' + badge + '</div>' +
-      '<div class="next-anim-time">' + next.heure + '</div>' +
-      '<div class="next-anim-title">' + emoji + ' ' + titre + '</div>' +
-      (lieu ? '<div class="next-anim-lieu">' + lieu + '</div>' : '');
-
+    card.innerHTML = html;
     overlay.style.display = 'flex';
   }
 
