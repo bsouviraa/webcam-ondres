@@ -317,48 +317,32 @@
         <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
       </div>
       <div class="mrow" style="flex:0.40 0 0">
-        <table style="width:100%;border-collapse:collapse;table-layout:fixed">
-          <!-- Ligne 1 : icônes / labels -->
-          <tr>
-            <td style="width:33%;text-align:center;padding:0.2vh 0">
-              <span style="font-size:clamp(1rem,1.8vh,1.4rem);line-height:1">🌞</span>
-              <span style="font-size:clamp(1rem,1.8vh,1.4rem);font-weight:400;color:var(--white);vertical-align:middle"> UV</span>
-            </td>
-            <td style="width:33%;text-align:center;padding:0.2vh 0">
-              <span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌅</span>
-            </td>
-            <td style="width:33%;text-align:center;padding:0.2vh 0">
-              <span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇</span>
-            </td>
-          </tr>
-          <!-- Ligne 2 : valeurs principales -->
-          <tr>
-            <td style="text-align:center;padding:0.1vh 0">
-              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:${uvColor};line-height:1">${uvVal}</div>
-            </td>
-            <td style="text-align:center;padding:0.1vh 0">
-              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${lever}</div>
-            </td>
-            <td style="text-align:center;padding:0.1vh 0">
-              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${coucher}</div>
-            </td>
-          </tr>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto;width:100%;height:100%;align-content:space-evenly">
+          <!-- Ligne 1 : icônes -->
+          <div style="text-align:center">
+            <span style="font-size:clamp(1rem,1.8vh,1.4rem);line-height:1">🌞</span>
+            <span style="font-size:clamp(1rem,1.8vh,1.4rem);font-weight:400;color:var(--white);vertical-align:middle"> UV</span>
+          </div>
+          <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌅</span></div>
+          <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇</span></div>
+          <!-- Ligne 2 : valeurs -->
+          <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:${uvColor};line-height:1">${uvVal}</div>
+          <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${lever}</div>
+          <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${coucher}</div>
           <!-- Ligne 3 : labels + trads -->
-          <tr>
-            <td style="text-align:center;padding:0.15vh 0">
-              <div style="font-size:10px;color:${uvColor}">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
-              <div style="font-size:7.7px;color:${uvColor};opacity:0.6">${{'Faible':'Low · Bajo','Modere':'Moderate · Moderado','Eleve':'High · Alto','Tres eleve':'Very high · Muy alto','Extreme':'Extreme · Extremo'}[uvShort]||''}</div>
-            </td>
-            <td style="text-align:center;padding:0.15vh 0">
-              <div style="font-size:10px;color:var(--white)">Lever</div>
-              <div style="font-size:7.7px;color:var(--muted)">Sunrise · Amanecer</div>
-            </td>
-            <td style="text-align:center;padding:0.15vh 0">
-              <div style="font-size:10px;color:var(--white)">Coucher</div>
-              <div style="font-size:7.7px;color:var(--muted)">Sunset · Atardecer</div>
-            </td>
-          </tr>
-        </table>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:${uvColor}">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
+            <div style="font-size:7.7px;color:${uvColor};opacity:0.6">${{'Faible':'Low · Bajo','Modere':'Moderate · Moderado','Eleve':'High · Alto','Tres eleve':'Very high · Muy alto','Extreme':'Extreme · Extremo'}[uvShort]||''}</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:var(--white)">Lever</div>
+            <div style="font-size:7.7px;color:var(--muted)">Sunrise · Amanecer</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:var(--white)">Coucher</div>
+            <div style="font-size:7.7px;color:var(--muted)">Sunset · Atardecer</div>
+          </div>
+        </div>
       </div>
       <div class="maree-section" style="flex:1.0 0 0">
         <div class="sec-label">Marées · Tides · Mareas &nbsp;<span style="color:var(--muted);font-weight:300">coef. ${coef}</span></div>
