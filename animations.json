@@ -2,7 +2,7 @@
   "date": "26/04",
   "items": [
     {
-      "heure": "15:25",
+      "heure": "16:25",
       "emoji": "🚴",
       "fr": "footing avec benji",
       "lieu": "ffdgvfv",
@@ -12,7 +12,7 @@
       "lieu_es": "ffdgvfv"
     },
     {
-      "heure": "15:30",
+      "heure": "16:30",
       "emoji": "🍳",
       "fr": "sortie machin",
       "lieu": "trhhf",
@@ -22,12 +22,12 @@
       "lieu_es": "trhhf"
     },
     {
-      "heure": "15:45",
+      "heure": "16:45",
       "emoji": "🛶",
       "fr": "aquaponey",
       "lieu": "fdvbdbfd",
-      "en": "aqua pony",
-      "es": "aquaponey",
+      "en": "aquapony",
+      "es": "acuaponi",
       "lieu_en": "fdvbdbfd",
       "lieu_es": "fdvbdbfd"
     },
