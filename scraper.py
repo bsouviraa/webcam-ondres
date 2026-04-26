@@ -200,5 +200,35 @@ except Exception as e:
     import sys; print(f"Animations error: {e}", file=sys.stderr)
     # anim_date conserve sa valeur si elle avait été assignée
 
-print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date},
+# ── 4. Transports SNCF ───────────────────────────────────────────────────────
+transports = {"bayonne": [], "dax": []}
+try:
+    import base64 as b64
+    SNCF_KEY = "bf3caae1-0cae-4911-877c-501736a4643a"
+    STOP_ID  = "stop_area:SNCF:87673319"
+    auth_b64 = b64.b64encode(f"{SNCF_KEY}:".encode()).decode()
+    sncf_url = f"https://api.sncf.com/v1/coverage/sncf/stop_areas/{STOP_ID}/departures?count=30"
+    sncf_req = urllib.request.Request(sncf_url, headers={
+        "Authorization": f"Basic {auth_b64}",
+        "Accept": "application/json"
+    })
+    sncf_data = json.loads(urllib.request.urlopen(sncf_req, timeout=10).read())
+    from datetime import datetime as _dt
+    for d in sncf_data.get("departures", []):
+        info = d.get("display_informations", {})
+        stop = d.get("stop_date_time", {})
+        direction = info.get("direction", "")
+        dt_str = stop.get("departure_date_time", "")
+        if not dt_str: continue
+        hhmm = _dt.strptime(dt_str, "%Y%m%dT%H%M%S").strftime("%H:%M")
+        if "Dax" in direction and len(transports["dax"]) < 3:
+            transports["dax"].append(hhmm)
+        elif ("Hendaye" in direction or "Bayonne" in direction) and len(transports["bayonne"]) < 3:
+            transports["bayonne"].append(hhmm)
+        if len(transports["dax"]) >= 3 and len(transports["bayonne"]) >= 3:
+            break
+except Exception as te:
+    import sys; print(f"Transport error: {te}", file=sys.stderr)
+
+print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date, "transports": transports},
                  ensure_ascii=False, indent=2))
