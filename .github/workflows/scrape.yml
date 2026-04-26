@@ -25,7 +25,9 @@ jobs:
           with open('output.json') as f:
               d = json.load(f)
           with open('data.json', 'w') as f:
-              json.dump(d['meteo'], f, ensure_ascii=False, indent=2)
+              meteo = d['meteo']
+              meteo['transports'] = d.get('transports', {})
+              json.dump(meteo, f, ensure_ascii=False, indent=2)
           with open('animations.json', 'w') as f:
               out = {'date': d.get('anim_date',''), 'items': d['animations']}
               json.dump(out, f, ensure_ascii=False, indent=2)
@@ -36,5 +38,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json animations.json
-          git diff --staged --quiet || git commit -m "chore: update meteo + animations $(date +%d/%m)"
+          git diff --staged --quiet || git commit -m "chore: update meteo+transport+animations $(date +%d/%m\ %H:%M)"
           git push
