@@ -280,14 +280,16 @@
         <div class="mcell mcell-hero">
           <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">${picto}</div>
           <div class="val-hero">${temp}°<span style="font-size:0.45em">C</span></div>
-          ${lbl('Air','Air','Aire')}
-          ${label?`<div class="badge-label">${label}</div>`:''}
+          <div class="mlbl" style="font-size:clamp(0.55rem,0.95vh,0.72rem);color:var(--white);text-transform:none;letter-spacing:0.02em">Air</div>
+          ${label?`<div class="mlbl" style="font-size:clamp(0.48rem,0.82vh,0.62rem);color:var(--gold)">${label}<span style="opacity:0.5"> · Overcast · Nublado</span></div>`:''}
         </div>
         <div class="mcell mcell-hero">
           <div style="font-size:clamp(1.6rem,3.2vh,2.6rem);line-height:1">🌡️</div>
-          <div class="val-hero ${tempEau==='NC'?'val-hero-nc':{}}">${tempEau==='NC'?'NC':tempEau+'°'}</div>
-          ${lbl('Eau','Water','Agua')}
-          ${tempEau==='NC'?`<div class="badge-label" style="opacity:0.5">Hors saison</div>`:''}
+          ${tempEau==='NC'
+            ? `<div class="val-hero val-hero-nc" style="font-size:clamp(0.9rem,1.6vh,1.2rem)">NC <span style="font-size:0.7em;opacity:0.7">hors saison</span></div>`
+            : `<div class="val-hero">${tempEau}°</div>`}
+          <div class="mlbl" style="font-size:clamp(0.55rem,0.95vh,0.72rem);color:var(--white);text-transform:none;letter-spacing:0.02em">Eau</div>
+          <div class="mlbl" style="font-size:clamp(0.48rem,0.82vh,0.62rem);color:var(--muted)">Water · Agua</div>
         </div>
       </div>
       <div class="drap-bloc" style="background:rgba(${drapBg},0.1);border-color:rgba(${drapBg},0.3)">
