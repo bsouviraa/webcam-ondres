@@ -353,15 +353,42 @@
         </div>
       </div>
       <div class="maree-section" style="flex:1.0 0 0">
-        <div class="sec-label">Marées · Tides · Mareas &nbsp;<span style="color:var(--muted);font-weight:300">coef. ${coef}</span></div>
-        <div class="maree-grid" style="flex:1 0 0">
-          ${marees.map(m=>`
-            <div class="maree-item ${m.type==='Haute'?'haute':''}">
-              <div><span style="font-size:0.75em;opacity:0.7">${m.type==='Haute'?'▲':'▼'}</span>
-              <span class="mtype">${m.type==='Haute'?'Haute · High':'Basse · Low'}</span></div>
-              <span class="mheure">${m.heure}</span>
-            </div>`).join('')}
+        <div class="sec-label" style="display:flex;justify-content:space-between;align-items:baseline">
+          <span>Marées · Tides · Mareas</span>
+          ${(d.maree_coef_am||d.maree_coef_pm) ? `<span style="font-weight:300;font-size:0.9em">
+            coef. AM <span style="color:var(--gold)">${d.maree_coef_am||'—'}</span>
+            / PM <span style="color:var(--gold)">${d.maree_coef_pm||'—'}</span>
+          </span>` : `<span style="color:var(--muted);font-weight:300;font-size:0.9em">coef. ${coef}</span>`}
         </div>
+        ${(()=>{
+          const W = 268, H = 70, n = marees.length;
+          if (!n) return '';
+          const pts = marees.map((m,i)=>({
+            x: Math.round(W*(i+0.5)/n),
+            y: m.type==='Haute' ? 10 : H-18,
+            m
+          }));
+          let path = \`M \${pts[0].x} \${pts[0].y}\`;
+          for(let i=0;i<pts.length-1;i++){
+            const cx=(pts[i].x+pts[i+1].x)/2;
+            path+=\` C \${cx} \${pts[i].y} \${cx} \${pts[i+1].y} \${pts[i+1].x} \${pts[i+1].y}\`;
+          }
+          const isHaute = t => t==='Haute';
+          const dots = pts.map(p=>\`<circle cx="\${p.x}" cy="\${p.y}" r="3.5" fill="\${isHaute(p.m.type)?'#4fc3f7':'rgba(242,237,230,0.4)'}" />\`).join('');
+          const labels = pts.map(p=>\`
+            <text x="\${p.x}" y="\${isHaute(p.m.type)?p.y-8:p.y+14}" text-anchor="middle"
+              font-family="DM Sans,sans-serif" font-size="8" fill="\${isHaute(p.m.type)?'#4fc3f7':'rgba(242,237,230,0.45)'}">
+              \${isHaute(p.m.type)?'Haute':'Basse'}
+            </text>
+            <text x="\${p.x}" y="\${isHaute(p.m.type)?p.y-18:p.y+24}" text-anchor="middle"
+              font-family="DM Sans,sans-serif" font-size="10" font-weight="300" fill="rgba(242,237,230,0.9)">
+              \${p.m.heure}
+            </text>\`).join('');
+          return \`<svg viewBox="0 0 \${W} \${H}" width="100%" style="overflow:visible;margin-top:0.2vh;display:block">
+            <path d="\${path}" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.45" stroke-linejoin="round"/>
+            \${dots}\${labels}
+          </svg>\`;
+        })()}
       </div>
       <div class="mrow" style="flex:0.44 0 0">
         <div class="mcell" style="flex-direction:row;gap:0.5rem;justify-content:center">
