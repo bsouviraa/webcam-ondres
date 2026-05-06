@@ -6,8 +6,8 @@
       "emoji": "🏄",
       "fr": "Cours de surf samedi",
       "lieu": "Beginner surf lessons",
-      "en": "Surf lesson on Saturday",
-      "es": "Clase de surf el sábado",
+      "en": "Surf lessons on Saturday",
+      "es": "Clases de surf el sábado",
       "lieu_en": "Beginner surf lessons",
       "lieu_es": "Clases de surf para principiantes"
     },
@@ -27,9 +27,9 @@
       "fr": "Tournoi de beach tennis",
       "lieu": "Beach tennis tournament",
       "en": "Beach tennis tournament",
-      "es": "Torneo de tenis playa",
+      "es": "Torneo de tenis de playa",
       "lieu_en": "Beach tennis tournament",
-      "lieu_es": "Torneo de tenis playa"
+      "lieu_es": "Torneo de tenis de playa"
     },
     {
       "heure": "17:00",
@@ -47,9 +47,9 @@
       "fr": "Soirée barbecue & musique live",
       "lieu": "BBQ evening & live music",
       "en": "BBQ evening & live music",
-      "es": "Velada de barbacoa y música en vivo",
+      "es": "Noche de barbacoa y música en vivo",
       "lieu_en": "BBQ evening & live music",
-      "lieu_es": "Velada de barbacoa y música en vivo"
+      "lieu_es": "Noche de barbacoa y música en vivo"
     }
   ]
 }
