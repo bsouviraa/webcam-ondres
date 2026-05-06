@@ -1,55 +1,15 @@
 {
-  "date": "06/05",
+  "date": "07/05",
   "items": [
     {
-      "heure": "10:00",
-      "emoji": "🏄",
-      "fr": "Cours de surf samedi",
-      "lieu": "Beginner surf lessons",
-      "en": "Surf lessons on Saturday",
-      "es": "Clases de surf el sábado",
-      "lieu_en": "Beginner surf lessons",
-      "lieu_es": "Clases de surf para principiantes"
-    },
-    {
-      "heure": "11:30",
+      "heure": "18:30",
       "emoji": "🧘",
-      "fr": "Yoga sur la plage",
-      "lieu": "Beach yoga session",
-      "en": "Yoga on the beach",
-      "es": "Yoga en la playa",
-      "lieu_en": "Beach yoga session",
-      "lieu_es": "Sesión de yoga en la playa"
-    },
-    {
-      "heure": "14:00",
-      "emoji": "🏓",
-      "fr": "Tournoi de beach tennis",
-      "lieu": "Beach tennis tournament",
-      "en": "Beach tennis tournament",
-      "es": "Torneo de tenis de playa",
-      "lieu_en": "Beach tennis tournament",
-      "lieu_es": "Torneo de tenis de playa"
-    },
-    {
-      "heure": "17:00",
-      "emoji": "🚴",
-      "fr": "Balade vélo forêt landaise",
-      "lieu": "Landes forest bike ride",
-      "en": "Bike ride in the Landes forest",
-      "es": "Paseo en bicicleta por el bosque de las Landas",
-      "lieu_en": "Landes forest bike ride",
-      "lieu_es": "Paseo en bicicleta por el bosque de las Landas"
-    },
-    {
-      "heure": "21:00",
-      "emoji": "🔥",
-      "fr": "Soirée barbecue & musique live",
-      "lieu": "BBQ evening & live music",
-      "en": "BBQ evening & live music",
-      "es": "Noche de barbacoa y música en vivo",
-      "lieu_en": "BBQ evening & live music",
-      "lieu_es": "Noche de barbacoa y música en vivo"
+      "fr": "Fitness Training",
+      "lieu": "Salle du Green Resort",
+      "en": "Fitness Training",
+      "es": "Entrenamiento de Fitness",
+      "lieu_en": "Green Resort Room",
+      "lieu_es": "Sala del Green Resort"
     }
   ]
 }
