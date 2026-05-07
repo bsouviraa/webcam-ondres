@@ -10,6 +10,16 @@
       "es": "Entrenamiento de Fitness",
       "lieu_en": "Green Resort Room",
       "lieu_es": "Sala del Green Resort"
+    },
+    {
+      "heure": "19:00",
+      "emoji": "🎵",
+      "fr": "Concert de Saxophone",
+      "lieu": "Restaurant Les Planches",
+      "en": "Saxophone Concert",
+      "es": "Concierto de Saxofón",
+      "lieu_en": "Les Planches Restaurant",
+      "lieu_es": "Restaurante Les Planches"
     }
   ]
 }
