@@ -1,5 +1,5 @@
 {
-  "date": "08/05",
+  "date": "09/05",
   "items": [
     {
       "heure": "18:00",
@@ -8,6 +8,16 @@
       "lieu": "Plateforme de yoga",
       "en": "Yoga in the forest",
       "es": "Yoga en el bosque",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "19:00",
+      "emoji": "🧘",
+      "fr": "Pilates en forêt",
+      "lieu": "Plateforme de yoga",
+      "en": "Pilates in the forest",
+      "es": "Pilates en el bosque",
       "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     }
