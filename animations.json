@@ -1,25 +1,4 @@
 {
-  "date": "09/05",
-  "items": [
-    {
-      "heure": "18:00",
-      "emoji": "🧘",
-      "fr": "Yoga en forêt",
-      "lieu": "Plateforme de yoga",
-      "en": "Yoga in the forest",
-      "es": "Yoga en el bosque",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "19:00",
-      "emoji": "🧘",
-      "fr": "Pilates en forêt",
-      "lieu": "Plateforme de yoga",
-      "en": "Pilates in the forest",
-      "es": "Pilates en el bosque",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    }
-  ]
+  "date": "10/05",
+  "items": []
 }
