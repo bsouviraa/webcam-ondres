@@ -1,13 +1,13 @@
 {
-  "updated": "2026-05-17T10:51",
+  "updated": "2026-05-17T12:00",
   "temp_air": "12",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "18",
-  "vent_deg": "272",
+  "vent_kmh": "15",
+  "vent_deg": "279",
   "vent_cardinal": "O",
-  "uv": "5.5",
+  "uv": "6.0",
   "uv_label": "Modere",
   "lever": "06:38",
   "coucher": "21:25",
@@ -40,12 +40,12 @@
     "bayonne": [
       "15:17",
       "17:17",
-      "18:17"
+      "20:54"
     ],
     "dax": [
-      "13:33",
-      "15:36",
-      "17:37"
+      "17:37",
+      "18:28",
+      "20:51"
     ]
   }
 }
