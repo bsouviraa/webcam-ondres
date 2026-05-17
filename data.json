@@ -1,18 +1,18 @@
 {
-  "updated": "2026-05-17T20:55",
+  "updated": "2026-05-17T21:58",
   "temp_air": "12",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Couvert",
+  "meteo_label": "Peu nuageux",
   "temp_eau": "NC",
-  "vent_kmh": "9",
-  "vent_deg": "291",
+  "vent_kmh": "11",
+  "vent_deg": "293",
   "vent_cardinal": "ONO",
   "uv": "6.2",
   "uv_label": "Eleve",
   "lever": "06:38",
   "coucher": "21:25",
   "houle_m": "0.96",
-  "houle_periode": "7.8",
+  "houle_periode": "8.2",
   "marees": [
     {
       "type": "Haute",
