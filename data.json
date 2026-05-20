@@ -1,18 +1,18 @@
 {
-  "updated": "2026-05-20T07:46",
+  "updated": "2026-05-20T10:52",
   "temp_air": "16",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Ciel degage",
+  "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "4",
-  "vent_deg": "355",
+  "vent_kmh": "13",
+  "vent_deg": "349",
   "vent_cardinal": "N",
-  "uv": "2.3",
-  "uv_label": "Faible",
+  "uv": "6.5",
+  "uv_label": "Eleve",
   "lever": "06:35",
   "coucher": "21:28",
-  "houle_m": "1.36",
-  "houle_periode": "9.8",
+  "houle_m": "1.54",
+  "houle_periode": "10.6",
   "marees": [
     {
       "type": "Basse",
@@ -38,9 +38,9 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "11:17",
       "13:17",
-      "17:17"
+      "17:17",
+      "17:43"
     ],
     "dax": [
       "14:37",
