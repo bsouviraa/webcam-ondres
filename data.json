@@ -1,34 +1,34 @@
 {
-  "updated": "2026-06-01T23:58",
+  "updated": "2026-06-02T04:53",
   "temp_air": "16",
   "meteo_picto": "sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "5",
-  "vent_deg": "270",
+  "vent_kmh": "18",
+  "vent_deg": "263",
   "vent_cardinal": "O",
-  "uv": "6.5",
-  "uv_label": "Eleve",
+  "uv": "0.1",
+  "uv_label": "Faible",
   "lever": "06:27",
   "coucher": "21:40",
-  "houle_m": "0.9",
-  "houle_periode": "8.8",
+  "houle_m": "0.88",
+  "houle_periode": "7.9",
   "marees": [
-    {
-      "type": "Haute",
-      "heure": "05h52"
-    },
-    {
-      "type": "Basse",
-      "heure": "11h53"
-    },
-    {
-      "type": "Haute",
-      "heure": "18h03"
-    },
     {
       "type": "Basse",
       "heure": "00h17"
+    },
+    {
+      "type": "Haute",
+      "heure": "06h25"
+    },
+    {
+      "type": "Basse",
+      "heure": "12h26"
+    },
+    {
+      "type": "Haute",
+      "heure": "18h38"
     }
   ],
   "maree_coef": "",
@@ -38,14 +38,14 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "06:15",
       "07:06",
-      "07:35"
+      "07:35",
+      "08:20"
     ],
     "dax": [
-      "06:05",
       "07:22",
-      "08:14"
+      "08:14",
+      "09:37"
     ]
   }
 }
