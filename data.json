@@ -1,18 +1,18 @@
 {
-  "updated": "2026-06-04T18:26",
+  "updated": "2026-06-04T20:33",
   "temp_air": "16",
   "meteo_picto": "sun",
   "meteo_label": "Peu nuageux",
   "temp_eau": "NC",
-  "vent_kmh": "21",
-  "vent_deg": "295",
+  "vent_kmh": "18",
+  "vent_deg": "291",
   "vent_cardinal": "ONO",
-  "uv": "0.3",
+  "uv": "1.0",
   "uv_label": "Faible",
   "lever": "06:26",
   "coucher": "21:42",
-  "houle_m": "2.32",
-  "houle_periode": "9.6",
+  "houle_m": "2.38",
+  "houle_periode": "9.8",
   "marees": [
     {
       "type": "Basse",
@@ -43,9 +43,9 @@
       "07:35"
     ],
     "dax": [
-      "20:56",
       "06:05",
-      "07:22"
+      "07:22",
+      "08:14"
     ]
   }
 }
