@@ -1,34 +1,34 @@
 {
-  "updated": "2026-06-10T23:11",
+  "updated": "2026-06-11T01:41",
   "temp_air": "16",
   "meteo_picto": "sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "9",
-  "vent_deg": "327",
-  "vent_cardinal": "NNO",
+  "vent_kmh": "3",
+  "vent_deg": "139",
+  "vent_cardinal": "SE",
   "uv": "7.5",
   "uv_label": "Eleve",
   "lever": "06:24",
   "coucher": "21:46",
-  "houle_m": "1.44",
+  "houle_m": "1.38",
   "houle_periode": "9.2",
   "marees": [
     {
       "type": "Haute",
-      "heure": "00h25"
+      "heure": "01h28"
     },
     {
       "type": "Basse",
-      "heure": "06h35"
+      "heure": "07h35"
     },
     {
       "type": "Haute",
-      "heure": "13h05"
+      "heure": "14h03"
     },
     {
       "type": "Basse",
-      "heure": "19h04"
+      "heure": "20h03"
     }
   ],
   "maree_coef": "",
