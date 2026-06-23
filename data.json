@@ -1,18 +1,18 @@
 {
-  "updated": "2026-06-23T22:18",
+  "updated": "2026-06-23T23:35",
   "temp_air": "16",
   "meteo_picto": "sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
-  "vent_kmh": "2",
-  "vent_deg": "256",
-  "vent_cardinal": "OSO",
+  "vent_kmh": "7",
+  "vent_deg": "131",
+  "vent_cardinal": "SE",
   "uv": "7.7",
   "uv_label": "Eleve",
   "lever": "06:25",
   "coucher": "21:51",
   "houle_m": "0.36",
-  "houle_periode": "7.7",
+  "houle_periode": "7.6",
   "marees": [
     {
       "type": "Basse",
