@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-03T18:39",
+  "updated": "2026-07-03T20:03",
   "temp_air": "16",
   "meteo_picto": "sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
-  "vent_kmh": "14",
-  "vent_deg": "320",
+  "vent_kmh": "11",
+  "vent_deg": "324",
   "vent_cardinal": "NO",
-  "uv": "0.8",
-  "uv_label": "Faible",
+  "uv": "5.3",
+  "uv_label": "Modere",
   "lever": "06:29",
   "coucher": "21:50",
-  "houle_m": "0.8",
-  "houle_periode": "7.3",
+  "houle_m": "0.82",
+  "houle_periode": "7.5",
   "marees": [
     {
       "type": "Basse",
@@ -43,9 +43,9 @@
       "14:16"
     ],
     "dax": [
-      "20:51",
       "08:14",
-      "09:37"
+      "09:37",
+      "14:37"
     ]
   }
 }
