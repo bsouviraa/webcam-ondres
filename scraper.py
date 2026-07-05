@@ -348,7 +348,17 @@ try:
     bus["ondres_bourg"]   = _next3(_bourg23 + _bourg29)
     bus["st_martin"]      = _next3(_stmartin29)
     bus["bayonne"]        = _next3(_bayonne23)
-    bus["fetes_bayonne"]  = _next3(_fetes_bayonne)
+    # Fêtes de Bayonne : uniquement pendant la période du calendrier NeTEx (ligne I)
+    try:
+        _cal = _zf.read('CA_PAYS_BASQUE_calendriers.xml').decode('utf-8', errors='ignore')
+        _per = re.findall(r'OperatingPeriod:I_FB[^"]*"[\s\S]{0,300}?<FromDate>(\d{4}-\d{2}-\d{2})[\s\S]{0,120}?<ToDate>(\d{4}-\d{2}-\d{2})', _cal)
+        _today = datetime.now(timezone(timedelta(hours=2))).strftime('%Y-%m-%d')
+        if not any(f <= _today <= t for f, t in _per):
+            _fetes_bayonne = []
+    except Exception as _fe:
+        import sys; print(f"Fetes cal error: {_fe}", file=sys.stderr)
+
+    bus["fetes_bayonne"]  = _next3(_fetes_bayonne) if _fetes_bayonne else []
 
 except Exception as _be:
     import sys; print(f"Bus error: {_be}", file=sys.stderr)
