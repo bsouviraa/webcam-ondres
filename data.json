@@ -1,11 +1,11 @@
 {
-  "updated": "2026-07-05T19:36",
+  "updated": "2026-07-05T19:43",
   "temp_air": "18",
   "meteo_picto": "sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "22",
   "vent_kmh": "11",
-  "vent_deg": "12",
+  "vent_deg": "15",
   "vent_cardinal": "NNE",
   "uv": "0.1",
   "uv_label": "Faible",
@@ -46,6 +46,18 @@
       "21:52",
       "06:05",
       "07:22"
+    ]
+  },
+  "bus": {
+    "plage": [
+      "22:00",
+      "22:20",
+      "22:40"
+    ],
+    "bayonne": [
+      "21:50",
+      "22:10",
+      "22:30"
     ]
   }
 }
