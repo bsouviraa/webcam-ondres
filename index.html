@@ -884,13 +884,14 @@
     if (!bloc) return;
     if (!show) { bloc.innerHTML = ''; return; }
     const couleur = d.drapeau;
-    const emoji   = couleur==='vert' ? '🟢' : couleur==='rouge' ? '🔴' : '🟡';
-    const labelFR = couleur==='rouge' ? 'Baignade interdite' : 'Surveillée 11h-19h';
-    const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised 11am-7pm';
-    const labelES = couleur==='rouge' ? 'Baño prohibido'      : 'Vigilado 11h-19h';
-    bloc.innerHTML = '<div class="drap-bloc">'
-      + '<span style="font-size:1.4rem">' + emoji + '</span>'
-      + '<div><div style="font-size:10px;font-weight:600;color:var(--white)">' + labelFR + '</div>'
+    const emoji   = couleur==='vert' ? '🏳️' : couleur==='rouge' ? '🚩' : '🚩';
+    const flagColor = couleur==='vert' ? '#4caf50' : couleur==='rouge' ? '#f44336' : '#f5c842';
+    const labelFR = couleur==='rouge' ? 'Baignade interdite'  : couleur==='vert' ? 'Baignade surveillée' : 'Baignade surveillée';
+    const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised swimming';
+    const labelES = couleur==='rouge' ? 'Baño prohibido'      : 'Baño vigilado';
+    bloc.innerHTML = '<div class="drap-bloc" style="border-color:' + flagColor + '33;background:' + flagColor + '11">'
+      + '<span style="font-size:1.5rem;filter:drop-shadow(0 0 4px ' + flagColor + ')">' + emoji + '</span>'
+      + '<div><div style="font-size:10px;font-weight:600;color:' + flagColor + '">' + labelFR + '</div>'
       + '<div style="font-size:7.7px;color:var(--muted)">' + labelEN + ' · ' + labelES + '</div></div>'
       + '</div>';
   }
@@ -918,7 +919,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:12</div>
+  <div class="version-badge">màj 22:13</div>
 </body>
 </html>      <div id="drap-bloc-container"></div>ml>
 <html lang="fr">
@@ -1812,13 +1813,14 @@
     if (!bloc) return;
     if (!show) { bloc.innerHTML = ''; return; }
     const couleur = d.drapeau;
-    const emoji   = couleur==='vert' ? '🟢' : couleur==='rouge' ? '🔴' : '🟡';
-    const labelFR = couleur==='rouge' ? 'Baignade interdite' : 'Surveillée 11h-19h';
-    const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised 11am-7pm';
-    const labelES = couleur==='rouge' ? 'Baño prohibido'      : 'Vigilado 11h-19h';
-    bloc.innerHTML = '<div class="drap-bloc">'
-      + '<span style="font-size:1.4rem">' + emoji + '</span>'
-      + '<div><div style="font-size:10px;font-weight:600;color:var(--white)">' + labelFR + '</div>'
+    const emoji   = couleur==='vert' ? '🏳️' : couleur==='rouge' ? '🚩' : '🚩';
+    const flagColor = couleur==='vert' ? '#4caf50' : couleur==='rouge' ? '#f44336' : '#f5c842';
+    const labelFR = couleur==='rouge' ? 'Baignade interdite'  : couleur==='vert' ? 'Baignade surveillée' : 'Baignade surveillée';
+    const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised swimming';
+    const labelES = couleur==='rouge' ? 'Baño prohibido'      : 'Baño vigilado';
+    bloc.innerHTML = '<div class="drap-bloc" style="border-color:' + flagColor + '33;background:' + flagColor + '11">'
+      + '<span style="font-size:1.5rem;filter:drop-shadow(0 0 4px ' + flagColor + ')">' + emoji + '</span>'
+      + '<div><div style="font-size:10px;font-weight:600;color:' + flagColor + '">' + labelFR + '</div>'
       + '<div style="font-size:7.7px;color:var(--muted)">' + labelEN + ' · ' + labelES + '</div></div>'
       + '</div>';
   }
@@ -1846,6 +1848,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:12</div>
+  <div class="version-badge">màj 22:13</div>
 </body>
 </html>
