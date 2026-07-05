@@ -930,11 +930,22 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:45</div>
+  <div class="version-badge">màj 21:50</div>
 </body>
 </html>      ${(()=>{
-        // DEBUG : pas de filtre horaire — afficher si plages-landes dit surveillance_h=true
-        const enSurveillance = d.drapeau;
+        // Drapeau dynamique depuis Meilisearch (mis à jour toutes les 15min)
+        // Affiché uniquement pendant les périodes de surveillance Ondres 2026
+        const _n  = parisnow();
+        const _h  = _n.getHours();
+        const _mo = _n.getMonth() + 1;   // 1-12
+        const _da = _n.getDate();
+        // Période : 01/07-31/08 OU 01/09-13/09
+        const _periode = (_mo === 7) || (_mo === 8)
+                      || (_mo === 9 && _da <= 13);
+        // Horaire : 11h00-18h59
+        const _horaire = _h >= 11 && _h < 19;
+        // Couleur live depuis Meilisearch — si vide/nc → pas de drapeau
+        const enSurveillance = _periode && _horaire && d.drapeau && d.drapeau !== 'nc';
         if (!enSurveillance) return '';
         const couleur = d.drapeau || 'jaune';
         const emoji   = couleur === 'vert' ? '🟢' : couleur === 'rouge' ? '🔴' : '🟡';
@@ -1880,6 +1891,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:45</div>
+  <div class="version-badge">màj 21:50</div>
 </body>
 </html>
