@@ -1,12 +1,12 @@
 {
-  "updated": "2026-07-05T20:15",
-  "temp_air": "18",
+  "updated": "2026-07-05T20:18",
+  "temp_air": "24",
   "meteo_picto": "sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "22",
-  "vent_kmh": "6",
-  "vent_deg": "183",
-  "vent_cardinal": "S",
+  "vent_kmh": "7",
+  "vent_deg": "250",
+  "vent_cardinal": "OSO",
   "uv": "7.5",
   "uv_label": "Eleve",
   "lever": "06:30",
@@ -31,9 +31,9 @@
       "heure": "20h56"
     }
   ],
-  "maree_coef": "68",
+  "maree_coef": "68 / 66",
   "maree_coef_am": "68",
-  "maree_coef_pm": "",
+  "maree_coef_pm": "66",
   "drapeau": "jaune",
   "surv_label": "Baignade non surveillee",
   "transports": {
@@ -56,9 +56,8 @@
       "23:46"
     ],
     "st_martin": [
-      "22:46",
-      "23:14",
-      "23:46"
+      "23:02",
+      "23:15"
     ],
     "bayonne": [],
     "fetes_bayonne": [
