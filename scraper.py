@@ -55,10 +55,10 @@ def translate_batch(texts, anthropic_key):
 # ── 1. Météo ──────────────────────────────────────────────────────────────────
 ms = json.loads(urllib.request.urlopen(
     urllib.request.Request(
-        "https://meiliprod111.apsulis.fr/indexes/pdl-fr/search",
+        "https://meiliprod144.apsulis.fr/indexes/pdl-prod-fr/search",
         data=json.dumps({"q": "Ondres", "limit": 5}).encode(),
         headers={
-            "Authorization": "Bearer a1608a72d5e5343758e2636b1a48bc94c96cb40d57327c03fe54bcdb4a4c4490",
+            "Authorization": "Bearer cfd3463ba673bbd7fae56e71b74cd067d671ab37ef188fb62e5c7b35c698b9f6",
             "Content-Type": "application/json"
         },
         method="POST"
