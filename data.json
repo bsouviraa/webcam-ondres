@@ -1,12 +1,12 @@
 {
-  "updated": "2026-07-05T20:11",
-  "temp_air": "24",
+  "updated": "2026-07-05T20:15",
+  "temp_air": "18",
   "meteo_picto": "sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "22",
-  "vent_kmh": "7",
-  "vent_deg": "250",
-  "vent_cardinal": "OSO",
+  "vent_kmh": "6",
+  "vent_deg": "183",
+  "vent_cardinal": "S",
   "uv": "7.5",
   "uv_label": "Eleve",
   "lever": "06:30",
@@ -56,9 +56,9 @@
       "23:46"
     ],
     "st_martin": [
-      "22:14",
       "22:46",
-      "23:14"
+      "23:14",
+      "23:46"
     ],
     "bayonne": [],
     "fetes_bayonne": [
