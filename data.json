@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-05T22:40",
-  "temp_air": "22",
+  "updated": "2026-07-05T23:45",
+  "temp_air": "20",
   "meteo_picto": "sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "22",
@@ -11,7 +11,7 @@
   "uv_label": "Eleve",
   "lever": "06:31",
   "coucher": "21:49",
-  "houle_m": "0.84",
+  "houle_m": "0.82",
   "houle_periode": "7.1",
   "marees": [
     {
