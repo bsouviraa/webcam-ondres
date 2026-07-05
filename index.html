@@ -45,14 +45,7 @@
     .meteo-body { flex:1 1 0; min-height:0; padding:0.3vh 0.65rem; display:flex; flex-direction:column; gap:0.25vh; overflow:hidden; justify-content:flex-start; }
 
     /* Cellules */
-    .mcell { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:8px; padding:0.4vh 0.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.15vh; text-align:center; flex:1 1 0; min-height:0; }
-    .mcell .icon  { font-size:clamp(0.8rem,1.5vh,1.2rem); line-height:1; }
-    .mcell .val   { font-family:'DM Sans',sans-serif; font-size:clamp(1rem,1.9vh,1.5rem); font-weight:200; color:var(--white); line-height:1; }
-    .mcell .val-sm{ font-family:'DM Sans',sans-serif; font-size:clamp(0.72rem,1.25vh,0.95rem); font-weight:300; color:var(--white); line-height:1; }
-    .mcell .val-xs{ font-family:'DM Sans',sans-serif; font-size:clamp(0.65rem,1.1vh,0.82rem); font-weight:300; color:var(--gold); line-height:1; }
-    .mcell .lbl   { font-size:clamp(0.44rem,0.78vh,0.58rem); letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); line-height:1; }
-    .mcell .sub   { font-size:clamp(0.48rem,0.82vh,0.62rem); color:var(--gold); }
-    .mcell .sub-colored { font-size:clamp(0.48rem,0.82vh,0.62rem); font-weight:500; }
+
 
     /* Val hero (températures) */
     .mcell-hero { flex:1 1 0; }
@@ -89,7 +82,7 @@
     .tri-sep{ color:var(--border); font-size:0.8em; }
 
     /* Cellules coef/vent/houle */
-    .mcell { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25vh; padding:0.25vh 0.2rem; min-width:0; }
+    .mcell { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.3vh; padding:0.35vh 0.2rem; min-width:0; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:8px; }
     .mcell-label { font-size:9px; color:var(--gold); font-weight:500; letter-spacing:0.09em; text-transform:uppercase; white-space:nowrap; }
     .mcell-val { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:200; color:var(--white); line-height:1; white-space:nowrap; }
     .mcell-unit { font-size:0.55em; opacity:0.65; }
@@ -559,18 +552,18 @@
         </div>
         ${buildTideSVG(marees)}
       </div>
-      <div class="mrow" style="flex:0 0 70px;display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:0">
+      <div class="mrow" style="flex:0 0 70px;display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:0.3rem">
         <div class="mcell">
           <div class="mcell-label">Coef</div>
           <div class="mcell-val" style="color:var(--gold)">${d.maree_coef_am||'—'}<span class="mcell-sep"> · </span>${d.maree_coef_pm||'—'}</div>
           <div class="mcell-sub">AM · PM</div>
         </div>
-        <div class="mcell" style="border-left:1px solid var(--border)">
+        <div class="mcell">
           <div class="mcell-label">Vent · Wind</div>
           <div class="mcell-val"><span style="display:inline-block;transform:rotate(${(ventDeg+180)%360}deg);font-size:0.8em">↑</span> ${vent}<span class="mcell-unit"> km/h</span></div>
           <div class="mcell-sub">${ventCard}</div>
         </div>
-        <div class="mcell" style="border-left:1px solid var(--border)">
+        <div class="mcell">
           <div class="mcell-label">Houle · Swell</div>
           <div class="mcell-val">${houle||'—'}<span class="mcell-unit"> m</span></div>
           <div class="mcell-sub">${houle ? d.houle_periode + 's période' : '—'}</div>
@@ -916,6 +909,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:30</div>
+  <div class="version-badge">màj 22:37</div>
 </body>
 </html>
