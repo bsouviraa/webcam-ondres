@@ -89,9 +89,9 @@
     .tri-sep{ color:var(--border); font-size:0.8em; }
 
     /* Cellules coef/vent/houle */
-    .mcell { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.4vh; padding:0.4vh 0.2rem; min-width:0; }
-    .mcell-label { font-size:10px; color:var(--gold); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; white-space:nowrap; }
-    .mcell-val { font-family:'DM Sans',sans-serif; font-size:17px; font-weight:200; color:var(--white); line-height:1; white-space:nowrap; }
+    .mcell { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.25vh; padding:0.25vh 0.2rem; min-width:0; }
+    .mcell-label { font-size:9px; color:var(--gold); font-weight:500; letter-spacing:0.09em; text-transform:uppercase; white-space:nowrap; }
+    .mcell-val { font-family:'DM Sans',sans-serif; font-size:15px; font-weight:200; color:var(--white); line-height:1; white-space:nowrap; }
     .mcell-unit { font-size:0.55em; opacity:0.65; }
     .mcell-sub { font-size:7.7px; color:var(--muted); white-space:nowrap; }
     .mcell-sep { color:var(--muted); opacity:0.5; }
@@ -100,7 +100,7 @@
     .transport-section  { flex:0 0 auto; border:1px solid var(--border); border-radius:8px; padding:0.5vh 0; margin-top:0; }
     .transport-sec-label{ font-family:'DM Sans',sans-serif; font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:0.25vh; display:block; }
     .transport-wip      { display:inline; font-size:11px; color:var(--gold); letter-spacing:0.04em; font-weight:500; opacity:0.85; text-transform:none; }
-    .transport-row      { display:flex; align-items:center; gap:0.4rem; padding:0.25vh 0.3rem; border-bottom:1px solid rgba(255,255,255,0.04); font-size:11px; min-height:1.8rem; }
+    .transport-row      { display:flex; align-items:center; gap:0.4rem; padding:0.15vh 0.3rem; border-bottom:1px solid rgba(255,255,255,0.04); font-size:11px; min-height:1.45rem; }
     .transport-row:last-child { border-bottom:none; }
     .transport-icon { font-size:12px; flex-shrink:0; }
     .transport-name { color:var(--white); font-weight:500; flex-shrink:0; width:5.8rem; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -559,7 +559,7 @@
         </div>
         ${buildTideSVG(marees)}
       </div>
-      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:0">
+      <div class="mrow" style="flex:0 0 70px;display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:0">
         <div class="mcell">
           <div class="mcell-label">Coef</div>
           <div class="mcell-val" style="color:var(--gold)">${d.maree_coef_am||'—'}<span class="mcell-sep"> · </span>${d.maree_coef_pm||'—'}</div>
@@ -916,6 +916,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:26</div>
+  <div class="version-badge">màj 22:29</div>
 </body>
 </html>
