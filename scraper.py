@@ -105,7 +105,7 @@ try:
     marees_raw = list(re.finditer(r"(Haute|Basse)</span>\s*<span[^>]*>(\d{2}h\d{2})</span>", html_page))
     if marees_raw:
         marees = [{"type": m.group(1), "heure": m.group(2)} for m in marees_raw[:4]]
-    coef_m = re.search(r"COEF\.?&nbsp;[\s\S]{0,30}?([\d]+\s*/\s*[\d]+)", html_page, re.I)
+    coef_m = re.search(r"COEF[^<]{0,5}&nbsp;[\s\S]{0,50}?(\d+)\s*/\s*(\d+)", html_page, re.I)
     if coef_m:
         coef_raw = coef_m.group(1).strip()
         coef_parts = re.findall(r"\d+", coef_raw)
