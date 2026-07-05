@@ -132,12 +132,21 @@ cur = om["current"]; daily = om["daily"]
 uv_val = cur["uv_index"]; uv_max = daily["uv_index_max"][0]
 uv_display = uv_max if uv_val == 0 else uv_val
 
-# ── METAR LFBZ — température air + vent live ─────────────────────────────────
+# ── METAR LFBZ — température air + vent live (2 tentatives + secours NOAA) ───
 metar_temp = ""
 metar_vent_kmh = ""
 metar_vent_deg = ""
 try:
-    metar_data = json.loads(fetch("https://aviationweather.gov/api/data/metar?ids=LFBZ&format=json"))
+    metar_data = None
+    for _att in range(2):
+        try:
+            _mreq = urllib.request.Request(
+                "https://aviationweather.gov/api/data/metar?ids=LFBZ&format=json",
+                headers={"User-Agent": "Mozilla/5.0"})
+            metar_data = json.loads(urllib.request.urlopen(_mreq, timeout=30).read())
+            break
+        except Exception:
+            metar_data = None
     if metar_data and isinstance(metar_data, list):
         m = metar_data[0]
         if m.get("temp") is not None:
@@ -146,12 +155,24 @@ try:
             metar_vent_kmh = str(int(round(m["wspd"] * 1.852)))  # noeuds → km/h
         if m.get("wdir") is not None:
             metar_vent_deg = str(int(m["wdir"]))
+    if not metar_temp:
+        # Secours : METAR brut NOAA (ex: "LFBZ 052030Z AUTO 24004KT CAVOK 23/18 Q1021")
+        _raw = urllib.request.urlopen(urllib.request.Request(
+            "https://tgftp.nws.noaa.gov/data/observations/metar/stations/LFBZ.TXT",
+            headers={"User-Agent": "Mozilla/5.0"}), timeout=20).read().decode("utf-8", errors="ignore")
+        _t = re.search(r"\s(M?\d{2})/(M?\d{2})\b", _raw)
+        if _t:
+            metar_temp = str(int(_t.group(1).replace("M", "-")))
+        _w = re.search(r"\s(\d{3})(\d{2,3})KT", _raw)
+        if _w:
+            metar_vent_deg = str(int(_w.group(1)))
+            metar_vent_kmh = str(int(round(int(_w.group(2)) * 1.852)))
 except Exception as _me:
     import sys; print(f"METAR error: {_me}", file=sys.stderr)
 
 meteo = {
     "updated":       datetime.now().strftime("%Y-%m-%dT%H:%M"),
-    "temp_air":      metar_temp or commune.get("meteo_temp_air") or str(round(cur["temperature_2m"])),
+    "temp_air":      metar_temp or str(round(cur["temperature_2m"])),
     "meteo_picto":   commune.get("meteo_picto", ""),
     "meteo_label":   WMO.get(cur["weather_code"], ""),
     "temp_eau":      str(plage.get("temp_eau", "NC")) if plage.get("temp_eau") else "NC",
