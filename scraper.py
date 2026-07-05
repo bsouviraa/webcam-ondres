@@ -134,7 +134,7 @@ cur = om["current"]; daily = om["daily"]
 uv_val = cur["uv_index"]; uv_max = daily["uv_index_max"][0]
 uv_display = uv_max if uv_val == 0 else uv_val
 
-meteo = # ── METAR LFBZ — température air live ────────────────────────────────────────
+# ── METAR LFBZ — température air live ────────────────────────────────────────
 metar_temp = ""
 try:
     metar_data = json.loads(fetch("https://aviationweather.gov/api/data/metar?ids=LFBZ&format=json"))
@@ -143,7 +143,7 @@ try:
 except Exception as _me:
     import sys; print(f"METAR error: {_me}", file=sys.stderr)
 
-{
+meteo = {
     "updated":       datetime.now().strftime("%Y-%m-%dT%H:%M"),
     "temp_air":      metar_temp or commune.get("meteo_temp_air") or str(round(cur["temperature_2m"])),
     "meteo_picto":   commune.get("meteo_picto", ""),
