@@ -134,9 +134,18 @@ cur = om["current"]; daily = om["daily"]
 uv_val = cur["uv_index"]; uv_max = daily["uv_index_max"][0]
 uv_display = uv_max if uv_val == 0 else uv_val
 
-meteo = {
+meteo = # ── METAR LFBZ — température air live ────────────────────────────────────────
+metar_temp = ""
+try:
+    metar_data = json.loads(fetch("https://aviationweather.gov/api/data/metar?ids=LFBZ&format=json"))
+    if metar_data and isinstance(metar_data, list) and metar_data[0].get("temp") is not None:
+        metar_temp = str(int(round(metar_data[0]["temp"])))
+except Exception as _me:
+    import sys; print(f"METAR error: {_me}", file=sys.stderr)
+
+{
     "updated":       datetime.now().strftime("%Y-%m-%dT%H:%M"),
-    "temp_air":      commune.get("meteo_temp_air") or str(round(cur["temperature_2m"])),
+    "temp_air":      metar_temp or commune.get("meteo_temp_air") or str(round(cur["temperature_2m"])),
     "meteo_picto":   commune.get("meteo_picto", ""),
     "meteo_label":   WMO.get(cur["weather_code"], ""),
     "temp_eau":      str(plage.get("temp_eau", "NC")) if plage.get("temp_eau") else "NC",
