@@ -259,5 +259,30 @@ try:
 except Exception as te:
     import sys; print(f"Transport error: {te}", file=sys.stderr)
 
-print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date, "transports": transports},
+
+# ── 5. Bus Txik Txak (ligne I : Bayonne ↔ Dous Maynades) ─────────────────────
+bus = {"plage": [], "bayonne": []}
+try:
+    import zipfile, io as _io
+    _gtfs_url = "https://www.data.gouv.fr/api/1/datasets/r/011b5a77-604b-4e12-bf8a-c944164acdd6"
+    _gtfs_data = urllib.request.urlopen(
+        urllib.request.Request(_gtfs_url, headers={"User-Agent": "Mozilla/5.0"}), timeout=20
+    ).read()
+    _zf = zipfile.ZipFile(_io.BytesIO(_gtfs_data))
+    _xml = _zf.read('CA_PAYS_BASQUE_offre_Bus_TXIKTXAK_I_I.xml').decode('utf-8', errors='ignore')
+    _journeys = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>', _xml)
+    _plage_j   = [j for j in _journeys if 'C90F174F70B5ACEEB59693D31583E090' in j]
+    _bayonne_j = [j for j in _journeys if '124262F8A44A0503333643937617DA58' in j]
+    def _first_t(j):
+        t = re.search(r'<DepartureTime>(\d{2}:\d{2}:\d{2})</DepartureTime>', j)
+        return t.group(1)[:5] if t else None
+    _now_hhmm = datetime.now(timezone(timedelta(hours=2))).strftime('%H:%M')
+    _plage_all   = sorted(set(filter(None, [_first_t(j) for j in _plage_j])))
+    _bayonne_all = sorted(set(filter(None, [_first_t(j) for j in _bayonne_j])))
+    bus["plage"]   = [t for t in _plage_all   if t >= _now_hhmm][:3]
+    bus["bayonne"] = [t for t in _bayonne_all if t >= _now_hhmm][:3]
+except Exception as _be:
+    import sys; print(f"Bus error: {_be}", file=sys.stderr)
+
+print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date, "transports": transports, "bus": bus},
                  ensure_ascii=False, indent=2))
