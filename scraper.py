@@ -137,7 +137,7 @@ meteo = {
     "temp_air":      commune.get("meteo_temp_air") or str(round(cur["temperature_2m"])),
     "meteo_picto":   commune.get("meteo_picto", ""),
     "meteo_label":   WMO.get(cur["weather_code"], ""),
-    "temp_eau":      plage.get("temp_eau", "NC"),
+    "temp_eau":      str(plage.get("temp_eau", "NC")) if plage.get("temp_eau") else "NC",
     "vent_kmh":      str(round(cur["wind_speed_10m"])),
     "vent_deg":      str(round(cur["wind_direction_10m"])),
     "vent_cardinal": deg_to_cardinal(round(cur["wind_direction_10m"])),
