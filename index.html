@@ -558,55 +558,49 @@
         </div>
         ${buildTideSVG(marees)}
       </div>
-      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;width:100%;gap:0">
+      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:0">
 
-        <!-- Ligne 1 : icônes / labels -->
-        <div style="text-align:center;padding:0.3vh 0 0.1vh">
-          <div style="font-size:10px;color:var(--gold);font-weight:500;letter-spacing:0.08em;text-transform:uppercase">Coef</div>
-        </div>
-        <div style="text-align:center;padding:0.3vh 0 0.1vh">
-          <div style="display:inline-flex;align-items:center;gap:0.3rem">
-            <span style="font-size:clamp(1rem,1.8vh,1.4rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1">↑</span>
-            <span style="font-size:10px;color:var(--white);font-weight:500">${vent} <span style="font-size:0.8em;opacity:0.7">km/h</span></span>
-          </div>
-        </div>
-        <div style="text-align:center;padding:0.3vh 0 0.1vh">
-          ${houle
-            ? `<div style="display:inline-flex;align-items:center;gap:0.3rem">
-                <span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌊</span>
-                <span style="font-size:10px;color:var(--white);font-weight:500">${houle} <span style="font-size:0.8em;opacity:0.7">m</span></span>
-               </div>`
-            : '<span style="font-size:clamp(0.9rem,1.5vh,1.2rem);opacity:0.2">🌊</span>'}
-        </div>
-
-        <!-- Ligne 2 : valeurs / trads -->
-        <div style="text-align:center;padding:0.1vh 0 0.3vh">
-          <div style="display:inline-flex;align-items:baseline;gap:0.5rem">
-            <div>
-              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em">AM</div>
+        <!-- COEF -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3vh;padding:0 0.3rem">
+          <div style="font-size:clamp(0.65rem,1.19vh,0.86rem);letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:500">Coef</div>
+          <div style="display:flex;gap:1rem;align-items:flex-end">
+            <div style="text-align:center">
+              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase">AM</div>
               <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_am||'—'}</div>
             </div>
-            <div style="color:var(--border);font-size:12px">·</div>
-            <div>
-              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em">PM</div>
+            <div style="text-align:center">
+              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase">PM</div>
               <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_pm||'—'}</div>
             </div>
           </div>
         </div>
-        <div style="text-align:center;padding:0.1vh 0 0.3vh">
-          <div style="font-size:10px;color:var(--white)">Vent</div>
-          <div style="font-size:7.7px;color:var(--muted)">${ventCard} · Wind</div>
+
+        <!-- VENT -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3vh;border-left:1px solid var(--border)">
+          <div style="display:flex;align-items:center;gap:0.4rem">
+            <span style="font-size:1.3rem;transform:rotate(${(ventDeg+180)%360}deg);display:inline-block;line-height:1;transition:transform 0.5s">↑</span>
+            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${vent}<span style="font-size:0.55em;opacity:0.7"> km/h</span></div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--white);text-align:center">Vent</div>
+            <div style="font-size:7.7px;color:var(--muted);text-align:center">${ventCard} · Wind</div>
+          </div>
         </div>
-        <div style="text-align:center;padding:0.1vh 0 0.3vh">
-          ${houle
-            ? `<div style="font-size:10px;color:var(--white)">Houle</div>
-               <div style="font-size:7.7px;color:var(--muted)">${d.houle_periode}s · Swell</div>`
-            : ''}
+
+        <!-- HOULE -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3vh;border-left:1px solid var(--border)">
+          ${houle ? `
+          <div style="display:flex;align-items:center;gap:0.4rem">
+            <span style="font-size:1.2rem;line-height:1">🌊</span>
+            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${houle}<span style="font-size:0.55em;opacity:0.7"> m</span></div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--white);text-align:center">Houle</div>
+            <div style="font-size:7.7px;color:var(--muted);text-align:center">${d.houle_periode}s · Swell</div>
+          </div>` : '<span style="font-size:2rem;opacity:0.15">🌊</span>'}
         </div>
 
-      </div>
-
-
+      
       <div class="transport-section">
         <div class="transport-sec-label">Prochains 🚆</div>
         ${(()=>{
@@ -919,7 +913,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:00</div>
+  <div class="version-badge">màj 22:03</div>
 </body>
 </html>      <div id="drap-bloc-container"></div>ml>
 <html lang="fr">
@@ -1842,6 +1836,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:00</div>
+  <div class="version-badge">màj 22:03</div>
 </body>
 </html>
