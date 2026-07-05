@@ -115,10 +115,12 @@ try:
 except Exception as _e:
     import sys; print(f"Plages-landes error (coefs conservés): {_e}", file=sys.stderr)
 
-if plage.get("drapeau_vert"):    drapeau = "vert"
-elif plage.get("drapeau_jaune"): drapeau = "jaune"
-elif plage.get("drapeau_rouge"): drapeau = "rouge"
-else:                            drapeau = "nc"
+_drap = plage.get("drapeau", "")
+if _drap in ("vert", "jaune", "rouge"):  drapeau = _drap
+elif plage.get("drapeau_vert"):          drapeau = "vert"
+elif plage.get("drapeau_jaune"):         drapeau = "jaune"
+elif plage.get("drapeau_rouge"):         drapeau = "rouge"
+else:                                    drapeau = "nc"
 
 surv_label = "Baignade non surveillee"
 surv_h = plage.get("surveillance_h", {})
