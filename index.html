@@ -893,6 +893,926 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 15:46</div>
+  <div class="version-badge">màj 21:28</div>
+</body>
+</html>      ${(()=>{
+        // Afficher le drapeau SEULEMENT pendant les horaires de surveillance (10h-20h)
+        const nowH = parisnow().getHours();
+        const enSurveillance = d.surveillance_h && nowH >= 10 && nowH < 20;
+        if (!enSurveillance) return '';
+        const couleur = d.drapeau || 'jaune';
+        const emoji   = couleur === 'vert' ? '🟢' : couleur === 'rouge' ? '🔴' : '🟡';
+        const labelFR = couleur === 'vert'  ? 'Baignade surveillée'
+                      : couleur === 'rouge' ? 'Baignade interdite'
+                      : 'Baignade surveillée';
+        const labelEN = couleur === 'vert'  ? 'Supervised swimming'
+                      : couleur === 'rouge' ? 'Swimming prohibited'
+                      : 'Supervised swimming';
+        const labelES = couleur === 'vert'  ? 'Baño vigilado'
+                      : couleur === 'rouge' ? 'Baño prohibido'
+                      : 'Baño vigilado';
+        return \`<div class="drap-bloc">
+          <span style="font-size:1.4rem">\${emoji}</span>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--white)">\${labelFR}</div>
+            <div style="font-size:7.7px;color:var(--muted)">\${labelEN} · \${labelES}</div>
+          </div>
+        </div>\`;
+      })()}ml>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plage d'Ondres — Green Resort</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f1013; --card: #1a1c20;
+      --border: rgba(255,255,255,0.08);
+      --gold: #bf9958; --muted: rgba(242,237,230,0.4); --white: #f2ede6;
+    }
+    html, body { height:100%; width:100%; background:var(--bg); color:var(--white); font-family:'DM Sans',sans-serif; overflow:hidden; }
+    .version-badge {
+      position: fixed;
+      bottom: 4px;
+      right: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+      z-index: 9999;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── LAYOUT ── */
+    .stage { display:flex; height:100vh; width:100%; overflow:hidden; }
+
+    /* ── COL MÉTÉO ── */
+    .col-meteo { width:300px; flex-shrink:0; display:flex; flex-direction:column; border-right:1px solid var(--border); height:100vh; overflow:hidden; }
+
+    /* Logo */
+    .meteo-logo { display:flex; align-items:center; justify-content:center; padding:0; border-bottom:1px solid var(--border); flex-shrink:0; background:var(--card); }
+    .meteo-logo img { width:100%; height:auto; display:block; object-fit:contain; }
+
+    /* Header météo */
+    .meteo-head { padding:0.7vh 1rem; border-bottom:1px solid var(--border); font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; flex-shrink:0; }
+
+    /* Body météo */
+    .meteo-body { flex:1 1 0; min-height:0; padding:0.3vh 0.65rem; display:flex; flex-direction:column; gap:0.25vh; overflow:hidden; justify-content:flex-start; }
+
+    /* Cellules */
+    .mcell { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:8px; padding:0.4vh 0.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.15vh; text-align:center; flex:1 1 0; min-height:0; }
+    .mcell .icon  { font-size:clamp(0.8rem,1.5vh,1.2rem); line-height:1; }
+    .mcell .val   { font-family:'DM Sans',sans-serif; font-size:clamp(1rem,1.9vh,1.5rem); font-weight:200; color:var(--white); line-height:1; }
+    .mcell .val-sm{ font-family:'DM Sans',sans-serif; font-size:clamp(0.72rem,1.25vh,0.95rem); font-weight:300; color:var(--white); line-height:1; }
+    .mcell .val-xs{ font-family:'DM Sans',sans-serif; font-size:clamp(0.65rem,1.1vh,0.82rem); font-weight:300; color:var(--gold); line-height:1; }
+    .mcell .lbl   { font-size:clamp(0.44rem,0.78vh,0.58rem); letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); line-height:1; }
+    .mcell .sub   { font-size:clamp(0.48rem,0.82vh,0.62rem); color:var(--gold); }
+    .mcell .sub-colored { font-size:clamp(0.48rem,0.82vh,0.62rem); font-weight:500; }
+
+    /* Val hero (températures) */
+    .mcell-hero { flex:1 1 0; }
+    .val-hero    { font-family:'DM Sans',sans-serif; font-size:clamp(1rem,1.9vh,1.5rem); font-weight:200; color:var(--white); line-height:1; }
+    .val-hero-nc { color:var(--muted); }
+    .val-md      { font-family:'DM Sans',sans-serif; font-size:clamp(0.72rem,1.25vh,0.95rem); font-weight:300; color:var(--white); line-height:1; }
+    .badge-label { font-size:clamp(0.44rem,0.78vh,0.58rem); color:var(--gold); letter-spacing:0.05em; }
+    .mlbl        { font-size:clamp(0.44rem,0.78vh,0.58rem); letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); line-height:1.2; text-align:center; }
+    .mlbl-sub    { opacity:0.55; }
+
+    /* Grilles */
+    .mrow  { display:grid; grid-template-columns:1fr 1fr; gap:0.3vh; flex:1 1 0; min-height:0; }
+    .mrow2 { display:grid; grid-template-columns:1fr 1fr; gap:0.3vh; flex:1 1 0; min-height:0; }
+
+    /* Drapeau */
+    .drap-bloc { display:flex; align-items:center; gap:0.6rem; padding:0.5vh 0.8rem; border-radius:8px; border:1px solid var(--border); flex-shrink:0; }
+
+    /* Section label */
+    .sec-label { font-size:clamp(0.65rem,1.15vh,0.81rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); border-bottom:1px solid var(--border); padding-bottom:0.2vh; flex-shrink:0; }
+    .msection  { font-size:clamp(0.65rem,1.15vh,0.81rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); padding:0.1vh 0; border-bottom:1px solid var(--border); flex-shrink:0; line-height:1.2; }
+
+    /* Marées */
+    .maree-section { display:flex; flex-direction:column; gap:0.3vh; min-height:0; }
+    .maree-grid    { display:grid; grid-template-columns:1fr 1fr; gap:0.3vh; flex:1 1 0; min-height:0; align-content:stretch; }
+    .maree-item    { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:7px; padding:0.4vh 0.5rem; display:flex; justify-content:space-between; align-items:center; min-height:0; }
+    .maree-item .mtype  { font-size:clamp(0.44rem,0.78vh,0.58rem); text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); line-height:1.25; }
+    .maree-item .mheure { font-family:'DM Sans',sans-serif; font-size:clamp(0.8rem,1.6vh,1.1rem); font-weight:400; color:var(--white); }
+    .maree-item.haute   { border-color:rgba(191,153,88,0.3); }
+
+    /* Labels trilingues */
+    .tri-fr { color:var(--white); }
+    .tri-en { color:rgba(242,237,230,0.55); font-size:0.9em; }
+    .tri-es { color:rgba(242,237,230,0.4); font-size:0.85em; }
+    .tri-sep{ color:var(--border); font-size:0.8em; }
+
+    /* Transport */
+    .transport-section  { flex:0 0 auto; border:1px solid var(--border); border-radius:8px; padding:0.5vh 0; margin-top:0; }
+    .transport-sec-label{ font-family:'DM Sans',sans-serif; font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:0.25vh; display:block; }
+    .transport-wip      { display:inline; font-size:11px; color:var(--gold); letter-spacing:0.04em; font-weight:500; opacity:0.85; text-transform:none; }
+    .transport-row      { display:flex; align-items:center; gap:0.5rem; padding:0.3vh 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:11px; }
+    .transport-row:last-child { border-bottom:none; }
+    .transport-icon { font-size:13px; flex-shrink:0; }
+    .transport-name { color:var(--white); font-weight:500; flex-shrink:0; min-width:4rem; font-size:11px; }
+    .transport-times{ display:flex; gap:0.35rem; flex-wrap:wrap; }
+    .transport-disclaimer {
+      font-size: 9px;
+      color: var(--gold);
+      opacity: 0.8;
+      padding: 0.35vh 0 0.1vh;
+      border-top: 1px solid var(--border);
+      margin-top: 0.3vh;
+      line-height: 1.4;
+    }
+    .transport-disclaimer-trad {
+      font-style: italic;
+      opacity: 0.6;
+      display: block;
+      font-size: 0.88em;
+      color: var(--muted);
+    }
+    .transport-time { background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:4px; padding:0.1rem 0.4rem; color:var(--gold); font-weight:600; font-size:11px; }
+
+    /* ── OVERLAY PROCHAINE ACTIVITÉ ── */
+    .next-anim-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 33.33%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      z-index: 5;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+    .next-anim-shadow {
+      color: #fff;
+      text-shadow:
+        0 0 12px rgba(0,0,0,0.98), 0 0 30px rgba(0,0,0,0.9),
+        -1px -1px 0 rgba(0,0,0,0.95),  1px -1px 0 rgba(0,0,0,0.95),
+        -1px  1px 0 rgba(0,0,0,0.95),   1px  1px 0 rgba(0,0,0,0.95);
+    }
+    /* Bandeau pleine largeur */
+    .next-anim-banner-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 0.6rem;
+      box-sizing: border-box;
+      padding: 0 2%;
+    }
+    .next-anim-banner-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 0 6px rgba(0,0,0,0.8);
+    }
+    .next-anim-banner {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.85rem, 1.5vh, 1.2rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    /* Lignes horizontales pleine largeur */
+    .next-anim-line {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.42);
+      box-shadow: 0 0 6px rgba(0,0,0,0.8);
+      flex-shrink: 0;
+    }
+    /* Row : 10% marge de chaque côté via padding, items remplissent le reste */
+    .next-anim-row {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      flex: 1;
+      padding: 3vh 10% 2.5vh;
+      box-sizing: border-box;
+      gap: 0;
+    }
+    /* Item : grid vertical 10/30/30/15/15 — PAS de padding horizontal */
+    .next-anim-item {
+      display: grid;
+      grid-template-rows: 2.5vh 5vh 4.5vh 3vh 2.5vh;
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+      box-sizing: border-box;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .next-anim-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(0.7rem, 1.15vh, 0.9rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,225,70,1);
+      align-self: end;
+      white-space: nowrap;
+    }
+    .next-anim-time {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(2rem, 3.8vh, 3rem);
+      font-weight: 200;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      align-self: center;
+      white-space: nowrap;
+    }
+    .next-anim-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(0.95rem, 1.9vh, 1.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #ffffff;
+      align-self: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    .next-anim-trad {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(0.72rem, 1.2vh, 0.92rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.2;
+      align-self: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    .next-anim-lieu {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(0.7rem, 1.15vh, 0.88rem);
+      font-weight: 400;
+      color: rgba(255,210,70,0.85);
+      align-self: start;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+    /* Séparateur vertical entre items */
+    .next-anim-sep {
+      width: 1px;
+      align-self: stretch;
+      background: rgba(255,255,255,0.32);
+      box-shadow: 0 0 5px rgba(0,0,0,0.7);
+      flex-shrink: 0;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { opacity: 0.65; }
+      50%       { opacity: 1;   }
+    }
+
+        /* ── COL WEBCAM ── */
+    .col-webcam { flex:1 1 0; min-width:0; position:relative; overflow:hidden; background:#000; }
+    .col-webcam iframe { position:absolute; top:50%; left:50%; width:177.78vh; height:100vh; transform:translate(-50%,-50%); border:none; pointer-events:none; }
+
+    /* Overlay nuit */
+    .night-overlay { position:absolute; inset:0; background:rgba(10,12,18,0.82); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.8rem; z-index:10; backdrop-filter:blur(2px); }
+    .night-overlay .night-icon { font-size:3.5rem; line-height:1; }
+    .night-overlay .night-msgs { display:flex; flex-direction:column; align-items:center; gap:0.5rem; text-align:center; }
+    .night-overlay .night-msg  { font-family:'DM Sans',sans-serif; font-weight:300; letter-spacing:0.03em; line-height:1.35; }
+    .night-overlay .night-msg.lang-fr { font-size:1.35rem; color:var(--white); }
+    .night-overlay .night-msg.lang-en { font-size:1.05rem; color:rgba(242,237,230,0.65); }
+    .night-overlay .night-msg.lang-es { font-size:1.05rem; color:rgba(242,237,230,0.55); }
+    .night-overlay .night-next { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); }
+
+    /* ── COL ANIMATIONS ── */
+    .col-anim { width:300px; flex-shrink:0; display:flex; flex-direction:column; border-left:1px solid var(--border); height:100vh; overflow:hidden; }
+
+    /* Header animations */
+    .anim-header       { padding:0.7vh 1rem; border-bottom:none !important; flex-shrink:0; }
+    .anim-header-date  { display:block; font-size:clamp(0.72rem,1.2vh,0.9rem); color:var(--white); font-weight:500; letter-spacing:0.02em; }
+    .anim-header-title { display:block; font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-top:0.1rem; }
+
+    /* Body animations */
+    .anim-body { flex:1 1 0; min-height:0; display:flex; flex-direction:column; padding:0.5vh 0.65rem; gap:0.35vh; overflow-y:auto; }
+
+    /* Sections Matin/Après-midi/Soirée */
+    .anim-section       { display:flex; flex-direction:column; flex-shrink:0; gap:0.3vh; }
+    .anim-section-title { padding:0.4vh 0 0.3vh; border-bottom:none; flex-shrink:0; display:flex; align-items:baseline; gap:0.45rem; }
+    .anim-sec-fr   { font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; }
+    .anim-sec-trad { font-size:clamp(0.48rem,0.82vh,0.62rem); letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); opacity:0.5; }
+    .anim-section-empty { flex:0 0 clamp(2.2rem,4.5vh,3.4rem); display:flex; align-items:center; justify-content:center; border-radius:8px; border:1px dashed rgba(255,255,255,0.12); font-size:clamp(0.62rem,1vh,0.75rem); color:var(--muted); opacity:0.5; letter-spacing:0.2em; }
+
+    /* Carte animation */
+    .anim-item     { flex:0 0 clamp(2.2rem,4.5vh,3.4rem); display:flex; align-items:stretch; border-radius:8px; border:1px solid var(--border); background:rgba(255,255,255,0.04); overflow:hidden; }
+    .anim-item-now { border-color:rgba(191,153,88,0.5); background:rgba(191,153,88,0.07); }
+
+    /* Heure verticale */
+    .anim-time     { flex:0 0 1.9rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2rem; border-right:1px solid var(--border); background:rgba(255,255,255,0.03); }
+    .anim-time-val { font-size:11px; font-weight:700; color:var(--muted); writing-mode:vertical-rl; transform:rotate(180deg); }
+    .anim-item-now .anim-time-val { color:var(--gold); }
+    .anim-now-badge{ font-size:clamp(0.3rem,0.48vh,0.38rem); color:var(--gold); background:rgba(191,153,88,0.2); border-radius:2px; padding:0.08rem 0.15rem; writing-mode:vertical-rl; transform:rotate(180deg); text-transform:uppercase; }
+
+    /* Contenu carte */
+    .anim-content { flex:1; display:flex; align-items:center; gap:0.35rem; padding:0 0.45rem; min-width:0; }
+    .anim-emoji   { font-size:clamp(0.9rem,1.6vh,1.2rem); line-height:1; flex-shrink:0; }
+    .anim-texts   { flex:1; min-width:0; display:flex; flex-direction:column; }
+    .anim-fr      { font-family:'Outfit',sans-serif; font-size:11px; font-weight:600; color:var(--white); line-height:1.2; }
+    .anim-trad    { font-family:'Outfit',sans-serif; font-size:clamp(0.55rem,0.9vh,0.68rem); font-weight:400; line-height:1.2; }
+    .anim-en      { color:rgba(242,237,230,0.62); }
+    .anim-sep     { color:var(--border); margin:0 0.15em; }
+    .anim-es      { color:rgba(242,237,230,0.42); }
+    .anim-lieu    { font-family:'Outfit',sans-serif; font-size:clamp(0.55rem,0.9vh,0.68rem); font-weight:400; color:var(--gold); opacity:0.75; margin-top:0.2rem; line-height:1.2; }
+  </style>
+</head>
+<body>
+
+  <div class="stage">
+
+    <!-- MÉTÉO — colonne gauche -->
+    <div class="col-meteo">
+      <div class="meteo-logo">
+        <img src="https://www.green-resort.com/wp-content/uploads/2026/04/Logo-Green-Resort-5-etoiles-FOND-BLANC.jpeg" alt="Green Resort" />
+      </div>
+      <div class="meteo-head">Météo · Weather · Tiempo</div>
+      <div class="meteo-body" id="meteo-body">
+        <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem">Chargement…</div>
+      </div>
+
+    </div>
+
+    <!-- WEBCAM — centre -->
+    <div class="col-webcam">
+      <div class="next-anim-overlay" id="next-anim-overlay" style="display:none"><div class="next-anim-card" id="next-anim-card"></div></div>
+      <iframe
+        src="https://pv.viewsurf.com/722/Ondres-Ocean"
+        scrolling="no"
+        allowfullscreen="allowfullscreen"
+        title="Webcam Plage d'Ondres">
+      </iframe>
+      <div class="night-overlay" id="night-overlay" style="display:none">
+        <div class="night-icon">🌙</div>
+        <div class="night-msgs">
+          <div class="night-msg lang-fr">La webcam est mise à jour entre 6h et 22h.<br>Prochaine image demain matin.</div>
+          <div class="night-msg lang-en">The webcam is updated between 6am and 10pm.<br>Next image tomorrow morning.</div>
+          <div class="night-msg lang-es">La cámara web se actualiza entre las 6h y las 22h.<br>Próxima imagen mañana por la mañana.</div>
+        </div>
+        <div class="night-next" id="night-next"></div>
+      </div>
+    </div>
+
+    <!-- ANIMATIONS — colonne droite -->
+    <div class="col-anim">
+      <div class="anim-header">
+        <div class="anim-header-date" id="anim-date"></div>
+        <div class="anim-header-title" id="anim-title">Programme · Schedule · Programa</div>
+      </div>
+      <div class="anim-body" id="anim-body">
+        <div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.8rem">Chargement…</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  // ═══════════════════════════════════════════════════════
+  //  PICTOS MÉTÉO
+  // ═══════════════════════════════════════════════════════
+  const PICTOS = {
+    'sun':'☀️','cloud-sun':'⛅','cloud':'☁️','rain':'🌧️',
+    'showers':'🌧️','bolt':'⛈️','snow':'❄️','smog':'🌫️',
+    'wind':'💨','moon':'🌙','cloud-moon':'🌛',
+  };
+  function emoji(code) {
+    if (!code) return '🌤️';
+    for (const [k,v] of Object.entries(PICTOS)) { if (code.includes(k)) return v; }
+    return '🌤️';
+  }
+  // Picto depuis le label WMO (plus cohérent que le picto Meilisearch)
+  function labelToPicto(label) {
+    if (!label) return null;
+    const l = label.toLowerCase();
+    if (l.includes('degage') || l.includes('dégagé')) return '☀️';
+    if (l.includes('nuageux') || l.includes('couvert')) return '☁️';
+    if (l.includes('peu nuag')) return '🌤️';
+    if (l.includes('partiell')) return '⛅';
+    if (l.includes('orage')) return '⛈️';
+    if (l.includes('pluie forte') || l.includes('averses')) return '🌧️';
+    if (l.includes('pluie')) return '🌦️';
+    if (l.includes('bruine')) return '🌦️';
+    if (l.includes('neige')) return '❄️';
+    if (l.includes('brouillard')) return '🌫️';
+    return null;
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  HEURE PARIS
+  // ═══════════════════════════════════════════════════════
+  function parisnow() {
+    return new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Paris'}));
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  OVERLAY NUIT (22h → 6h)
+  // ═══════════════════════════════════════════════════════
+  function checkNight() {
+    const now = parisnow();
+    const h   = now.getHours();
+    const isNight = h >= 22 || h < 6;
+    const overlay = document.getElementById('night-overlay');
+    if (!overlay) return;
+    overlay.style.display = isNight ? 'flex' : 'none';
+    if (isNight) {
+      const tomorrow = new Date(now);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(6, 0, 0, 0);
+      const diff = Math.round((tomorrow - now) / 60000);
+      const hL = Math.floor(diff / 60), mL = diff % 60;
+      const txt = `Dans ${hL}h${String(mL).padStart(2,'0')} · In ${hL}h${String(mL).padStart(2,'0')} · En ${hL}h${String(mL).padStart(2,'0')}`;
+      const el = document.getElementById('night-next');
+      if (el) el.textContent = txt;
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  DATE DANS HEADER ANIMATIONS
+  // ═══════════════════════════════════════════════════════
+  function updateAnimDate() {
+    const now = parisnow();
+    const days   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+    const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    const el = document.getElementById('anim-date');
+    if (el) el.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    // Le titre reste toujours fixe
+    const titleEl = document.getElementById('anim-title');
+    if (titleEl) titleEl.textContent = 'Programme · Schedule · Programa';
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  RENDU MÉTÉO
+  // ═══════════════════════════════════════════════════════
+  function buildTideSVG(marees) {
+    var W = 268, H = 110, n = marees.length;
+    if (!n) return '';
+    var pts = marees.map(function(m, i) {
+      return { x: Math.round(W*(i+0.5)/n), y: m.type==='Haute' ? 30 : 80, m: m };
+    });
+    var path = 'M ' + pts[0].x + ' ' + pts[0].y;
+    for (var i = 0; i < pts.length-1; i++) {
+      var cx = (pts[i].x + pts[i+1].x) / 2;
+      path += ' C ' + cx + ' ' + pts[i].y + ' ' + cx + ' ' + pts[i+1].y + ' ' + pts[i+1].x + ' ' + pts[i+1].y;
+    }
+    var dots = pts.map(function(p) {
+      var fill = p.m.type==='Haute' ? '#4fc3f7' : 'rgba(242,237,230,0.4)';
+      return '<circle cx="' + p.x + '" cy="' + p.y + '" r="4" fill="' + fill + '"/>';
+    }).join('');
+    var labels = pts.map(function(p) {
+      var isH = p.m.type === 'Haute';
+      var fill = isH ? '#4fc3f7' : 'rgba(242,237,230,0.5)';
+      var lblY = isH ? p.y - 8  : p.y + 14;
+      var hrY  = isH ? p.y - 18 : p.y + 25;
+      var lbl  = isH ? 'Haute' : 'Basse';
+      return '<text x="' + p.x + '" y="' + lblY + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="' + fill + '">' + lbl + '</text>'
+           + '<text x="' + p.x + '" y="' + hrY  + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="300" fill="rgba(242,237,230,0.92)">' + p.m.heure + '</text>';
+    }).join('');
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="110" style="display:block;margin-top:0.2vh">'
+         + '<path d="' + path + '" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.5" stroke-linejoin="round"/>'
+         + dots + labels + '</svg>';
+  }
+  function renderMeteo(d) {
+    if (!d) return;
+    const picto   = labelToPicto(d.meteo_label) || emoji(d.meteo_picto);
+    const temp    = d.temp_air || '—';
+    const tempEau = d.temp_eau || 'NC';
+    const vent    = d.vent_kmh || '—';
+    const ventDeg = d.vent_deg || '0';
+    const ventCard= d.vent_cardinal || '';
+    const uvVal   = d.uv || '—';
+    const uvShort = d.uv_label || '';
+    const uvColor = {'Faible':'#4caf50','Modere':'#ffeb3b','Eleve':'#ff9800','Tres eleve':'#f44336','Extreme':'#9c27b0'}[uvShort] || 'var(--gold)';
+    const lever   = d.lever || '—';
+    const coucher = d.coucher || '—';
+    const coef    = d.maree_coef || '—';
+    const marees  = d.marees || [];
+    const houle   = d.houle_m || '';
+    const label   = d.meteo_label || '';
+    const drap    = d.drapeau || 'nc';
+    const drapColor = {vert:'#4caf50',jaune:'#e6c619',rouge:'#f44336',nc:'var(--muted)','':'var(--muted)'}[drap];
+    const drapBg    = {vert:'76,175,80',jaune:'230,198,25',rouge:'244,67,54',nc:'255,255,255','':'255,255,255'}[drap];
+    const drapEmoji = {vert:'🟢',jaune:'🟡',rouge:'🔴',nc:'⚫','':'⚫'}[drap];
+    const drapFR  = {vert:'Baignade autorisée',jaune:'Baignade surveillée',rouge:'Baignade interdite',nc:d.surv_label||'Non surveillée','':''}[drap];
+    const drapEN  = {vert:'Swimming allowed',jaune:'Supervised swimming',rouge:'Swimming forbidden',nc:'Unsupervised','':''}[drap];
+    const drapES  = {vert:'Baño permitido',jaune:'Baño vigilado',rouge:'Baño prohibido',nc:'No vigilada','':''}[drap];
+    const lbl = (fr,en='',es='') => `<div class="mlbl">${fr}${en?`<span class="mlbl-sub"> · ${en}${es?' · '+es:''}</span>`:''}\n      </div>`;
+    document.getElementById('meteo-body').innerHTML = `
+      <div style="flex:0 0 115px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:100%;align-content:space-evenly">
+
+          <!-- Ligne 1 : icône + valeur -->
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.15rem">
+            <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">${picto}</div>
+            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${temp}°<span style="font-size:0.45em">C</span></div>
+          </div>
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.15rem">
+            <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">🌡️</div>
+            ${tempEau==='NC'
+              ? `<div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--muted);line-height:1">NC <span style="font-size:0.6em;opacity:0.7">hors saison</span></div>`
+              : `<div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${tempEau}°</div>`}
+          </div>
+
+          <!-- Ligne 2 : labels + trads -->
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0.15rem">
+            <div style="font-size:10px;color:var(--white)">Air</div>
+            ${label?`<div style="font-size:10px;color:var(--gold);line-height:1.3">${label}</div><div style="font-size:7.7px;color:var(--gold);opacity:0.55">Overcast · Nublado</div>`:''}
+          </div>
+          <div style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0.15rem">
+            <div style="font-size:10px;color:var(--white)">Eau</div>
+            <div style="font-size:7.7px;color:var(--muted)">Water · Agua</div>
+          </div>
+
+        </div>
+      <div class="drap-bloc" style="background:rgba(${drapBg},0.1);border-color:rgba(${drapBg},0.3)">
+        <div style="font-size:clamp(1.4rem,2.8vh,2.2rem);line-height:1">${drapEmoji}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:clamp(0.78rem,1.4vh,1rem);font-weight:600;color:${drapColor};line-height:1.2">${drapFR}</div>
+          <div style="font-size:clamp(0.58rem,1vh,0.72rem);color:${drapColor};opacity:0.6;margin-top:0.15rem">${drapEN} · ${drapES}</div>
+        </div>
+        <div style="font-size:clamp(0.44rem,0.75vh,0.56rem);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl">Drapeau</div>
+      </div>
+      <div style="flex:0 0 110px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto;width:100%;height:100%;align-content:space-evenly">
+          <!-- Ligne 1 : icônes -->
+          <div style="text-align:center">
+            <span style="font-size:clamp(1rem,1.8vh,1.4rem);line-height:1">🌞</span>
+            <span style="font-size:clamp(1rem,1.8vh,1.4rem);font-weight:400;color:var(--white);vertical-align:middle"> UV</span>
+          </div>
+          <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">↗🌅</span></div>
+          <div style="text-align:center"><span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌇↘</span></div>
+          <!-- Ligne 2 : valeurs -->
+          <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:${uvColor};line-height:1">${uvVal}</div>
+          <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${lever}</div>
+          <div style="text-align:center;font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${coucher}</div>
+          <!-- Ligne 3 : labels + trads -->
+          <div style="text-align:center">
+            <div style="font-size:10px;color:${uvColor}">${{'Faible':'Indice faible','Modere':'Indice modéré','Eleve':'Indice élevé','Tres eleve':'Indice très élevé','Extreme':'Indice extrême'}[uvShort]||uvShort}</div>
+            <div style="font-size:7.7px;color:${uvColor};opacity:0.6">${{'Faible':'Low · Bajo','Modere':'Moderate · Moderado','Eleve':'High · Alto','Tres eleve':'Very high · Muy alto','Extreme':'Extreme · Extremo'}[uvShort]||''}</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:var(--white)">Lever</div>
+            <div style="font-size:7.7px;color:var(--muted)">Sunrise · Amanecer</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:10px;color:var(--white)">Coucher</div>
+            <div style="font-size:7.7px;color:var(--muted)">Sunset · Atardecer</div>
+          </div>
+        </div>
+      </div>
+      <div class="maree-section" style="flex:0 0 160px;overflow:hidden;border:1px solid var(--border);border-radius:8px;padding:0">
+        <div class="meteo-head" style="display:flex;justify-content:space-between;align-items:baseline;border-radius:8px 8px 0 0">
+          Marées · Tides · Mareas
+        </div>
+        ${buildTideSVG(marees)}
+      </div>
+      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;width:100%;gap:0">
+
+        <!-- Ligne 1 : icônes / labels -->
+        <div style="text-align:center;padding:0.3vh 0 0.1vh">
+          <div style="font-size:10px;color:var(--gold);font-weight:500;letter-spacing:0.08em;text-transform:uppercase">Coef</div>
+        </div>
+        <div style="text-align:center;padding:0.3vh 0 0.1vh">
+          <div style="display:inline-flex;align-items:center;gap:0.3rem">
+            <span style="font-size:clamp(1rem,1.8vh,1.4rem);transform:rotate(${ventDeg}deg);display:inline-block;line-height:1">↑</span>
+            <span style="font-size:10px;color:var(--white);font-weight:500">${vent} <span style="font-size:0.8em;opacity:0.7">km/h</span></span>
+          </div>
+        </div>
+        <div style="text-align:center;padding:0.3vh 0 0.1vh">
+          ${houle
+            ? `<div style="display:inline-flex;align-items:center;gap:0.3rem">
+                <span style="font-size:clamp(0.9rem,1.5vh,1.2rem)">🌊</span>
+                <span style="font-size:10px;color:var(--white);font-weight:500">${houle} <span style="font-size:0.8em;opacity:0.7">m</span></span>
+               </div>`
+            : '<span style="font-size:clamp(0.9rem,1.5vh,1.2rem);opacity:0.2">🌊</span>'}
+        </div>
+
+        <!-- Ligne 2 : valeurs / trads -->
+        <div style="text-align:center;padding:0.1vh 0 0.3vh">
+          <div style="display:inline-flex;align-items:baseline;gap:0.5rem">
+            <div>
+              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em">AM</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_am||'—'}</div>
+            </div>
+            <div style="color:var(--border);font-size:12px">·</div>
+            <div>
+              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em">PM</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_pm||'—'}</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;padding:0.1vh 0 0.3vh">
+          <div style="font-size:10px;color:var(--white)">Vent</div>
+          <div style="font-size:7.7px;color:var(--muted)">${ventCard} · Wind</div>
+        </div>
+        <div style="text-align:center;padding:0.1vh 0 0.3vh">
+          ${houle
+            ? `<div style="font-size:10px;color:var(--white)">Houle</div>
+               <div style="font-size:7.7px;color:var(--muted)">${d.houle_periode}s · Swell</div>`
+            : ''}
+        </div>
+
+      </div>
+
+
+      <div class="transport-section">
+        <div class="transport-sec-label">Prochains 🚆</div>
+        <div class="transport-row">
+          <span class="transport-icon">🚌</span>
+          <span class="transport-name">→ Plage</span>
+          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
+        </div>
+        <div class="transport-row">
+          <span class="transport-icon">🚌</span>
+          <span class="transport-name">→ Bayonne</span>
+          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
+        </div>
+        ${(()=>{
+          const t = d.transports || {};
+          const row = (times, label) => times && times.length
+            ? `<div class="transport-row">
+                <span class="transport-icon">🚆</span>
+                <span class="transport-name">${label}</span>
+                <div class="transport-times">${times.map(h=>`<span class="transport-time">${h}</span>`).join('')}</div>
+               </div>`
+            : '';
+          return row(t.bayonne, '→ Bayonne') + row(t.dax, '→ Dax');
+        })()}
+        <div class="transport-disclaimer">
+          ⚠️ Horaires en cours de déploiement, ne pas tenir compte
+          <span class="transport-disclaimer-trad">· Schedules being deployed, please disregard · Horarios en despliegue, no tener en cuenta</span>
+        </div>
+      </div>
+
+    `;
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  RENDU ANIMATIONS
+  // ═══════════════════════════════════════════════════════
+  function renderAnimations(anims, dateLabel) {
+    const body = document.getElementById('anim-body');
+    if (!body) return;
+
+    if (!anims || anims.length === 0) {
+      body.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0.75rem;padding:1.5rem;text-align:center">
+        <div style="font-size:2rem;opacity:0.4">🕐</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:clamp(0.8rem,1.4vh,1.05rem);color:var(--white);font-weight:500">En attente d'information</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:clamp(0.6rem,1vh,0.75rem);color:var(--muted)">Awaiting information · En espera de información</div>
+      </div>`;
+      return;
+    }
+
+    // Heure Paris pour "en cours"
+    const now    = parisnow();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    let enCoursIdx = -1;
+    anims.forEach((a, i) => {
+      const [h,m] = a.heure.split(':').map(Number);
+      if (h * 60 + m <= nowMin) enCoursIdx = i;
+    });
+
+    // Rubriques par tranche horaire
+    // Détecter heure d'été ou d'hiver pour Paris
+    // En été (UTC+2) : après-midi finit à 18h59 → soirée from 19
+    // En hiver (UTC+1) : après-midi finit à 17h59 → soirée from 18
+    const parisOffset = -new Date().toLocaleString('en-US', {timeZone:'Europe/Paris', timeZoneName:'shortOffset'})
+      .match(/GMT([+-]\d+)/)?.[1] * -1 || 1; // 1 = hiver, 2 = été
+    const isDST = parisOffset === 2;
+    const soireeFrom = isDST ? 19 : 18;
+
+    const sections = [
+      { key: 'matin',  labelFR: 'Matin',      labelEN: 'Morning',   labelES: 'Mañana', from: 0,         to: 12        },
+      { key: 'apm',    labelFR: 'Après-midi', labelEN: 'Afternoon', labelES: 'Tarde',  from: 12,        to: soireeFrom },
+      { key: 'soiree', labelFR: 'Soirée',     labelEN: 'Evening',   labelES: 'Noche',  from: soireeFrom, to: 24        },
+    ];
+
+    let html = '';
+    const totalItems = anims.length;
+    sections.forEach(sec => {
+      const items = anims.filter(a => {
+        const h = parseInt(a.heure.split(':')[0]);
+        return h >= sec.from && h < sec.to;
+      });
+
+      // Section toujours flex-shrink 0 : hauteur naturelle des cartes
+      html += `<div class="anim-section">`;
+      html += `<div class="anim-section-title">
+        <span class="anim-sec-fr">${sec.labelFR}</span>
+        <span class="anim-sec-trad">${sec.labelEN} · ${sec.labelES}</span>
+      </div>`;
+
+      if (items.length === 0) {
+        html += `<div class="anim-section-empty">— — —</div>`;
+      } else {
+        items.forEach(a => {
+          const i = anims.indexOf(a);
+          const enCours = (i === enCoursIdx);
+          html += `
+            <div class="anim-item ${enCours ? 'anim-item-now' : ''}">
+              <div class="anim-time">
+                <div class="anim-time-val">${a.heure}</div>
+
+              </div>
+              <div class="anim-content">
+                <div class="anim-emoji">${a.emoji}</div>
+                <div class="anim-texts">
+                  <div class="anim-fr">${a.fr}</div>
+                  ${(a.en||a.es) ? `<div class="anim-trad"><span class="anim-en">${a.en||''}</span>${a.en&&a.es?' <span class="anim-sep">·</span> ':''}<span class="anim-es">${a.es||''}</span></div>` : ''}
+                  ${a.lieu ? `<div class="anim-lieu">📍 ${a.lieu}</div>` : ''}
+                </div>
+              </div>
+            </div>`;
+        });
+      }
+      html += `</div>`; // fermer .anim-section
+    });
+
+    body.innerHTML = html;
+  }
+
+
+  async function loadMeteo() {
+    try {
+      const res = await fetch('./data.json?cb=' + Date.now());
+      window._meteoData = await res.json();
+      renderMeteo(window._meteoData);
+    } catch(e) {
+      document.getElementById('meteo-body').innerHTML =
+        '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:0.8rem">Données indisponibles</div>';
+      console.error('Meteo:', e);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  CHARGEMENT ANIMATIONS (Google Sheets direct)
+  // ═══════════════════════════════════════════════════════
+  const SHEET_ID = '1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG';
+
+  async function loadAnimations() {
+    try {
+      const now = parisnow();
+      const dd  = String(now.getDate()).padStart(2,'0');
+      const mm  = String(now.getMonth()+1).padStart(2,'0');
+      const sheetName = dd + mm;
+      const dateLabel = dd + '/' + mm;
+
+      // Vérifier que la feuille existe dans le Sheet
+      const htmlRes = await fetch(
+        'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG/htmlview?cb=' + Date.now()
+      );
+      const htmlTxt = await htmlRes.text();
+      const namesMatch = htmlTxt.match(/\{name:\s*"([^"]+)"/g) || [];
+      const available = namesMatch.map(m => m.match(/"([^"]+)"/)[1]);
+
+      if (!available.includes(sheetName)) {
+        throw new Error('Feuille ' + sheetName + ' introuvable');
+      }
+
+      // Charger animations.json (généré par GitHub Actions avec traductions)
+      const res = await fetch('./animations.json?cb=' + Date.now());
+      const payload = await res.json();
+      const anims = Array.isArray(payload) ? payload : (payload.items || []);
+      const storedDate = Array.isArray(payload) ? '' : (payload.date || '');
+
+      // Si animations.json est pour une autre date, utiliser quand même
+      // (sera mis à jour par le workflow toutes les heures)
+      window._animData      = anims;
+      window._animDateLabel = dateLabel;
+
+      // Mettre la date dans anim-date uniquement (le titre reste fixe)
+      const dateEl2 = document.getElementById('anim-date');
+      if (dateEl2) dateEl2.textContent = dateLabel
+        ? 'Animations du ' + dateLabel
+        : '';
+
+      renderAnimations(anims, dateLabel);
+      checkNextAnim();
+
+    } catch(e) {
+      window._animData=[]; window._animDateLabel='';
+      renderAnimations([], '');
+      console.warn('Animations:', e.message);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════
+  //  PROCHAINE ACTIVITÉ — overlay webcam (tiers supérieur)
+  // ═══════════════════════════════════════════════════════
+  function checkNextAnim() {
+    var overlay = document.getElementById('next-anim-overlay');
+    var card    = document.getElementById('next-anim-card');
+    if (!overlay || !card) return;
+
+    var anims = window._animData;
+    if (!anims || !anims.length) { overlay.style.display = 'none'; return; }
+
+    var now    = parisnow();
+    var nowMin = now.getHours() * 60 + now.getMinutes();
+
+    var coming = [];
+    for (var i = 0; i < anims.length; i++) {
+      var a = anims[i];
+      var parts = a.heure.split(':').map(Number);
+      var aMin  = parts[0] * 60 + parts[1];
+      var diff  = aMin - nowMin;
+      if (diff > -5 && diff <= 60) coming.push({ a: a, diff: diff });
+    }
+    if (!coming.length) { overlay.style.display = 'none'; return; }
+
+    var N     = coming.length;
+    // Les 80% centraux sont gérés par le padding de .next-anim-row
+    // Chaque item prend 100%/N de ces 80%
+    var itemW = Math.floor(100 / N) + '%';
+
+    var rowHtml = '';
+    for (var j = 0; j < coming.length; j++) {
+      var it    = coming[j];
+      var d     = Math.round(it.diff);
+      var badge = d > 0 ? '&#9200; Dans ' + d + ' min' : '&#9654; Vient de commencer';
+      var emoji = it.a.emoji || '';
+      var fr    = it.a.fr    || '';
+      var en    = it.a.en    || '';
+      var es    = it.a.es    || '';
+      var lieu  = it.a.lieu  ? '&#128205; ' + it.a.lieu : '';
+      var trad  = [en, es].filter(Boolean).join(' &middot; ');
+
+      if (j > 0) rowHtml += '<div class="next-anim-sep"></div>';
+      rowHtml +=
+        '<div class="next-anim-item next-anim-shadow" style="width:' + itemW + ';flex-shrink:0">' +
+          '<div class="next-anim-badge">'  + badge  + '</div>' +
+          '<div class="next-anim-time">'   + it.a.heure + '</div>' +
+          '<div class="next-anim-title">'  + emoji + '&nbsp;' + fr + '</div>' +
+          '<div class="next-anim-trad">'   + (trad || '&nbsp;') + '</div>' +
+          '<div class="next-anim-lieu">'   + (lieu || '&nbsp;') + '</div>' +
+        '</div>';
+    }
+
+    card.innerHTML =
+      '<div class="next-anim-banner-row next-anim-shadow">' +
+        '<div class="next-anim-banner-line"></div>' +
+        '<div class="next-anim-banner">&#10024; Ne manquez pas &middot; <em>Don&#39;t miss it</em> &middot; <em>No se lo pierdan</em> &#10024;</div>' +
+        '<div class="next-anim-banner-line"></div>' +
+      '</div>' +
+      '<div class="next-anim-row">' + rowHtml + '</div>' +
+      '<div class="next-anim-line"></div>';
+
+    overlay.style.display = 'flex';
+  }
+
+  
+  // ═══════════════════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════════════════
+  checkNight();
+  updateAnimDate();
+  // Mettre à jour l'heure de màj immédiatement
+  (function() {
+    const el = document.getElementById('version-badge');
+    if (el) {
+      const n = parisnow();
+      el.textContent = 'màj ' + String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
+    }
+  })();
+  loadMeteo();
+  loadAnimations();
+
+  setInterval(checkNight,        30 * 1000);
+  setInterval(checkNextAnim,     30 * 1000);
+  setInterval(updateAnimDate,    60 * 1000);
+  setInterval(() => {
+    const el = document.getElementById('version-badge');
+    if (el) {
+      const n = parisnow();
+      el.textContent = 'màj ' + String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
+    }
+  }, 60 * 1000);
+  setInterval(loadMeteo,         10 * 60 * 1000);
+  setInterval(loadAnimations,     5 * 60 * 1000);
+  setInterval(() => {
+    if (window._animData) {
+      renderAnimations(window._animData, window._animDateLabel);
+      checkNextAnim();
+    }
+  }, 60 * 1000);
+
+  // Reload complet toutes les 5 minutes
+  setTimeout(() => location.reload(), 5 * 60 * 1000);
+  </script>
+
+  <div class="version-badge">màj 21:28</div>
 </body>
 </html>
