@@ -893,27 +893,17 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:30</div>
+  <div class="version-badge">màj 21:33</div>
 </body>
 </html>      ${(()=>{
-        // Horaires de surveillance Ondres 2026 : 01/07-31/08 et 01/09-13/09, 11h-19h tous les jours
-        const _now = parisnow();
-        const _h = _now.getHours(), _m = _now.getMonth() + 1, _d = _now.getDate();
-        const _periodeEte  = (_m === 7) || (_m === 8) || (_m === 9 && _d <= 13);
-        const _horaire     = _h >= 11 && _h < 19;
-        const enSurveillance = _periodeEte && _horaire && d.drapeau;
+        // DEBUG : pas de filtre horaire — afficher si plages-landes dit surveillance_h=true
+        const enSurveillance = d.drapeau;
         if (!enSurveillance) return '';
         const couleur = d.drapeau || 'jaune';
         const emoji   = couleur === 'vert' ? '🟢' : couleur === 'rouge' ? '🔴' : '🟡';
-        const labelFR = couleur === 'vert'  ? 'Baignade surveillée'
-                      : couleur === 'rouge' ? 'Baignade interdite'
-                      : 'Baignade surveillée';
-        const labelEN = couleur === 'vert'  ? 'Supervised swimming'
-                      : couleur === 'rouge' ? 'Swimming prohibited'
-                      : 'Supervised swimming';
-        const labelES = couleur === 'vert'  ? 'Baño vigilado'
-                      : couleur === 'rouge' ? 'Baño prohibido'
-                      : 'Baño vigilado';
+        const labelFR = couleur === 'rouge' ? 'Baignade interdite' : 'Surveillée 11h-19h';
+        const labelEN = couleur === 'rouge' ? 'Swimming prohibited' : 'Supervised 11am-7pm';
+        const labelES = couleur === 'rouge' ? 'Baño prohibido'      : 'Vigilado 11h-19h';
         return \`<div class="drap-bloc">
           <span style="font-size:1.4rem">\${emoji}</span>
           <div>
@@ -1816,6 +1806,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:30</div>
+  <div class="version-badge">màj 21:33</div>
 </body>
 </html>
