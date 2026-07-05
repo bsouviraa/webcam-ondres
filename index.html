@@ -471,7 +471,7 @@
     if (!d) return;
     const picto   = labelToPicto(d.meteo_label) || emoji(d.meteo_picto);
     const temp    = d.temp_air || '—';
-    const tempEau = d.temp_eau || 'NC';
+    const tempEau = (d.temp_eau && d.temp_eau !== 'NC') ? String(d.temp_eau) : 'NC';
     const vent    = d.vent_kmh || '—';
     const ventDeg = d.vent_deg || '0';
     const ventCard= d.vent_cardinal || '';
@@ -893,7 +893,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:28</div>
+  <div class="version-badge">màj 21:29</div>
 </body>
 </html>      ${(()=>{
         // Afficher le drapeau SEULEMENT pendant les horaires de surveillance (10h-20h)
@@ -1391,7 +1391,7 @@
     if (!d) return;
     const picto   = labelToPicto(d.meteo_label) || emoji(d.meteo_picto);
     const temp    = d.temp_air || '—';
-    const tempEau = d.temp_eau || 'NC';
+    const tempEau = (d.temp_eau && d.temp_eau !== 'NC') ? String(d.temp_eau) : 'NC';
     const vent    = d.vent_kmh || '—';
     const ventDeg = d.vent_deg || '0';
     const ventCard= d.vent_cardinal || '';
@@ -1813,6 +1813,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:28</div>
+  <div class="version-badge">màj 21:29</div>
 </body>
 </html>
