@@ -92,11 +92,11 @@
     .transport-section  { flex:0 0 auto; border:1px solid var(--border); border-radius:8px; padding:0.5vh 0; margin-top:0; }
     .transport-sec-label{ font-family:'DM Sans',sans-serif; font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:0.25vh; display:block; }
     .transport-wip      { display:inline; font-size:11px; color:var(--gold); letter-spacing:0.04em; font-weight:500; opacity:0.85; text-transform:none; }
-    .transport-row      { display:flex; align-items:center; gap:0.5rem; padding:0.3vh 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:11px; }
+    .transport-row      { display:flex; align-items:center; gap:0.4rem; padding:0.25vh 0.3rem; border-bottom:1px solid rgba(255,255,255,0.04); font-size:11px; min-height:1.8rem; }
     .transport-row:last-child { border-bottom:none; }
-    .transport-icon { font-size:13px; flex-shrink:0; }
-    .transport-name { color:var(--white); font-weight:500; flex-shrink:0; min-width:5.5rem; font-size:11px; }
-    .transport-times{ display:flex; gap:0.25rem; flex-wrap:nowrap; flex:1; }
+    .transport-icon { font-size:12px; flex-shrink:0; }
+    .transport-name { color:var(--white); font-weight:500; flex-shrink:0; width:5.8rem; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .transport-times{ display:flex; gap:0.2rem; flex-wrap:nowrap; flex:1; align-items:center; overflow:hidden; }
     .transport-disclaimer {
       font-size: 9px;
       color: var(--gold);
@@ -113,7 +113,7 @@
       font-size: 0.88em;
       color: var(--muted);
     }
-    .transport-time { background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:4px; padding:0.1rem 0.4rem; color:var(--gold); font-weight:600; font-size:11px; }
+    .transport-time { background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:3px; padding:0.05rem 0.3rem; color:var(--gold); font-weight:600; font-size:10px; white-space:nowrap; flex-shrink:0; }
 
     /* ── OVERLAY PROCHAINE ACTIVITÉ ── */
     .next-anim-overlay {
@@ -614,7 +614,7 @@
               + '</div>';
           };
           const sep = b.fetes_bayonne && b.fetes_bayonne.length
-            ? '<div style="font-size:7.7px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;padding:0.3vh 0.8rem 0;opacity:0.7">🎉 Bus des Fêtes de Bayonne</div>'
+            ? '<div class="transport-fetes-label">🎉 Bus des Fêtes de Bayonne</div>'
             : '';
           return busRow(b.plage, '→ Plage')
             + busRow(b.ondres_bourg, '→ Ondres Bourg')
@@ -919,7 +919,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:13</div>
+  <div class="version-badge">màj 22:14</div>
 </body>
 </html>      <div id="drap-bloc-container"></div>ml>
 <html lang="fr">
@@ -1015,11 +1015,11 @@
     .transport-section  { flex:0 0 auto; border:1px solid var(--border); border-radius:8px; padding:0.5vh 0; margin-top:0; }
     .transport-sec-label{ font-family:'DM Sans',sans-serif; font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:0.25vh; display:block; }
     .transport-wip      { display:inline; font-size:11px; color:var(--gold); letter-spacing:0.04em; font-weight:500; opacity:0.85; text-transform:none; }
-    .transport-row      { display:flex; align-items:center; gap:0.5rem; padding:0.3vh 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:11px; }
+    .transport-row      { display:flex; align-items:center; gap:0.4rem; padding:0.25vh 0.3rem; border-bottom:1px solid rgba(255,255,255,0.04); font-size:11px; min-height:1.8rem; }
     .transport-row:last-child { border-bottom:none; }
-    .transport-icon { font-size:13px; flex-shrink:0; }
-    .transport-name { color:var(--white); font-weight:500; flex-shrink:0; min-width:5.5rem; font-size:11px; }
-    .transport-times{ display:flex; gap:0.25rem; flex-wrap:nowrap; flex:1; }
+    .transport-icon { font-size:12px; flex-shrink:0; }
+    .transport-name { color:var(--white); font-weight:500; flex-shrink:0; width:5.8rem; font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .transport-times{ display:flex; gap:0.2rem; flex-wrap:nowrap; flex:1; align-items:center; overflow:hidden; }
     .transport-disclaimer {
       font-size: 9px;
       color: var(--gold);
@@ -1036,7 +1036,7 @@
       font-size: 0.88em;
       color: var(--muted);
     }
-    .transport-time { background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:4px; padding:0.1rem 0.4rem; color:var(--gold); font-weight:600; font-size:11px; }
+    .transport-time { background:rgba(255,255,255,0.06); border:1px solid var(--border); border-radius:3px; padding:0.05rem 0.3rem; color:var(--gold); font-weight:600; font-size:10px; white-space:nowrap; flex-shrink:0; }
 
     /* ── OVERLAY PROCHAINE ACTIVITÉ ── */
     .next-anim-overlay {
@@ -1543,7 +1543,7 @@
               + '</div>';
           };
           const sep = b.fetes_bayonne && b.fetes_bayonne.length
-            ? '<div style="font-size:7.7px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;padding:0.3vh 0.8rem 0;opacity:0.7">🎉 Bus des Fêtes de Bayonne</div>'
+            ? '<div class="transport-fetes-label">🎉 Bus des Fêtes de Bayonne</div>'
             : '';
           return busRow(b.plage, '→ Plage')
             + busRow(b.ondres_bourg, '→ Ondres Bourg')
@@ -1848,6 +1848,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:13</div>
+  <div class="version-badge">màj 22:14</div>
 </body>
 </html>
