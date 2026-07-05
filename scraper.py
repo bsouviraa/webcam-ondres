@@ -107,11 +107,9 @@ try:
         marees = [{"type": m.group(1), "heure": m.group(2)} for m in marees_raw[:4]]
     coef_m = re.search(r"am\s+(\d+)\s*/\s*pm\s+(\d+)", html_page, re.I)
     if coef_m:
-        coef_raw = coef_m.group(1).strip()
-        coef_parts = re.findall(r"\d+", coef_raw)
-        coef_am = coef_parts[0] if len(coef_parts) > 0 else coef_am
-        coef_pm = coef_parts[1] if len(coef_parts) > 1 else coef_pm
-        coef = coef_raw
+        coef_am = coef_m.group(1).strip()
+        coef_pm = coef_m.group(2).strip()
+        coef = coef_am + " / " + coef_pm
 except Exception as _e:
     import sys; print(f"Plages-landes error (coefs conservés): {_e}", file=sys.stderr)
 
@@ -329,7 +327,7 @@ try:
     for j in _j29:
         d = _dest(j)
         if 'Capranie' in d:     _bourg29.append(_last(j))
-        elif 'Ambroise' in d:   _stmartin29.append(_last(j))
+        elif 'Ambroise' in d:   _stmartin29.append(_first(j))
 
     # ── Ligne I (fêtes de Bayonne) ────────────────────────────────────────────
     _ji = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>',
@@ -341,7 +339,7 @@ try:
             _fetes_bayonne.append(_first(j))
 
     # ── Résultat ──────────────────────────────────────────────────────────────
-    bus["plage"]          = _next3(_plage23 + _plage29)
+    bus["plage"]          = _next3(_plage23)
     bus["ondres_bourg"]   = _next3(_bourg23 + _bourg29)
     bus["st_martin"]      = _next3(_stmartin29)
     bus["bayonne"]        = _next3(_bayonne23)
