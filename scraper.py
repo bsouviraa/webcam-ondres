@@ -105,7 +105,7 @@ try:
     marees_raw = list(re.finditer(r"(Haute|Basse)</span>\s*<span[^>]*>(\d{2}h\d{2})</span>", html_page))
     if marees_raw:
         marees = [{"type": m.group(1), "heure": m.group(2)} for m in marees_raw[:4]]
-    coef_m = re.search(r"COEF[^<]{0,5}&nbsp;[\s\S]{0,50}?(\d+)\s*/\s*(\d+)", html_page, re.I)
+    coef_m = re.search(r"am\s+(\d+)\s*/\s*pm\s+(\d+)", html_page, re.I)
     if coef_m:
         coef_raw = coef_m.group(1).strip()
         coef_parts = re.findall(r"\d+", coef_raw)
@@ -265,6 +265,13 @@ try:
             transports["bayonne"].append(hhmm)
         if len(transports["dax"]) >= 3 and len(transports["bayonne"]) >= 3:
             break
+    # Trier et garder seulement les 3 prochains
+    from datetime import datetime as _dt2
+    _now_hm = _dt2.now(timezone(timedelta(hours=2))).strftime("%H:%M")
+    for _k in ["bayonne", "dax"]:
+        _sorted = sorted(set(transports[_k]))
+        _upcoming = [t for t in _sorted if t >= _now_hm]
+        transports[_k] = _upcoming[:3] if _upcoming else _sorted[-3:]
 except Exception as te:
     import sys; print(f"Transport error: {te}", file=sys.stderr)
 
