@@ -285,7 +285,7 @@ except Exception as te:
     import sys; print(f"Transport error: {te}", file=sys.stderr)
 
 
-# ── 5. Bus Txik Txak (ligne I : Bayonne ↔ Dous Maynades) ─────────────────────
+# ── 5. Bus Txik Txak (lignes I, 23, 29 — arrêt Dous Maynades / Ondres Plage) ──
 bus = {"plage": [], "bayonne": []}
 try:
     import zipfile, io as _io
@@ -294,18 +294,57 @@ try:
         urllib.request.Request(_gtfs_url, headers={"User-Agent": "Mozilla/5.0"}), timeout=20
     ).read()
     _zf = zipfile.ZipFile(_io.BytesIO(_gtfs_data))
-    _xml = _zf.read('CA_PAYS_BASQUE_offre_Bus_TXIKTXAK_I_I.xml').decode('utf-8', errors='ignore')
-    _journeys = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>', _xml)
-    _plage_j   = [j for j in _journeys if 'C90F174F70B5ACEEB59693D31583E090' in j]
-    _bayonne_j = [j for j in _journeys if '124262F8A44A0503333643937617DA58' in j]
+    _now_hhmm = datetime.now(timezone(timedelta(hours=2))).strftime('%H:%M')
+
     def _first_t(j):
         t = re.search(r'<DepartureTime>(\d{2}:\d{2}:\d{2})</DepartureTime>', j)
         return t.group(1)[:5] if t else None
-    _now_hhmm = datetime.now(timezone(timedelta(hours=2))).strftime('%H:%M')
-    _plage_all   = sorted(set(filter(None, [_first_t(j) for j in _plage_j])))
-    _bayonne_all = sorted(set(filter(None, [_first_t(j) for j in _bayonne_j])))
-    bus["plage"]   = [t for t in _plage_all   if t >= _now_hhmm][:3]
-    bus["bayonne"] = [t for t in _bayonne_all if t >= _now_hhmm][:3]
+    def _last_t(j):
+        ts = re.findall(r'<DepartureTime>(\d{2}:\d{2}:\d{2})</DepartureTime>', j)
+        return ts[-1][:5] if ts else None
+
+    _plage_all, _bayonne_all = set(), set()
+
+    # Ligne I : Bayonne ↔ Dous Maynades
+    # → Plage = pattern C90F, 1er arrêt = Maynades
+    # → Bayonne = pattern 124262, 1er arrêt = Maynades
+    _xi = _zf.read('CA_PAYS_BASQUE_offre_Bus_TXIKTXAK_I_I.xml').decode('utf-8', errors='ignore')
+    _ji = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>', _xi)
+    for j in _ji:
+        if 'C90F174F70B5ACEEB59693D31583E090' in j:
+            t = _first_t(j)
+            if t: _plage_all.add(t)
+        elif '124262F8A44A0503333643937617DA58' in j:
+            t = _first_t(j)
+            if t: _bayonne_all.add(t)
+
+    # Ligne 23 : → Ondres Plage = pattern D7C018, dernier arrêt
+    #            → Bayonne = autre pattern, 1er arrêt = Ondres Plage
+    _x23 = _zf.read('CA_PAYS_BASQUE_offre_Bus_TXIKTXAK_23_23.xml').decode('utf-8', errors='ignore')
+    _j23 = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>', _x23)
+    for j in _j23:
+        if '23_D7C018A02558E686041303FD38858566' in j:
+            t = _last_t(j)
+            if t: _plage_all.add(t)
+        else:
+            t = _first_t(j)
+            if t: _bayonne_all.add(t)
+
+    # Ligne 29 : → Ondres Plage = pattern 1D38A5, dernier arrêt
+    #            → Bayonne = autre pattern, 1er arrêt = Ondres Plage
+    _x29 = _zf.read('CA_PAYS_BASQUE_offre_Bus_TXIKTXAK_29_29.xml').decode('utf-8', errors='ignore')
+    _j29 = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>', _x29)
+    for j in _j29:
+        if '29_1D38A5A078FD2E523458CB4A8053D1D7' in j:
+            t = _last_t(j)
+            if t: _plage_all.add(t)
+        else:
+            t = _first_t(j)
+            if t: _bayonne_all.add(t)
+
+    bus["plage"]   = [t for t in sorted(_plage_all)   if t >= _now_hhmm][:3]
+    bus["bayonne"] = [t for t in sorted(_bayonne_all) if t >= _now_hhmm][:3]
+
 except Exception as _be:
     import sys; print(f"Bus error: {_be}", file=sys.stderr)
 
