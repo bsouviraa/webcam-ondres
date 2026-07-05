@@ -610,16 +610,18 @@
 
       <div class="transport-section">
         <div class="transport-sec-label">Prochains 🚆</div>
-        <div class="transport-row">
-          <span class="transport-icon">🚌</span>
-          <span class="transport-name">→ Plage</span>
-          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
-        </div>
-        <div class="transport-row">
-          <span class="transport-icon">🚌</span>
-          <span class="transport-name">→ Bayonne</span>
-          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
-        </div>
+        ${(()=>{
+          const b = d.bus || {};
+          const busRow = (times, label) => {
+            if (!times || !times.length) return '';
+            return '<div class="transport-row">'
+              + '<span class="transport-icon">🚌</span>'
+              + '<span class="transport-name">' + label + '</span>'
+              + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
+              + '</div>';
+          };
+          return busRow(b.plage, '→ Plage') + busRow(b.bayonne, '→ Bayonne');
+        })()}
         ${(()=>{
           const t = d.transports || {};
           const row = (times, label) => times && times.length
@@ -893,7 +895,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:33</div>
+  <div class="version-badge">màj 21:43</div>
 </body>
 </html>      ${(()=>{
         // DEBUG : pas de filtre horaire — afficher si plages-landes dit surveillance_h=true
@@ -1523,16 +1525,18 @@
 
       <div class="transport-section">
         <div class="transport-sec-label">Prochains 🚆</div>
-        <div class="transport-row">
-          <span class="transport-icon">🚌</span>
-          <span class="transport-name">→ Plage</span>
-          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
-        </div>
-        <div class="transport-row">
-          <span class="transport-icon">🚌</span>
-          <span class="transport-name">→ Bayonne</span>
-          <div class="transport-times"><span class="transport-wip">🚧 En cours</span></div>
-        </div>
+        ${(()=>{
+          const b = d.bus || {};
+          const busRow = (times, label) => {
+            if (!times || !times.length) return '';
+            return '<div class="transport-row">'
+              + '<span class="transport-icon">🚌</span>'
+              + '<span class="transport-name">' + label + '</span>'
+              + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
+              + '</div>';
+          };
+          return busRow(b.plage, '→ Plage') + busRow(b.bayonne, '→ Bayonne');
+        })()}
         ${(()=>{
           const t = d.transports || {};
           const row = (times, label) => times && times.length
@@ -1806,6 +1810,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:33</div>
+  <div class="version-badge">màj 21:43</div>
 </body>
 </html>
