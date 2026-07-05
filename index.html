@@ -551,7 +551,7 @@
         </div>
         ${buildTideSVG(marees)}
       </div>
-      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:0">
+      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:0.8fr 1.1fr 1.1fr;width:100%;gap:0">
 
         <!-- COEF -->
         <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3vh;padding:0 0.3rem">
@@ -559,11 +559,11 @@
           <div style="display:flex;gap:1rem;align-items:flex-end">
             <div style="text-align:center">
               <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase">AM</div>
-              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_am||'—'}</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_am||'—'}</div>
             </div>
             <div style="text-align:center">
               <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase">PM</div>
-              <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_pm||'—'}</div>
+              <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_pm||'—'}</div>
             </div>
           </div>
         </div>
@@ -873,21 +873,34 @@
     const _h  = _n.getHours(), _mo = _n.getMonth()+1, _da = _n.getDate();
     const _periode = (_mo===7)||(_mo===8)||(_mo===9&&_da<=13);
     const _horaire = _h >= 11 && _h < 19;
-    const show = _periode && _horaire && d.drapeau && d.drapeau !== 'nc';
     const bloc = document.getElementById('drap-bloc-container');
     if (!bloc) return;
-    if (!show) { bloc.innerHTML = ''; return; }
-    const couleur = d.drapeau;
-    const emoji   = couleur==='vert' ? '✅' : couleur==='rouge' ? '🛑' : '🟧';
+    const couleur = (d.drapeau && d.drapeau !== 'nc') ? d.drapeau : 'jaune';
+    const emoji     = couleur==='vert' ? '✅' : couleur==='rouge' ? '🛑' : '🟧';
     const flagColor = couleur==='vert' ? '#4caf50' : couleur==='rouge' ? '#f44336' : '#f59e42';
-    const labelFR = couleur==='rouge' ? 'Baignade interdite'  : couleur==='vert' ? 'Baignade surveillée' : 'Baignade surveillée';
-    const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised swimming';
-    const labelES = couleur==='rouge' ? 'Baño prohibido'      : 'Baño vigilado';
-    bloc.innerHTML = '<div class="drap-bloc" style="border-color:' + flagColor + '33;background:' + flagColor + '11">'
-      + '<span style="font-size:1.5rem;filter:drop-shadow(0 0 4px ' + flagColor + ')">' + emoji + '</span>'
-      + '<div><div style="font-size:10px;font-weight:600;color:' + flagColor + '">' + labelFR + '</div>'
-      + '<div style="font-size:7.7px;color:var(--muted)">' + labelEN + ' · ' + labelES + '</div></div>'
-      + '</div>';
+    if (_periode && _horaire && d.drapeau && d.drapeau !== 'nc') {
+      // Pendant la surveillance : afficher le drapeau coloré
+      const labelFR = couleur==='rouge' ? 'Baignade interdite' : 'Baignade surveillée';
+      const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised · Vigilado';
+      bloc.innerHTML = '<div class="drap-bloc" style="border-color:' + flagColor + '33;background:' + flagColor + '11">'
+        + '<span style="font-size:1.5rem">' + emoji + '</span>'
+        + '<div><div style="font-size:10px;font-weight:600;color:' + flagColor + '">' + labelFR + '</div>'
+        + '<div style="font-size:7.7px;color:var(--muted)">' + labelEN + '</div></div>'
+        + '</div>';
+    } else {
+      // Hors surveillance : message discret
+      const msg = _periode
+        ? 'Plage non surveillée · Surveillance 11h–19h'
+        : 'Hors période de surveillance';
+      const msgEN = _periode
+        ? 'Unsupervised · Lifeguard 11am–7pm'
+        : 'Outside surveillance season';
+      bloc.innerHTML = '<div class="drap-bloc" style="border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);opacity:0.7">'
+        + '<span style="font-size:1.2rem;opacity:0.5">🏖️</span>'
+        + '<div><div style="font-size:9px;font-weight:500;color:var(--muted)">' + msg + '</div>'
+        + '<div style="font-size:7.7px;color:var(--muted);opacity:0.7">' + msgEN + '</div></div>'
+        + '</div>';
+    }
   }
   setInterval(updateDrapeau, 60 * 1000);
   setInterval(checkNight,    30 * 1000);
@@ -913,6 +926,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:20</div>
+  <div class="version-badge">màj 22:22</div>
 </body>
 </html>
