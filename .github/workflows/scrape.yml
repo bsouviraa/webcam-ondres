@@ -27,6 +27,7 @@ jobs:
           with open('data.json', 'w') as f:
               meteo = d['meteo']
               meteo['transports'] = d.get('transports', {})
+              meteo['bus'] = d.get('bus', {})
               json.dump(meteo, f, ensure_ascii=False, indent=2)
           with open('animations.json', 'w') as f:
               out = {'date': d.get('anim_date',''), 'items': d['animations']}
