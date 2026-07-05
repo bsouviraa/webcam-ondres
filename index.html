@@ -429,11 +429,18 @@
     const now = parisnow();
     const days   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
     const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
     const el = document.getElementById('anim-date');
-    if (el) el.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-    // Le titre reste toujours fixe
+    if (el) {
+      if (showTomorrow) {
+        const tom = new Date(now.getTime() + 24*60*60*1000);
+        el.innerHTML = '<span style="font-size:1.1em;font-weight:700;color:var(--gold);letter-spacing:0.08em">DEMAIN</span> · ' + days[tom.getDay()] + ' ' + tom.getDate() + ' ' + months[tom.getMonth()];
+      } else {
+        el.textContent = days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+      }
+    }
     const titleEl = document.getElementById('anim-title');
-    if (titleEl) titleEl.textContent = 'Programme · Schedule · Programa';
+    if (titleEl) titleEl.textContent = showTomorrow ? 'Programme de demain · Tomorrow · Mañana' : 'Programme · Schedule · Programa';
   }
 
   // ═══════════════════════════════════════════════════════
@@ -747,8 +754,13 @@
   async function loadAnimations() {
     try {
       const now = parisnow();
-      const dd  = String(now.getDate()).padStart(2,'0');
-      const mm  = String(now.getMonth()+1).padStart(2,'0');
+      // Après 20h30 et avant minuit → afficher le programme du lendemain
+      const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
+      const target = showTomorrow
+        ? new Date(now.getTime() + 24*60*60*1000)  // demain
+        : now;
+      const dd  = String(target.getDate()).padStart(2,'0');
+      const mm  = String(target.getMonth()+1).padStart(2,'0');
       const sheetName = dd + mm;
       const dateLabel = dd + '/' + mm;
 
@@ -895,7 +907,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:43</div>
+  <div class="version-badge">màj 21:44</div>
 </body>
 </html>      ${(()=>{
         // DEBUG : pas de filtre horaire — afficher si plages-landes dit surveillance_h=true
@@ -1344,11 +1356,18 @@
     const now = parisnow();
     const days   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
     const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
     const el = document.getElementById('anim-date');
-    if (el) el.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-    // Le titre reste toujours fixe
+    if (el) {
+      if (showTomorrow) {
+        const tom = new Date(now.getTime() + 24*60*60*1000);
+        el.innerHTML = '<span style="font-size:1.1em;font-weight:700;color:var(--gold);letter-spacing:0.08em">DEMAIN</span> · ' + days[tom.getDay()] + ' ' + tom.getDate() + ' ' + months[tom.getMonth()];
+      } else {
+        el.textContent = days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+      }
+    }
     const titleEl = document.getElementById('anim-title');
-    if (titleEl) titleEl.textContent = 'Programme · Schedule · Programa';
+    if (titleEl) titleEl.textContent = showTomorrow ? 'Programme de demain · Tomorrow · Mañana' : 'Programme · Schedule · Programa';
   }
 
   // ═══════════════════════════════════════════════════════
@@ -1662,8 +1681,13 @@
   async function loadAnimations() {
     try {
       const now = parisnow();
-      const dd  = String(now.getDate()).padStart(2,'0');
-      const mm  = String(now.getMonth()+1).padStart(2,'0');
+      // Après 20h30 et avant minuit → afficher le programme du lendemain
+      const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
+      const target = showTomorrow
+        ? new Date(now.getTime() + 24*60*60*1000)  // demain
+        : now;
+      const dd  = String(target.getDate()).padStart(2,'0');
+      const mm  = String(target.getMonth()+1).padStart(2,'0');
       const sheetName = dd + mm;
       const dateLabel = dd + '/' + mm;
 
@@ -1810,6 +1834,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:43</div>
+  <div class="version-badge">màj 21:44</div>
 </body>
 </html>
