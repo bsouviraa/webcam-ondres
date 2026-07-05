@@ -88,6 +88,14 @@
     .tri-es { color:rgba(242,237,230,0.4); font-size:0.85em; }
     .tri-sep{ color:var(--border); font-size:0.8em; }
 
+    /* Cellules coef/vent/houle */
+    .mcell { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.4vh; padding:0.4vh 0.2rem; min-width:0; }
+    .mcell-label { font-size:10px; color:var(--gold); font-weight:500; letter-spacing:0.1em; text-transform:uppercase; white-space:nowrap; }
+    .mcell-val { font-family:'DM Sans',sans-serif; font-size:17px; font-weight:200; color:var(--white); line-height:1; white-space:nowrap; }
+    .mcell-unit { font-size:0.55em; opacity:0.65; }
+    .mcell-sub { font-size:7.7px; color:var(--muted); white-space:nowrap; }
+    .mcell-sep { color:var(--muted); opacity:0.5; }
+
     /* Transport */
     .transport-section  { flex:0 0 auto; border:1px solid var(--border); border-radius:8px; padding:0.5vh 0; margin-top:0; }
     .transport-sec-label{ font-family:'DM Sans',sans-serif; font-size:clamp(0.65rem,1.19vh,0.86rem); letter-spacing:0.13em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:0.25vh; display:block; }
@@ -551,60 +559,38 @@
         </div>
         ${buildTideSVG(marees)}
       </div>
-      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:0.8fr 1.1fr 1.1fr;width:100%;gap:0">
-
-        <!-- COEF -->
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3vh;padding:0 0.3rem">
-          <div style="font-size:clamp(0.65rem,1.19vh,0.86rem);letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:500">Coef</div>
-          <div style="display:flex;gap:1rem;align-items:flex-end">
-            <div style="text-align:center">
-              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase">AM</div>
-              <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_am||'—'}</div>
-            </div>
-            <div style="text-align:center">
-              <div style="font-size:7.7px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase">PM</div>
-              <div style="font-family:'DM Sans',sans-serif;font-size:16px;font-weight:200;color:var(--gold);line-height:1">${d.maree_coef_pm||'—'}</div>
-            </div>
-          </div>
+      <div class="mrow" style="flex:0 0 95px;display:grid;grid-template-columns:1fr 1fr 1fr;width:100%;gap:0">
+        <div class="mcell">
+          <div class="mcell-label">Coef</div>
+          <div class="mcell-val" style="color:var(--gold)">${d.maree_coef_am||'—'}<span class="mcell-sep"> · </span>${d.maree_coef_pm||'—'}</div>
+          <div class="mcell-sub">AM · PM</div>
         </div>
-
-        <!-- VENT -->
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3vh;border-left:1px solid var(--border)">
-          <div style="display:flex;align-items:center;gap:0.4rem">
-            <span style="font-size:1.3rem;transform:rotate(${(ventDeg+180)%360}deg);display:inline-block;line-height:1;transition:transform 0.5s">↑</span>
-            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${vent}<span style="font-size:0.55em;opacity:0.7"> km/h</span></div>
-          </div>
-          <div>
-            <div style="font-size:10px;color:var(--white);text-align:center">Vent</div>
-            <div style="font-size:7.7px;color:var(--muted);text-align:center">${ventCard} · Wind</div>
-          </div>
+        <div class="mcell" style="border-left:1px solid var(--border)">
+          <div class="mcell-label">Vent · Wind</div>
+          <div class="mcell-val"><span style="display:inline-block;transform:rotate(${(ventDeg+180)%360}deg);font-size:0.8em">↑</span> ${vent}<span class="mcell-unit"> km/h</span></div>
+          <div class="mcell-sub">${ventCard}</div>
         </div>
-
-        <!-- HOULE -->
-        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3vh;border-left:1px solid var(--border)">
-          ${houle ? `
-          <div style="display:flex;align-items:center;gap:0.4rem">
-            <span style="font-size:1.2rem;line-height:1">🌊</span>
-            <div style="font-family:'DM Sans',sans-serif;font-size:18.8px;font-weight:200;color:var(--white);line-height:1">${houle}<span style="font-size:0.55em;opacity:0.7"> m</span></div>
-          </div>
-          <div>
-            <div style="font-size:10px;color:var(--white);text-align:center">Houle</div>
-            <div style="font-size:7.7px;color:var(--muted);text-align:center">${d.houle_periode}s · Swell</div>
-          </div>` : '<span style="font-size:2rem;opacity:0.15">🌊</span>'}
+        <div class="mcell" style="border-left:1px solid var(--border)">
+          <div class="mcell-label">Houle · Swell</div>
+          <div class="mcell-val">${houle||'—'}<span class="mcell-unit"> m</span></div>
+          <div class="mcell-sub">${houle ? d.houle_periode + 's période' : '—'}</div>
         </div>
+      </div>
 
-      
       <div class="transport-section">
         <div class="transport-sec-label">Prochains 🚆</div>
         ${(()=>{
           const b = d.bus || {};
           const t = d.transports || {};
+          const fmtTime = h => (typeof h === 'string' && h.endsWith('+1'))
+            ? '<span class="transport-time transport-time-tmrw">' + h.slice(0,5) + '</span>'
+            : '<span class="transport-time">' + h + '</span>';
           const busRow = (times, label, icon) => {
             if (!times || !times.length) return '';
             return '<div class="transport-row">'
               + '<span class="transport-icon">' + (icon||'🚌') + '</span>'
               + '<span class="transport-name">' + label + '</span>'
-              + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
+              + '<div class="transport-times">' + times.map(fmtTime).join('') + '</div>'
               + '</div>';
           };
           const trainRow = (times, label) => {
@@ -612,19 +598,22 @@
             return '<div class="transport-row">'
               + '<span class="transport-icon">🚆</span>'
               + '<span class="transport-name">' + label + '</span>'
-              + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
+              + '<div class="transport-times">' + times.map(fmtTime).join('') + '</div>'
               + '</div>';
           };
+          const hasTmrw = ['plage','ondres_bourg','st_martin','bayonne'].some(k => (b[k]||[]).some(h => typeof h === 'string' && h.endsWith('+1')));
           const fetesSection = (b.fetes_bayonne && b.fetes_bayonne.length)
             ? '<div class="transport-sec-label" style="margin-top:0.4vh">🎉 Fêtes de Bayonne</div>'
               + busRow(b.fetes_bayonne, '→ Bayonne', '🎉')
             : '';
+          const tmrwNote = hasTmrw ? '<div style="font-size:7.7px;color:var(--muted);opacity:0.65;padding:0.15vh 0.3rem;font-style:italic">italique : premiers départs demain matin</div>' : '';
           return busRow(b.plage, '→ Plage')
             + busRow(b.ondres_bourg, '→ Ondres Bourg')
             + busRow(b.st_martin, '→ St-Martin')
             + busRow(b.bayonne, '→ Bayonne')
             + trainRow(t.bayonne, '→ Bayonne')
             + trainRow(t.dax, '→ Dax')
+            + tmrwNote
             + fetesSection;
         })()}
 
@@ -724,6 +713,7 @@
       const res = await fetch('./data.json?cb=' + Date.now());
       window._meteoData = await res.json();
       renderMeteo(window._meteoData);
+      updateDrapeau();
     } catch(e) {
       document.getElementById('meteo-body').innerHTML =
         '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:0.8rem">Données indisponibles</div>';
@@ -926,6 +916,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:22</div>
+  <div class="version-badge">màj 22:26</div>
 </body>
 </html>
