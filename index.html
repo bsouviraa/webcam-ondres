@@ -429,12 +429,23 @@
     const now = parisnow();
     const days   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
     const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-    const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    let lastAnimMin = -1;
+    if (window._animData && window._animData.length) {
+      window._animData.forEach(function(a) {
+        const p = a.heure.split(':').map(Number);
+        lastAnimMin = Math.max(lastAnimMin, p[0] * 60 + p[1]);
+      });
+    }
+    const showTomorrow = lastAnimMin >= 0 && nowMin >= lastAnimMin + 30 && now.getHours() < 24;
     const el = document.getElementById('anim-date');
     if (el) {
       if (showTomorrow) {
         const tom = new Date(now.getTime() + 24*60*60*1000);
-        el.innerHTML = '<span style="font-size:1.1em;font-weight:700;color:var(--gold);letter-spacing:0.08em">DEMAIN</span> · ' + days[tom.getDay()] + ' ' + tom.getDate() + ' ' + months[tom.getMonth()];
+        el.innerHTML =
+          '<div style="font-size:0.75em;color:var(--muted);letter-spacing:0.05em;margin-bottom:0.15rem">✓ Programme du jour terminé</div>' +
+          '<span style="font-size:1.2em;font-weight:700;color:var(--gold);letter-spacing:0.1em">DEMAIN</span>' +
+          ' &nbsp;' + days[tom.getDay()] + ' ' + tom.getDate() + ' ' + months[tom.getMonth()];
       } else {
         el.textContent = days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
       }
@@ -755,9 +766,21 @@
     try {
       const now = parisnow();
       // Après 20h30 et avant minuit → afficher le programme du lendemain
-      const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
+      // Basculer sur demain 30min après la dernière animation du jour
+      // (ou à minuit si pas d'animations)
+      const nowMin = now.getHours() * 60 + now.getMinutes();
+      let lastAnimMin = -1;
+      if (window._animData && window._animData.length) {
+        window._animData.forEach(function(a) {
+          const p = a.heure.split(':').map(Number);
+          lastAnimMin = Math.max(lastAnimMin, p[0] * 60 + p[1]);
+        });
+      }
+      // showTomorrow si : il y avait des animations ET on est 30min après la dernière
+      // ET on est pas encore minuit
+      const showTomorrow = lastAnimMin >= 0 && nowMin >= lastAnimMin + 30 && now.getHours() < 24;
       const target = showTomorrow
-        ? new Date(now.getTime() + 24*60*60*1000)  // demain
+        ? new Date(now.getTime() + 24*60*60*1000)
         : now;
       const dd  = String(target.getDate()).padStart(2,'0');
       const mm  = String(target.getMonth()+1).padStart(2,'0');
@@ -907,7 +930,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:44</div>
+  <div class="version-badge">màj 21:45</div>
 </body>
 </html>      ${(()=>{
         // DEBUG : pas de filtre horaire — afficher si plages-landes dit surveillance_h=true
@@ -1356,12 +1379,23 @@
     const now = parisnow();
     const days   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
     const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-    const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    let lastAnimMin = -1;
+    if (window._animData && window._animData.length) {
+      window._animData.forEach(function(a) {
+        const p = a.heure.split(':').map(Number);
+        lastAnimMin = Math.max(lastAnimMin, p[0] * 60 + p[1]);
+      });
+    }
+    const showTomorrow = lastAnimMin >= 0 && nowMin >= lastAnimMin + 30 && now.getHours() < 24;
     const el = document.getElementById('anim-date');
     if (el) {
       if (showTomorrow) {
         const tom = new Date(now.getTime() + 24*60*60*1000);
-        el.innerHTML = '<span style="font-size:1.1em;font-weight:700;color:var(--gold);letter-spacing:0.08em">DEMAIN</span> · ' + days[tom.getDay()] + ' ' + tom.getDate() + ' ' + months[tom.getMonth()];
+        el.innerHTML =
+          '<div style="font-size:0.75em;color:var(--muted);letter-spacing:0.05em;margin-bottom:0.15rem">✓ Programme du jour terminé</div>' +
+          '<span style="font-size:1.2em;font-weight:700;color:var(--gold);letter-spacing:0.1em">DEMAIN</span>' +
+          ' &nbsp;' + days[tom.getDay()] + ' ' + tom.getDate() + ' ' + months[tom.getMonth()];
       } else {
         el.textContent = days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
       }
@@ -1682,9 +1716,21 @@
     try {
       const now = parisnow();
       // Après 20h30 et avant minuit → afficher le programme du lendemain
-      const showTomorrow = now.getHours() >= 20 && (now.getHours() > 20 || now.getMinutes() >= 30);
+      // Basculer sur demain 30min après la dernière animation du jour
+      // (ou à minuit si pas d'animations)
+      const nowMin = now.getHours() * 60 + now.getMinutes();
+      let lastAnimMin = -1;
+      if (window._animData && window._animData.length) {
+        window._animData.forEach(function(a) {
+          const p = a.heure.split(':').map(Number);
+          lastAnimMin = Math.max(lastAnimMin, p[0] * 60 + p[1]);
+        });
+      }
+      // showTomorrow si : il y avait des animations ET on est 30min après la dernière
+      // ET on est pas encore minuit
+      const showTomorrow = lastAnimMin >= 0 && nowMin >= lastAnimMin + 30 && now.getHours() < 24;
       const target = showTomorrow
-        ? new Date(now.getTime() + 24*60*60*1000)  // demain
+        ? new Date(now.getTime() + 24*60*60*1000)
         : now;
       const dd  = String(target.getDate()).padStart(2,'0');
       const mm  = String(target.getMonth()+1).padStart(2,'0');
@@ -1834,6 +1880,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:44</div>
+  <div class="version-badge">màj 21:45</div>
 </body>
 </html>
