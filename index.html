@@ -605,15 +605,23 @@
         <div class="transport-sec-label">Prochains 🚆</div>
         ${(()=>{
           const b = d.bus || {};
-          const busRow = (times, label) => {
+          const busRow = (times, label, icon) => {
             if (!times || !times.length) return '';
             return '<div class="transport-row">'
-              + '<span class="transport-icon">🚌</span>'
+              + '<span class="transport-icon">' + (icon||'🚌') + '</span>'
               + '<span class="transport-name">' + label + '</span>'
               + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
               + '</div>';
           };
-          return busRow(b.plage, '→ Plage') + busRow(b.bayonne, '→ Bayonne');
+          const sep = b.fetes_bayonne && b.fetes_bayonne.length
+            ? '<div style="font-size:7.7px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;padding:0.3vh 0.8rem 0;opacity:0.7">🎉 Bus des Fêtes de Bayonne</div>'
+            : '';
+          return busRow(b.plage, '→ Plage')
+            + busRow(b.ondres_bourg, '→ Ondres Bourg')
+            + busRow(b.st_martin, '→ St-Martin')
+            + busRow(b.bayonne, '→ Bayonne')
+            + sep
+            + busRow(b.fetes_bayonne, '→ Bayonne', '🎉');
         })()}
         ${(()=>{
           const t = d.transports || {};
@@ -910,7 +918,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:05</div>
+  <div class="version-badge">màj 22:11</div>
 </body>
 </html>      <div id="drap-bloc-container"></div>ml>
 <html lang="fr">
@@ -1525,15 +1533,23 @@
         <div class="transport-sec-label">Prochains 🚆</div>
         ${(()=>{
           const b = d.bus || {};
-          const busRow = (times, label) => {
+          const busRow = (times, label, icon) => {
             if (!times || !times.length) return '';
             return '<div class="transport-row">'
-              + '<span class="transport-icon">🚌</span>'
+              + '<span class="transport-icon">' + (icon||'🚌') + '</span>'
               + '<span class="transport-name">' + label + '</span>'
               + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
               + '</div>';
           };
-          return busRow(b.plage, '→ Plage') + busRow(b.bayonne, '→ Bayonne');
+          const sep = b.fetes_bayonne && b.fetes_bayonne.length
+            ? '<div style="font-size:7.7px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;padding:0.3vh 0.8rem 0;opacity:0.7">🎉 Bus des Fêtes de Bayonne</div>'
+            : '';
+          return busRow(b.plage, '→ Plage')
+            + busRow(b.ondres_bourg, '→ Ondres Bourg')
+            + busRow(b.st_martin, '→ St-Martin')
+            + busRow(b.bayonne, '→ Bayonne')
+            + sep
+            + busRow(b.fetes_bayonne, '→ Bayonne', '🎉');
         })()}
         ${(()=>{
           const t = d.transports || {};
@@ -1830,6 +1846,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:05</div>
+  <div class="version-badge">màj 22:11</div>
 </body>
 </html>
