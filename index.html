@@ -893,12 +893,15 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:29</div>
+  <div class="version-badge">màj 21:30</div>
 </body>
 </html>      ${(()=>{
-        // Afficher le drapeau SEULEMENT pendant les horaires de surveillance (10h-20h)
-        const nowH = parisnow().getHours();
-        const enSurveillance = d.surveillance_h && nowH >= 10 && nowH < 20;
+        // Horaires de surveillance Ondres 2026 : 01/07-31/08 et 01/09-13/09, 11h-19h tous les jours
+        const _now = parisnow();
+        const _h = _now.getHours(), _m = _now.getMonth() + 1, _d = _now.getDate();
+        const _periodeEte  = (_m === 7) || (_m === 8) || (_m === 9 && _d <= 13);
+        const _horaire     = _h >= 11 && _h < 19;
+        const enSurveillance = _periodeEte && _horaire && d.drapeau;
         if (!enSurveillance) return '';
         const couleur = d.drapeau || 'jaune';
         const emoji   = couleur === 'vert' ? '🟢' : couleur === 'rouge' ? '🔴' : '🟡';
@@ -1813,6 +1816,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:29</div>
+  <div class="version-badge">màj 21:30</div>
 </body>
 </html>
