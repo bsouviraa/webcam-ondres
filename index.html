@@ -605,6 +605,7 @@
         <div class="transport-sec-label">Prochains 🚆</div>
         ${(()=>{
           const b = d.bus || {};
+          const t = d.transports || {};
           const busRow = (times, label, icon) => {
             if (!times || !times.length) return '';
             return '<div class="transport-row">'
@@ -613,27 +614,27 @@
               + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
               + '</div>';
           };
-          const sep = b.fetes_bayonne && b.fetes_bayonne.length
-            ? '<div class="transport-fetes-label">🎉 Bus des Fêtes de Bayonne</div>'
+          const trainRow = (times, label) => {
+            if (!times || !times.length) return '';
+            return '<div class="transport-row">'
+              + '<span class="transport-icon">🚆</span>'
+              + '<span class="transport-name">' + label + '</span>'
+              + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
+              + '</div>';
+          };
+          const fetesSection = (b.fetes_bayonne && b.fetes_bayonne.length)
+            ? '<div class="transport-sec-label" style="margin-top:0.4vh">🎉 Fêtes de Bayonne</div>'
+              + busRow(b.fetes_bayonne, '→ Bayonne', '🎉')
             : '';
           return busRow(b.plage, '→ Plage')
             + busRow(b.ondres_bourg, '→ Ondres Bourg')
             + busRow(b.st_martin, '→ St-Martin')
             + busRow(b.bayonne, '→ Bayonne')
-            + sep
-            + busRow(b.fetes_bayonne, '→ Bayonne', '🎉');
+            + trainRow(t.bayonne, '→ Bayonne')
+            + trainRow(t.dax, '→ Dax')
+            + fetesSection;
         })()}
-        ${(()=>{
-          const t = d.transports || {};
-          const row = (times, label) => times && times.length
-            ? `<div class="transport-row">
-                <span class="transport-icon">🚆</span>
-                <span class="transport-name">${label}</span>
-                <div class="transport-times">${times.map(h=>`<span class="transport-time">${h}</span>`).join('')}</div>
-               </div>`
-            : '';
-          return row(t.bayonne, '→ Bayonne') + row(t.dax, '→ Dax');
-        })()}
+
 
       </div>
 
@@ -919,7 +920,7 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:15</div>
+  <div class="version-badge">màj 22:18</div>
 </body>
 </html>      <div id="drap-bloc-container"></div>ml>
 <html lang="fr">
@@ -1534,6 +1535,7 @@
         <div class="transport-sec-label">Prochains 🚆</div>
         ${(()=>{
           const b = d.bus || {};
+          const t = d.transports || {};
           const busRow = (times, label, icon) => {
             if (!times || !times.length) return '';
             return '<div class="transport-row">'
@@ -1542,27 +1544,27 @@
               + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
               + '</div>';
           };
-          const sep = b.fetes_bayonne && b.fetes_bayonne.length
-            ? '<div class="transport-fetes-label">🎉 Bus des Fêtes de Bayonne</div>'
+          const trainRow = (times, label) => {
+            if (!times || !times.length) return '';
+            return '<div class="transport-row">'
+              + '<span class="transport-icon">🚆</span>'
+              + '<span class="transport-name">' + label + '</span>'
+              + '<div class="transport-times">' + times.map(h => '<span class="transport-time">' + h + '</span>').join('') + '</div>'
+              + '</div>';
+          };
+          const fetesSection = (b.fetes_bayonne && b.fetes_bayonne.length)
+            ? '<div class="transport-sec-label" style="margin-top:0.4vh">🎉 Fêtes de Bayonne</div>'
+              + busRow(b.fetes_bayonne, '→ Bayonne', '🎉')
             : '';
           return busRow(b.plage, '→ Plage')
             + busRow(b.ondres_bourg, '→ Ondres Bourg')
             + busRow(b.st_martin, '→ St-Martin')
             + busRow(b.bayonne, '→ Bayonne')
-            + sep
-            + busRow(b.fetes_bayonne, '→ Bayonne', '🎉');
+            + trainRow(t.bayonne, '→ Bayonne')
+            + trainRow(t.dax, '→ Dax')
+            + fetesSection;
         })()}
-        ${(()=>{
-          const t = d.transports || {};
-          const row = (times, label) => times && times.length
-            ? `<div class="transport-row">
-                <span class="transport-icon">🚆</span>
-                <span class="transport-name">${label}</span>
-                <div class="transport-times">${times.map(h=>`<span class="transport-time">${h}</span>`).join('')}</div>
-               </div>`
-            : '';
-          return row(t.bayonne, '→ Bayonne') + row(t.dax, '→ Dax');
-        })()}
+
 
       </div>
 
@@ -1848,6 +1850,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:15</div>
+  <div class="version-badge">màj 22:18</div>
 </body>
 </html>
