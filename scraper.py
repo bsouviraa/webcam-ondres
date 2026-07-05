@@ -306,7 +306,12 @@ try:
         m = re.search(r'<Name>([^<]+)</Name>', j)
         return m.group(1) if m else ''
     def _next3(times):
-        return [t for t in sorted(set(filter(None, times))) if t >= _now][:3]
+        s = sorted(set(filter(None, times)))
+        upcoming = [t for t in s if t >= _now]
+        if upcoming:
+            return upcoming[:3]
+        # Plus de passage aujourd'hui → 3 premiers de demain, préfixés d'un indicateur
+        return [t + "+1" for t in s[:3]]
 
     # ── Ligne 23 ──────────────────────────────────────────────────────────────
     _j23 = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>',
