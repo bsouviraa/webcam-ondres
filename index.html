@@ -872,7 +872,31 @@
   loadMeteo();
   loadAnimations();
 
-  setInterval(checkNight,        30 * 1000);
+  // Mettre à jour le drapeau toutes les minutes (condition horaire)
+  function updateDrapeau() {
+    if (!window._meteoData) return;
+    const d = window._meteoData;
+    const _n  = parisnow();
+    const _h  = _n.getHours(), _mo = _n.getMonth()+1, _da = _n.getDate();
+    const _periode = (_mo===7)||(_mo===8)||(_mo===9&&_da<=13);
+    const _horaire = _h >= 11 && _h < 19;
+    const show = _periode && _horaire && d.drapeau && d.drapeau !== 'nc';
+    const bloc = document.getElementById('drap-bloc-container');
+    if (!bloc) return;
+    if (!show) { bloc.innerHTML = ''; return; }
+    const couleur = d.drapeau;
+    const emoji   = couleur==='vert' ? '🟢' : couleur==='rouge' ? '🔴' : '🟡';
+    const labelFR = couleur==='rouge' ? 'Baignade interdite' : 'Surveillée 11h-19h';
+    const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised 11am-7pm';
+    const labelES = couleur==='rouge' ? 'Baño prohibido'      : 'Vigilado 11h-19h';
+    bloc.innerHTML = '<div class="drap-bloc">'
+      + '<span style="font-size:1.4rem">' + emoji + '</span>'
+      + '<div><div style="font-size:10px;font-weight:600;color:var(--white)">' + labelFR + '</div>'
+      + '<div style="font-size:7.7px;color:var(--muted)">' + labelEN + ' · ' + labelES + '</div></div>'
+      + '</div>';
+  }
+  setInterval(updateDrapeau, 60 * 1000);
+  setInterval(checkNight,    30 * 1000);
   setInterval(checkNextAnim,     30 * 1000);
   setInterval(updateAnimDate,    60 * 1000);
   setInterval(() => {
@@ -895,34 +919,9 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:55</div>
+  <div class="version-badge">màj 22:00</div>
 </body>
-</html>      ${(()=>{
-        // Drapeau : couleur live Meilisearch + double vérification horaire local
-        const _n  = parisnow();
-        const _h  = _n.getHours();
-        const _mo = _n.getMonth() + 1;
-        const _da = _n.getDate();
-        const _periode = (_mo === 7) || (_mo === 8) || (_mo === 9 && _da <= 13);
-        const _horaire = _h >= 11 && _h < 19;
-        // surveillance_h = Meilisearch dit que c'est l'heure de surveiller
-        // On affiche si : période correcte ET horaire local OK ET drapeau valide
-        const enSurveillance = _periode && _horaire
-                           && d.drapeau && d.drapeau !== 'nc';
-        if (!enSurveillance) return '';
-        const couleur = d.drapeau || 'jaune';
-        const emoji   = couleur === 'vert' ? '🟢' : couleur === 'rouge' ? '🔴' : '🟡';
-        const labelFR = couleur === 'rouge' ? 'Baignade interdite' : 'Surveillée 11h-19h';
-        const labelEN = couleur === 'rouge' ? 'Swimming prohibited' : 'Supervised 11am-7pm';
-        const labelES = couleur === 'rouge' ? 'Baño prohibido'      : 'Vigilado 11h-19h';
-        return \`<div class="drap-bloc">
-          <span style="font-size:1.4rem">\${emoji}</span>
-          <div>
-            <div style="font-size:10px;font-weight:600;color:var(--white)">\${labelFR}</div>
-            <div style="font-size:7.7px;color:var(--muted)">\${labelEN} · \${labelES}</div>
-          </div>
-        </div>\`;
-      })()}ml>
+</html>      <div id="drap-bloc-container"></div>ml>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -1796,7 +1795,31 @@
   loadMeteo();
   loadAnimations();
 
-  setInterval(checkNight,        30 * 1000);
+  // Mettre à jour le drapeau toutes les minutes (condition horaire)
+  function updateDrapeau() {
+    if (!window._meteoData) return;
+    const d = window._meteoData;
+    const _n  = parisnow();
+    const _h  = _n.getHours(), _mo = _n.getMonth()+1, _da = _n.getDate();
+    const _periode = (_mo===7)||(_mo===8)||(_mo===9&&_da<=13);
+    const _horaire = _h >= 11 && _h < 19;
+    const show = _periode && _horaire && d.drapeau && d.drapeau !== 'nc';
+    const bloc = document.getElementById('drap-bloc-container');
+    if (!bloc) return;
+    if (!show) { bloc.innerHTML = ''; return; }
+    const couleur = d.drapeau;
+    const emoji   = couleur==='vert' ? '🟢' : couleur==='rouge' ? '🔴' : '🟡';
+    const labelFR = couleur==='rouge' ? 'Baignade interdite' : 'Surveillée 11h-19h';
+    const labelEN = couleur==='rouge' ? 'Swimming prohibited' : 'Supervised 11am-7pm';
+    const labelES = couleur==='rouge' ? 'Baño prohibido'      : 'Vigilado 11h-19h';
+    bloc.innerHTML = '<div class="drap-bloc">'
+      + '<span style="font-size:1.4rem">' + emoji + '</span>'
+      + '<div><div style="font-size:10px;font-weight:600;color:var(--white)">' + labelFR + '</div>'
+      + '<div style="font-size:7.7px;color:var(--muted)">' + labelEN + ' · ' + labelES + '</div></div>'
+      + '</div>';
+  }
+  setInterval(updateDrapeau, 60 * 1000);
+  setInterval(checkNight,    30 * 1000);
   setInterval(checkNextAnim,     30 * 1000);
   setInterval(updateAnimDate,    60 * 1000);
   setInterval(() => {
@@ -1819,6 +1842,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 21:55</div>
+  <div class="version-badge">màj 22:00</div>
 </body>
 </html>
