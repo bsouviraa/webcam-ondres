@@ -134,12 +134,20 @@ cur = om["current"]; daily = om["daily"]
 uv_val = cur["uv_index"]; uv_max = daily["uv_index_max"][0]
 uv_display = uv_max if uv_val == 0 else uv_val
 
-# ── METAR LFBZ — température air live ────────────────────────────────────────
+# ── METAR LFBZ — température air + vent live ─────────────────────────────────
 metar_temp = ""
+metar_vent_kmh = ""
+metar_vent_deg = ""
 try:
     metar_data = json.loads(fetch("https://aviationweather.gov/api/data/metar?ids=LFBZ&format=json"))
-    if metar_data and isinstance(metar_data, list) and metar_data[0].get("temp") is not None:
-        metar_temp = str(int(round(metar_data[0]["temp"])))
+    if metar_data and isinstance(metar_data, list):
+        m = metar_data[0]
+        if m.get("temp") is not None:
+            metar_temp = str(int(round(m["temp"])))
+        if m.get("wspd") is not None:
+            metar_vent_kmh = str(int(round(m["wspd"] * 1.852)))  # noeuds → km/h
+        if m.get("wdir") is not None:
+            metar_vent_deg = str(int(m["wdir"]))
 except Exception as _me:
     import sys; print(f"METAR error: {_me}", file=sys.stderr)
 
@@ -149,9 +157,10 @@ meteo = {
     "meteo_picto":   commune.get("meteo_picto", ""),
     "meteo_label":   WMO.get(cur["weather_code"], ""),
     "temp_eau":      str(plage.get("temp_eau", "NC")) if plage.get("temp_eau") else "NC",
-    "vent_kmh":      str(round(cur["wind_speed_10m"])),
-    "vent_deg":      str(round(cur["wind_direction_10m"])),
-    "vent_cardinal": deg_to_cardinal(round(cur["wind_direction_10m"])),
+    # Vent : METAR LFBZ en priorité, fallback Open-Meteo
+    "vent_kmh":      metar_vent_kmh or str(round(cur["wind_speed_10m"])),
+    "vent_deg":      metar_vent_deg or str(round(cur["wind_direction_10m"])),
+    "vent_cardinal": deg_to_cardinal(int(metar_vent_deg) if metar_vent_deg else round(cur["wind_direction_10m"])),
     "uv":            str(round(uv_display, 1)),
     "uv_label":      uv_label(uv_display),
     "lever":         daily["sunrise"][0][11:16],
