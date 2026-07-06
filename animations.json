@@ -1,28 +1,8 @@
 {
-  "date": "06/07",
+  "date": "07/07",
   "items": [
     {
-      "heure": "10:30",
-      "emoji": "⚽",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Club Infantil Cahute"
-    },
-    {
-      "heure": "15:00",
-      "emoji": "⚽",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Club Infantil Cahute"
-    },
-    {
-      "heure": "15:30",
+      "heure": "09:30",
       "emoji": "💆",
       "fr": "Massage avec Emmanuelle",
       "en": "Massage",
@@ -32,14 +12,54 @@
       "lieu_es": "Pérgola Exterior"
     },
     {
+      "heure": "10:30",
+      "emoji": "⚽",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🏃",
+      "fr": "Marche Afghane",
+      "en": "Afghan Walking",
+      "es": "Marcha Afgana",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting in front of reception",
+      "lieu_es": "Cita frente a recepción"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "⚽",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
       "heure": "16:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon avec Sarah",
+      "en": "Pilates with Exercise Ball",
+      "es": "Pilates con Pelota de Ejercicio",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "18:00",
       "emoji": "🧘",
       "fr": "Yoga avec Maelys",
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "18:30",
@@ -50,6 +70,16 @@
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
       "lieu_es": "Pérgola Exterior"
+    },
+    {
+      "heure": "21:30",
+      "emoji": "🎬",
+      "fr": "Soirée cinéma \"MIGRATION\"",
+      "en": "Movie night",
+      "es": "Noche de Cine",
+      "lieu": "Solarium piscine",
+      "lieu_en": "Swimming pool solarium",
+      "lieu_es": "Solárium piscina"
     }
   ]
 }
