@@ -7,29 +7,69 @@
       "fr": "Kids Club",
       "lieu": "Kids club",
       "en": "Kids Club",
-      "es": "Club Infantil",
+      "es": "Club de Niños",
       "lieu_en": "Kids club",
-      "lieu_es": "Club infantil"
+      "lieu_es": "Club de niños"
     },
     {
-      "heure": "15:00",
-      "emoji": "🏓",
-      "fr": "Kids Club",
-      "lieu": "Kids club",
-      "en": "Kids Club",
-      "es": "Club Infantil",
-      "lieu_en": "Kids club",
-      "lieu_es": "Club infantil"
+      "heure": "10:30",
+      "emoji": "🌿",
+      "fr": "Marche Afghane",
+      "lieu": "Afghan Walking",
+      "en": "Afghan Walking",
+      "es": "Marcha Afgana",
+      "lieu_en": "Afghan Walking",
+      "lieu_es": "Marcha Afgana"
     },
     {
-      "heure": "15:00",
-      "emoji": "🏓",
-      "fr": "Kids Club",
-      "lieu": "Beach tennis tournament",
-      "en": "Kids Club",
-      "es": "Club Infantil",
-      "lieu_en": "Beach tennis tournament",
-      "lieu_es": "Torneo de tenis de playa"
+      "heure": "16:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon avec Sarah",
+      "lieu": "Pilates with Exercise Ball",
+      "en": "Pilates with Exercise Ball with Sarah",
+      "es": "Pilates con balón con Sarah",
+      "lieu_en": "Pilates with Exercise Ball",
+      "lieu_es": "Pilates con balón"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga avec Maelys",
+      "lieu": "Yoga",
+      "en": "Yoga with Maelys",
+      "es": "Yoga con Maelys",
+      "lieu_en": "Yoga",
+      "lieu_es": "Yoga"
+    },
+    {
+      "heure": "18:30",
+      "emoji": "🧘",
+      "fr": "Massage avec Marion",
+      "lieu": "Massage",
+      "en": "Massage with Marion",
+      "es": "Masaje con Marion",
+      "lieu_en": "Massage",
+      "lieu_es": "Masaje"
+    },
+    {
+      "heure": "21:30",
+      "emoji": "🎭",
+      "fr": "Soirée cinéma \"MIGRATION\"",
+      "lieu": "Movie night",
+      "en": "Movie night \"MIGRATION\"",
+      "es": "Noche de cine \"MIGRATION\"",
+      "lieu_en": "Movie night",
+      "lieu_es": "Noche de cine"
+    },
+    {
+      "heure": "9:30",
+      "emoji": "🧘",
+      "fr": "Massage avec Emmanuelle",
+      "lieu": "Massage",
+      "en": "Massage with Emmanuelle",
+      "es": "Masaje con Emmanuelle",
+      "lieu_en": "Massage",
+      "lieu_es": "Masaje"
     }
   ]
 }
