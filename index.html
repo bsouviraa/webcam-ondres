@@ -720,41 +720,29 @@
   async function loadAnimations() {
     try {
       const now = parisnow();
-      // Après 20h30 et avant minuit → afficher le programme du lendemain
       const dd  = String(now.getDate()).padStart(2,'0');
       const mm  = String(now.getMonth()+1).padStart(2,'0');
-      const sheetName = dd + mm;
       const dateLabel = dd + '/' + mm;
 
-      // Vérifier que la feuille existe dans le Sheet
-      const htmlRes = await fetch(
-        'https://docs.google.com/spreadsheets/d/1O-vrZ_qSRbsjsNAuIc5YS7Aw4qulp3AG/htmlview?cb=' + Date.now()
-      );
-      const htmlTxt = await htmlRes.text();
-      const namesMatch = htmlTxt.match(/\{name:\s*"([^"]+)"/g) || [];
-      const available = namesMatch.map(m => m.match(/"([^"]+)"/)[1]);
-
-      if (!available.includes(sheetName)) {
-        throw new Error('Feuille ' + sheetName + ' introuvable');
-      }
-
-      // Charger animations.json (généré par GitHub Actions avec traductions)
+      // animations.json est régénéré toutes les 15 min par GitHub Actions
+      // depuis le fichier Drive (avec traductions). Sa clé "date" = jour du programme.
+      // Plus aucun appel direct à Google ici (503/cache aléatoires).
       const res = await fetch('./animations.json?cb=' + Date.now());
       const payload = await res.json();
       const anims = Array.isArray(payload) ? payload : (payload.items || []);
       const storedDate = Array.isArray(payload) ? '' : (payload.date || '');
 
-      // Si animations.json est pour une autre date, utiliser quand même
-      // (sera mis à jour par le workflow toutes les heures)
+      // N'afficher que si le programme correspond à aujourd'hui
+      if (storedDate !== dateLabel || !anims.length) {
+        window._animData = []; window._animDateLabel = '';
+        renderAnimations([], '');
+        return;
+      }
+
       window._animData      = anims;
       window._animDateLabel = dateLabel;
-
-      // Mettre la date dans anim-date uniquement (le titre reste fixe)
       const dateEl2 = document.getElementById('anim-date');
-      if (dateEl2) dateEl2.textContent = dateLabel
-        ? 'Animations du ' + dateLabel
-        : '';
-
+      if (dateEl2) dateEl2.textContent = 'Animations du ' + dateLabel;
       renderAnimations(anims, dateLabel);
       checkNextAnim();
 
@@ -990,6 +978,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 12:17</div>
+  <div class="version-badge">màj 12:23</div>
 </body>
 </html>
