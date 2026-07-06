@@ -203,42 +203,77 @@ try:
     sheet_name = paris_now.strftime("%d%m")
     anim_date  = paris_now.strftime("%d/%m")
 
-    # Vérifier que la feuille existe
-    html_sheets = fetch(f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/htmlview")
-    available = re.findall(r'{name:\s*"([^"]+)"', html_sheets)
-    if sheet_name not in available:
+    # ── Lecture directe de l'export xlsx (source brute, anti-cache, formats sales OK) ──
+    import zipfile as _zip
+    _xlsx = urllib.request.urlopen(urllib.request.Request(
+        f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=xlsx",
+        headers={"User-Agent": "Mozilla/5.0"}), timeout=25).read()
+    _zf = _zip.ZipFile(io.BytesIO(_xlsx))
+    _wb   = _zf.read('xl/workbook.xml').decode('utf-8', errors='ignore')
+    _rels = _zf.read('xl/_rels/workbook.xml.rels').decode('utf-8', errors='ignore')
+    _sm = re.search(r'<sheet name="' + re.escape(sheet_name) + r'"[^>]*r:id="(rId\d+)"', _wb)
+    if not _sm:
         raise ValueError(f"Feuille {sheet_name} introuvable")
+    _tm = re.search(r'<Relationship Id="' + _sm.group(1) + r'"[^>]*Target="([^"]+)"', _rels)
+    _target = _tm.group(1).lstrip('/')
+    if not _target.startswith('xl/'): _target = 'xl/' + _target
+    _sheet_xml = _zf.read(_target).decode('utf-8', errors='ignore')
+    _shared = []
+    try:
+        _ss = _zf.read('xl/sharedStrings.xml').decode('utf-8', errors='ignore')
+        for _si in re.findall(r'<si>([\s\S]*?)</si>', _ss):
+            _shared.append(''.join(re.findall(r'<t[^>]*>([^<]*)</t>', _si)))
+    except KeyError:
+        pass
+    _cells = {}
+    for _cm in re.finditer(r'<c ([^>]*?)(?:/>|>([\s\S]*?)</c>)', _sheet_xml):
+        _attrs, _inner = _cm.group(1), _cm.group(2) or ''
+        _rm = re.search(r'r="([A-Z]+)(\d+)"', _attrs)
+        _vm = re.search(r'<v>([^<]*)</v>', _inner)
+        if not _rm or not _vm: continue
+        _v = _shared[int(_vm.group(1))] if 't="s"' in _attrs and int(_vm.group(1)) < len(_shared) else _vm.group(1)
+        _cells.setdefault(int(_rm.group(2)), {})[_rm.group(1)] = _v
 
-    sheet_url = (f"https://docs.google.com/spreadsheets/d/{SHEET_ID}"
-                 f"/gviz/tq?tqx=out:csv&sheet={sheet_name}")
-    sheet_data = fetch(sheet_url)
-    reader = csv.reader(io.StringIO(sheet_data))
-    rows = list(reader)
+    def _norm_heure(h):
+        # Heure Excel numérique (0.3958 → 09:30) ou texte sale ("15h:00" → "15:00")
+        try:
+            _f = float(h)
+            if 0 < _f < 1.5:
+                _tot = round(_f * 24 * 60)
+                return "{:02d}:{:02d}".format((_tot // 60) % 24, _tot % 60)
+        except (ValueError, TypeError):
+            pass
+        _m = re.search(r"(\d{1,2})\D{0,2}(\d{2})", str(h))
+        return "{:02d}:{}".format(int(_m.group(1)), _m.group(2)) if _m else None
 
-    # Parser robuste : chercher toutes les lignes avec format HH:MM
-    for row in rows:
-        if not row or not row[0].strip(): continue
-        heure = row[0].strip()
-        # Valider le format HH:MM
-        import re as _re
-        if not _re.match(r'^\d{1,2}:\d{2}$', heure): continue
-        if not (len(row) > 2 and row[2].strip()): continue
+    # Détection du format via la ligne d'en-tête (l'onglet peut être ancien 4 col. ou nouveau 6 col.)
+    _col_en, _col_es, _col_lieu = None, None, 'D'
+    for _rn in sorted(_cells.keys()):
+        _row = _cells[_rn]
+        if 'heure' in str(_row.get('A', '')).lower():
+            for _c, _val in _row.items():
+                _vl = str(_val).lower()
+                if 'english' in _vl:  _col_en = _c
+                elif 'espa' in _vl:   _col_es = _c
+                elif 'lieu' in _vl:   _col_lieu = _c
+            break
+
+    for _rn in sorted(_cells.keys()):
+        _row = _cells[_rn]
+        _heure = _norm_heure(_row.get('A', ''))
+        _fr = (_row.get('C') or '').strip()
+        if not _heure or not _fr: continue
+        if 'exemple' in _fr.lower(): continue
         animations.append({
-            "heure":   heure,
-            "emoji":   row[1].strip() if len(row) > 1 else "",
-            "fr":      row[2].strip(),
-            "lieu":    row[3].strip() if len(row) > 3 else "",
-            "en":      "", "es": "",
+            "heure":   _heure,
+            "emoji":   (_row.get('B') or '').strip(),
+            "fr":      _fr,
+            "en":      (_row.get(_col_en) or '').strip() if _col_en else "",
+            "es":      (_row.get(_col_es) or '').strip() if _col_es else "",
+            "lieu":    (_row.get(_col_lieu) or '').strip(),
             "lieu_en": "", "lieu_es": "",
         })
 
-    # Trier par heure (au cas où le Sheet ne serait pas dans l'ordre)
-    # Normaliser les heures saisies à la main ("9:30" → "09:30", "15h:00" → "15:00")
-    def _norm_heure(h):
-        m = re.search(r"(\d{1,2})\D{0,2}(\d{2})", str(h))
-        return "{:02d}:{}".format(int(m.group(1)), m.group(2)) if m else str(h)
-    for _a in animations:
-        _a["heure"] = _norm_heure(_a.get("heure", ""))
     animations.sort(key=lambda a: a["heure"])
 
     # ── 3. Traduction via API Claude ──────────────────────────────────────────
@@ -254,8 +289,8 @@ try:
             tidx = 0
             for a in animations:
                 if tidx < len(translations):
-                    a["en"] = translations[tidx].get("en", "")
-                    a["es"] = translations[tidx].get("es", "")
+                    if not a["en"]: a["en"] = translations[tidx].get("en", "")
+                    if not a["es"]: a["es"] = translations[tidx].get("es", "")
                     tidx += 1
                 if a["lieu"] and tidx < len(translations):
                     a["lieu_en"] = translations[tidx].get("en", "")
