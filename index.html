@@ -312,6 +312,16 @@
     .anim-sep     { color:var(--border); margin:0 0.15em; }
     .anim-es      { color:rgba(242,237,230,0.42); }
     .anim-lieu    { font-family:'Outfit',sans-serif; font-size:clamp(0.55rem,0.9vh,0.68rem); font-weight:400; color:var(--gold); opacity:0.75; margin-top:0.2rem; line-height:1.2; }
+    /* ── Adaptatif animations : <8 → grandes cartes ; ≥8 → compact ── */
+    .anim-texts { min-width:0; }
+    .anim-fr, .anim-trad, .anim-lieu { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .anim-large .anim-item   { flex:0 0 clamp(3rem,6.6vh,4.8rem); }
+    .anim-large .anim-fr     { font-size:clamp(0.85rem,1.55vh,1.15rem); }
+    .anim-large .anim-trad   { font-size:clamp(0.62rem,1.05vh,0.8rem); }
+    .anim-large .anim-lieu   { font-size:clamp(0.62rem,1.05vh,0.8rem); margin-top:0.25rem; }
+    .anim-compact .anim-item { flex:0 0 clamp(2rem,4.1vh,3rem); }
+    .anim-compact .anim-lieu { margin-top:0; }
+
   </style>
 </head>
 <body>
@@ -619,6 +629,11 @@
   function renderAnimations(anims, dateLabel) {
     const body = document.getElementById('anim-body');
     if (!body) return;
+
+    // <8 animations : grandes cartes lisibles ; ≥8 : compact (noms simplifiés par ellipse)
+    const n = (anims || []).length;
+    body.classList.toggle('anim-large', n > 0 && n < 8);
+    body.classList.toggle('anim-compact', n >= 8);
 
     if (!anims || anims.length === 0) {
       body.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0.75rem;padding:1.5rem;text-align:center">
@@ -978,6 +993,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 12:23</div>
+  <div class="version-badge">màj 15:36</div>
 </body>
 </html>
