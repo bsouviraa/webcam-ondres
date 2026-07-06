@@ -858,13 +858,15 @@
     const _horaire = _h >= 11 && _h < 19;
     const bloc = document.getElementById('drap-bloc-container');
     if (!bloc) return;
-    const couleur = (d.drapeau && d.drapeau !== 'nc') ? d.drapeau : 'jaune';
+    const drapOK = !!(d.drapeau && d.drapeau !== 'nc');
+    const eauOK  = !!(d.temp_eau && d.temp_eau !== 'NC');
+    const couleur = drapOK ? d.drapeau : 'jaune';
     const emoji     = couleur==='vert' ? '✅' : couleur==='rouge' ? '🛑' : '🟧';
     const flagColor = couleur==='vert' ? '#4caf50' : couleur==='rouge' ? '#f44336' : '#f59e42';
-    // Gabarit identique dans les 2 états : 2 lignes nettes, sans retour à la ligne
+    // Gabarit identique dans tous les états : 2 lignes nettes, sans retour à la ligne
     const l1style = 'font-size:11px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
     const l2style = 'font-size:8px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
-    if (_periode && _horaire && d.drapeau && d.drapeau !== 'nc') {
+    if (_periode && _horaire && drapOK) {
       // Pendant la surveillance : drapeau coloré live
       const labelFR = couleur==='rouge' ? 'Baignade interdite' : 'Baignade surveillée';
       const labelEN = couleur==='rouge' ? 'No swimming · Baño prohibido · 11h–19h' : 'Supervised · Vigilado · 11h–19h';
@@ -872,6 +874,13 @@
         + '<span style="font-size:1.4rem">' + emoji + '</span>'
         + '<div style="min-width:0"><div style="' + l1style + ';color:' + flagColor + '">' + labelFR + '</div>'
         + '<div style="' + l2style + '">' + labelEN + '</div></div>'
+        + '</div>';
+    } else if (_periode && _horaire) {
+      // Surveillance commencée mais poste de secours pas encore remonté dans la base
+      bloc.innerHTML = '<div class="drap-bloc" style="border-color:rgba(245,200,66,0.3);background:rgba(245,200,66,0.06)">'
+        + '<span style="font-size:1.4rem">🛟</span>'
+        + '<div style="min-width:0"><div style="' + l1style + ';color:var(--gold)">Plage surveillée · 11h–19h</div>'
+        + '<div style="' + l2style + '">En attente des infos du poste de secours</div></div>'
         + '</div>';
     } else {
       // Hors surveillance : message discret, même gabarit
@@ -885,6 +894,41 @@
         + '<div style="' + l2style + '">' + msgEN + '</div></div>'
         + '</div>';
     }
+    // ── Tamponnage direct Meilisearch tant qu'il manque drapeau ou temp eau ──
+    // Toutes les 1 min de 11h00 à 11h30, puis toutes les 5 min, jusqu'à obtention.
+    if (_periode && _horaire && (!drapOK || !eauOK)) {
+      const sinceStart = (_h - 11) * 60 + _n.getMinutes();
+      const every = sinceStart <= 30 ? 1 : 5;
+      window._pollTick = (window._pollTick || 0) + 1;
+      if (window._pollTick % every === 0) pollPosteSecours();
+    }
+  }
+
+  async function pollPosteSecours() {
+    try {
+      const res = await fetch('https://meiliprod144.apsulis.fr/indexes/pdl-prod-fr/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer cfd3463ba673bbd7fae56e71b74cd067d671ab37ef188fb62e5c7b35c698b9f6'
+        },
+        body: JSON.stringify({ q: 'Ondres', limit: 5 })
+      });
+      const js = await res.json();
+      const plage = (js.hits || []).find(function(h) { return h.type === 'plages'; });
+      if (!plage || !window._meteoData) return;
+      let changed = false;
+      if (plage.drapeau && plage.drapeau !== 'nc' && window._meteoData.drapeau !== plage.drapeau) {
+        window._meteoData.drapeau = plage.drapeau; changed = true;
+      }
+      if (plage.temp_eau && String(plage.temp_eau) !== window._meteoData.temp_eau) {
+        window._meteoData.temp_eau = String(plage.temp_eau); changed = true;
+      }
+      if (changed) {
+        renderMeteo(window._meteoData);
+        updateDrapeau();
+      }
+    } catch (e) { /* réessaiera à la prochaine minute */ }
   }
   setInterval(updateDrapeau, 60 * 1000);
   setInterval(checkNight,    30 * 1000);
@@ -910,6 +954,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 11:01</div>
+  <div class="version-badge">màj 11:20</div>
 </body>
 </html>
