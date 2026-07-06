@@ -151,10 +151,10 @@ try:
         m = metar_data[0]
         if m.get("temp") is not None:
             metar_temp = str(int(round(m["temp"])))
-        if m.get("wspd") is not None:
+        if isinstance(m.get("wspd"), (int, float)):
             metar_vent_kmh = str(int(round(m["wspd"] * 1.852)))  # noeuds → km/h
-        if m.get("wdir") is not None:
-            metar_vent_deg = str(int(m["wdir"]))
+        if isinstance(m.get("wdir"), (int, float)):
+            metar_vent_deg = str(int(m["wdir"]))  # "VRB" (vent variable) → ignoré
     if not metar_temp:
         # Secours : METAR brut NOAA (ex: "LFBZ 052030Z AUTO 24004KT CAVOK 23/18 Q1021")
         _raw = urllib.request.urlopen(urllib.request.Request(
