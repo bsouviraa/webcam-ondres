@@ -2,74 +2,54 @@
   "date": "06/07",
   "items": [
     {
-      "heure": "09:30",
-      "emoji": "🧘",
-      "fr": "Massage avec Emmanuelle",
-      "lieu": "Massage",
-      "en": "Massage with Emmanuelle",
-      "es": "Masaje con Emmanuelle",
-      "lieu_en": "Massage",
-      "lieu_es": "Masaje"
-    },
-    {
       "heure": "10:30",
-      "emoji": "🏓",
+      "emoji": "⚽",
       "fr": "Kids Club",
-      "lieu": "Kids club",
-      "en": "Kids Club",
-      "es": "Club Infantil",
-      "lieu_en": "Kids club",
-      "lieu_es": "Club infantil"
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Club Infantil"
     },
     {
-      "heure": "10:30",
-      "emoji": "🌿",
-      "fr": "Marche Afghane",
-      "lieu": "Afghan Walking",
-      "en": "Afghan Walking",
-      "es": "Marcha Afgana",
-      "lieu_en": "Afghan Walking",
-      "lieu_es": "Marcha Afgana"
+      "heure": "15:00",
+      "emoji": "⚽",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Club Infantil"
+    },
+    {
+      "heure": "15:30",
+      "emoji": "💆",
+      "fr": "Massage avec Emmanuelle",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "16:00",
       "emoji": "🧘",
-      "fr": "Pilates ballon avec Sarah",
-      "lieu": "Pilates with Exercise Ball",
-      "en": "Pilates with Exercise Ball with Sarah",
-      "es": "Pilates con balón con Sarah",
-      "lieu_en": "Pilates with Exercise Ball",
-      "lieu_es": "Pilates con balón"
-    },
-    {
-      "heure": "18:00",
-      "emoji": "🧘",
       "fr": "Yoga avec Maelys",
-      "lieu": "Yoga",
-      "en": "Yoga with Maelys",
-      "es": "Yoga con Maelys",
-      "lieu_en": "Yoga",
-      "lieu_es": "Yoga"
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "18:30",
-      "emoji": "🧘",
+      "emoji": "💆",
       "fr": "Massage avec Marion",
-      "lieu": "Massage",
-      "en": "Massage with Marion",
-      "es": "Masaje con Marion",
-      "lieu_en": "Massage",
-      "lieu_es": "Masaje"
-    },
-    {
-      "heure": "21:30",
-      "emoji": "🎭",
-      "fr": "Soirée cinéma \"MIGRATION\"",
-      "lieu": "Movie night",
-      "en": "Movie night \"MIGRATION\"",
-      "es": "Noche de cine \"MIGRACIÓN\"",
-      "lieu_en": "Movie night",
-      "lieu_es": "Noche de cine"
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
     }
   ]
 }
