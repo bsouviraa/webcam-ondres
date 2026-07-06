@@ -443,7 +443,7 @@
     var W = 268, H = 110, n = marees.length;
     if (!n) return '';
     var pts = marees.map(function(m, i) {
-      return { x: Math.round(W*(i+0.5)/n), y: m.type==='Haute' ? 30 : 80, m: m };
+      return { x: Math.round(W*(i+0.5)/n), y: m.type==='Haute' ? 38 : 72, m: m };
     });
     var path = 'M ' + pts[0].x + ' ' + pts[0].y;
     for (var i = 0; i < pts.length-1; i++) {
@@ -909,6 +909,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 22:37</div>
+  <div class="version-badge">màj 10:28</div>
 </body>
 </html>
