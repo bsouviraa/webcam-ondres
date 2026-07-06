@@ -233,6 +233,12 @@ try:
         })
 
     # Trier par heure (au cas où le Sheet ne serait pas dans l'ordre)
+    # Normaliser les heures saisies à la main ("9:30" → "09:30", "15h:00" → "15:00")
+    def _norm_heure(h):
+        m = re.search(r"(\d{1,2})\D{0,2}(\d{2})", str(h))
+        return "{:02d}:{}".format(int(m.group(1)), m.group(2)) if m else str(h)
+    for _a in animations:
+        _a["heure"] = _norm_heure(_a.get("heure", ""))
     animations.sort(key=lambda a: a["heure"])
 
     # ── 3. Traduction via API Claude ──────────────────────────────────────────
