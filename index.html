@@ -850,20 +850,39 @@
   function updateFetesFooter() {
     const el = document.getElementById('fetes-footer');
     if (!el || !window._meteoData) return;
-    const f = (window._meteoData.bus || {}).fetes_bayonne || [];
-    if (!f.length) { el.innerHTML = ''; return; }
-    const badges = f.map(function(h) {
-      const tmrw = typeof h === 'string' && h.endsWith('+1');
-      return '<span class="transport-time' + (tmrw ? ' transport-time-tmrw' : '') + '">' + (tmrw ? h.slice(0,5) : h) + '</span>';
-    }).join('');
-    el.innerHTML = '<div style="border-top:1px solid var(--border);padding:0.55vh 1rem;display:flex;align-items:center;gap:0.5rem;background:rgba(245,200,66,0.05)">'
-      + '<span style="font-size:1.1rem;flex-shrink:0">🎉</span>'
+    const b = window._meteoData.bus || {};
+    const fetes = b.fetes_bayonne || [];
+    // Le footer ne vit que pendant les Fêtes de Bayonne (fetes_bayonne rempli par le scraper)
+    if (!fetes.length) { el.innerHTML = ''; return; }
+    const mkBadges = function(arr) {
+      return (arr || []).map(function(h) {
+        const tmrw = typeof h === 'string' && h.endsWith('+1');
+        return '<span class="transport-time' + (tmrw ? ' transport-time-tmrw' : '') + '">' + (tmrw ? h.slice(0,5) : h) + '</span>';
+      }).join('');
+    };
+    const rowStyle = 'display:flex;align-items:center;gap:0.5rem;padding:0.35vh 1rem';
+    let out = '<div style="border-top:1px solid var(--border);background:rgba(245,200,66,0.05)">'
+      + '<div style="' + rowStyle + '">'
+      + '<span style="font-size:1.05rem;flex-shrink:0">🎉</span>'
       + '<div style="min-width:0;flex-shrink:0">'
       + '<div style="font-size:10.5px;font-weight:600;color:var(--gold);white-space:nowrap">Bus des Fêtes · → Bayonne</div>'
       + '<div style="font-size:7.7px;color:var(--muted);white-space:nowrap">Dous Maynades · 15–19 juillet</div>'
       + '</div>'
-      + '<div style="display:flex;gap:0.2rem;margin-left:auto;flex-wrap:nowrap;overflow:hidden">' + badges + '</div>'
+      + '<div style="display:flex;gap:0.2rem;margin-left:auto;flex-wrap:nowrap;overflow:hidden">' + mkBadges(fetes) + '</div>'
       + '</div>';
+    // En journée pendant les fêtes : la ligne 23 régulière dessert aussi Bayonne
+    if (b.bayonne && b.bayonne.length) {
+      out += '<div style="' + rowStyle + ';border-top:1px solid rgba(255,255,255,0.05)">'
+        + '<span style="font-size:1.05rem;flex-shrink:0">🚌</span>'
+        + '<div style="min-width:0;flex-shrink:0">'
+        + '<div style="font-size:10.5px;font-weight:600;color:var(--white);white-space:nowrap">Ligne 23 · → Bayonne</div>'
+        + '<div style="font-size:7.7px;color:var(--muted);white-space:nowrap">Bus régulier · journée</div>'
+        + '</div>'
+        + '<div style="display:flex;gap:0.2rem;margin-left:auto;flex-wrap:nowrap;overflow:hidden">' + mkBadges(b.bayonne) + '</div>'
+        + '</div>';
+    }
+    out += '</div>';
+    el.innerHTML = out;
   }
 
   function updateDrapeau() {
@@ -971,6 +990,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 11:26</div>
+  <div class="version-badge">màj 12:17</div>
 </body>
 </html>
