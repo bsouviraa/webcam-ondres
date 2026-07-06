@@ -374,7 +374,8 @@ try:
         _cal = _zf.read('CA_PAYS_BASQUE_calendriers.xml').decode('utf-8', errors='ignore')
         _per = re.findall(r'OperatingPeriod:I_FB[^"]*"[\s\S]{0,300}?<FromDate>(\d{4}-\d{2}-\d{2})[\s\S]{0,120}?<ToDate>(\d{4}-\d{2}-\d{2})', _cal)
         _today = datetime.now(timezone(timedelta(hours=2))).strftime('%Y-%m-%d')
-        if not any(f <= _today <= t for f, t in _per):
+        _FETES_FILTER_ACTIF = False  # ⚠️ TEMPORAIRE : réactiver (True) avant le 15/07 pour limiter l'affichage aux dates des fêtes
+        if _FETES_FILTER_ACTIF and not any(f <= _today <= t for f, t in _per):
             _fetes_bayonne = []
     except Exception as _fe:
         import sys; print(f"Fetes cal error: {_fe}", file=sys.stderr)
