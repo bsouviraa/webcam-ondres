@@ -1,4 +1,35 @@
 {
   "date": "06/07",
-  "items": []
+  "items": [
+    {
+      "heure": "10:30",
+      "emoji": "🏓",
+      "fr": "Kids Club",
+      "lieu": "Kids club",
+      "en": "Kids Club",
+      "es": "Club Infantil",
+      "lieu_en": "Kids club",
+      "lieu_es": "Club infantil"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🏓",
+      "fr": "Kids Club",
+      "lieu": "Kids club",
+      "en": "Kids Club",
+      "es": "Club Infantil",
+      "lieu_en": "Kids club",
+      "lieu_es": "Club infantil"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🏓",
+      "fr": "Kids Club",
+      "lieu": "Beach tennis tournament",
+      "en": "Kids Club",
+      "es": "Club Infantil",
+      "lieu_en": "Beach tennis tournament",
+      "lieu_es": "Torneo de tenis de playa"
+    }
+  ]
 }
