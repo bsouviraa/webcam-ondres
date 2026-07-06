@@ -440,10 +440,10 @@
   //  RENDU MÉTÉO
   // ═══════════════════════════════════════════════════════
   function buildTideSVG(marees) {
-    var W = 268, H = 110, n = marees.length;
+    var W = 268, H = 90, n = marees.length;
     if (!n) return '';
     var pts = marees.map(function(m, i) {
-      return { x: Math.round(W*(i+0.5)/n), y: m.type==='Haute' ? 38 : 72, m: m };
+      return { x: Math.round(W*(i+0.5)/n), y: m.type==='Haute' ? 32 : 60, m: m };
     });
     var path = 'M ' + pts[0].x + ' ' + pts[0].y;
     for (var i = 0; i < pts.length-1; i++) {
@@ -463,7 +463,7 @@
       return '<text x="' + p.x + '" y="' + lblY + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="' + fill + '">' + lbl + '</text>'
            + '<text x="' + p.x + '" y="' + hrY  + '" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="300" fill="rgba(242,237,230,0.92)">' + p.m.heure + '</text>';
     }).join('');
-    return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="110" style="display:block;margin-top:0.2vh">'
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="90" style="display:block;margin-top:0.1vh">'
          + '<path d="' + path + '" fill="none" stroke="#4fc3f7" stroke-width="1.5" stroke-opacity="0.5" stroke-linejoin="round"/>'
          + dots + labels + '</svg>';
   }
@@ -546,7 +546,7 @@
           </div>
         </div>
       </div>
-      <div class="maree-section" style="flex:0 0 160px;overflow:hidden;border:1px solid var(--border);border-radius:8px;padding:0">
+      <div class="maree-section" style="flex:0 0 132px;overflow:hidden;border:1px solid var(--border);border-radius:8px;padding:0">
         <div class="meteo-head" style="display:flex;justify-content:space-between;align-items:baseline;border-radius:8px 8px 0 0">
           Marées · Tides · Mareas
         </div>
@@ -910,6 +910,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 10:33</div>
+  <div class="version-badge">màj 10:46</div>
 </body>
 </html>
