@@ -19,7 +19,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña del Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "10:30",
@@ -28,7 +28,7 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the reception",
+      "lieu_en": "Meeting in front of reception",
       "lieu_es": "Cita frente a recepción"
     },
     {
@@ -39,7 +39,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña del Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "16:00",
@@ -48,8 +48,8 @@
       "en": "Pilates with Exercise Ball",
       "es": "Pilates con Pelota de Ejercicio",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "18:00",
@@ -58,8 +58,8 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "18:30",
@@ -78,8 +78,8 @@
       "en": "Movie night",
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
-      "lieu_en": "Pool solarium",
-      "lieu_es": "Solarium de la piscina"
+      "lieu_en": "Pool Solarium",
+      "lieu_es": "Solárium Piscina"
     }
   ]
 }
