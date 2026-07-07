@@ -98,7 +98,7 @@ footer b{color:var(--petrol)}
 </svg>
 </div>
   <div><h1>Dashboard exploitation</h1><div class="subtitle">Arrivées 2023 – 2026 · ★★★★★ Certified Ecolabel</div></div>
-  <span class="version-badge">màj 22:30</span>
+  <span class="version-badge">màj 22:43</span>
   <div class="spacer"></div>
   <div class="refbox">Date de référence <input type="date" id="refpick"> <span id="refdate"></span></div>
   <label class="switch"><input type="checkbox" id="toggleProp"> Inclure propriétaires (occupation / ADR)</label>
@@ -123,6 +123,9 @@ footer b{color:var(--petrol)}
   <div class="cards" id="pa-cards"></div>
   <div class="panel"><div class="chartbox"><canvas id="pa-chart"></canvas></div>
   <p class="hint">CA hébergement net cumulé par date de prise de réservation, pour les séjours arrivant chaque année. Alignement N-1 : décalage de 364 jours (52 semaines), même jour de semaine. Contrats annuels propriétaires exclus.</p></div>
+  <div class="panel"><h4 style="margin-top:0">TO par mois — mois en cours et à venir : réservé à date vs N-1</h4>
+  <div class="chartbox" style="height:300px"><canvas id="pa-chart2"></canvas></div>
+  <p class="hint">Vert : nuitées déjà réservées pour chaque mois à venir. Vert clair : ce que N-1 avait de réservé pour le même mois, au même moment (décalage 364 j). Pointillé : le TO que N-1 a finalement réalisé — l'écart pointillé/vert clair montre ce qui s'était vendu ensuite en last-minute.</p></div>
 </section>
 
 <section class="pane" id="pane-next" style="display:none">
@@ -289,6 +292,20 @@ const GR = (function () {
     }
     return { ca, nb, nuits, nuitsExpl };
   }
+  /* TO "on the books" sur une plage de nuits, avec cutoff de date de réservation (-1 = sans filtre = final) */
+  function otbTO(o1, o2, cutoff) {
+    let nights = 0;
+    for (const s of D.stays) {
+      if (!(s[S.SEG] === 0 && explSet.has(s[S.U]))) continue;
+      if (cutoff >= 0 && (s[S.CR] < 0 || s[S.CR] > cutoff)) continue;
+      const a = Math.max(s[S.A], o1), b = Math.min(s[S.A] + s[S.N] - 1, o2);
+      for (let k = a; k <= b; k++) if (!isClosed(k)) nights++;
+    }
+    let cap = 0;
+    for (let k = Math.max(0, o1); k <= Math.min(maxOff, o2); k++) if (!isClosed(k)) cap += capEArr[k];
+    return { nights, cap, to: cap ? nights / cap : 0 };
+  }
+
   function pacingCurve(y, weeks) {
     const jan1 = offOfISO(y + '-01-01');
     return weeks.map(w => otb(y, jan1 + w * 7).ca);
@@ -310,7 +327,7 @@ const GR = (function () {
   const SHIFT = 364; // 52 semaines : N-1 au même jour de semaine
 
   return { init, S, dOf, iso, yearOf, offOfISO, dow, isClosed, inVac, vacAny, isFerie, isPont,
-           kpiRange, capOn, caAnnexes, otb, pacingCurve, nightDetail, arrivalsOn, departuresOn, SHIFT,
+           kpiRange, capOn, caAnnexes, otb, otbTO, pacingCurve, nightDetail, arrivalsOn, departuresOn, SHIFT,
            get night() { return night; }, get D() { return D; } };
 })();
 if (typeof module !== 'undefined') module.exports = GR;
@@ -590,6 +607,29 @@ if (typeof module !== 'undefined') module.exports = GR;
           ctx.fillStyle = CLR.red; ctx.fillText('date équivalente', px + 5, ca.top + 12);
         }
       }]
+    });
+    // ----- TO mensuel : mois en cours -> décembre, réservé à date vs N-1 -----
+    const y0 = GR.yearOf(cut), m0 = GR.dOf(cut).getUTCMonth();
+    const labs = [], curY = [], eqP = [], finP = [];
+    for (let m = m0; m < 12; m++) {
+      const last = new Date(Date.UTC(y0, m + 1, 0)).getUTCDate();
+      const o1 = GR.offOfISO(`${y0}-${String(m + 1).padStart(2, '0')}-01`), o2 = o1 + last - 1;
+      labs.push(MOIS[m] + ' ' + y0);
+      curY.push(GR.otbTO(o1, o2, cut).to * 100);
+      eqP.push(GR.otbTO(o1 - GR.SHIFT, o2 - GR.SHIFT, cut - GR.SHIFT).to * 100);
+      finP.push(GR.otbTO(o1 - GR.SHIFT, o2 - GR.SHIFT, -1).to * 100);
+    }
+    mkChart('pa-chart2', {
+      data: { labels: labs, datasets: [
+        { type: 'bar', label: 'TO ' + y0 + ' réservé à date', data: curY, backgroundColor: CLR.green, borderRadius: 4 },
+        { type: 'bar', label: 'TO ' + (y0 - 1) + ' réservé à date équivalente', data: eqP, backgroundColor: CLR.teal, borderRadius: 4 },
+        { type: 'line', label: 'TO ' + (y0 - 1) + ' final réalisé', data: finP, borderColor: CLR.gold, borderDash: [6, 4], pointRadius: 4, tension: .2 },
+      ] },
+      options: {
+        scales: { y: { max: 100, ticks: { callback: v => v + ' %' } } },
+        plugins: { tooltip: { callbacks: { label: c => c.dataset.label + ' : ' + c.raw.toFixed(1).replace('.', ',') + ' %' } } },
+        maintainAspectRatio: false,
+      },
     });
   }
 
