@@ -98,8 +98,8 @@ footer b{color:var(--petrol)}
 </svg>
 </div>
   <div><h1>Dashboard exploitation</h1><div class="subtitle">Arrivées 2023 – 2026 · ★★★★★ Certified Ecolabel</div></div>
-  <span class="version-badge">màj 22:48</span>
   <div class="spacer"></div>
+  <span class="version-badge">Dernière mise à jour : 07/07 · 22:58 (Paris) — màj 22:58</span>
   <div class="refbox">Date de référence <input type="date" id="refpick"> <span id="refdate"></span></div>
   <label class="switch"><input type="checkbox" id="toggleProp"> Inclure propriétaires (occupation / ADR)</label>
 </header>
@@ -123,9 +123,6 @@ footer b{color:var(--petrol)}
   <div class="cards" id="pa-cards"></div>
   <div class="panel"><div class="chartbox"><canvas id="pa-chart"></canvas></div>
   <p class="hint">CA hébergement net cumulé par date de prise de réservation, pour les séjours arrivant chaque année. Alignement N-1 : décalage de 364 jours (52 semaines), même jour de semaine. Contrats annuels propriétaires exclus.</p></div>
-  <div class="panel"><h4 style="margin-top:0">TO par mois — mois en cours et à venir : réservé à date vs N-1</h4>
-  <div class="chartbox" style="height:300px"><canvas id="pa-chart2"></canvas></div>
-  <p class="hint">Vert : nuitées déjà réservées pour chaque mois à venir. Vert clair : ce que N-1 avait de réservé pour le même mois, au même moment (décalage 364 j). Pointillé : le TO que N-1 a finalement réalisé — l'écart pointillé/vert clair montre ce qui s'était vendu ensuite en last-minute.</p></div>
 </section>
 
 <section class="pane" id="pane-next" style="display:none">
@@ -511,21 +508,28 @@ if (typeof module !== 'undefined') module.exports = GR;
   }
 
   function renderYearChart(y) {
-    const to = [], toPrev = [], ca = [];
+    const to = [], toPrev = [], toAtDate = [], ca = [];
+    const isRefYear = (y === GR.yearOf(state.ref));
     for (let m = 0; m < 12; m++) {
       const last = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
       const a = GR.offOfISO(`${y}-${String(m + 1).padStart(2, '0')}-01`), b = a + last - 1;
       const k = GR.kpiRange(a, b, state.prop), kp = GR.kpiRange(a - GR.SHIFT, b - GR.SHIFT, state.prop);
       to.push(k.to * 100); toPrev.push(kp.to * 100); ca.push(k.ca);
+      // "à date" : uniquement mois en cours et à venir — aucun sens sur le passé
+      if (isRefYear) toAtDate.push(m >= GR.dOf(state.ref).getUTCMonth() ? GR.otbTO(a - GR.SHIFT, b - GR.SHIFT, state.ref - GR.SHIFT).to * 100 : null);
     }
+    const dsets = [
+      { type: 'bar', label: 'TO ' + y, data: to, backgroundColor: CLR.green, yAxisID: 'y', borderRadius: 4 },
+    ];
+    if (isRefYear) dsets.push({ type: 'bar', label: 'TO ' + (y - 1) + ' à date équivalente', data: toAtDate, backgroundColor: CLR.teal, yAxisID: 'y', borderRadius: 4 });
+    dsets.push(
+      { type: 'bar', label: 'TO ' + (y - 1) + ' final (aligné jour de sem.)', data: toPrev, backgroundColor: 'rgba(128,129,132,.35)', yAxisID: 'y', borderRadius: 4 },
+      { type: 'line', label: 'CA hébergement', data: ca, borderColor: CLR.gold, backgroundColor: CLR.gold, yAxisID: 'y2', tension: .3, pointRadius: 3 },
+    );
     mkChart('sa-chart', {
       data: {
         labels: MOIS,
-        datasets: [
-          { type: 'bar', label: 'TO ' + y, data: to, backgroundColor: CLR.green, yAxisID: 'y', borderRadius: 4 },
-          { type: 'bar', label: 'TO ' + (y - 1) + ' (aligné jour de sem.)', data: toPrev, backgroundColor: 'rgba(128,129,132,.35)', yAxisID: 'y', borderRadius: 4 },
-          { type: 'line', label: 'CA hébergement', data: ca, borderColor: CLR.gold, backgroundColor: CLR.gold, yAxisID: 'y2', tension: .3, pointRadius: 3 },
-        ]
+        datasets: dsets,
       },
       options: {
         onClick: (e, els) => { if (els.length) { state.drill = { level: 'mois', year: y, month: els[0].index }; renderSaison(); } },
@@ -681,29 +685,6 @@ if (typeof module !== 'undefined') module.exports = GR;
           ctx.fillStyle = CLR.red; ctx.fillText('date équivalente', px + 5, ca.top + 12);
         }
       }]
-    });
-    // ----- TO mensuel : mois en cours -> décembre, réservé à date vs N-1 -----
-    const y0 = GR.yearOf(cut), m0 = GR.dOf(cut).getUTCMonth();
-    const labs = [], curY = [], eqP = [], finP = [];
-    for (let m = m0; m < 12; m++) {
-      const last = new Date(Date.UTC(y0, m + 1, 0)).getUTCDate();
-      const o1 = GR.offOfISO(`${y0}-${String(m + 1).padStart(2, '0')}-01`), o2 = o1 + last - 1;
-      labs.push(MOIS[m] + ' ' + y0);
-      curY.push(GR.otbTO(o1, o2, cut).to * 100);
-      eqP.push(GR.otbTO(o1 - GR.SHIFT, o2 - GR.SHIFT, cut - GR.SHIFT).to * 100);
-      finP.push(GR.otbTO(o1 - GR.SHIFT, o2 - GR.SHIFT, -1).to * 100);
-    }
-    mkChart('pa-chart2', {
-      data: { labels: labs, datasets: [
-        { type: 'bar', label: 'TO ' + y0 + ' réservé à date', data: curY, backgroundColor: CLR.green, borderRadius: 4 },
-        { type: 'bar', label: 'TO ' + (y0 - 1) + ' réservé à date équivalente', data: eqP, backgroundColor: CLR.teal, borderRadius: 4 },
-        { type: 'line', label: 'TO ' + (y0 - 1) + ' final réalisé', data: finP, borderColor: CLR.gold, borderDash: [6, 4], pointRadius: 4, tension: .2 },
-      ] },
-      options: {
-        scales: { y: { max: 100, ticks: { callback: v => v + ' %' } } },
-        plugins: { tooltip: { callbacks: { label: c => c.dataset.label + ' : ' + c.raw.toFixed(1).replace('.', ',') + ' %' } } },
-        maintainAspectRatio: false,
-      },
     });
   }
 
