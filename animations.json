@@ -19,7 +19,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña del Club Infantil"
     },
     {
       "heure": "10:30",
@@ -28,7 +28,7 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
+      "lieu_en": "Meeting at the reception",
       "lieu_es": "Cita frente a recepción"
     },
     {
@@ -39,7 +39,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña del Club Infantil"
     },
     {
       "heure": "16:00",
@@ -79,7 +79,7 @@
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
       "lieu_en": "Pool solarium",
-      "lieu_es": "Solarium de piscina"
+      "lieu_es": "Solarium de la piscina"
     }
   ]
 }
