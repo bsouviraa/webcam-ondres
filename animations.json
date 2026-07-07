@@ -48,8 +48,8 @@
       "en": "Pilates with Exercise Ball",
       "es": "Pilates con Pelota de Ejercicio",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "18:00",
@@ -58,8 +58,8 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "18:30",
@@ -78,8 +78,8 @@
       "en": "Movie night",
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
-      "lieu_en": "Pool Solarium",
-      "lieu_es": "Solario de la Piscina"
+      "lieu_en": "Pool solarium",
+      "lieu_es": "Solárium piscina"
     }
   ]
 }
