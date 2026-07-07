@@ -98,7 +98,7 @@ footer b{color:var(--petrol)}
 </svg>
 </div>
   <div><h1>Dashboard exploitation</h1><div class="subtitle">Arrivées 2023 – 2026 · ★★★★★ Certified Ecolabel</div></div>
-  <span class="version-badge">màj 22:43</span>
+  <span class="version-badge">màj 22:48</span>
   <div class="spacer"></div>
   <div class="refbox">Date de référence <input type="date" id="refpick"> <span id="refdate"></span></div>
   <label class="switch"><input type="checkbox" id="toggleProp"> Inclure propriétaires (occupation / ADR)</label>
@@ -311,6 +311,69 @@ const GR = (function () {
     return weeks.map(w => otb(y, jan1 + w * 7).ca);
   }
 
+  /* Simulation du reste-à-vendre (année de cutoff) :
+     - cible par nuit restante = TO final N-1 (nuit alignée 364 j), plafonnée à la capacité
+     - valorisation = ADR last-minute N-1 du mois (résas prises après la date équivalente)
+       × évolution tarifaire N/N-1 (ADR early, borné 0,8-1,3) × facteur sous-location
+     - étalement hebdo selon le rythme réel des ventes tardives N-1 */
+  function projection(cutoff) {
+    const y = yearOf(cutoff);
+    const dec31 = offOfISO(y + '-12-31');
+    const cutPrev = cutoff - SHIFT;
+    const A = Array.from({ length: 12 }, () => ({ ce: 0, ne: 0, cl: 0, nl: 0, c6: 0, n6: 0 }));
+    for (const s of D.stays) {
+      if (!(s[S.SEG] === 0 && explSet.has(s[S.U])) || s[S.M] <= 0) continue;
+      const per = s[S.M] / s[S.N];
+      for (let k = Math.max(0, s[S.A]); k < s[S.A] + s[S.N] && k <= maxOff; k++) {
+        const yy = yearOf(k), mm = dOf(k).getUTCMonth();
+        if (yy === y - 1) {
+          if (s[S.CR] >= 0 && s[S.CR] <= cutPrev) { A[mm].ce += per; A[mm].ne++; }
+          else { A[mm].cl += per; A[mm].nl++; }
+        } else if (yy === y) { A[mm].c6 += per; A[mm].n6++; }
+      }
+    }
+    let lateSub = 0, lateExpl = 0;
+    for (const s of D.stays) {
+      if (yearOf(s[S.A]) !== y - 1) continue;
+      if (!(s[S.CR] < 0 || s[S.CR] > cutPrev)) continue;
+      if (s[S.SEG] === 1) lateSub += s[S.MNET];
+      else if (s[S.SEG] === 0 && explSet.has(s[S.U])) lateExpl += s[S.M];
+    }
+    const subFactor = lateExpl > 0 ? 1 + lateSub / lateExpl : 1;
+    let totalAdd = 0, addNights = 0;
+    for (let k = cutoff + 1; k <= dec31 && k <= maxOff; k++) {
+      if (isClosed(k)) continue;
+      const k1 = k - SHIFT;
+      const toF = capEArr[k1] ? night.occE[k1] / capEArr[k1] : 0;
+      const addU = Math.max(0, capEArr[k] * toF - night.occE[k]);
+      const mm = dOf(k).getUTCMonth();
+      const adrLate = A[mm].nl ? A[mm].cl / A[mm].nl : (A[mm].ne ? A[mm].ce / A[mm].ne : 0);
+      const adrE25 = A[mm].ne ? A[mm].ce / A[mm].ne : 0;
+      const adr26 = A[mm].n6 ? A[mm].c6 / A[mm].n6 : 0;
+      let uplift = (adrE25 > 0 && adr26 > 0) ? adr26 / adrE25 : 1;
+      uplift = Math.min(1.3, Math.max(0.8, uplift));
+      totalAdd += addU * adrLate * uplift * subFactor;
+      addNights += addU;
+    }
+    /* étalement hebdo : distribution du CA tardif N-1 par semaine de prise de résa (décalée +52 sem.) */
+    const jan1 = offOfISO(y + '-01-01');
+    const wRef = Math.floor((cutoff - jan1) / 7);
+    const wts = new Float64Array(54);
+    for (const s of D.stays) {
+      if (yearOf(s[S.A]) !== y - 1) continue;
+      if (s[S.SEG] !== 0 && s[S.SEG] !== 1) continue;
+      if (s[S.CR] < 0 || s[S.CR] <= cutPrev) continue;
+      let w = Math.floor((s[S.CR] + SHIFT - jan1) / 7);
+      w = Math.min(53, Math.max(wRef + 1, w));
+      wts[w] += (s[S.SEG] === 1 ? s[S.MNET] : s[S.M]);
+    }
+    let wsum = 0; for (let w = 0; w < 54; w++) wsum += wts[w];
+    const byWeek = new Float64Array(54);
+    if (wsum > 0) for (let w = 0; w < 54; w++) byWeek[w] = totalAdd * wts[w] / wsum;
+    else if (wRef < 53) for (let w = wRef + 1; w < 54; w++) byWeek[w] = totalAdd / (53 - wRef);
+    return { byWeek, totalAdd, addNights, subFactor, wRef };
+  }
+
   function nightDetail(off, withProp) {
     const rows = [];
     for (const s of D.stays) {
@@ -327,7 +390,7 @@ const GR = (function () {
   const SHIFT = 364; // 52 semaines : N-1 au même jour de semaine
 
   return { init, S, dOf, iso, yearOf, offOfISO, dow, isClosed, inVac, vacAny, isFerie, isPont,
-           kpiRange, capOn, caAnnexes, otb, otbTO, pacingCurve, nightDetail, arrivalsOn, departuresOn, SHIFT,
+           kpiRange, capOn, caAnnexes, otb, otbTO, pacingCurve, projection, nightDetail, arrivalsOn, departuresOn, SHIFT,
            get night() { return night; }, get D() { return D; } };
 })();
 if (typeof module !== 'undefined') module.exports = GR;
@@ -572,6 +635,7 @@ if (typeof module !== 'undefined') module.exports = GR;
     const capY = {}, otbEq = { 2026: cur };
     for (const y of [2024, 2025, 2026]) capY[y] = GR.kpiRange(GR.offOfISO(y + '-01-01'), GR.offOfISO(y + '-12-31'), false);
     otbEq[2025] = GR.otb(2025, cut - GR.SHIFT); otbEq[2024] = GR.otb(2024, cut - 2 * GR.SHIFT);
+    const proj0 = GR.projection(cut);
     const toAd = y => otbEq[y].nuitsExpl / capY[y].capacite;
     const revAd = y => otbEq[y].ca / capY[y].unitesMoy;
     $('#pa-cards').innerHTML =
@@ -579,6 +643,7 @@ if (typeof module !== 'undefined') module.exports = GR;
       card('vs 2025 à date équivalente', eur(cards[0].ca), delta(cur.ca, cards[0].ca) + `<br>final 2025 : ${eur(cards[0].full)} → complétion ${pct(cards[0].ca / cards[0].full)}`) +
       card('vs 2024 à date équivalente', eur(cards[1].ca), delta(cur.ca, cards[1].ca)) +
       card('Projection simple 2026', eur(cur.ca / (cards[0].ca / cards[0].full)), 'OTB ÷ taux de complétion 2025 à même maturité') +
+      card('Projection simulée 2026', eur(cur.ca + proj0.totalAdd), `OTB + reste-à-vendre : ${Math.round(proj0.addNights)} nuitées pour atteindre le TO final 2025 nuit par nuit, valorisées au tarif last-minute 2025 du mois ajusté des prix 2026 (simulation indicative)`, 'hero') +
       card('TO à date (année 2026)', pct(toAd(2026)), `nuitées déjà réservées ÷ capacité annuelle · 2025 équiv. : ${pct(toAd(2025))} · 2024 : ${pct(toAd(2024))} ${delta(toAd(2026), toAd(2025))}`) +
       card('Revenu / emplacement à date', eur(revAd(2026)), `CA réservé ÷ ${capY[2026].unitesMoy.toFixed(0)} unités du parc · 2025 équiv. : ${eur(revAd(2025))} · 2024 : ${eur(revAd(2024))} ${delta(revAd(2026), revAd(2025))}`);
     const weeks = []; for (let w = 0; w <= 53; w++) weeks.push(w);
@@ -589,6 +654,15 @@ if (typeof module !== 'undefined') module.exports = GR;
     }));
     const jan1 = GR.offOfISO('2026-01-01');
     const wRef = (cut - jan1) / 7;
+    const proj = GR.projection(cut);
+    const projData = weeks.map(w => {
+      if (w < Math.floor(wRef)) return null;
+      let v = cur.ca;
+      for (let x = 0; x <= w; x++) v += proj.byWeek[x] || 0;
+      return v;
+    });
+    ds.push({ label: 'Projection 2026 (simulation)', data: projData, borderColor: CLR.green,
+              borderDash: [5, 4], borderWidth: 2.5, pointRadius: 0, tension: .25 });
     mkChart('pa-chart', {
       type: 'line',
       data: { labels: weeks.map(w => w === 0 ? '1er janv (cumul antérieur inclus)' : 'S' + w), datasets: ds },
