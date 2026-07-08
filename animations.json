@@ -1,6 +1,16 @@
 {
-  "date": "08/07",
+  "date": "09/07",
   "items": [
+    {
+      "heure": "09:30",
+      "emoji": "🧜",
+      "fr": "Cours de sirènes",
+      "en": "Mermaid class",
+      "es": "Clase de sirena",
+      "lieu": "Piscine",
+      "lieu_en": "Swimming pool",
+      "lieu_es": "Piscina"
+    },
     {
       "heure": "09:30",
       "emoji": "🧘",
@@ -12,14 +22,44 @@
       "lieu_es": "Plataforma de yoga"
     },
     {
+      "heure": "10:00",
+      "emoji": "💆",
+      "fr": "Massage avec Emmanuelle",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🏃",
+      "fr": "Bungy Pump",
+      "en": "Bungy Pump",
+      "es": "Bungy Pump",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a recepción"
+    },
+    {
       "heure": "10:30",
       "emoji": "⚽",
       "fr": "Kids Club",
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club de Niños"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
+    },
+    {
+      "heure": "14:30",
+      "emoji": "🧘",
+      "fr": "Pilates ballon avec Sarah",
+      "en": "Pilates with Exercise Ball",
+      "es": "Pilates con Pelota de Ejercicio",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "15:00",
@@ -28,15 +68,15 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club de Niños"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     },
     {
-      "heure": "16:00",
+      "heure": "15:30",
       "emoji": "🧘",
-      "fr": "Pilates ballon avec Sarah",
-      "en": "Pilates with Exercise Ball",
-      "es": "Pilates con Pelota de Ejercicio",
+      "fr": "BodyZen avec Sarah",
+      "en": "BodyZen with Sarah",
+      "es": "BodyZen con Sarah",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
@@ -48,8 +88,28 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "19:00",
+      "emoji": "🎵",
+      "fr": "Soirée Blind Test",
+      "en": "Blind test nigh",
+      "es": "Noche blind test",
+      "lieu": "Restaurant Les Planches",
+      "lieu_en": "Les Planches Restaurant",
+      "lieu_es": "Restaurante Les Planches"
+    },
+    {
+      "heure": "20:45",
+      "emoji": "🌿",
+      "fr": "Bain de forêt",
+      "en": "Forest bathing",
+      "es": "Baño de bosque",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a recepción"
     }
   ]
 }
