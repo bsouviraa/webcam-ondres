@@ -19,7 +19,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Club Infantil Cahute"
+      "lieu_es": "Cahute Club de niños"
     },
     {
       "heure": "15:00",
@@ -29,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Club Infantil Cahute"
+      "lieu_es": "Cahute Club de niños"
     },
     {
       "heure": "16:00",
@@ -48,8 +48,8 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
     }
   ]
 }
