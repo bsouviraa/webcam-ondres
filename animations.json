@@ -1,55 +1,55 @@
 {
-  "date": "10/07",
+  "date": "11/07",
   "items": [
     {
-      "heure": "09:00",
-      "emoji": "🏃",
-      "fr": "Réveil musculaire",
-      "en": "Body Activation",
-      "es": "Activacion muscular",
-      "lieu": "Rdv devant la réception",
-      "lieu_en": "Appointment in front of reception",
-      "lieu_es": "Cita frente a recepción"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧘",
-      "fr": "Yoga avec Maelys",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "⚽",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
-    },
-    {
-      "heure": "10:30",
+      "heure": "09:30",
       "emoji": "💆",
-      "fr": "Massage avec Claire",
+      "fr": "Massage avec Emmanuelle",
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
     },
     {
-      "heure": "15:00",
+      "heure": "10:30",
       "emoji": "⚽",
       "fr": "Kids Club",
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
+      "lieu_en": "Kids Club Cabin",
       "lieu_es": "Cabaña Club Infantil"
+    },
+    {
+      "heure": "17:00",
+      "emoji": "🧘",
+      "fr": "BodyZen avec Sarah",
+      "en": "BodyZen with Sarah",
+      "es": "BodyZen con Sarah",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga avec Gabrielle",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
+    },
+    {
+      "heure": "19:00",
+      "emoji": "🧘",
+      "fr": "Pilates avec Gabrielle",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     }
   ]
 }
