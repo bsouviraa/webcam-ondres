@@ -8,7 +8,7 @@
       "en": "Body Activation",
       "es": "Activacion muscular",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Appointment in front of reception",
+      "lieu_en": "Meeting in front of reception",
       "lieu_es": "Cita frente a recepción"
     },
     {
@@ -38,8 +38,8 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_en": "Exterior Pergola",
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "15:00",
