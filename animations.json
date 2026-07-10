@@ -8,7 +8,7 @@
       "en": "Body Activation",
       "es": "Activacion muscular",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Appointment in front of reception",
+      "lieu_en": "Meeting in front of reception",
       "lieu_es": "Cita frente a recepción"
     },
     {
@@ -28,8 +28,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de niños"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     },
     {
       "heure": "10:30",
@@ -38,7 +38,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior Pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -48,8 +48,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de niños"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     }
   ]
 }
