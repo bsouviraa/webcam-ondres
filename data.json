@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-10T22:40",
+  "updated": "2026-07-10T23:38",
   "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
   "vent_kmh": "7",
-  "vent_deg": "280",
-  "vent_cardinal": "O",
+  "vent_deg": "340",
+  "vent_cardinal": "NNO",
   "uv": "7.5",
   "uv_label": "Eleve",
   "lever": "06:35",
   "coucher": "21:47",
-  "houle_m": "0.64",
-  "houle_periode": "7.9",
+  "houle_m": "0.62",
+  "houle_periode": "8.1",
   "marees": [
     {
       "type": "Haute",
