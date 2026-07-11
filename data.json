@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-11T20:28",
-  "temp_air": "30",
+  "updated": "2026-07-11T21:22",
+  "temp_air": "27",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
-  "vent_kmh": "11",
-  "vent_deg": "70",
-  "vent_cardinal": "ENE",
+  "vent_kmh": "9",
+  "vent_deg": "90",
+  "vent_cardinal": "E",
   "uv": "7.4",
   "uv_label": "Eleve",
   "lever": "06:35",
   "coucher": "21:47",
   "houle_m": "0.7",
-  "houle_periode": "9.3",
+  "houle_periode": "9.2",
   "marees": [
     {
       "type": "Haute",
@@ -55,13 +55,12 @@
       "07:43+1"
     ],
     "ondres_bourg": [
-      "22:46",
-      "23:01",
       "23:46"
     ],
     "st_martin": [
-      "23:02",
-      "23:15"
+      "00:00+1",
+      "10:15+1",
+      "11:02+1"
     ],
     "bayonne": [
       "06:13+1",
