@@ -1,4 +1,45 @@
 {
-  "date": "11/07",
-  "items": []
+  "date": "12/07",
+  "items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Yoga avec Gabrielle",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage avec Emmanuelle",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🧘",
+      "fr": "Pilates avec Gabrielle",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "17:15",
+      "emoji": "💆",
+      "fr": "Massage avec Marion",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    }
+  ]
 }
