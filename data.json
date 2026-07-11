@@ -1,12 +1,12 @@
 {
-  "updated": "2026-07-11T22:13",
+  "updated": "2026-07-11T23:10",
   "temp_air": "26",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
-  "vent_kmh": "9",
-  "vent_deg": "90",
-  "vent_cardinal": "E",
+  "vent_kmh": "7",
+  "vent_deg": "60",
+  "vent_cardinal": "ENE",
   "uv": "7.2",
   "uv_label": "Eleve",
   "lever": "06:36",
@@ -55,9 +55,9 @@
       "07:43"
     ],
     "ondres_bourg": [
-      "00:31",
       "06:04",
-      "07:48"
+      "07:48",
+      "08:49"
     ],
     "st_martin": [
       "10:15",
