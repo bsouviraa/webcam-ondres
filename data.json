@@ -1,17 +1,17 @@
 {
-  "updated": "2026-07-12T06:31",
-  "temp_air": "24",
+  "updated": "2026-07-12T08:39",
+  "temp_air": "28",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Ciel degage",
+  "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "11",
-  "vent_deg": "70",
-  "vent_cardinal": "ENE",
-  "uv": "1.2",
-  "uv_label": "Faible",
+  "vent_kmh": "9",
+  "vent_deg": "80",
+  "vent_cardinal": "E",
+  "uv": "3.4",
+  "uv_label": "Modere",
   "lever": "06:36",
   "coucher": "21:46",
-  "houle_m": "0.58",
+  "houle_m": "0.56",
   "houle_periode": "8.8",
   "marees": [
     {
@@ -43,31 +43,31 @@
       "17:17"
     ],
     "dax": [
-      "09:38",
       "11:36",
-      "13:33"
+      "13:33",
+      "15:36"
     ]
   },
   "bus": {
     "plage": [
-      "08:49",
-      "08:53",
-      "09:33"
+      "10:43",
+      "10:50",
+      "11:13"
     ],
     "ondres_bourg": [
-      "08:49",
-      "09:49",
-      "10:46"
+      "10:46",
+      "10:50",
+      "11:01"
     ],
     "st_martin": [
-      "10:15",
       "11:02",
-      "11:15"
+      "11:15",
+      "12:02"
     ],
     "bayonne": [
-      "09:00",
-      "09:40",
-      "10:00"
+      "10:50",
+      "11:00",
+      "11:20"
     ],
     "fetes_bayonne": []
   }
