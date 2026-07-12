@@ -1,13 +1,13 @@
 {
-  "updated": "2026-07-12T08:39",
-  "temp_air": "28",
+  "updated": "2026-07-12T10:14",
+  "temp_air": "29",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "9",
-  "vent_deg": "80",
-  "vent_cardinal": "E",
-  "uv": "3.4",
+  "vent_kmh": "17",
+  "vent_deg": "60",
+  "vent_cardinal": "ENE",
+  "uv": "6.0",
   "uv_label": "Modere",
   "lever": "06:36",
   "coucher": "21:46",
@@ -38,36 +38,36 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "11:23",
       "14:16",
-      "17:17"
+      "17:17",
+      "18:17"
     ],
     "dax": [
-      "11:36",
       "13:33",
-      "15:36"
+      "15:36",
+      "17:37"
     ]
   },
   "bus": {
     "plage": [
-      "10:43",
-      "10:50",
-      "11:13"
+      "12:27",
+      "12:51",
+      "13:08"
     ],
     "ondres_bourg": [
-      "10:46",
-      "10:50",
-      "11:01"
+      "12:46",
+      "12:51",
+      "13:01"
     ],
     "st_martin": [
-      "11:02",
-      "11:15",
-      "12:02"
+      "12:15",
+      "13:02",
+      "13:15"
     ],
     "bayonne": [
-      "10:50",
-      "11:00",
-      "11:20"
+      "12:30",
+      "13:00",
+      "13:10"
     ],
     "fetes_bayonne": []
   }
