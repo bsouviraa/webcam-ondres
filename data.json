@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-14T19:58",
-  "temp_air": "25",
+  "updated": "2026-07-14T20:58",
+  "temp_air": "24",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Partiellement nuageux",
   "temp_eau": "24",
-  "vent_kmh": "11",
-  "vent_deg": "260",
-  "vent_cardinal": "O",
+  "vent_kmh": "13",
+  "vent_deg": "250",
+  "vent_cardinal": "OSO",
   "uv": "7.3",
   "uv_label": "Eleve",
   "lever": "06:37",
   "coucher": "21:45",
-  "houle_m": "0.44",
-  "houle_periode": "6.5",
+  "houle_m": "0.48",
+  "houle_periode": "6.0",
   "marees": [
     {
       "type": "Haute",
@@ -38,7 +38,9 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "22:11"
+      "07:07",
+      "08:20",
+      "11:17"
     ],
     "dax": [
       "07:22",
@@ -53,14 +55,12 @@
       "07:43+1"
     ],
     "ondres_bourg": [
-      "22:01",
-      "22:46",
-      "23:01"
+      "23:01",
+      "23:46"
     ],
     "st_martin": [
-      "22:02",
-      "22:15",
-      "23:02"
+      "23:02",
+      "23:15"
     ],
     "bayonne": [
       "06:13+1",
