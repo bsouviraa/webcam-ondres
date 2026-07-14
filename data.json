@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-14T01:03",
+  "updated": "2026-07-14T04:09",
   "temp_air": "23",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
   "vent_kmh": "6",
-  "vent_deg": "230",
-  "vent_cardinal": "SO",
+  "vent_deg": "190",
+  "vent_cardinal": "S",
   "uv": "7.5",
   "uv_label": "Eleve",
   "lever": "06:37",
   "coucher": "21:45",
-  "houle_m": "0.62",
-  "houle_periode": "6.3",
+  "houle_m": "0.54",
+  "houle_periode": "6.4",
   "marees": [
     {
       "type": "Haute",
@@ -50,14 +50,14 @@
   },
   "bus": {
     "plage": [
-      "06:04",
       "07:13",
-      "07:43"
+      "07:43",
+      "07:48"
     ],
     "ondres_bourg": [
-      "06:04",
       "07:48",
-      "08:49"
+      "08:49",
+      "09:49"
     ],
     "st_martin": [
       "10:15",
