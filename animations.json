@@ -1,98 +1,8 @@
 {
-  "date": "14/07",
+  "date": "15/07",
   "items": [
     {
-      "heure": "08:30",
-      "emoji": "🧘",
-      "fr": "Stretching postural",
-      "en": "Postural stretching",
-      "es": "Estiramientos posturales",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "🧘",
-      "fr": "Yoga avec Gabrielle",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage avec Claire",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "🐝",
-      "fr": "Atelier découverte rûches",
-      "en": "Beehive Discovery",
-      "es": "Descubrimiento de las colmenas",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Kids Club"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Kids Club"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🏃",
-      "fr": "Marche Afghane",
-      "en": "Afghan Walking",
-      "es": "Marcha Afgana",
-      "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of Reception",
-      "lieu_es": "Cita delante de recepción"
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Kids Club"
-    },
-    {
-      "heure": "18:00",
-      "emoji": "🎨",
-      "fr": "Peinture corporelle",
-      "en": "Body painting",
-      "es": "Pintura corporal",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "18:30",
-      "emoji": "💆",
-      "fr": "Massage avec Emmanuelle",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "19:30",
+      "heure": "09:00",
       "emoji": "🧘",
       "fr": "Pilate Ballon avec Sarah",
       "en": "Pilates",
@@ -102,14 +12,54 @@
       "lieu_es": "Plataforma de yoga"
     },
     {
-      "heure": "21:00",
-      "emoji": "⚽",
-      "fr": "Coupe du monde FR vs ESP",
-      "en": "World Cup FR vs ESP",
-      "es": "Copa del Mundo FR vs ESP",
-      "lieu": "Restaurant \"Les Planches\"",
-      "lieu_en": "Restaurant \"Les Planches\"",
-      "lieu_es": "Restaurante \"Les Planches\""
+      "heure": "10:15",
+      "emoji": "🧘",
+      "fr": "Yoga avec Maelys",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Club Infantil"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Club Infantil"
+    },
+    {
+      "heure": "15:30",
+      "emoji": "💆",
+      "fr": "Massage avec Emmanuelle",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
+    },
+    {
+      "heure": "18:30",
+      "emoji": "💆",
+      "fr": "Massage avec Marion",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
     }
   ]
 }
