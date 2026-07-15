@@ -1,25 +1,15 @@
 {
-  "date": "15/07",
+  "date": "16/07",
   "items": [
     {
-      "heure": "09:00",
-      "emoji": "🧘",
-      "fr": "Pilate Ballon avec Sarah",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
-    },
-    {
-      "heure": "10:15",
-      "emoji": "🧘",
-      "fr": "Yoga avec Maelys",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "heure": "10:00",
+      "emoji": "🏃",
+      "fr": "Bungy Pump",
+      "en": "Bungy Pump",
+      "es": "Bungy Pump",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting in front of reception",
+      "lieu_es": "Cita frente a recepción"
     },
     {
       "heure": "10:30",
@@ -29,7 +19,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club Infantil"
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "15:00",
@@ -39,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club Infantil"
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "15:30",
@@ -52,6 +42,16 @@
       "lieu_es": "Pérgola Exterior"
     },
     {
+      "heure": "16:30",
+      "emoji": "🎨",
+      "fr": "Peinture corporelle",
+      "en": "Body painting",
+      "es": "Pintura corporal",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
       "heure": "18:30",
       "emoji": "💆",
       "fr": "Massage avec Marion",
@@ -60,6 +60,36 @@
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
       "lieu_es": "Pérgola Exterior"
+    },
+    {
+      "heure": "19:30",
+      "emoji": "🧘",
+      "fr": "Stretching postural",
+      "en": "Postural stretching",
+      "es": "Estiramientos posturales",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "19:30",
+      "emoji": "🎵",
+      "fr": "Soirée DJ Set",
+      "en": "DJ Set Night",
+      "es": "Noche DJ Set",
+      "lieu": "Restaurant Les Planches",
+      "lieu_en": "Les Planches Restaurant",
+      "lieu_es": "Restaurante Les Planches"
+    },
+    {
+      "heure": "20:45",
+      "emoji": "🌿",
+      "fr": "Bain de forêt",
+      "en": "Forest bathing",
+      "es": "Baño de bosque",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting in front of reception",
+      "lieu_es": "Cita frente a recepción"
     }
   ]
 }
