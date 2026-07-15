@@ -1,39 +1,39 @@
 {
-  "updated": "2026-07-14T23:52",
+  "updated": "2026-07-15T02:12",
   "temp_air": "24",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "24",
-  "vent_kmh": "15",
-  "vent_deg": "250",
-  "vent_cardinal": "OSO",
+  "vent_kmh": "20",
+  "vent_deg": "270",
+  "vent_cardinal": "O",
   "uv": "7.0",
   "uv_label": "Eleve",
   "lever": "06:38",
   "coucher": "21:45",
-  "houle_m": "0.58",
-  "houle_periode": "4.8",
+  "houle_m": "0.6",
+  "houle_periode": "4.7",
   "marees": [
     {
       "type": "Haute",
-      "heure": "05h07"
+      "heure": "05h58"
     },
     {
       "type": "Basse",
-      "heure": "10h59"
+      "heure": "11h49"
     },
     {
       "type": "Haute",
-      "heure": "17h24"
+      "heure": "18h24"
     },
     {
       "type": "Basse",
-      "heure": "23h37"
+      "heure": "00h31"
     }
   ],
-  "maree_coef": "86 / 90",
-  "maree_coef_am": "86",
-  "maree_coef_pm": "90",
+  "maree_coef": "94 / 96",
+  "maree_coef_am": "94",
+  "maree_coef_pm": "96",
   "drapeau": "jaune",
   "surv_label": "Baignade non surveillee",
   "transports": {
