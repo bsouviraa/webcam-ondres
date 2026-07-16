@@ -30,7 +30,7 @@ jobs:
               meteo['bus'] = d.get('bus', {})
               json.dump(meteo, f, ensure_ascii=False, indent=2)
           with open('animations.json', 'w') as f:
-              out = {'date': d.get('anim_date',''), 'items': d['animations']}
+              out = {'date': d.get('anim_date',''), 'items': d['animations'], 'tomorrow_date': d.get('anim_date_demain',''), 'tomorrow_items': d.get('animations_demain', [])}
               json.dump(out, f, ensure_ascii=False, indent=2)
           "
 
