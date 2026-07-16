@@ -700,7 +700,7 @@
       } else {
         items.forEach(a => {
           const i = anims.indexOf(a);
-          const enCours = (i === enCoursIdx);
+          const enCours = false; // programme de demain : pas de surbrillance heure courante
           html += `
             <div class="anim-item ${enCours ? 'anim-item-now' : ''}">
               <div class="anim-time">
@@ -1015,6 +1015,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 16:39</div>
+  <div class="version-badge">màj 17:05</div>
 </body>
 </html>
