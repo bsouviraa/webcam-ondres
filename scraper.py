@@ -194,16 +194,19 @@ meteo = {
     "surv_label":    surv_label,
 }
 
-# ── 2. Animations depuis Google Sheets ───────────────────────────────────────
+# ── 2. Animations depuis le fichier Drive (jour + lendemain) ─────────────────
 animations = []
+animations_demain = []
 anim_date = ""
+anim_date_demain = ""
 
 try:
     paris_now = datetime.now(timezone(timedelta(hours=2)))
-    sheet_name = paris_now.strftime("%d%m")
-    anim_date  = paris_now.strftime("%d/%m")
+    demain    = paris_now + timedelta(days=1)
+    anim_date        = paris_now.strftime("%d/%m")
+    anim_date_demain = demain.strftime("%d/%m")
 
-    # ── Lecture directe de l'export xlsx (source brute, anti-cache, formats sales OK) ──
+    # Export xlsx brut (anti-cache, formats sales OK) — un seul téléchargement
     import zipfile as _zip
     _xlsx = urllib.request.urlopen(urllib.request.Request(
         f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=xlsx",
@@ -211,13 +214,6 @@ try:
     _zf = _zip.ZipFile(io.BytesIO(_xlsx))
     _wb   = _zf.read('xl/workbook.xml').decode('utf-8', errors='ignore')
     _rels = _zf.read('xl/_rels/workbook.xml.rels').decode('utf-8', errors='ignore')
-    _sm = re.search(r'<sheet name="' + re.escape(sheet_name) + r'"[^>]*r:id="(rId\d+)"', _wb)
-    if not _sm:
-        raise ValueError(f"Feuille {sheet_name} introuvable")
-    _tm = re.search(r'<Relationship Id="' + _sm.group(1) + r'"[^>]*Target="([^"]+)"', _rels)
-    _target = _tm.group(1).lstrip('/')
-    if not _target.startswith('xl/'): _target = 'xl/' + _target
-    _sheet_xml = _zf.read(_target).decode('utf-8', errors='ignore')
     _shared = []
     try:
         _ss = _zf.read('xl/sharedStrings.xml').decode('utf-8', errors='ignore')
@@ -225,14 +221,6 @@ try:
             _shared.append(''.join(re.findall(r'<t[^>]*>([^<]*)</t>', _si)))
     except KeyError:
         pass
-    _cells = {}
-    for _cm in re.finditer(r'<c ([^>]*?)(?:/>|>([\s\S]*?)</c>)', _sheet_xml):
-        _attrs, _inner = _cm.group(1), _cm.group(2) or ''
-        _rm = re.search(r'r="([A-Z]+)(\d+)"', _attrs)
-        _vm = re.search(r'<v>([^<]*)</v>', _inner)
-        if not _rm or not _vm: continue
-        _v = _shared[int(_vm.group(1))] if 't="s"' in _attrs and int(_vm.group(1)) < len(_shared) else _vm.group(1)
-        _cells.setdefault(int(_rm.group(2)), {})[_rm.group(1)] = _v
 
     def _norm_heure(h):
         # Heure Excel numérique (0.3958 → 09:30) ou texte sale ("15h:00" → "15:00")
@@ -246,48 +234,75 @@ try:
         _m = re.search(r"(\d{1,2})\D{0,2}(\d{2})", str(h))
         return "{:02d}:{}".format(int(_m.group(1)), _m.group(2)) if _m else None
 
-    # Détection du format via la ligne d'en-tête (l'onglet peut être ancien 4 col. ou nouveau 6 col.)
-    _col_en, _col_es, _col_lieu = None, None, 'D'
-    for _rn in sorted(_cells.keys()):
-        _row = _cells[_rn]
-        if 'heure' in str(_row.get('A', '')).lower():
-            for _c, _val in _row.items():
-                _vl = str(_val).lower()
-                if 'english' in _vl:  _col_en = _c
-                elif 'espa' in _vl:   _col_es = _c
-                elif 'lieu' in _vl:   _col_lieu = _c
-            break
+    def _parse_onglet(sheet_name):
+        """Retourne les animations d'un onglet JJMM, [] si l'onglet n'existe pas."""
+        _sm = re.search(r'<sheet name="' + re.escape(sheet_name) + r'"[^>]*r:id="(rId\d+)"', _wb)
+        if not _sm:
+            return []
+        _tm = re.search(r'<Relationship Id="' + _sm.group(1) + r'"[^>]*Target="([^"]+)"', _rels)
+        _target = _tm.group(1).lstrip('/')
+        if not _target.startswith('xl/'):
+            _target = 'xl/' + _target
+        _sheet_xml = _zf.read(_target).decode('utf-8', errors='ignore')
+        _cells = {}
+        for _cm in re.finditer(r'<c ([^>]*?)(?:/>|>([\s\S]*?)</c>)', _sheet_xml):
+            _attrs, _inner = _cm.group(1), _cm.group(2) or ''
+            _rm = re.search(r'r="([A-Z]+)(\d+)"', _attrs)
+            _vm = re.search(r'<v>([^<]*)</v>', _inner)
+            if not _rm or not _vm:
+                continue
+            _v = _shared[int(_vm.group(1))] if 't="s"' in _attrs and int(_vm.group(1)) < len(_shared) else _vm.group(1)
+            _cells.setdefault(int(_rm.group(2)), {})[_rm.group(1)] = _v
 
-    for _rn in sorted(_cells.keys()):
-        _row = _cells[_rn]
-        _heure = _norm_heure(_row.get('A', ''))
-        _fr = (_row.get('C') or '').strip()
-        if not _heure or not _fr: continue
-        if 'exemple' in _fr.lower(): continue
-        animations.append({
-            "heure":   _heure,
-            "emoji":   (_row.get('B') or '').strip(),
-            "fr":      _fr,
-            "en":      (_row.get(_col_en) or '').strip() if _col_en else "",
-            "es":      (_row.get(_col_es) or '').strip() if _col_es else "",
-            "lieu":    (_row.get(_col_lieu) or '').strip(),
-            "lieu_en": "", "lieu_es": "",
-        })
+        # Détection du format via l'en-tête (ancien 4 col. ou nouveau 6 col.)
+        _col_en, _col_es, _col_lieu = None, None, 'D'
+        for _rn in sorted(_cells.keys()):
+            _row = _cells[_rn]
+            if 'heure' in str(_row.get('A', '')).lower():
+                for _c, _val in _row.items():
+                    _vl = str(_val).lower()
+                    if 'english' in _vl:  _col_en = _c
+                    elif 'espa' in _vl:   _col_es = _c
+                    elif 'lieu' in _vl:   _col_lieu = _c
+                break
 
-    animations.sort(key=lambda a: a["heure"])
+        _out = []
+        for _rn in sorted(_cells.keys()):
+            _row = _cells[_rn]
+            _heure = _norm_heure(_row.get('A', ''))
+            _fr = (_row.get('C') or '').strip()
+            if not _heure or not _fr:
+                continue
+            if 'exemple' in _fr.lower():
+                continue
+            _out.append({
+                "heure":   _heure,
+                "emoji":   (_row.get('B') or '').strip(),
+                "fr":      _fr,
+                "en":      (_row.get(_col_en) or '').strip() if _col_en else "",
+                "es":      (_row.get(_col_es) or '').strip() if _col_es else "",
+                "lieu":    (_row.get(_col_lieu) or '').strip(),
+                "lieu_en": "", "lieu_es": "",
+            })
+        _out.sort(key=lambda a: a["heure"])
+        return _out
 
-    # ── 3. Traduction via API Claude ──────────────────────────────────────────
+    animations        = _parse_onglet(paris_now.strftime("%d%m"))
+    animations_demain = _parse_onglet(demain.strftime("%d%m"))
+
+    # ── 3. Traduction via API Claude (jour + lendemain, cases vides uniquement) ──
     anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if animations and anthropic_key:
+    _all_anims = animations + animations_demain
+    if _all_anims and anthropic_key:
         try:
             texts = []
-            for a in animations:
+            for a in _all_anims:
                 texts.append(a["fr"])
                 if a["lieu"]:
                     texts.append(a["lieu"])
             translations = translate_batch(texts, anthropic_key)
             tidx = 0
-            for a in animations:
+            for a in _all_anims:
                 if tidx < len(translations):
                     if not a["en"]: a["en"] = translations[tidx].get("en", "")
                     if not a["es"]: a["es"] = translations[tidx].get("es", "")
@@ -298,14 +313,9 @@ try:
                     tidx += 1
         except Exception as te:
             import sys; print(f"Traduction error: {te}", file=sys.stderr)
-            if a["lieu"] and tidx < len(translations):
-                a["lieu_en"] = translations[tidx].get("en", "")
-                a["lieu_es"] = translations[tidx].get("es", "")
-                tidx += 1
 
 except Exception as e:
     import sys; print(f"Animations error: {e}", file=sys.stderr)
-    # anim_date conserve sa valeur si elle avait été assignée
 
 # ── 4. Transports SNCF ───────────────────────────────────────────────────────
 transports = {"bayonne": [], "dax": []}
@@ -441,5 +451,5 @@ except Exception as _be:
     except Exception:
         pass
 
-print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date, "transports": transports, "bus": bus},
+print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date, "animations_demain": animations_demain, "anim_date_demain": anim_date_demain, "transports": transports, "bus": bus},
                  ensure_ascii=False, indent=2))
