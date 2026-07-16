@@ -586,10 +586,19 @@
         ${(()=>{
           const b = d.bus || {};
           const t = d.transports || {};
+          const upcoming3 = (arr) => {
+            const _nw = parisnow();
+            const cur = String(_nw.getHours()).padStart(2,'0') + ':' + String(_nw.getMinutes()).padStart(2,'0');
+            const t = arr || [];
+            const today = t.filter(h => typeof h === 'string' && !h.endsWith('+1') && h >= cur);
+            const tmrw  = t.filter(h => typeof h === 'string' && h.endsWith('+1'));
+            return today.concat(tmrw).slice(0, 3);
+          };
           const fmtTime = h => (typeof h === 'string' && h.endsWith('+1'))
             ? '<span class="transport-time transport-time-tmrw">' + h.slice(0,5) + '</span>'
             : '<span class="transport-time">' + h + '</span>';
           const busRow = (times, label, icon) => {
+            times = upcoming3(times);
             if (!times || !times.length) return '';
             return '<div class="transport-row">'
               + '<span class="transport-icon">' + (icon||'🚌') + '</span>'
@@ -598,6 +607,7 @@
               + '</div>';
           };
           const trainRow = (times, label) => {
+            times = upcoming3(times);
             if (!times || !times.length) return '';
             return '<div class="transport-row">'
               + '<span class="transport-icon">🚆</span>'
@@ -854,7 +864,15 @@
     const el = document.getElementById('fetes-footer');
     if (!el || !window._meteoData) return;
     const b = window._meteoData.bus || {};
-    const fetes = b.fetes_bayonne || [];
+    const _nwf = parisnow();
+    const _curf = String(_nwf.getHours()).padStart(2,'0') + ':' + String(_nwf.getMinutes()).padStart(2,'0');
+    const _upc3 = (arr) => {
+      const t = arr || [];
+      const today = t.filter(h => typeof h === 'string' && !h.endsWith('+1') && h >= _curf);
+      const tmrw  = t.filter(h => typeof h === 'string' && h.endsWith('+1'));
+      return today.concat(tmrw).slice(0, 3);
+    };
+    const fetes = _upc3(b.fetes_bayonne);
     // Le footer ne vit que pendant les Fêtes de Bayonne (fetes_bayonne rempli par le scraper)
     if (!fetes.length) { el.innerHTML = ''; return; }
     const mkBadges = function(arr) {
@@ -881,7 +899,7 @@
         + '<div style="font-size:10.5px;font-weight:600;color:var(--white);white-space:nowrap">Ligne 23 · → Bayonne</div>'
         + '<div style="font-size:7.7px;color:var(--muted);white-space:nowrap">Bus régulier · journée</div>'
         + '</div>'
-        + '<div style="display:flex;gap:0.2rem;margin-left:auto;flex-wrap:nowrap;overflow:hidden">' + mkBadges(b.bayonne) + '</div>'
+        + '<div style="display:flex;gap:0.2rem;margin-left:auto;flex-wrap:nowrap;overflow:hidden">' + mkBadges(_upc3(b.bayonne)) + '</div>'
         + '</div>';
     }
     out += '</div>';
@@ -969,6 +987,14 @@
       }
     } catch (e) { /* réessaiera à la prochaine minute */ }
   }
+  // Re-render chaque minute : les horaires passés disparaissent même si data.json a du retard
+  setInterval(function() {
+    if (window._meteoData) {
+      renderMeteo(window._meteoData);
+      updateDrapeau();
+      updateFetesFooter();
+    }
+  }, 60 * 1000);
   setInterval(updateDrapeau, 60 * 1000);
   setInterval(checkNight,    30 * 1000);
   setInterval(checkNextAnim,     30 * 1000);
@@ -993,6 +1019,6 @@
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 15:36</div>
+  <div class="version-badge">màj 16:30</div>
 </body>
 </html>
