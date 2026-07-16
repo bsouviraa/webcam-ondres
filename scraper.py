@@ -340,7 +340,7 @@ try:
     for _k in ["bayonne", "dax"]:
         _sorted = sorted(set(transports[_k]))
         _upcoming = [t for t in _sorted if t >= _now_hm]
-        transports[_k] = _upcoming[:3] if _upcoming else _sorted[-3:]
+        transports[_k] = _upcoming[:8] if _upcoming else _sorted[-3:]
 except Exception as te:
     import sys; print(f"Transport error: {te}", file=sys.stderr)
 
@@ -349,12 +349,21 @@ except Exception as te:
 bus = {"plage": [], "ondres_bourg": [], "st_martin": [], "bayonne": [], "fetes_bayonne": []}
 try:
     import zipfile, io as _io
-    _gtfs_data = urllib.request.urlopen(
-        urllib.request.Request(
-            "https://www.data.gouv.fr/api/1/datasets/r/011b5a77-604b-4e12-bf8a-c944164acdd6",
-            headers={"User-Agent": "Mozilla/5.0"}
-        ), timeout=20
-    ).read()
+    import time as _time
+    _gtfs_data = None
+    for _gt_att in range(3):
+        try:
+            _gtfs_data = urllib.request.urlopen(
+                urllib.request.Request(
+                    "https://www.data.gouv.fr/api/1/datasets/r/011b5a77-604b-4e12-bf8a-c944164acdd6",
+                    headers={"User-Agent": "Mozilla/5.0"}
+                ), timeout=30
+            ).read()
+            break
+        except Exception:
+            _time.sleep(8)
+    if _gtfs_data is None:
+        raise ValueError("data.gouv indisponible")
     _zf = zipfile.ZipFile(_io.BytesIO(_gtfs_data))
     _now = datetime.now(timezone(timedelta(hours=2))).strftime('%H:%M')
 
@@ -368,12 +377,11 @@ try:
         m = re.search(r'<Name>([^<]+)</Name>', j)
         return m.group(1) if m else ''
     def _next3(times):
+        # Jusqu'à 10 horaires à venir + les 3 premiers du lendemain :
+        # le front filtre lui-même les heures passées (data.json peut avoir du retard)
         s = sorted(set(filter(None, times)))
         upcoming = [t for t in s if t >= _now]
-        if upcoming:
-            return upcoming[:3]
-        # Plus de passage aujourd'hui → 3 premiers de demain, préfixés d'un indicateur
-        return [t + "+1" for t in s[:3]]
+        return (upcoming + [t + "+1" for t in s[:3]])[:10]
 
     # ── Ligne 23 ──────────────────────────────────────────────────────────────
     _j23 = re.findall(r'<ServiceJourney [^>]*>([\s\S]*?)</ServiceJourney>',
@@ -425,6 +433,13 @@ try:
 
 except Exception as _be:
     import sys; print(f"Bus error: {_be}", file=sys.stderr)
+    # Filet : reprendre les horaires du data.json précédent plutôt que d'afficher vide
+    try:
+        import os as _os, json as _json2
+        if _os.path.exists("data.json") and not any(bus.values()):
+            bus = _json2.load(open("data.json")).get("bus", bus)
+    except Exception:
+        pass
 
 print(json.dumps({"meteo": meteo, "animations": animations, "anim_date": anim_date, "transports": transports, "bus": bus},
                  ensure_ascii=False, indent=2))
