@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-16T22:15",
-  "temp_air": "24",
+  "updated": "2026-07-16T23:11",
+  "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "22",
   "vent_kmh": "17",
-  "vent_deg": "300",
+  "vent_deg": "290",
   "vent_cardinal": "ONO",
   "uv": "6.5",
   "uv_label": "Eleve",
   "lever": "06:40",
   "coucher": "21:43",
   "houle_m": "0.42",
-  "houle_periode": "4.9",
+  "houle_periode": "5.0",
   "marees": [
     {
       "type": "Basse",
@@ -43,9 +43,9 @@
       "07:35"
     ],
     "dax": [
-      "00:29",
       "01:29",
-      "02:29"
+      "02:29",
+      "03:29"
     ]
   },
   "bus": {
@@ -62,7 +62,6 @@
       "10:03"
     ],
     "ondres_bourg": [
-      "00:31",
       "06:04",
       "07:48",
       "08:49",
@@ -71,7 +70,8 @@
       "10:50",
       "11:01",
       "11:46",
-      "11:51"
+      "11:51",
+      "12:01"
     ],
     "st_martin": [
       "10:15",
