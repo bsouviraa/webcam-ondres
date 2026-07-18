@@ -1,37 +1,6 @@
 {
-  "date": "18/07",
-  "items": [
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage avec Marion",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Cabin",
-      "lieu_es": "Cabaña Club Infantil"
-    },
-    {
-      "heure": "18:30",
-      "emoji": "💆",
-      "fr": "Massage avec Emmanuelle",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
-    }
-  ],
-  "tomorrow_date": "19/07",
+  "date": "19/07",
+  "items": [],
+  "tomorrow_date": "20/07",
   "tomorrow_items": []
 }
