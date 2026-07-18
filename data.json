@@ -1,14 +1,14 @@
 {
-  "updated": "2026-07-18T19:31",
-  "temp_air": "24",
+  "updated": "2026-07-18T20:12",
+  "temp_air": "23",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Ciel degage",
+  "meteo_label": "Peu nuageux",
   "temp_eau": "24",
-  "vent_kmh": "11",
+  "vent_kmh": "9",
   "vent_deg": "320",
   "vent_cardinal": "NO",
-  "uv": "0.1",
-  "uv_label": "Faible",
+  "uv": "6.8",
+  "uv_label": "Eleve",
   "lever": "06:41",
   "coucher": "21:42",
   "houle_m": "0.5",
@@ -55,8 +55,6 @@
       "07:43+1"
     ],
     "ondres_bourg": [
-      "21:46",
-      "22:01",
       "22:46",
       "23:01",
       "23:46",
@@ -65,7 +63,6 @@
       "07:48+1"
     ],
     "st_martin": [
-      "22:02",
       "22:15",
       "23:02",
       "23:15",
@@ -79,8 +76,6 @@
       "07:20+1"
     ],
     "fetes_bayonne": [
-      "21:50",
-      "22:10",
       "22:30",
       "22:50",
       "20:30+1",
