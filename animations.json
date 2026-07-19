@@ -1,8 +1,6 @@
 {
-  "date": "19/07",
-  "items": [],
-  "tomorrow_date": "20/07",
-  "tomorrow_items": [
+  "date": "20/07",
+  "items": [
     {
       "heure": "09:30",
       "emoji": "💆",
@@ -31,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Kids Club"
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "14:30",
@@ -51,7 +49,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Kids Club"
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "18:00",
@@ -71,7 +69,110 @@
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
       "lieu_en": "Pool Solarium",
-      "lieu_es": "Solario piscina"
+      "lieu_es": "Solarium Piscina"
+    }
+  ],
+  "tomorrow_date": "21/07",
+  "tomorrow_items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Yoga avec Gabrielle",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "🐝",
+      "fr": "Atelier découverte rûches",
+      "en": "Beehive Discovery",
+      "es": "Descubrimiento de las colmenas",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Club Infantil"
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🧘",
+      "fr": "Pilates avec Gabrielle",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Club Infantil"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🏃",
+      "fr": "Marche Afghane",
+      "en": "Afghan Walking",
+      "es": "Marcha Afgana",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting at the Reception",
+      "lieu_es": "Cita frente a Recepción"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Club Infantil"
+    },
+    {
+      "heure": "16:00",
+      "emoji": "💆",
+      "fr": "Massage avec Emmanuelle",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
+    },
+    {
+      "heure": "18:30",
+      "emoji": "🎨",
+      "fr": "Peinture corporelle",
+      "en": "Body painting",
+      "es": "Pintura corporal",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "19:30",
+      "emoji": "🧘",
+      "fr": "Stretching postural",
+      "en": "Postural stretching",
+      "es": "Estiramientos posturales",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "19:30",
+      "emoji": "🎵",
+      "fr": "Concert by the pool : Lirah (musique brésilienne)",
+      "en": "Concert by the pool",
+      "es": "Concierto by the pool",
+      "lieu": "Piscine",
+      "lieu_en": "Swimming Pool",
+      "lieu_es": "Piscina"
     }
   ]
 }
