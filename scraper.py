@@ -218,7 +218,8 @@ try:
     try:
         _ss = _zf.read('xl/sharedStrings.xml').decode('utf-8', errors='ignore')
         for _si in re.findall(r'<si>([\s\S]*?)</si>', _ss):
-            _shared.append(''.join(re.findall(r'<t[^>]*>([^<]*)</t>', _si)))
+            _txt = ''.join(re.findall(r'<t[^>]*>([^<]*)</t>', _si))
+            _shared.append(_txt.replace("&quot;", '"').replace("&apos;", "'").replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&"))
     except KeyError:
         pass
 
@@ -236,10 +237,13 @@ try:
 
     def _parse_onglet(sheet_name):
         """Retourne les animations d'un onglet JJMM, [] si l'onglet n'existe pas."""
-        _sm = re.search(r'<sheet name="' + re.escape(sheet_name) + r'"[^>]*r:id="(rId\d+)"', _wb)
+        _sm = re.search(r'<sheet[^>]*?name="' + re.escape(sheet_name) + r'"[^>]*?>', _wb)
         if not _sm:
             return []
-        _tm = re.search(r'<Relationship Id="' + _sm.group(1) + r'"[^>]*Target="([^"]+)"', _rels)
+        _rid_m = re.search(r'r:id="(rId\d+)"', _sm.group(0))
+        if not _rid_m:
+            return []
+        _tm = re.search(r'<Relationship[^>]*?Id="' + _rid_m.group(1) + r'"[^>]*?Target="([^"]+)"', _rels)
         _target = _tm.group(1).lstrip('/')
         if not _target.startswith('xl/'):
             _target = 'xl/' + _target
@@ -248,10 +252,17 @@ try:
         for _cm in re.finditer(r'<c ([^>]*?)(?:/>|>([\s\S]*?)</c>)', _sheet_xml):
             _attrs, _inner = _cm.group(1), _cm.group(2) or ''
             _rm = re.search(r'r="([A-Z]+)(\d+)"', _attrs)
-            _vm = re.search(r'<v>([^<]*)</v>', _inner)
-            if not _rm or not _vm:
+            if not _rm:
                 continue
-            _v = _shared[int(_vm.group(1))] if 't="s"' in _attrs and int(_vm.group(1)) < len(_shared) else _vm.group(1)
+            _vm = re.search(r'<v>([^<]*)</v>', _inner)
+            if _vm:
+                _v = _shared[int(_vm.group(1))] if 't="s"' in _attrs and int(_vm.group(1)) < len(_shared) else _vm.group(1)
+            else:
+                _im = re.search(r'<is>[\s\S]*?<t[^>]*>([^<]*)</t>', _inner)
+                if not _im:
+                    continue
+                _v = _im.group(1)
+            _v = _v.replace("&quot;", '"').replace("&apos;", "'").replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&")
             _cells.setdefault(int(_rm.group(2)), {})[_rm.group(1)] = _v
 
         # Détection du format via l'en-tête (ancien 4 col. ou nouveau 6 col.)
