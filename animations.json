@@ -31,7 +31,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "14:30",
@@ -51,7 +51,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "18:00",
@@ -70,8 +70,8 @@
       "en": "Movie night",
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
-      "lieu_en": "Swimming Pool Solarium",
-      "lieu_es": "Solario de piscina"
+      "lieu_en": "Pool Solarium",
+      "lieu_es": "Solarium Piscina"
     }
   ]
 }
