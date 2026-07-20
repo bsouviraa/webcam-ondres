@@ -69,7 +69,7 @@
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
       "lieu_en": "Pool Solarium",
-      "lieu_es": "Solarium de la piscina"
+      "lieu_es": "Solárium piscina"
     }
   ],
   "tomorrow_date": "21/07",
@@ -121,8 +121,8 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the Reception",
-      "lieu_es": "Cita frente a la Recepción"
+      "lieu_en": "Meeting in front of Reception",
+      "lieu_es": "Encuentro frente a Recepción"
     },
     {
       "heure": "15:00",

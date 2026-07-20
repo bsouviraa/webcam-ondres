@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-20T00:11",
-  "temp_air": "23",
+  "updated": "2026-07-20T04:03",
+  "temp_air": "21",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Ciel degage",
+  "meteo_label": "Couvert",
   "temp_eau": "24",
-  "vent_kmh": "6",
-  "vent_deg": "220",
-  "vent_cardinal": "SO",
+  "vent_kmh": "4",
+  "vent_deg": "170",
+  "vent_cardinal": "S",
   "uv": "6.9",
   "uv_label": "Eleve",
   "lever": "06:43",
   "coucher": "21:41",
-  "houle_m": "0.78",
-  "houle_periode": "5.5",
+  "houle_m": "0.8",
+  "houle_periode": "5.8",
   "marees": [
     {
       "type": "Basse",
@@ -43,9 +43,9 @@
       "07:35"
     ],
     "dax": [
-      "02:29",
-      "03:29",
-      "04:29"
+      "06:05",
+      "07:22",
+      "08:14"
     ]
   },
   "bus": {
