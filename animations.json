@@ -1,79 +1,6 @@
 {
-  "date": "20/07",
+  "date": "21/07",
   "items": [
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage avec Emmanuelle",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧘",
-      "fr": "Yoga avec Maelys",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
-    },
-    {
-      "heure": "14:30",
-      "emoji": "🧘",
-      "fr": "Pilate Ballon avec Sarah",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
-    },
-    {
-      "heure": "18:00",
-      "emoji": "🧘",
-      "fr": "Stretching postural",
-      "en": "Postural stretching",
-      "es": "Estiramientos posturales",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "21:30",
-      "emoji": "🎬",
-      "fr": "Soirée cinéma \"RIO\"",
-      "en": "Movie night",
-      "es": "Noche de Cine",
-      "lieu": "Solarium piscine",
-      "lieu_en": "Pool Solarium",
-      "lieu_es": "Solárium piscina"
-    }
-  ],
-  "tomorrow_date": "21/07",
-  "tomorrow_items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
@@ -81,7 +8,7 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -91,8 +18,8 @@
       "en": "Beehive Discovery",
       "es": "Descubrimiento de las colmenas",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "10:00",
@@ -101,7 +28,7 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -111,8 +38,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "10:30",
@@ -121,8 +48,8 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of Reception",
-      "lieu_es": "Cita frente a la recepción"
+      "lieu_en": "Meeting in front of reception",
+      "lieu_es": "Cita frente a recepción"
     },
     {
       "heure": "15:00",
@@ -131,8 +58,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "16:00",
@@ -141,7 +68,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -151,7 +78,7 @@
       "en": "Body painting",
       "es": "Pintura corporal",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -161,7 +88,7 @@
       "en": "Postural stretching",
       "es": "Estiramientos posturales",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -171,8 +98,71 @@
       "en": "Concert by the pool",
       "es": "Concierto by the pool",
       "lieu": "Piscine",
-      "lieu_en": "Pool",
+      "lieu_en": "Swimming pool",
       "lieu_es": "Piscina"
+    }
+  ],
+  "tomorrow_date": "22/07",
+  "tomorrow_items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Pilate Ballon avec Sarah",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🧘",
+      "fr": "BodyZen avec Sarah",
+      "en": "BodyZen",
+      "es": "BodyZen",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
+    },
+    {
+      "heure": "17:30",
+      "emoji": "💆",
+      "fr": "Massage avec Emmanuelle",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Exterior pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga avec Maelys",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     }
   ]
 }
