@@ -1004,17 +1004,13 @@
   }, 60 * 1000);
   setInterval(loadMeteo,         10 * 60 * 1000);
   setInterval(loadAnimations,     5 * 60 * 1000);
-  setInterval(() => {
-    if (window._animData) {
-      renderAnimations(window._animData, window._animDateLabel);
-      checkNextAnim();
-    }
-  }, 60 * 1000);
+  // Overlay "Ne manquez pas" (programme du jour) — la colonne DEMAIN est rendue par loadAnimations uniquement
+  setInterval(checkNextAnim, 60 * 1000);
 
   // Reload complet toutes les 5 minutes
   setTimeout(() => location.reload(), 5 * 60 * 1000);
   </script>
 
-  <div class="version-badge">màj 17:05</div>
+  <div class="version-badge">màj 10:34</div>
 </body>
 </html>
