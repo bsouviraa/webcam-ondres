@@ -1,17 +1,17 @@
 {
-  "updated": "2026-07-21T22:29",
+  "updated": "2026-07-21T23:27",
   "temp_air": "22",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "25",
-  "vent_kmh": "7",
-  "vent_deg": "230",
+  "vent_kmh": "6",
+  "vent_deg": "220",
   "vent_cardinal": "SO",
   "uv": "7.3",
   "uv_label": "Eleve",
   "lever": "06:45",
   "coucher": "21:39",
-  "houle_m": "0.9",
+  "houle_m": "0.88",
   "houle_periode": "5.5",
   "marees": [
     {
@@ -62,7 +62,6 @@
       "10:03"
     ],
     "ondres_bourg": [
-      "00:31",
       "06:04",
       "07:48",
       "08:49",
@@ -71,7 +70,8 @@
       "10:50",
       "11:01",
       "11:46",
-      "11:51"
+      "11:51",
+      "12:01"
     ],
     "st_martin": [
       "10:15",
