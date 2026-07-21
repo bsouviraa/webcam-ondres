@@ -8,7 +8,7 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -28,7 +28,7 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -68,8 +68,8 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
+      "lieu_en": "Exterior pergola",
+      "lieu_es": "Pérgola exterior"
     },
     {
       "heure": "18:30",
@@ -78,7 +78,7 @@
       "en": "Body painting",
       "es": "Pintura corporal",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -88,7 +88,7 @@
       "en": "Postural stretching",
       "es": "Estiramientos posturales",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -98,7 +98,7 @@
       "en": "Concert by the pool",
       "es": "Concierto by the pool",
       "lieu": "Piscine",
-      "lieu_en": "Swimming Pool",
+      "lieu_en": "Swimming pool",
       "lieu_es": "Piscina"
     }
   ],
@@ -111,7 +111,7 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -121,7 +121,7 @@
       "en": "BodyZen",
       "es": "BodyZen",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -151,8 +151,8 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
+      "lieu_en": "Exterior pergola",
+      "lieu_es": "Pérgola exterior"
     },
     {
       "heure": "18:00",
@@ -161,7 +161,7 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     }
   ]
