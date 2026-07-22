@@ -29,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club de Niños"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "15:00",
@@ -39,7 +39,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club de Niños"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "17:30",
@@ -81,8 +81,8 @@
       "en": "Bungy Pump",
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the Reception",
-      "lieu_es": "Cita frente a la Recepción"
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a recepción"
     },
     {
       "heure": "10:30",
@@ -92,7 +92,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club de Niños"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "15:00",
@@ -102,7 +102,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club de Niños"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "15:00",
@@ -151,8 +151,8 @@
       "en": "Forest bathing",
       "es": "Baño de bosque",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the Reception",
-      "lieu_es": "Cita frente a la Recepción"
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a recepción"
     }
   ]
 }
