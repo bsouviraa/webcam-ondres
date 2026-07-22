@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-22T20:00",
-  "temp_air": "24",
+  "updated": "2026-07-22T21:13",
+  "temp_air": "23",
   "meteo_picto": "sun",
   "meteo_label": "Couvert",
   "temp_eau": "25",
@@ -11,8 +11,8 @@
   "uv_label": "Eleve",
   "lever": "06:45",
   "coucher": "21:39",
-  "houle_m": "0.64",
-  "houle_periode": "5.1",
+  "houle_m": "0.66",
+  "houle_periode": "5.2",
   "marees": [
     {
       "type": "Basse",
@@ -55,18 +55,12 @@
       "07:43+1"
     ],
     "ondres_bourg": [
-      "22:01",
-      "22:46",
-      "23:01",
       "23:46",
       "00:31+1",
       "06:04+1",
       "07:48+1"
     ],
     "st_martin": [
-      "22:02",
-      "22:15",
-      "23:02",
       "23:15",
       "00:00+1",
       "10:15+1",
