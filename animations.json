@@ -9,7 +9,7 @@
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "10:00",
@@ -19,7 +19,7 @@
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_es": "Cita frente a la recepción"
     },
     {
       "heure": "10:30",
@@ -29,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña del Club de Niños"
     },
     {
       "heure": "15:00",
@@ -39,7 +39,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña del Club de Niños"
     },
     {
       "heure": "15:00",
@@ -49,7 +49,7 @@
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "16:00",
@@ -58,7 +58,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     },
     {
@@ -69,7 +69,7 @@
       "es": "Estiramientos posturales",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "19:30",
@@ -89,7 +89,7 @@
       "es": "Baño de bosque",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_es": "Cita frente a la recepción"
     }
   ],
   "tomorrow_date": "24/07",
@@ -102,7 +102,7 @@
       "es": "Estiramientos posturales",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "09:00",
@@ -112,7 +112,7 @@
       "es": "Activacion muscular",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_es": "Cita frente a la recepción"
     },
     {
       "heure": "09:30",
@@ -131,7 +131,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     },
     {
@@ -142,7 +142,7 @@
       "es": "Pintura corporal",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "10:30",
@@ -152,7 +152,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña del Club de Niños"
     },
     {
       "heure": "15:00",
@@ -162,7 +162,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña del Club de Niños"
     },
     {
       "heure": "17:00",
@@ -172,7 +172,7 @@
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "17:30",
@@ -181,7 +181,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     },
     {
@@ -192,7 +192,7 @@
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     }
   ]
 }
