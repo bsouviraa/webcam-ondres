@@ -29,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Kids Club"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "15:00",
@@ -39,7 +39,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Kids Club"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "17:30",
@@ -49,7 +49,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "18:00",
@@ -81,8 +81,8 @@
       "en": "Bungy Pump",
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meet at the reception",
-      "lieu_es": "Cita frente a la recepción"
+      "lieu_en": "Meeting at Reception",
+      "lieu_es": "Cita en Recepción"
     },
     {
       "heure": "10:30",
@@ -92,7 +92,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Kids Club"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "15:00",
@@ -102,7 +102,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Kids Club"
+      "lieu_es": "Cahute Club Infantil"
     },
     {
       "heure": "15:00",
@@ -122,7 +122,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "18:30",
@@ -151,8 +151,8 @@
       "en": "Forest bathing",
       "es": "Baño de bosque",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meet at the reception",
-      "lieu_es": "Cita frente a la recepción"
+      "lieu_en": "Meeting at Reception",
+      "lieu_es": "Cita en Recepción"
     }
   ]
 }
