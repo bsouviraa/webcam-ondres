@@ -18,8 +18,8 @@
       "en": "Bungy Pump",
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_en": "Meeting in front of Reception",
+      "lieu_es": "Cita frente a Recepción"
     },
     {
       "heure": "10:30",
@@ -29,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "15:00",
@@ -39,7 +39,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "15:00",
@@ -58,7 +58,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     },
     {
@@ -88,8 +88,8 @@
       "en": "Forest bathing",
       "es": "Baño de bosque",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_en": "Meeting in front of Reception",
+      "lieu_es": "Cita frente a Recepción"
     }
   ],
   "tomorrow_date": "24/07",
@@ -111,8 +111,8 @@
       "en": "Body Activation",
       "es": "Activacion muscular",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_en": "Meeting in front of Reception",
+      "lieu_es": "Cita frente a Recepción"
     },
     {
       "heure": "09:30",
@@ -131,7 +131,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     },
     {
@@ -152,7 +152,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "15:00",
@@ -162,7 +162,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "17:00",
@@ -181,7 +181,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     },
     {
