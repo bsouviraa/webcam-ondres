@@ -38,7 +38,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
+      "lieu_en": "Exterior pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -59,7 +59,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club hut",
-      "lieu_es": "Cabaña del club infantil"
+      "lieu_es": "Cabaña Club infantil"
     },
     {
       "heure": "15:00",
@@ -69,7 +69,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club hut",
-      "lieu_es": "Cabaña del club infantil"
+      "lieu_es": "Cabaña Club infantil"
     },
     {
       "heure": "17:00",
@@ -88,7 +88,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
+      "lieu_en": "Exterior pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -105,16 +105,6 @@
   "tomorrow_date": "25/07",
   "tomorrow_items": [
     {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage avec Marion",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
       "heure": "10:30",
       "emoji": "🧸",
       "fr": "Kids Club",
@@ -122,17 +112,37 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club hut",
-      "lieu_es": "Cabaña del club infantil"
+      "lieu_es": "Cabaña Club infantil"
     },
     {
-      "heure": "18:30",
+      "heure": "17:30",
       "emoji": "💆",
-      "fr": "Massage avec Emmanuelle",
+      "fr": "Massage sportif (Sandra)",
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
+      "lieu_en": "Exterior pergola",
       "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "💆",
+      "fr": "Pilate Ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "19:00",
+      "emoji": "💆",
+      "fr": "Bodyzen (Sarah)",
+      "en": "Bodyzen",
+      "es": "Bodyzen",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     }
   ]
 }
