@@ -1,47 +1,6 @@
 {
   "date": "25/07",
-  "items": [
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cabaña Club Infantil"
-    },
-    {
-      "heure": "17:30",
-      "emoji": "💆",
-      "fr": "Massage sportif (Sandra)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
-    },
-    {
-      "heure": "18:00",
-      "emoji": "💆",
-      "fr": "Pilate Ballon (Sarah)",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
-    },
-    {
-      "heure": "19:00",
-      "emoji": "💆",
-      "fr": "Bodyzen (Sarah)",
-      "en": "Bodyzen",
-      "es": "Bodyzen",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
-    }
-  ],
+  "items": [],
   "tomorrow_date": "26/07",
   "tomorrow_items": [
     {
@@ -51,8 +10,8 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "09:30",
@@ -62,7 +21,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
+      "lieu_es": "Pérgola exterior"
     },
     {
       "heure": "10:00",
@@ -71,8 +30,8 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "16:00",
@@ -82,7 +41,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
+      "lieu_es": "Pérgola exterior"
     },
     {
       "heure": "18:00",
@@ -91,8 +50,8 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     },
     {
       "heure": "19:00",
@@ -101,8 +60,8 @@
       "en": "Bodyzen",
       "es": "Bodyzen",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de Yoga"
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
     }
   ]
 }
