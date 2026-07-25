@@ -1,8 +1,6 @@
 {
-  "date": "25/07",
-  "items": [],
-  "tomorrow_date": "26/07",
-  "tomorrow_items": [
+  "date": "26/07",
+  "items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
@@ -62,6 +60,79 @@
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
+    }
+  ],
+  "tomorrow_date": "27/07",
+  "tomorrow_items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Pilate Ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "16:00",
+      "emoji": "💆",
+      "fr": "Massage (Emmanuelle)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "19:30",
+      "emoji": "🎵",
+      "fr": "Concert by the pool : Paolinho (musique brésilienne)",
+      "en": "Concert by the pool",
+      "es": "Concierto by the pool",
+      "lieu": "Piscine",
+      "lieu_en": "Swimming pool",
+      "lieu_es": "Piscina"
     }
   ]
 }
