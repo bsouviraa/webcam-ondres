@@ -1,17 +1,17 @@
 {
-  "updated": "2026-07-25T10:25",
+  "updated": "2026-07-25T11:43",
   "temp_air": "24",
   "meteo_picto": "cloud-rain",
-  "meteo_label": "Couvert",
+  "meteo_label": "Peu nuageux",
   "temp_eau": "25",
-  "vent_kmh": "35",
+  "vent_kmh": "41",
   "vent_deg": "260",
   "vent_cardinal": "O",
-  "uv": "5.8",
-  "uv_label": "Modere",
+  "uv": "7.0",
+  "uv_label": "Eleve",
   "lever": "06:48",
   "coucher": "21:36",
-  "houle_m": "1.54",
+  "houle_m": "1.56",
   "houle_periode": "5.5",
   "marees": [
     {
