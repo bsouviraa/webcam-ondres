@@ -9,7 +9,7 @@
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "09:30",
@@ -59,7 +59,7 @@
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "19:30",
@@ -82,7 +82,7 @@
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "09:30",
@@ -121,8 +121,8 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at Reception",
-      "lieu_es": "Cita frente a Recepción"
+      "lieu_en": "Meeting at the reception desk",
+      "lieu_es": "Cita frente a la recepción"
     },
     {
       "heure": "15:00",
@@ -142,7 +142,7 @@
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "21:00",
@@ -152,7 +152,7 @@
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
       "lieu_en": "Pool Solarium",
-      "lieu_es": "Solárium Piscina"
+      "lieu_es": "Solárium de la Piscina"
     }
   ]
 }
