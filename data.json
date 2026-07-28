@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-28T04:06",
-  "temp_air": "15",
-  "meteo_picto": "cloud-rain",
+  "updated": "2026-07-28T06:39",
+  "temp_air": "18",
+  "meteo_picto": "sun",
   "meteo_label": "Ciel degage",
-  "temp_eau": "24",
-  "vent_kmh": "4",
-  "vent_deg": "160",
-  "vent_cardinal": "SSE",
-  "uv": "7.2",
-  "uv_label": "Eleve",
+  "temp_eau": "NC",
+  "vent_kmh": "6",
+  "vent_deg": "101",
+  "vent_cardinal": "E",
+  "uv": "0.9",
+  "uv_label": "Faible",
   "lever": "06:51",
   "coucher": "21:33",
-  "houle_m": "1.18",
-  "houle_periode": "8.9",
+  "houle_m": "1.16",
+  "houle_periode": "9.0",
   "marees": [
     {
       "type": "Haute",
@@ -34,18 +34,18 @@
   "maree_coef": "61 / 65",
   "maree_coef_am": "61",
   "maree_coef_pm": "65",
-  "drapeau": "jaune",
+  "drapeau": "nc",
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "06:15",
-      "07:01",
-      "07:35"
+      "08:42",
+      "09:17",
+      "11:17"
     ],
     "dax": [
-      "07:22",
-      "08:14",
-      "09:37"
+      "09:37",
+      "14:37",
+      "15:36"
     ]
   },
   "bus": {
