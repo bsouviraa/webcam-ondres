@@ -1,6 +1,138 @@
 {
   "date": "28/07",
-  "items": [],
+  "items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage sportif (Sandra)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "🐝",
+      "fr": "Atelier découverte rûches",
+      "en": "Beehive Discovery",
+      "es": "Descubrimiento de las colmenas",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🏃",
+      "fr": "Marche Afghane",
+      "en": "Afghan Walking",
+      "es": "Marcha Afgana",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting in front of reception",
+      "lieu_es": "Cita frente a recepción"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "21:00",
+      "emoji": "🎬",
+      "fr": "Soirée cinéma \"COCO\"",
+      "en": "Movie night",
+      "es": "Noche de Cine",
+      "lieu": "Solarium piscine",
+      "lieu_en": "Pool solarium",
+      "lieu_es": "Solarium piscina"
+    }
+  ],
   "tomorrow_date": "29/07",
-  "tomorrow_items": []
+  "tomorrow_items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Yoga (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Kids Club"
+    }
+  ]
 }
