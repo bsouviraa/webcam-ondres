@@ -28,8 +28,8 @@
       "en": "Bungy Pump",
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the Reception",
-      "lieu_es": "Cita frente a la Recepción"
+      "lieu_en": "Meeting at Reception",
+      "lieu_es": "Cita frente a Recepción"
     },
     {
       "heure": "10:15",
@@ -49,7 +49,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Club de Niños"
     },
     {
       "heure": "15:00",
@@ -59,7 +59,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Club de Niños"
     },
     {
       "heure": "17:30",
@@ -78,7 +78,7 @@
       "en": "Karaoke night",
       "es": "Noche karaoke",
       "lieu": "Restaurant Les Planches",
-      "lieu_en": "Les Planches Restaurant",
+      "lieu_en": "Restaurant Les Planches",
       "lieu_es": "Restaurante Les Planches"
     },
     {
@@ -88,8 +88,8 @@
       "en": "Forest bathing",
       "es": "Baño de bosque",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the Reception",
-      "lieu_es": "Cita frente a la Recepción"
+      "lieu_en": "Meeting at Reception",
+      "lieu_es": "Cita frente a Recepción"
     }
   ],
   "tomorrow_date": "31/07",
@@ -101,8 +101,8 @@
       "en": "Body Activation",
       "es": "Activacion muscular",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the Reception",
-      "lieu_es": "Cita frente a la Recepción"
+      "lieu_en": "Meeting at Reception",
+      "lieu_es": "Cita frente a Recepción"
     },
     {
       "heure": "09:30",
@@ -132,7 +132,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Club de Niños"
     },
     {
       "heure": "15:00",
@@ -142,7 +142,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
+      "lieu_es": "Cabaña Club de Niños"
     },
     {
       "heure": "18:00",
