@@ -1,10 +1,10 @@
 {
-  "updated": "2026-07-29T20:00",
+  "updated": "2026-07-29T20:57",
   "temp_air": "23",
   "meteo_picto": "sun",
-  "meteo_label": "Ciel degage",
+  "meteo_label": "Peu nuageux",
   "temp_eau": "24",
-  "vent_kmh": "22",
+  "vent_kmh": "20",
   "vent_deg": "270",
   "vent_cardinal": "O",
   "uv": "7.3",
@@ -12,7 +12,7 @@
   "lever": "06:52",
   "coucher": "21:32",
   "houle_m": "0.64",
-  "houle_periode": "6.7",
+  "houle_periode": "6.5",
   "marees": [
     {
       "type": "Haute",
