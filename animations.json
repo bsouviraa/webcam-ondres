@@ -29,7 +29,7 @@
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting at Reception",
-      "lieu_es": "Cita frente a Recepción"
+      "lieu_es": "Cita en Recepción"
     },
     {
       "heure": "10:15",
@@ -49,7 +49,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de Niños"
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "15:00",
@@ -59,7 +59,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de Niños"
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "17:30",
@@ -78,7 +78,7 @@
       "en": "Karaoke night",
       "es": "Noche karaoke",
       "lieu": "Restaurant Les Planches",
-      "lieu_en": "Restaurant Les Planches",
+      "lieu_en": "Les Planches Restaurant",
       "lieu_es": "Restaurante Les Planches"
     },
     {
@@ -89,7 +89,7 @@
       "es": "Baño de bosque",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting at Reception",
-      "lieu_es": "Cita frente a Recepción"
+      "lieu_es": "Cita en Recepción"
     }
   ],
   "tomorrow_date": "31/07",
@@ -102,7 +102,7 @@
       "es": "Activacion muscular",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting at Reception",
-      "lieu_es": "Cita frente a Recepción"
+      "lieu_es": "Cita en Recepción"
     },
     {
       "heure": "09:30",
@@ -132,7 +132,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de Niños"
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "15:00",
@@ -142,7 +142,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de Niños"
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "18:00",
