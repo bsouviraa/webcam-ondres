@@ -1,18 +1,18 @@
 {
-  "updated": "2026-07-31T14:38",
+  "updated": "2026-07-31T16:23",
   "temp_air": "24",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "24",
   "vent_kmh": "17",
-  "vent_deg": "270",
-  "vent_cardinal": "O",
-  "uv": "5.9",
+  "vent_deg": "310",
+  "vent_cardinal": "NO",
+  "uv": "3.5",
   "uv_label": "Modere",
   "lever": "06:54",
   "coucher": "21:30",
   "houle_m": "0.46",
-  "houle_periode": "6.4",
+  "houle_periode": "6.3",
   "marees": [
     {
       "type": "Basse",
@@ -38,8 +38,6 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "17:18",
-      "17:43",
       "20:17"
     ],
     "dax": [
