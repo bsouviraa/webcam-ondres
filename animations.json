@@ -1,77 +1,6 @@
 {
   "date": "31/07",
-  "items": [
-    {
-      "heure": "09:00",
-      "emoji": "🏃",
-      "fr": "Réveil musculaire",
-      "en": "Body Activation",
-      "es": "Activacion muscular",
-      "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "🧜‍♀️",
-      "fr": "Cours de sirène",
-      "en": "Mermaid class",
-      "es": "Curso de sirena",
-      "lieu": "Piscine",
-      "lieu_en": "Swimming pool",
-      "lieu_es": "Piscina"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage avec Claire",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club hut",
-      "lieu_es": "Cabaña del Club infantil"
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club hut",
-      "lieu_es": "Cabaña del Club infantil"
-    },
-    {
-      "heure": "18:00",
-      "emoji": "🧘",
-      "fr": "Yoga avec Gabrielle",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "19:00",
-      "emoji": "🧘",
-      "fr": "Pilates avec Gabrielle",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    }
-  ],
+  "items": [],
   "tomorrow_date": "01/08",
   "tomorrow_items": [
     {
@@ -81,8 +10,8 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "10:30",
@@ -91,8 +20,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club hut",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "18:00",
@@ -101,8 +30,8 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     }
   ]
 }
