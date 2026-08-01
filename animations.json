@@ -8,7 +8,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     },
     {
@@ -19,7 +19,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Kids Club"
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "18:00",
@@ -71,7 +71,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Exterior Pergola",
       "lieu_es": "Pérgola Exterior"
     }
   ]
