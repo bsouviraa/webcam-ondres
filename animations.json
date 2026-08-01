@@ -10,7 +10,7 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -40,8 +40,8 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
     },
     {
       "heure": "18:00",
@@ -50,7 +50,7 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -60,7 +60,7 @@
       "en": "Concert by the pool",
       "es": "Concierto by the pool",
       "lieu": "Piscine",
-      "lieu_en": "Swimming Pool",
+      "lieu_en": "Swimming pool",
       "lieu_es": "Piscina"
     }
   ]
