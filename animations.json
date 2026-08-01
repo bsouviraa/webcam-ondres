@@ -1,6 +1,67 @@
 {
-  "date": "01/08",
+  "date": "02/08",
   "items": [],
-  "tomorrow_date": "02/08",
-  "tomorrow_items": []
+  "tomorrow_date": "03/08",
+  "tomorrow_items": [
+    {
+      "heure": "09:30",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Club Infantil"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cahute Club Infantil"
+    },
+    {
+      "heure": "16:30",
+      "emoji": "💆",
+      "fr": "Massage (Emmanuelle)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "19:30",
+      "emoji": "🎵",
+      "fr": "Concert by the pool : Dom & Danaé (musique brésilienne)",
+      "en": "Concert by the pool",
+      "es": "Concierto by the pool",
+      "lieu": "Piscine",
+      "lieu_en": "Swimming Pool",
+      "lieu_es": "Piscina"
+    }
+  ]
 }
