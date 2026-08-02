@@ -1,10 +1,10 @@
 {
-  "updated": "2026-08-02T20:52",
+  "updated": "2026-08-02T21:53",
   "temp_air": "22",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Ciel degage",
+  "meteo_label": "Partiellement nuageux",
   "temp_eau": "24",
-  "vent_kmh": "15",
+  "vent_kmh": "17",
   "vent_deg": "260",
   "vent_cardinal": "O",
   "uv": "7.2",
