@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-02T22:54",
+  "updated": "2026-08-02T23:56",
   "temp_air": "22",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
@@ -7,7 +7,7 @@
   "vent_kmh": "11",
   "vent_deg": "260",
   "vent_cardinal": "O",
-  "uv": "5.9",
+  "uv": "5.2",
   "uv_label": "Modere",
   "lever": "06:57",
   "coucher": "21:26",
@@ -37,16 +37,8 @@
   "drapeau": "rouge",
   "surv_label": "Baignade non surveillee",
   "transports": {
-    "bayonne": [
-      "06:15",
-      "07:07",
-      "07:35"
-    ],
-    "dax": [
-      "06:05",
-      "07:22",
-      "08:14"
-    ]
+    "bayonne": [],
+    "dax": []
   },
   "bus": {
     "plage": [
