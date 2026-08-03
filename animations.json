@@ -19,7 +19,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club infantil"
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "15:00",
@@ -29,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club infantil"
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "16:30",
@@ -38,7 +38,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -82,7 +82,7 @@
       "es": "Descubrimiento de las colmenas",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_es": "Encuentro delante de recepción"
     },
     {
       "heure": "09:30",
@@ -91,7 +91,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -102,7 +102,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club infantil"
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "10:30",
@@ -112,7 +112,7 @@
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_es": "Encuentro delante de recepción"
     },
     {
       "heure": "15:00",
@@ -122,7 +122,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Cahute Kids Club",
-      "lieu_es": "Cahute Club infantil"
+      "lieu_es": "Cahute Kids Club"
     },
     {
       "heure": "18:00",
@@ -141,7 +141,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -162,7 +162,7 @@
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
       "lieu_en": "Pool solarium",
-      "lieu_es": "Solárium piscina"
+      "lieu_es": "Solarium piscina"
     }
   ]
 }
