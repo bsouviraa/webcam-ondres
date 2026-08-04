@@ -19,7 +19,7 @@
       "es": "Descubrimiento de las colmenas",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita delante de recepción"
+      "lieu_es": "Cita frente a recepción"
     },
     {
       "heure": "09:30",
@@ -28,7 +28,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -49,7 +49,7 @@
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
       "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita delante de recepción"
+      "lieu_es": "Cita frente a recepción"
     },
     {
       "heure": "15:00",
@@ -78,7 +78,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -98,8 +98,8 @@
       "en": "Movie night",
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
-      "lieu_en": "Pool solarium",
-      "lieu_es": "Solarium de piscina"
+      "lieu_en": "Swimming pool solarium",
+      "lieu_es": "Solárium de piscina"
     }
   ],
   "tomorrow_date": "05/08",
@@ -121,7 +121,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     },
     {
@@ -171,7 +171,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Exterior pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     }
   ]
