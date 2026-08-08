@@ -1,57 +1,6 @@
 {
   "date": "08/08",
-  "items": [
-    {
-      "heure": "09:30",
-      "emoji": "🧘",
-      "fr": "Yoga en forêt (Maelys)",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage (Marion)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage (Emmanuelle)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club Infantil"
-    },
-    {
-      "heure": "18:00",
-      "emoji": "💆",
-      "fr": "Pilate Ballon (Sarah)",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
-    }
-  ],
+  "items": [],
   "tomorrow_date": "09/08",
   "tomorrow_items": [
     {
@@ -61,7 +10,7 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -71,7 +20,7 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga Platform",
+      "lieu_en": "Yoga platform",
       "lieu_es": "Plataforma de yoga"
     },
     {
@@ -81,7 +30,7 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
+      "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
     }
   ]
