@@ -1,8 +1,6 @@
 {
-  "date": "08/08",
-  "items": [],
-  "tomorrow_date": "09/08",
-  "tomorrow_items": [
+  "date": "09/08",
+  "items": [
     {
       "heure": "08:00",
       "emoji": "🧘",
@@ -32,6 +30,69 @@
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor pergola",
       "lieu_es": "Pérgola exterior"
+    }
+  ],
+  "tomorrow_date": "10/08",
+  "tomorrow_items": [
+    {
+      "heure": "08:00",
+      "emoji": "🧘",
+      "fr": "Réveil musculaire",
+      "en": "Muscle Awakening",
+      "es": "Activación muscular",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt (Isabelle)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "21:00",
+      "emoji": "🎬",
+      "fr": "Soirée cinéma \"Hotel Transylvanie\"",
+      "en": "Movie night",
+      "es": "Noche de Cine",
+      "lieu": "Solarium piscine",
+      "lieu_en": "Pool solarium",
+      "lieu_es": "Solarium de piscina"
     }
   ]
 }
