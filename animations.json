@@ -29,7 +29,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_es": "Pérgola Exterior"
     }
   ],
   "tomorrow_date": "10/08",
@@ -61,8 +61,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de niños"
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "15:00",
@@ -71,8 +71,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club de niños"
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "18:00",
