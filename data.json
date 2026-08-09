@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-09T23:05",
+  "updated": "2026-08-09T23:45",
   "temp_air": "21",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Partiellement nuageux",
   "temp_eau": "24",
-  "vent_kmh": "6",
-  "vent_deg": "265",
-  "vent_cardinal": "O",
+  "vent_kmh": "7",
+  "vent_deg": "220",
+  "vent_cardinal": "SO",
   "uv": "6.4",
   "uv_label": "Eleve",
   "lever": "07:05",
   "coucher": "21:17",
   "houle_m": "0.66",
-  "houle_periode": "8.3",
+  "houle_periode": "8.2",
   "marees": [
     {
       "type": "Haute",
