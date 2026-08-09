@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-09T12:44",
+  "updated": "2026-08-09T13:36",
   "temp_air": "26",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "24",
-  "vent_kmh": "28",
-  "vent_deg": "280",
+  "vent_kmh": "22",
+  "vent_deg": "270",
   "vent_cardinal": "O",
-  "uv": "7.0",
+  "uv": "6.9",
   "uv_label": "Eleve",
   "lever": "07:04",
   "coucher": "21:18",
-  "houle_m": "0.62",
-  "houle_periode": "9.0",
+  "houle_m": "0.64",
+  "houle_periode": "8.9",
   "marees": [
     {
       "type": "Haute",
@@ -43,9 +43,9 @@
       "20:54"
     ],
     "dax": [
-      "15:36",
       "17:37",
-      "18:28"
+      "18:28",
+      "20:51"
     ]
   },
   "bus": {
