@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-10T11:06",
+  "updated": "2026-08-10T11:58",
   "temp_air": "25",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Partiellement nuageux",
+  "meteo_label": "Couvert",
   "temp_eau": "24",
   "vent_kmh": "11",
-  "vent_deg": "300",
-  "vent_cardinal": "ONO",
-  "uv": "5.4",
+  "vent_deg": "310",
+  "vent_cardinal": "NO",
+  "uv": "6.0",
   "uv_label": "Modere",
   "lever": "07:05",
   "coucher": "21:17",
-  "houle_m": "0.66",
-  "houle_periode": "7.7",
+  "houle_m": "0.64",
+  "houle_periode": "7.8",
   "marees": [
     {
       "type": "Haute",
@@ -39,7 +39,7 @@
   "transports": {
     "bayonne": [
       "14:16",
-      "17:17",
+      "17:32",
       "17:43"
     ],
     "dax": [
