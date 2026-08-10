@@ -59,7 +59,7 @@
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
       "lieu_en": "Pool solarium",
-      "lieu_es": "Solarium piscina"
+      "lieu_es": "Solárium piscina"
     }
   ],
   "tomorrow_date": "11/08",
@@ -161,7 +161,7 @@
       "en": "Concert by the pool",
       "es": "Concierto by the pool",
       "lieu": "Piscine",
-      "lieu_en": "Pool",
+      "lieu_en": "Swimming pool",
       "lieu_es": "Piscina"
     }
   ]
