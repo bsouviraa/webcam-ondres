@@ -29,7 +29,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "15:00",
@@ -39,7 +39,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "18:00",
@@ -59,7 +59,7 @@
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
       "lieu_en": "Pool solarium",
-      "lieu_es": "Solárium de piscina"
+      "lieu_es": "Solárium piscina"
     }
   ],
   "tomorrow_date": "11/08",
@@ -81,7 +81,7 @@
       "en": "Beehive Discovery",
       "es": "Descubrimiento de las colmenas",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
+      "lieu_en": "Meeting at reception",
       "lieu_es": "Cita frente a recepción"
     },
     {
@@ -112,7 +112,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "10:30",
@@ -121,7 +121,7 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
+      "lieu_en": "Meeting at reception",
       "lieu_es": "Cita frente a recepción"
     },
     {
@@ -132,7 +132,7 @@
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
       "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña Club infantil"
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "17:00",
