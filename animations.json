@@ -28,8 +28,8 @@
       "en": "Bungy Pump",
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of Reception",
-      "lieu_es": "Cita frente a Recepción"
+      "lieu_en": "Meeting at the Reception",
+      "lieu_es": "Cita en la Recepción"
     },
     {
       "heure": "10:00",
@@ -48,7 +48,7 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
+      "lieu_en": "Kids Club Cabin",
       "lieu_es": "Cabaña Club Infantil"
     },
     {
@@ -68,7 +68,7 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
+      "lieu_en": "Kids Club Cabin",
       "lieu_es": "Cabaña Club Infantil"
     },
     {
@@ -121,7 +121,7 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
+      "lieu_en": "Kids Club Cabin",
       "lieu_es": "Cabaña Club Infantil"
     },
     {
@@ -131,7 +131,7 @@
       "en": "Kids club picnic",
       "es": "Kids club picnic",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
+      "lieu_en": "Kids Club Cabin",
       "lieu_es": "Cabaña Club Infantil"
     },
     {
@@ -141,7 +141,7 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
+      "lieu_en": "Kids Club Cabin",
       "lieu_es": "Cabaña Club Infantil"
     },
     {
