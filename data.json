@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-14T19:28",
+  "updated": "2026-08-14T20:02",
   "temp_air": "24",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
@@ -12,7 +12,7 @@
   "lever": "07:09",
   "coucher": "21:11",
   "houle_m": "0.78",
-  "houle_periode": "7.4",
+  "houle_periode": "7.2",
   "marees": [
     {
       "type": "Basse",
