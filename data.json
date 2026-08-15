@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-14T23:47",
+  "updated": "2026-08-15T00:01",
   "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
@@ -16,24 +16,24 @@
   "marees": [
     {
       "type": "Basse",
-      "heure": "00h14"
+      "heure": "00h55"
     },
     {
       "type": "Haute",
-      "heure": "06h36"
+      "heure": "07h13"
     },
     {
       "type": "Basse",
-      "heure": "12h23"
+      "heure": "13h03"
     },
     {
       "type": "Haute",
-      "heure": "18h49"
+      "heure": "19h27"
     }
   ],
-  "maree_coef": "102 / 102",
-  "maree_coef_am": "102",
-  "maree_coef_pm": "102",
+  "maree_coef": "101 / 98",
+  "maree_coef_am": "101",
+  "maree_coef_pm": "98",
   "drapeau": "jaune",
   "surv_label": "Baignade non surveillee",
   "transports": {
