@@ -1,37 +1,6 @@
 {
   "date": "15/08",
-  "items": [
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage (Marion)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Cabin",
-      "lieu_es": "Cabaña Club Infantil"
-    },
-    {
-      "heure": "16:30",
-      "emoji": "💆",
-      "fr": "Massage DUO (Claire & Emmanuelle)",
-      "en": "DUO Massage",
-      "es": "Masaje DUO",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola Exterior"
-    }
-  ],
+  "items": [],
   "tomorrow_date": "16/08",
   "tomorrow_items": []
 }
