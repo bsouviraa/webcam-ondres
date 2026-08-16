@@ -1,13 +1,13 @@
 {
-  "updated": "2026-08-16T09:34",
+  "updated": "2026-08-16T09:58",
   "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "24",
   "vent_kmh": "6",
-  "vent_deg": "280",
-  "vent_cardinal": "O",
-  "uv": "4.0",
+  "vent_deg": "290",
+  "vent_cardinal": "ONO",
+  "uv": "4.4",
   "uv_label": "Modere",
   "lever": "07:11",
   "coucher": "21:08",
@@ -43,9 +43,9 @@
       "18:17"
     ],
     "dax": [
-      "11:36",
       "15:26",
-      "15:36"
+      "15:36",
+      "17:37"
     ]
   },
   "bus": {
