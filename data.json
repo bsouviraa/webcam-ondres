@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-16T13:44",
+  "updated": "2026-08-16T13:59",
   "temp_air": "26",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Partiellement nuageux",
@@ -7,8 +7,8 @@
   "vent_kmh": "13",
   "vent_deg": "310",
   "vent_cardinal": "NO",
-  "uv": "6.1",
-  "uv_label": "Eleve",
+  "uv": "5.9",
+  "uv_label": "Modere",
   "lever": "07:11",
   "coucher": "21:08",
   "houle_m": "0.72",
