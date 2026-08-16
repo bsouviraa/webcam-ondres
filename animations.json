@@ -81,8 +81,8 @@
       "en": "Beehive Discovery",
       "es": "Descubrimiento de las colmenas",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a la recepción"
     },
     {
       "heure": "09:30",
@@ -121,8 +121,8 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a la recepción"
     },
     {
       "heure": "15:00",
@@ -161,8 +161,8 @@
       "en": "Movie night",
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
-      "lieu_en": "Swimming pool solarium",
-      "lieu_es": "Solarium piscina"
+      "lieu_en": "Pool solarium",
+      "lieu_es": "Solárium piscina"
     }
   ]
 }

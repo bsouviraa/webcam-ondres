@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-16T22:39",
+  "updated": "2026-08-16T22:57",
   "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
@@ -11,7 +11,7 @@
   "uv_label": "Modere",
   "lever": "07:13",
   "coucher": "21:06",
-  "houle_m": "0.76",
+  "houle_m": "0.74",
   "houle_periode": "7.0",
   "marees": [
     {
