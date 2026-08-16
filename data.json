@@ -1,13 +1,13 @@
 {
-  "updated": "2026-08-16T15:01",
+  "updated": "2026-08-16T15:24",
   "temp_air": "25",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Peu nuageux",
   "temp_eau": "24",
-  "vent_kmh": "15",
-  "vent_deg": "300",
-  "vent_cardinal": "ONO",
-  "uv": "4.3",
+  "vent_kmh": "13",
+  "vent_deg": "320",
+  "vent_cardinal": "NO",
+  "uv": "4.0",
   "uv_label": "Modere",
   "lever": "07:11",
   "coucher": "21:08",
@@ -38,9 +38,9 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "17:17",
       "18:17",
-      "20:54"
+      "20:54",
+      "21:27"
     ],
     "dax": [
       "17:37",
