@@ -2,5 +2,66 @@
   "date": "16/08",
   "items": [],
   "tomorrow_date": "17/08",
-  "tomorrow_items": []
+  "tomorrow_items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "💆",
+      "fr": "Massage (Marion)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "19:00",
+      "emoji": "🎵",
+      "fr": "Concert by the pool : PAOLINHO (musique brésilienne)",
+      "en": "Concert by the pool",
+      "es": "Concierto by the pool",
+      "lieu": "Piscine",
+      "lieu_en": "Swimming pool",
+      "lieu_es": "Piscina"
+    }
+  ]
 }
