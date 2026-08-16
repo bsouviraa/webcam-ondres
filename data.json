@@ -1,17 +1,17 @@
 {
-  "updated": "2026-08-16T06:35",
+  "updated": "2026-08-16T07:18",
   "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
   "vent_kmh": "6",
-  "vent_deg": "273",
-  "vent_cardinal": "O",
-  "uv": "0.7",
+  "vent_deg": "282",
+  "vent_cardinal": "ONO",
+  "uv": "1.1",
   "uv_label": "Faible",
   "lever": "07:11",
   "coucher": "21:08",
-  "houle_m": "0.78",
+  "houle_m": "0.76",
   "houle_periode": "6.8",
   "marees": [
     {
