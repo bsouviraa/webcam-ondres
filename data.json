@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-16T10:48",
+  "updated": "2026-08-16T11:01",
   "temp_air": "24",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
@@ -7,7 +7,7 @@
   "vent_kmh": "13",
   "vent_deg": "310",
   "vent_cardinal": "NO",
-  "uv": "5.5",
+  "uv": "5.6",
   "uv_label": "Modere",
   "lever": "07:11",
   "coucher": "21:08",
