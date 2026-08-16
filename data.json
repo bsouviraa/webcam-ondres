@@ -1,13 +1,13 @@
 {
-  "updated": "2026-08-16T08:01",
-  "temp_air": "22",
+  "updated": "2026-08-16T08:34",
+  "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
-  "temp_eau": "NC",
-  "vent_kmh": "6",
-  "vent_deg": "220",
-  "vent_cardinal": "SO",
-  "uv": "1.7",
+  "temp_eau": "24",
+  "vent_kmh": "7",
+  "vent_deg": "240",
+  "vent_cardinal": "OSO",
+  "uv": "2.1",
   "uv_label": "Faible",
   "lever": "07:11",
   "coucher": "21:08",
@@ -34,7 +34,7 @@
   "maree_coef": "95 / 90",
   "maree_coef_am": "95",
   "maree_coef_pm": "90",
-  "drapeau": "nc",
+  "drapeau": "jaune",
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
@@ -44,7 +44,7 @@
     ],
     "dax": [
       "11:36",
-      "13:33",
+      "15:26",
       "15:36"
     ]
   },
