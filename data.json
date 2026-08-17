@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-17T11:39",
+  "updated": "2026-08-17T11:59",
   "temp_air": "25",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
@@ -7,12 +7,12 @@
   "vent_kmh": "9",
   "vent_deg": "310",
   "vent_cardinal": "NO",
-  "uv": "6.1",
+  "uv": "6.3",
   "uv_label": "Eleve",
   "lever": "07:13",
   "coucher": "21:06",
   "houle_m": "0.7",
-  "houle_periode": "6.8",
+  "houle_periode": "6.7",
   "marees": [
     {
       "type": "Basse",
