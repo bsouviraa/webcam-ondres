@@ -1,6 +1,168 @@
 {
   "date": "17/08",
-  "items": [],
+  "items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "💆",
+      "fr": "Massage (Marion)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "19:00",
+      "emoji": "🎵",
+      "fr": "Concert by the pool : PAOLINHO (musique brésilienne)",
+      "en": "Concert by the pool",
+      "es": "Concierto by the pool",
+      "lieu": "Piscine",
+      "lieu_en": "Swimming pool",
+      "lieu_es": "Piscina"
+    }
+  ],
   "tomorrow_date": "18/08",
-  "tomorrow_items": []
+  "tomorrow_items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt (Gabrielle)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "🐝",
+      "fr": "Atelier découverte rûches",
+      "en": "Beehive Discovery",
+      "es": "Descubrimiento de las colmenas",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a recepción"
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🧘",
+      "fr": "Pilates (Gabrielle)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🏃",
+      "fr": "Marche Afghane",
+      "en": "Afghan Walking",
+      "es": "Marcha Afgana",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting at the reception",
+      "lieu_es": "Cita frente a recepción"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Kids Club Hut",
+      "lieu_es": "Cabaña Kids Club"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga platform",
+      "lieu_es": "Plataforma de yoga"
+    },
+    {
+      "heure": "16:00",
+      "emoji": "💆",
+      "fr": "Massage (Emmanuelle)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor pergola",
+      "lieu_es": "Pérgola exterior"
+    },
+    {
+      "heure": "20:45",
+      "emoji": "🎬",
+      "fr": "Soirée cinéma \"Le voyage d'Arlo\"",
+      "en": "Movie night",
+      "es": "Noche de Cine",
+      "lieu": "Solarium piscine",
+      "lieu_en": "Pool solarium",
+      "lieu_es": "Solario de la piscina"
+    }
+  ]
 }
