@@ -18,8 +18,8 @@
       "en": "Beehive Discovery",
       "es": "Descubrimiento de las colmenas",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the reception",
-      "lieu_es": "Cita frente a la recepción"
+      "lieu_en": "Meeting in front of reception",
+      "lieu_es": "Cita frente a recepción"
     },
     {
       "heure": "09:30",
@@ -48,8 +48,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Cabin",
-      "lieu_es": "Cabaña del Club Infantil"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     },
     {
       "heure": "10:30",
@@ -58,8 +58,8 @@
       "en": "Afghan Walking",
       "es": "Marcha Afgana",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting at the reception",
-      "lieu_es": "Cita frente a la recepción"
+      "lieu_en": "Meeting in front of reception",
+      "lieu_es": "Cita frente a recepción"
     },
     {
       "heure": "15:00",
@@ -68,8 +68,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Cabin",
-      "lieu_es": "Cabaña del Club Infantil"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     },
     {
       "heure": "15:00",
@@ -98,8 +98,8 @@
       "en": "Movie night",
       "es": "Noche de Cine",
       "lieu": "Solarium piscine",
-      "lieu_en": "Pool solarium",
-      "lieu_es": "Solarium de la piscina"
+      "lieu_en": "Swimming pool solarium",
+      "lieu_es": "Solárium de piscina"
     }
   ],
   "tomorrow_date": "19/08",
@@ -111,8 +111,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Cabin",
-      "lieu_es": "Cabaña del Club Infantil"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     },
     {
       "heure": "12:30",
@@ -121,8 +121,8 @@
       "en": "Kids club picnic",
       "es": "Kids club picnic",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Cabin",
-      "lieu_es": "Cabaña del Club Infantil"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     },
     {
       "heure": "15:00",
@@ -131,8 +131,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Cabin",
-      "lieu_es": "Cabaña del Club Infantil"
+      "lieu_en": "Kids Club hut",
+      "lieu_es": "Cabaña del Club infantil"
     },
     {
       "heure": "17:00",
