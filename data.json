@@ -1,14 +1,14 @@
 {
-  "updated": "2026-08-18T18:34",
-  "temp_air": "24",
+  "updated": "2026-08-18T19:15",
+  "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "24",
   "vent_kmh": "11",
   "vent_deg": "340",
   "vent_cardinal": "NNO",
-  "uv": "0.3",
-  "uv_label": "Faible",
+  "uv": "6.8",
+  "uv_label": "Eleve",
   "lever": "07:14",
   "coucher": "21:05",
   "houle_m": "0.48",
@@ -43,7 +43,9 @@
       "07:35"
     ],
     "dax": [
-      "20:51"
+      "06:05",
+      "07:22",
+      "08:14"
     ]
   },
   "bus": {
