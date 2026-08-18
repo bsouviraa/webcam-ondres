@@ -1,17 +1,17 @@
 {
-  "updated": "2026-08-18T07:24",
+  "updated": "2026-08-18T08:02",
   "temp_air": "23",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "0",
-  "vent_deg": "0",
-  "vent_cardinal": "N",
-  "uv": "0.8",
+  "vent_kmh": "6",
+  "vent_deg": "324",
+  "vent_cardinal": "NO",
+  "uv": "1.2",
   "uv_label": "Faible",
   "lever": "07:14",
   "coucher": "21:05",
-  "houle_m": "0.52",
+  "houle_m": "0.5",
   "houle_periode": "5.7",
   "marees": [
     {
@@ -43,9 +43,9 @@
       "17:17"
     ],
     "dax": [
-      "09:37",
       "14:37",
-      "15:36"
+      "15:36",
+      "17:12"
     ]
   },
   "bus": {
