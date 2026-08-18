@@ -1,118 +1,15 @@
 {
-  "date": "18/08",
+  "date": "19/08",
   "items": [
     {
-      "heure": "09:00",
-      "emoji": "🧘",
-      "fr": "Yoga en forêt (Gabrielle)",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "🐝",
-      "fr": "Atelier découverte rûches",
-      "en": "Beehive Discovery",
-      "es": "Descubrimiento de las colmenas",
-      "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
-    },
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage (Claire)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "10:00",
-      "emoji": "🧘",
-      "fr": "Pilates (Gabrielle)",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
       "heure": "10:30",
       "emoji": "🧸",
       "fr": "Kids Club",
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club cabin",
-      "lieu_es": "Cabaña del Club infantil"
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🏃",
-      "fr": "Marche Afghane",
-      "en": "Afghan Walking",
-      "es": "Marcha Afgana",
-      "lieu": "Rdv devant la réception",
-      "lieu_en": "Meeting in front of reception",
-      "lieu_es": "Cita frente a recepción"
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club cabin",
-      "lieu_es": "Cabaña del Club infantil"
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧘",
-      "fr": "Pilates ballon (Sarah)",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
-    },
-    {
-      "heure": "16:00",
-      "emoji": "💆",
-      "fr": "Massage (Emmanuelle)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
-    },
-    {
-      "heure": "20:45",
-      "emoji": "🎬",
-      "fr": "Soirée cinéma \"Le voyage d'Arlo\"",
-      "en": "Movie night",
-      "es": "Noche de Cine",
-      "lieu": "Solarium piscine",
-      "lieu_en": "Swimming pool solarium",
-      "lieu_es": "Solarium de la piscina"
-    }
-  ],
-  "tomorrow_date": "19/08",
-  "tomorrow_items": [
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club cabin",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "12:30",
@@ -121,8 +18,8 @@
       "en": "Kids club picnic",
       "es": "Kids club picnic",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club cabin",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "15:00",
@@ -131,8 +28,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club cabin",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cabaña Club Infantil"
     },
     {
       "heure": "17:00",
@@ -141,8 +38,8 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "18:00",
@@ -151,8 +48,8 @@
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "Yoga platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "18:00",
@@ -161,8 +58,81 @@
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
-      "lieu_en": "Outdoor pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
+    }
+  ],
+  "tomorrow_date": "20/08",
+  "tomorrow_items": [
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🏃",
+      "fr": "Bungy Pump",
+      "en": "Bungy Pump",
+      "es": "Bungy Pump",
+      "lieu": "Rdv devant la réception",
+      "lieu_en": "Meeting at Reception",
+      "lieu_es": "Cita en la Recepción"
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cabaña Club Infantil"
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "Cahute Kids Club",
+      "lieu_es": "Cabaña Club Infantil"
+    },
+    {
+      "heure": "17:30",
+      "emoji": "💆",
+      "fr": "Massage (Emmanuelle)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "Outdoor Pergola",
+      "lieu_es": "Pérgola Exterior"
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "Yoga Platform",
+      "lieu_es": "Plataforma de Yoga"
     }
   ]
 }
