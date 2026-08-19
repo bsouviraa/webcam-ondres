@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-19T13:30",
+  "updated": "2026-08-19T14:06",
   "temp_air": "24",
   "meteo_picto": "sun",
   "meteo_label": "Partiellement nuageux",
@@ -7,12 +7,12 @@
   "vent_kmh": "17",
   "vent_deg": "300",
   "vent_cardinal": "ONO",
-  "uv": "6.3",
-  "uv_label": "Eleve",
+  "uv": "5.9",
+  "uv_label": "Modere",
   "lever": "07:15",
   "coucher": "21:03",
   "houle_m": "0.4",
-  "houle_periode": "5.8",
+  "houle_periode": "5.7",
   "marees": [
     {
       "type": "Basse",
@@ -43,9 +43,9 @@
       "18:17"
     ],
     "dax": [
-      "15:36",
       "17:12",
-      "18:38"
+      "18:38",
+      "19:13"
     ]
   },
   "bus": {
