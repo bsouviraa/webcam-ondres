@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-20T13:32",
+  "updated": "2026-08-20T14:09",
   "temp_air": "21",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Couvert",
@@ -7,7 +7,7 @@
   "vent_kmh": "11",
   "vent_deg": "10",
   "vent_cardinal": "N",
-  "uv": "2.1",
+  "uv": "1.6",
   "uv_label": "Faible",
   "lever": "07:16",
   "coucher": "21:02",
@@ -43,9 +43,9 @@
       "18:17"
     ],
     "dax": [
-      "15:36",
       "17:12",
-      "18:38"
+      "18:38",
+      "19:13"
     ]
   },
   "bus": {
