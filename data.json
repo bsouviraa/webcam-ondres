@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-20T14:54",
+  "updated": "2026-08-20T15:30",
   "temp_air": "20",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Couvert",
   "temp_eau": "24",
-  "vent_kmh": "13",
+  "vent_kmh": "11",
   "vent_deg": "360",
   "vent_cardinal": "N",
-  "uv": "1.2",
+  "uv": "0.8",
   "uv_label": "Faible",
   "lever": "07:16",
   "coucher": "21:02",
-  "houle_m": "1.06",
-  "houle_periode": "7.2",
+  "houle_m": "1.08",
+  "houle_periode": "7.3",
   "marees": [
     {
       "type": "Basse",
@@ -38,14 +38,14 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "17:17",
       "17:43",
-      "18:17"
+      "18:17",
+      "18:43"
     ],
     "dax": [
-      "17:12",
-      "18:38",
-      "19:13"
+      "18:53",
+      "19:13",
+      "20:51"
     ]
   },
   "bus": {
