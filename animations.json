@@ -19,7 +19,7 @@
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "10:00",
@@ -28,8 +28,8 @@
       "en": "Bungy Pump",
       "es": "Bungy Pump",
       "lieu": "Rdv devant la réception",
-      "lieu_en": "Meet at reception",
-      "lieu_es": "Cita frente a recepción"
+      "lieu_en": "Meeting at Reception",
+      "lieu_es": "Cita frente a Recepción"
     },
     {
       "heure": "10:30",
@@ -69,7 +69,7 @@
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     }
   ],
   "tomorrow_date": "21/08",
@@ -82,7 +82,7 @@
       "es": "Activacion muscular",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "09:30",
@@ -162,7 +162,7 @@
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     },
     {
       "heure": "19:00",
@@ -172,7 +172,7 @@
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
       "lieu_en": "Yoga Platform",
-      "lieu_es": "Plataforma de yoga"
+      "lieu_es": "Plataforma de Yoga"
     }
   ]
 }
