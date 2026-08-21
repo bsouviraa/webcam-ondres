@@ -28,8 +28,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "12:30",
@@ -38,8 +38,8 @@
       "en": "Kids club picnic",
       "es": "Kids club picnic",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "14:30",
@@ -49,7 +49,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "15:00",
@@ -58,8 +58,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "15:00",
@@ -68,8 +68,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "15:30",
@@ -79,7 +79,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "18:00",
@@ -112,7 +112,7 @@
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_es": "Pérgola Exterior"
     },
     {
       "heure": "10:30",
@@ -121,8 +121,8 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
-      "lieu_en": "Kids Club Hut",
-      "lieu_es": "Cabaña del Club infantil"
+      "lieu_en": "Kids Club Cabin",
+      "lieu_es": "Cabaña Kids Club"
     },
     {
       "heure": "16:30",
@@ -132,7 +132,7 @@
       "es": "Masaje DUO",
       "lieu": "Pergola Exterieur",
       "lieu_en": "Outdoor Pergola",
-      "lieu_es": "Pérgola exterior"
+      "lieu_es": "Pérgola Exterior"
     }
   ]
 }
