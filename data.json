@@ -1,17 +1,17 @@
 {
-  "updated": "2026-08-21T14:53",
-  "temp_air": "22",
+  "updated": "2026-08-21T15:30",
+  "temp_air": "21",
   "meteo_picto": "cloud-rain",
-  "meteo_label": "Bruine legere",
+  "meteo_label": "Pluie legere",
   "temp_eau": "24",
-  "vent_kmh": "13",
+  "vent_kmh": "15",
   "vent_deg": "250",
   "vent_cardinal": "OSO",
-  "uv": "4.5",
+  "uv": "3.5",
   "uv_label": "Modere",
   "lever": "07:17",
   "coucher": "21:00",
-  "houle_m": "1.58",
+  "houle_m": "1.56",
   "houle_periode": "8.6",
   "marees": [
     {
