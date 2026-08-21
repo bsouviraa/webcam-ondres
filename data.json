@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-21T11:22",
+  "updated": "2026-08-21T11:51",
   "temp_air": "21",
   "meteo_picto": "cloud-rain",
   "meteo_label": "",
   "temp_eau": "24",
-  "vent_kmh": "13",
+  "vent_kmh": "17",
   "vent_deg": "250",
   "vent_cardinal": "OSO",
-  "uv": "6.3",
+  "uv": "6.1",
   "uv_label": "Eleve",
   "lever": "07:17",
   "coucher": "21:00",
   "houle_m": "1.58",
-  "houle_periode": "9.0",
+  "houle_periode": "8.9",
   "marees": [
     {
       "type": "Basse",
