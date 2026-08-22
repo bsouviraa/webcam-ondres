@@ -45,22 +45,22 @@
       "lieu_es": ""
     },
     {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Marion)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
       "heure": "10:00",
       "emoji": "🧘",
       "fr": "Pilates (Gabrielle)",
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "17:30",
-      "emoji": "💆",
-      "fr": "Massage (Marion)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
       "lieu_en": "",
       "lieu_es": ""
     }
