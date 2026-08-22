@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-21T23:47",
+  "updated": "2026-08-22T00:01",
   "temp_air": "16",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Ciel degage",
@@ -15,20 +15,20 @@
   "houle_periode": "8.6",
   "marees": [
     {
-      "type": "Basse",
-      "heure": "05h20"
-    },
-    {
-      "type": "Haute",
-      "heure": "11h45"
-    },
-    {
-      "type": "Basse",
-      "heure": "18h05"
-    },
-    {
       "type": "Haute",
       "heure": "00h41"
+    },
+    {
+      "type": "Basse",
+      "heure": "06h46"
+    },
+    {
+      "type": "Haute",
+      "heure": "13h20"
+    },
+    {
+      "type": "Basse",
+      "heure": "19h38"
     }
   ],
   "maree_coef": "27 / 26",
