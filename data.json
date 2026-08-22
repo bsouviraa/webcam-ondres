@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-22T07:47",
+  "updated": "2026-08-22T08:02",
   "temp_air": "17",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
@@ -7,7 +7,7 @@
   "vent_kmh": "11",
   "vent_deg": "70",
   "vent_cardinal": "ENE",
-  "uv": "2.0",
+  "uv": "2.4",
   "uv_label": "Faible",
   "lever": "07:18",
   "coucher": "20:58",
