@@ -1,8 +1,6 @@
 {
-  "date": "22/08",
-  "items": [],
-  "tomorrow_date": "23/08",
-  "tomorrow_items": [
+  "date": "23/08",
+  "items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
@@ -30,6 +28,69 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
+      "lieu_en": "",
+      "lieu_es": ""
+    }
+  ],
+  "tomorrow_date": "24/08",
+  "tomorrow_items": [
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "18:30",
+      "emoji": "💆",
+      "fr": "Massage (Marion)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "20:30",
+      "emoji": "🎬",
+      "fr": "Soirée cinéma \"La petite sirène\" (film2023)",
+      "en": "Movie night",
+      "es": "Noche de Cine",
+      "lieu": "Solarium piscine",
       "lieu_en": "",
       "lieu_es": ""
     }
