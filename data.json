@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-22T22:18",
-  "temp_air": "22",
+  "updated": "2026-08-22T22:41",
+  "temp_air": "21",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
   "vent_kmh": "13",
-  "vent_deg": "90",
+  "vent_deg": "80",
   "vent_cardinal": "E",
   "uv": "6.5",
   "uv_label": "Eleve",
   "lever": "07:19",
   "coucher": "20:57",
   "houle_m": "0.74",
-  "houle_periode": "7.5",
+  "houle_periode": "7.4",
   "marees": [
     {
       "type": "Haute",
