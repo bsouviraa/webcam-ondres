@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-22T11:45",
+  "updated": "2026-08-22T11:57",
   "temp_air": "24",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
@@ -38,7 +38,7 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "14:21",
+      "14:26",
       "17:16",
       "18:17"
     ],
