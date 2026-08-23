@@ -1,8 +1,8 @@
 {
-  "updated": "2026-08-23T02:37",
-  "temp_air": "21",
+  "updated": "2026-08-23T03:35",
+  "temp_air": "20",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Couvert",
+  "meteo_label": "Partiellement nuageux",
   "temp_eau": "NC",
   "vent_kmh": "11",
   "vent_deg": "70",
@@ -11,7 +11,7 @@
   "uv_label": "Eleve",
   "lever": "07:19",
   "coucher": "20:57",
-  "houle_m": "0.68",
+  "houle_m": "0.64",
   "houle_periode": "7.0",
   "marees": [
     {
