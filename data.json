@@ -1,18 +1,18 @@
 {
-  "updated": "2026-08-23T14:48",
+  "updated": "2026-08-23T15:02",
   "temp_air": "33",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Couvert",
   "temp_eau": "24",
   "vent_kmh": "6",
-  "vent_deg": "348",
-  "vent_cardinal": "NNO",
-  "uv": "4.9",
+  "vent_deg": "354",
+  "vent_cardinal": "N",
+  "uv": "4.6",
   "uv_label": "Modere",
   "lever": "07:19",
   "coucher": "20:57",
   "houle_m": "0.52",
-  "houle_periode": "7.2",
+  "houle_periode": "7.3",
   "marees": [
     {
       "type": "Haute",
