@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-22T23:56",
-  "temp_air": "20",
+  "updated": "2026-08-23T01:10",
+  "temp_air": "21",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
@@ -16,24 +16,24 @@
   "marees": [
     {
       "type": "Haute",
-      "heure": "00h41"
+      "heure": "02h12"
     },
     {
       "type": "Basse",
-      "heure": "06h46"
+      "heure": "08h13"
     },
     {
       "type": "Haute",
-      "heure": "13h20"
+      "heure": "14h33"
     },
     {
       "type": "Basse",
-      "heure": "19h38"
+      "heure": "20h53"
     }
   ],
-  "maree_coef": "27 / 26",
-  "maree_coef_am": "27",
-  "maree_coef_pm": "26",
+  "maree_coef": "28 / 32",
+  "maree_coef_am": "28",
+  "maree_coef_pm": "32",
   "drapeau": "nc",
   "surv_label": "Baignade non surveillee",
   "transports": {
