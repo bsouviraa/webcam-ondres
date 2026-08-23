@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23T19:44",
+  "updated": "2026-08-23T19:55",
   "temp_air": "23",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Bruine legere",
@@ -11,8 +11,8 @@
   "uv_label": "Eleve",
   "lever": "07:19",
   "coucher": "20:57",
-  "houle_m": "0.48",
-  "houle_periode": "7.3",
+  "houle_m": "0.46",
+  "houle_periode": "7.2",
   "marees": [
     {
       "type": "Haute",
