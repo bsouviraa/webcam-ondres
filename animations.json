@@ -1,69 +1,6 @@
 {
-  "date": "24/08",
+  "date": "25/08",
   "items": [
-    {
-      "heure": "09:30",
-      "emoji": "💆",
-      "fr": "Massage (Claire)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "18:00",
-      "emoji": "🧘",
-      "fr": "Yoga en forêt (Maelys)",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "18:30",
-      "emoji": "💆",
-      "fr": "Massage (Marion)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "20:30",
-      "emoji": "🎬",
-      "fr": "Soirée cinéma \"La petite sirène\" (film2023)",
-      "en": "Movie night",
-      "es": "Noche de Cine",
-      "lieu": "Solarium piscine",
-      "lieu_en": "",
-      "lieu_es": ""
-    }
-  ],
-  "tomorrow_date": "25/08",
-  "tomorrow_items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
@@ -131,6 +68,79 @@
       "en": "Kids club",
       "es": "Kids club",
       "lieu": "Cahute Kids Club",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "18:30",
+      "emoji": "💆",
+      "fr": "Massage (Marion)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "",
+      "lieu_es": ""
+    }
+  ],
+  "tomorrow_date": "26/08",
+  "tomorrow_items": [
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Claire)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "10:30",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "12:30",
+      "emoji": "🥪",
+      "fr": "PIQUE NIQUE du Kids Club",
+      "en": "Kids club picnic",
+      "es": "Kids club picnic",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "15:00",
+      "emoji": "🧸",
+      "fr": "Kids Club",
+      "en": "Kids club",
+      "es": "Kids club",
+      "lieu": "Cahute Kids Club",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "16:30",
+      "emoji": "💆",
+      "fr": "Massage (Emmanuelle)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
       "lieu_en": "",
       "lieu_es": ""
     },
