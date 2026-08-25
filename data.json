@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-25T10:39",
+  "updated": "2026-08-25T11:03",
   "temp_air": "24",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Partiellement nuageux",
@@ -7,12 +7,12 @@
   "vent_kmh": "13",
   "vent_deg": "260",
   "vent_cardinal": "O",
-  "uv": "5.5",
+  "uv": "5.8",
   "uv_label": "Modere",
   "lever": "07:21",
   "coucher": "20:53",
-  "houle_m": "0.72",
-  "houle_periode": "4.4",
+  "houle_m": "0.7",
+  "houle_periode": "4.5",
   "marees": [
     {
       "type": "Haute",
