@@ -1,51 +1,51 @@
 {
-  "updated": "2026-08-26T23:59",
+  "updated": "2026-08-27T07:26",
   "temp_air": "22",
-  "meteo_picto": "cloud-sun",
+  "meteo_picto": "cloud-rain",
   "meteo_label": "Couvert",
-  "temp_eau": "23",
+  "temp_eau": "NC",
   "vent_kmh": "4",
-  "vent_deg": "100",
-  "vent_cardinal": "E",
-  "uv": "4.4",
-  "uv_label": "Modere",
+  "vent_deg": "68",
+  "vent_cardinal": "ENE",
+  "uv": "0.6",
+  "uv_label": "Faible",
   "lever": "07:24",
   "coucher": "20:50",
-  "houle_m": "0.62",
-  "houle_periode": "5.7",
+  "houle_m": "0.5",
+  "houle_periode": "7.0",
   "marees": [
     {
       "type": "Haute",
-      "heure": "04h28"
+      "heure": "05h00"
     },
     {
       "type": "Basse",
-      "heure": "10h24"
+      "heure": "10h57"
     },
     {
       "type": "Haute",
-      "heure": "16h36"
+      "heure": "17h09"
     },
     {
       "type": "Basse",
-      "heure": "22h46"
+      "heure": "23h18"
     }
   ],
-  "maree_coef": "63 / 68",
-  "maree_coef_am": "63",
-  "maree_coef_pm": "68",
-  "drapeau": "jaune",
+  "maree_coef": "74 / 78",
+  "maree_coef_am": "74",
+  "maree_coef_pm": "78",
+  "drapeau": "nc",
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "06:15",
-      "07:01",
-      "07:35"
+      "11:17",
+      "14:16",
+      "17:17"
     ],
     "dax": [
-      "06:05",
-      "07:22",
-      "08:14"
+      "09:37",
+      "14:37",
+      "15:36"
     ]
   },
   "bus": {
