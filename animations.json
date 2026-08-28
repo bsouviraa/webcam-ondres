@@ -1,79 +1,6 @@
 {
-  "date": "27/08",
+  "date": "28/08",
   "items": [
-    {
-      "heure": "09:00",
-      "emoji": "🧘",
-      "fr": "Yoga en forêt (Maelys)",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "10:00",
-      "emoji": "🏃",
-      "fr": "Bungy Pump",
-      "en": "Bungy Pump",
-      "es": "Bungy Pump",
-      "lieu": "Rdv devant la réception",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "16:30",
-      "emoji": "💆",
-      "fr": "Massage (Emmanuelle)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "18:00",
-      "emoji": "🧘",
-      "fr": "Pilates (Elsa)",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "18:30",
-      "emoji": "💆",
-      "fr": "Massage (Marion)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "",
-      "lieu_es": ""
-    }
-  ],
-  "tomorrow_date": "28/08",
-  "tomorrow_items": [
     {
       "heure": "09:00",
       "emoji": "🏃",
@@ -141,6 +68,29 @@
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
+      "lieu_en": "",
+      "lieu_es": ""
+    }
+  ],
+  "tomorrow_date": "29/08",
+  "tomorrow_items": [
+    {
+      "heure": "09:00",
+      "emoji": "🧘",
+      "fr": "Yoga en forêt (Maelys)",
+      "en": "Yoga",
+      "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "",
+      "lieu_es": ""
+    },
+    {
+      "heure": "09:30",
+      "emoji": "💆",
+      "fr": "Massage (Emmanuelle)",
+      "en": "Massage",
+      "es": "Masaje",
+      "lieu": "Pergola Exterieur",
       "lieu_en": "",
       "lieu_es": ""
     }
