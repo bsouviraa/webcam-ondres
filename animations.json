@@ -1,79 +1,6 @@
 {
-  "date": "28/08",
+  "date": "29/08",
   "items": [
-    {
-      "heure": "09:00",
-      "emoji": "🏃",
-      "fr": "Réveil musculaire",
-      "en": "Body Activation",
-      "es": "Activacion muscular",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "09:30",
-      "emoji": "🧜",
-      "fr": "Cours de sirène",
-      "en": "Mermaid class",
-      "es": "Curso de sirena",
-      "lieu": "Piscine",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "10:30",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "12:30",
-      "emoji": "🥪",
-      "fr": "PIQUE NIQUE du Kids Club",
-      "en": "Kids club picnic",
-      "es": "Kids club picnic",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "15:00",
-      "emoji": "🧸",
-      "fr": "Kids Club",
-      "en": "Kids club",
-      "es": "Kids club",
-      "lieu": "Cahute Kids Club",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "17:30",
-      "emoji": "🧘",
-      "fr": "Yoga en forêt (Gabrielle)",
-      "en": "Yoga",
-      "es": "Yoga",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    },
-    {
-      "heure": "18:30",
-      "emoji": "🧘",
-      "fr": "Pilates (Gabrielle)",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    }
-  ],
-  "tomorrow_date": "29/08",
-  "tomorrow_items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
@@ -94,5 +21,7 @@
       "lieu_en": "",
       "lieu_es": ""
     }
-  ]
+  ],
+  "tomorrow_date": "30/08",
+  "tomorrow_items": []
 }
