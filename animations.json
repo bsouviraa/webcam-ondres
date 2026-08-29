@@ -1,8 +1,6 @@
 {
-  "date": "29/08",
-  "items": [],
-  "tomorrow_date": "30/08",
-  "tomorrow_items": [
+  "date": "30/08",
+  "items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
@@ -27,6 +25,19 @@
       "heure": "10:00",
       "emoji": "🧘",
       "fr": "Pilates (Gabrielle)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "",
+      "lieu_es": ""
+    }
+  ],
+  "tomorrow_date": "31/08",
+  "tomorrow_items": [
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
       "en": "Pilates",
       "es": "Pilates",
       "lieu": "Plateforme de yoga",
