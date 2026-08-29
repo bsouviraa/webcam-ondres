@@ -1,10 +1,12 @@
 {
   "date": "29/08",
-  "items": [
+  "items": [],
+  "tomorrow_date": "30/08",
+  "tomorrow_items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
-      "fr": "Yoga en forêt (Maelys)",
+      "fr": "Yoga en forêt (Gabrielle)",
       "en": "Yoga",
       "es": "Yoga",
       "lieu": "Plateforme de yoga",
@@ -14,14 +16,22 @@
     {
       "heure": "09:30",
       "emoji": "💆",
-      "fr": "Massage (Emmanuelle)",
+      "fr": "Massage (Marion)",
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "",
       "lieu_es": ""
+    },
+    {
+      "heure": "10:00",
+      "emoji": "🧘",
+      "fr": "Pilates (Gabrielle)",
+      "en": "Pilates",
+      "es": "Pilates",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "",
+      "lieu_es": ""
     }
-  ],
-  "tomorrow_date": "30/08",
-  "tomorrow_items": []
+  ]
 }
