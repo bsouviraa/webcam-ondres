@@ -1,19 +1,6 @@
 {
-  "date": "31/08",
+  "date": "01/09",
   "items": [
-    {
-      "heure": "18:00",
-      "emoji": "🧘",
-      "fr": "Pilates ballon (Sarah)",
-      "en": "Pilates",
-      "es": "Pilates",
-      "lieu": "Plateforme de yoga",
-      "lieu_en": "",
-      "lieu_es": ""
-    }
-  ],
-  "tomorrow_date": "01/09",
-  "tomorrow_items": [
     {
       "heure": "17:00",
       "emoji": "💆",
@@ -30,6 +17,19 @@
       "fr": "Yoga en forêt (Maelys)",
       "en": "Yoga",
       "es": "Yoga",
+      "lieu": "Plateforme de yoga",
+      "lieu_en": "",
+      "lieu_es": ""
+    }
+  ],
+  "tomorrow_date": "02/09",
+  "tomorrow_items": [
+    {
+      "heure": "18:00",
+      "emoji": "🧘",
+      "fr": "Pilates ballon (Sarah)",
+      "en": "Pilates",
+      "es": "Pilates",
       "lieu": "Plateforme de yoga",
       "lieu_en": "",
       "lieu_es": ""
