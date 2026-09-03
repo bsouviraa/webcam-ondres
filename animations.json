@@ -1,18 +1,21 @@
 {
-  "date": "03/09",
+  "date": "04/09",
   "items": [
     {
-      "heure": "09:30",
+      "heure": "17:00",
       "emoji": "💆",
-      "fr": "Massage (Emmanuelle)",
+      "fr": "Massage (Marion)",
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
       "lieu_en": "",
       "lieu_es": ""
-    },
+    }
+  ],
+  "tomorrow_date": "05/09",
+  "tomorrow_items": [
     {
-      "heure": "18:00",
+      "heure": "09:00",
       "emoji": "🧘",
       "fr": "Yoga en forêt (Maelys)",
       "en": "Yoga",
@@ -20,14 +23,11 @@
       "lieu": "Plateforme de yoga",
       "lieu_en": "",
       "lieu_es": ""
-    }
-  ],
-  "tomorrow_date": "04/09",
-  "tomorrow_items": [
+    },
     {
-      "heure": "17:00",
+      "heure": "17:30",
       "emoji": "💆",
-      "fr": "Massage (Marion)",
+      "fr": "Massage (Emmanuelle)",
       "en": "Massage",
       "es": "Masaje",
       "lieu": "Pergola Exterieur",
