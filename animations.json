@@ -1,19 +1,6 @@
 {
-  "date": "04/09",
+  "date": "05/09",
   "items": [
-    {
-      "heure": "17:00",
-      "emoji": "💆",
-      "fr": "Massage (Marion)",
-      "en": "Massage",
-      "es": "Masaje",
-      "lieu": "Pergola Exterieur",
-      "lieu_en": "",
-      "lieu_es": ""
-    }
-  ],
-  "tomorrow_date": "05/09",
-  "tomorrow_items": [
     {
       "heure": "09:00",
       "emoji": "🧘",
@@ -34,5 +21,7 @@
       "lieu_en": "",
       "lieu_es": ""
     }
-  ]
+  ],
+  "tomorrow_date": "06/09",
+  "tomorrow_items": []
 }
