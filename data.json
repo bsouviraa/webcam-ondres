@@ -1,34 +1,34 @@
 {
-  "updated": "2026-09-05T23:56",
-  "temp_air": "23",
+  "updated": "2026-09-06T02:56",
+  "temp_air": "22",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "23",
-  "vent_kmh": "6",
+  "vent_kmh": "7",
   "vent_deg": "260",
   "vent_cardinal": "O",
   "uv": "5.3",
   "uv_label": "Modere",
   "lever": "07:35",
   "coucher": "20:33",
-  "houle_m": "1.42",
-  "houle_periode": "11.0",
+  "houle_m": "1.4",
+  "houle_periode": "11.4",
   "marees": [
-    {
-      "type": "Basse",
-      "heure": "04h43"
-    },
-    {
-      "type": "Haute",
-      "heure": "11h27"
-    },
-    {
-      "type": "Basse",
-      "heure": "17h52"
-    },
     {
       "type": "Haute",
       "heure": "00h31"
+    },
+    {
+      "type": "Basse",
+      "heure": "06h25"
+    },
+    {
+      "type": "Haute",
+      "heure": "13h13"
+    },
+    {
+      "type": "Basse",
+      "heure": "19h33"
     }
   ],
   "maree_coef": "40 / 41",
