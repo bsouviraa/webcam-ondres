@@ -1,18 +1,18 @@
 {
-  "updated": "2026-09-18T11:36",
-  "temp_air": "19",
+  "updated": "2026-09-18T15:09",
+  "temp_air": "20",
   "meteo_picto": "cloud-rain",
-  "meteo_label": "Partiellement nuageux",
+  "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "9",
-  "vent_deg": "240",
-  "vent_cardinal": "OSO",
-  "uv": "4.0",
+  "vent_kmh": "17",
+  "vent_deg": "350",
+  "vent_cardinal": "N",
+  "uv": "3.4",
   "uv_label": "Modere",
   "lever": "07:48",
   "coucher": "20:10",
-  "houle_m": "1.32",
-  "houle_periode": "9.2",
+  "houle_m": "1.58",
+  "houle_periode": "10.5",
   "marees": [
     {
       "type": "Basse",
@@ -43,9 +43,8 @@
       "18:17"
     ],
     "dax": [
-      "14:37",
-      "16:36",
-      "18:38"
+      "18:38",
+      "20:51"
     ]
   },
   "bus": {
