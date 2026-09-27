@@ -1,39 +1,39 @@
 {
-  "updated": "2026-09-26T23:09",
-  "temp_air": "17",
+  "updated": "2026-09-27T01:26",
+  "temp_air": "15",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Ciel degage",
+  "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "6",
-  "vent_deg": "170",
-  "vent_cardinal": "S",
+  "vent_kmh": "7",
+  "vent_deg": "150",
+  "vent_cardinal": "SSE",
   "uv": "4.6",
   "uv_label": "Modere",
   "lever": "07:58",
   "coucher": "19:54",
   "houle_m": "1.68",
-  "houle_periode": "11.8",
+  "houle_periode": "11.9",
   "marees": [
     {
       "type": "Haute",
-      "heure": "04h57"
+      "heure": "05h39"
     },
     {
       "type": "Basse",
-      "heure": "10h57"
+      "heure": "11h35"
     },
     {
       "type": "Haute",
-      "heure": "17h09"
+      "heure": "17h53"
     },
     {
       "type": "Basse",
-      "heure": "23h16"
+      "heure": "23h54"
     }
   ],
-  "maree_coef": "87 / 92",
-  "maree_coef_am": "87",
-  "maree_coef_pm": "92",
+  "maree_coef": "95 / 97",
+  "maree_coef_am": "95",
+  "maree_coef_pm": "97",
   "drapeau": "nc",
   "surv_label": "Baignade non surveillee",
   "transports": {
