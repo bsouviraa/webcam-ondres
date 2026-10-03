@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-03T18:17",
-  "temp_air": "22",
+  "updated": "2026-10-03T21:20",
+  "temp_air": "20",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "7",
-  "vent_deg": "350",
-  "vent_cardinal": "N",
+  "vent_kmh": "6",
+  "vent_deg": "220",
+  "vent_cardinal": "SO",
   "uv": "4.0",
   "uv_label": "Modere",
   "lever": "08:05",
@@ -43,7 +43,9 @@
       "17:17"
     ],
     "dax": [
-      "20:51"
+      "09:38",
+      "11:36",
+      "13:33"
     ]
   },
   "bus": {
