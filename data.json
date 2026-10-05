@@ -1,34 +1,34 @@
 {
-  "updated": "2026-10-04T21:57",
-  "temp_air": "19",
+  "updated": "2026-10-05T00:25",
+  "temp_air": "17",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Ciel degage",
   "temp_eau": "NC",
-  "vent_kmh": "9",
-  "vent_deg": "80",
+  "vent_kmh": "7",
+  "vent_deg": "100",
   "vent_cardinal": "E",
-  "uv": "4.5",
+  "uv": "4.6",
   "uv_label": "Modere",
-  "lever": "08:06",
-  "coucher": "19:41",
-  "houle_m": "0.86",
-  "houle_periode": "9.6",
+  "lever": "08:07",
+  "coucher": "19:39",
+  "houle_m": "0.84",
+  "houle_periode": "9.9",
   "marees": [
-    {
-      "type": "Basse",
-      "heure": "04h38"
-    },
-    {
-      "type": "Haute",
-      "heure": "11h28"
-    },
-    {
-      "type": "Basse",
-      "heure": "17h56"
-    },
     {
       "type": "Haute",
       "heure": "00h38"
+    },
+    {
+      "type": "Basse",
+      "heure": "06h24"
+    },
+    {
+      "type": "Haute",
+      "heure": "13h09"
+    },
+    {
+      "type": "Basse",
+      "heure": "19h31"
     }
   ],
   "maree_coef": "40 / 43",
