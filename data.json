@@ -1,18 +1,18 @@
 {
-  "updated": "2026-10-12T07:52",
-  "temp_air": "18",
+  "updated": "2026-10-12T17:20",
+  "temp_air": "20",
   "meteo_picto": "cloud-sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "2",
-  "vent_deg": "180",
-  "vent_cardinal": "S",
-  "uv": "0.5",
+  "vent_kmh": "13",
+  "vent_deg": "340",
+  "vent_cardinal": "NNO",
+  "uv": "0.1",
   "uv_label": "Faible",
   "lever": "08:16",
   "coucher": "19:27",
-  "houle_m": "1.16",
-  "houle_periode": "10.2",
+  "houle_m": "1.5",
+  "houle_periode": "10.0",
   "marees": [
     {
       "type": "Haute",
@@ -38,14 +38,10 @@
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "11:17",
-      "13:36",
-      "17:17"
+      "20:17"
     ],
     "dax": [
-      "14:37",
-      "16:36",
-      "17:13"
+      "21:01"
     ]
   },
   "bus": {
