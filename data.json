@@ -1,18 +1,18 @@
 {
-  "updated": "2026-10-17T17:57",
+  "updated": "2026-10-17T20:06",
   "temp_air": "13",
   "meteo_picto": "cloud-rain",
-  "meteo_label": "Bruine legere",
+  "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "4",
-  "vent_deg": "54",
-  "vent_cardinal": "NE",
+  "vent_kmh": "7",
+  "vent_deg": "130",
+  "vent_cardinal": "SE",
   "uv": "0.9",
   "uv_label": "Faible",
   "lever": "08:22",
   "coucher": "19:19",
-  "houle_m": "1.7",
-  "houle_periode": "9.6",
+  "houle_m": "1.64",
+  "houle_periode": "9.4",
   "marees": [
     {
       "type": "Basse",
@@ -43,7 +43,9 @@
       "17:17"
     ],
     "dax": [
-      "20:51"
+      "09:38",
+      "11:36",
+      "13:33"
     ]
   },
   "bus": {
