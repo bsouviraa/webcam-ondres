@@ -1,17 +1,17 @@
 {
-  "updated": "2026-10-24T19:14",
-  "temp_air": "16",
+  "updated": "2026-10-24T21:36",
+  "temp_air": "14",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "15",
-  "vent_deg": "260",
-  "vent_cardinal": "O",
+  "vent_kmh": "6",
+  "vent_deg": "210",
+  "vent_cardinal": "SSO",
   "uv": "3.2",
   "uv_label": "Modere",
   "lever": "08:31",
   "coucher": "19:08",
-  "houle_m": "2.46",
+  "houle_m": "2.48",
   "houle_periode": "10.3",
   "marees": [
     {
@@ -43,7 +43,9 @@
       "17:17"
     ],
     "dax": [
-      "21:21"
+      "09:38",
+      "11:36",
+      "13:33"
     ]
   },
   "bus": {
