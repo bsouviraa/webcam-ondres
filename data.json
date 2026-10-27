@@ -1,17 +1,17 @@
 {
-  "updated": "2026-10-27T19:12",
-  "temp_air": "16",
+  "updated": "2026-10-27T22:56",
+  "temp_air": "15",
   "meteo_picto": "sun",
   "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "7",
-  "vent_deg": "360",
-  "vent_cardinal": "N",
+  "vent_kmh": "6",
+  "vent_deg": "80",
+  "vent_cardinal": "E",
   "uv": "3.0",
   "uv_label": "Modere",
   "lever": "07:34",
   "coucher": "18:03",
-  "houle_m": "1.9",
+  "houle_m": "1.8",
   "houle_periode": "11.2",
   "marees": [
     {
@@ -40,12 +40,12 @@
     "bayonne": [
       "06:15",
       "07:06",
-      "20:17"
+      "07:35"
     ],
     "dax": [
       "06:05",
       "07:22",
-      "20:51"
+      "08:14"
     ]
   },
   "bus": {
