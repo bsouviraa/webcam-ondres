@@ -1,51 +1,51 @@
 {
-  "updated": "2026-11-12T15:36",
-  "temp_air": "15",
+  "updated": "2026-11-13T02:22",
+  "temp_air": "14",
   "meteo_picto": "cloud-rain",
-  "meteo_label": "",
+  "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "19",
-  "vent_deg": "300",
-  "vent_cardinal": "ONO",
-  "uv": "0.1",
+  "vent_kmh": "4",
+  "vent_deg": "360",
+  "vent_cardinal": "N",
+  "uv": "2.0",
   "uv_label": "Faible",
-  "lever": "07:55",
-  "coucher": "17:43",
-  "houle_m": "1.56",
-  "houle_periode": "6.6",
+  "lever": "07:57",
+  "coucher": "17:42",
+  "houle_m": "0.86",
+  "houle_periode": "6.8",
   "marees": [
-    {
-      "type": "Haute",
-      "heure": "05h40"
-    },
-    {
-      "type": "Basse",
-      "heure": "11h52"
-    },
-    {
-      "type": "Haute",
-      "heure": "17h58"
-    },
     {
       "type": "Basse",
       "heure": "00h04"
+    },
+    {
+      "type": "Haute",
+      "heure": "06h15"
+    },
+    {
+      "type": "Basse",
+      "heure": "12h28"
+    },
+    {
+      "type": "Haute",
+      "heure": "18h34"
     }
   ],
-  "maree_coef": "74 / 71",
-  "maree_coef_am": "74",
-  "maree_coef_pm": "71",
+  "maree_coef": "67 / 63",
+  "maree_coef_am": "67",
+  "maree_coef_pm": "63",
   "drapeau": "nc",
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
-      "17:43",
-      "18:17",
-      "19:23"
+      "06:15",
+      "07:06",
+      "07:35"
     ],
     "dax": [
-      "18:38",
-      "19:39",
-      "20:51"
+      "06:05",
+      "07:22",
+      "08:14"
     ]
   },
   "bus": {
