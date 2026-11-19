@@ -1,51 +1,51 @@
 {
-  "updated": "2026-11-18T18:58",
-  "temp_air": "16",
+  "updated": "2026-11-19T00:57",
+  "temp_air": "14",
   "meteo_picto": "cloud-sun",
-  "meteo_label": "Couvert",
+  "meteo_label": "Pluie moderee",
   "temp_eau": "NC",
-  "vent_kmh": "6",
-  "vent_deg": "125",
-  "vent_cardinal": "SE",
+  "vent_kmh": "31",
+  "vent_deg": "260",
+  "vent_cardinal": "O",
   "uv": "2.5",
   "uv_label": "Faible",
-  "lever": "08:03",
-  "coucher": "17:38",
-  "houle_m": "3.94",
-  "houle_periode": "13.6",
+  "lever": "08:04",
+  "coucher": "17:37",
+  "houle_m": "4.18",
+  "houle_periode": "13.2",
   "marees": [
     {
       "type": "Basse",
-      "heure": "04h34"
+      "heure": "05h44"
     },
     {
       "type": "Haute",
-      "heure": "10h55"
+      "heure": "12h02"
     },
     {
       "type": "Basse",
-      "heure": "17h16"
+      "heure": "18h19"
     },
     {
       "type": "Haute",
-      "heure": "23h44"
+      "heure": "00h37"
     }
   ],
-  "maree_coef": "35 / 37",
-  "maree_coef_am": "35",
-  "maree_coef_pm": "37",
+  "maree_coef": "46 / 51",
+  "maree_coef_am": "46",
+  "maree_coef_pm": "51",
   "drapeau": "nc",
   "surv_label": "Baignade non surveillee",
   "transports": {
     "bayonne": [
       "07:06",
       "07:35",
-      "20:22"
+      "08:20"
     ],
     "dax": [
       "06:05",
       "07:22",
-      "20:51"
+      "09:38"
     ]
   },
   "bus": {
