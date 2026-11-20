@@ -1,34 +1,34 @@
 {
-  "updated": "2026-11-19T23:42",
-  "temp_air": "12",
+  "updated": "2026-11-20T04:18",
+  "temp_air": "13",
   "meteo_picto": "cloud-rain",
-  "meteo_label": "Partiellement nuageux",
+  "meteo_label": "Couvert",
   "temp_eau": "NC",
-  "vent_kmh": "6",
+  "vent_kmh": "9",
   "vent_deg": "220",
   "vent_cardinal": "SO",
   "uv": "2.0",
   "uv_label": "Faible",
   "lever": "08:05",
   "coucher": "17:36",
-  "houle_m": "4.42",
-  "houle_periode": "12.3",
+  "houle_m": "4.18",
+  "houle_periode": "11.9",
   "marees": [
-    {
-      "type": "Basse",
-      "heure": "05h44"
-    },
-    {
-      "type": "Haute",
-      "heure": "12h02"
-    },
-    {
-      "type": "Basse",
-      "heure": "18h19"
-    },
     {
       "type": "Haute",
       "heure": "00h37"
+    },
+    {
+      "type": "Basse",
+      "heure": "06h33"
+    },
+    {
+      "type": "Haute",
+      "heure": "12h54"
+    },
+    {
+      "type": "Basse",
+      "heure": "19h02"
     }
   ],
   "maree_coef": "46 / 51",
@@ -43,7 +43,6 @@
       "08:20"
     ],
     "dax": [
-      "06:05",
       "09:38",
       "14:37"
     ]
