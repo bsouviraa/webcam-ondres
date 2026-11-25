@@ -1,17 +1,17 @@
 {
-  "updated": "2026-11-25T11:43",
-  "temp_air": "9",
+  "updated": "2026-11-25T20:39",
+  "temp_air": "12",
   "meteo_picto": "cloud-rain",
   "meteo_label": "Pluie moderee",
   "temp_eau": "NC",
   "vent_kmh": "15",
-  "vent_deg": "210",
-  "vent_cardinal": "SSO",
-  "uv": "0.3",
+  "vent_deg": "360",
+  "vent_cardinal": "N",
+  "uv": "0.8",
   "uv_label": "Faible",
   "lever": "08:12",
   "coucher": "17:33",
-  "houle_m": "2.72",
+  "houle_m": "3.42",
   "houle_periode": "9.7",
   "marees": [
     {
